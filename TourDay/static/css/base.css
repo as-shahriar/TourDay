@@ -1,0 +1,16 @@
+:root {
+  --background-color: #fbfbfb;
+  --primary-color: #00284e;
+  --primary-dark-color: #021527;
+  --secondary-color: #992f31;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}

@@ -13,7 +13,7 @@ SECRET_KEY = "w#d#t1y6r9q$+xfq)x#omv9m@nehjq7b5^j7n6#+7ljln(j0eb"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1", "c95cdf2c6c95.ngrok.io"]
 
 
 # Application definition
@@ -106,4 +106,3 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
