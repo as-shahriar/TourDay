@@ -71,6 +71,14 @@
   </footer>
 </body>
 <script>
+  window.onresize = () => {
+    let mql = window.matchMedia("(max-width: 800px)");
+    if (mql.matches) {
+      console.log("dranging");
+      document.getElementById("nav").style.display = "flex";
+    }
+  };
+
   isClicked = false;
   document.querySelector(".menu-icon").addEventListener("click", () => {
     document.querySelector(".menu-icon").classList.toggle("active");

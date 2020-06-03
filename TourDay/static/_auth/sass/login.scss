@@ -92,6 +92,7 @@ section {
     outline: none !important;
     border-radius: 0.5rem;
     border-color: #24242449;
+    width: 13rem;
   }
   input:focus {
     border-color: #00284e49;
@@ -279,6 +280,9 @@ footer {
 
   #input-box {
     flex-direction: column;
+    div {
+      margin-bottom: 0.5rem;
+    }
   }
   nav {
     display: none;
@@ -298,5 +302,9 @@ footer {
         }
       }
     }
+  }
+
+  footer {
+    justify-content: center;
   }
 }
