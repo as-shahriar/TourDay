@@ -6,5 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/base.css'%}" />
   </head>
-  {% block base %} {% endblock %}
+  <body>
+    <nav id="nav">
+      <ul class="menu">
+        <li><a>Search</a></li>
+        <li><a>Blog</a></li>
+        <li><a>E-commerce</a></li>
+        <li><a>Login</a></li>
+        <li><a>Sign up</a></li>
+      </ul>
+    </nav>
+    <div class="menu-mobile">
+      <ul>
+        <li><a>Search</a></li>
+        <li><a>Blog</a></li>
+        <li><a>E-commerce</a></li>
+        <li><a>Login</a></li>
+        <li><a>Sign up</a></li>
+      </ul>
+    </div>
+
+    <title>TourDay | Login</title>
+    <link rel="stylesheet" href="{% static '_auth/css/login.css'%}" />
+
+    <div class="container">
+      <section>
+        <div class="left">
+          <img src="{% static 'image/logo.png'%}" id="logo" alt="logo" />
+          <h1 id="sub-text">With You Wherever You <span>GO</span></h1>
+        </div>
+        <div class="right">
+          <div class="form">
+            {% block auth_template %} {% endblock %}
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Mobile logo and menu bar start -->
+    <div class="mobile">
+      <div class="logo">
+        <img src="{% static 'image/logo.png'%}" alt="logo" />
+      </div>
+      <div class="menu-icon"><div class="hambargur"></div></div>
+      <div class="items" id="items"></div>
+    </div>
+
+    <!-- Mobile logo and menu bar end-->
+
+    <footer>
+      <h4>TourDay © 2020</h4>
+    </footer>
+  </body>
+  <script>
+    document.querySelector(".menu-icon").addEventListener("click", () => {
+      document.querySelector(".menu-icon").classList.toggle("active");
+      document.querySelector("#items").classList.toggle("open");
+    });
+  </script>
 </html>

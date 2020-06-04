@@ -15,7 +15,9 @@ body {
   user-select: none;
   //text unselectable end
 }
-
+.menu-mobile {
+  display: none;
+}
 nav {
   display: flex;
   justify-content: flex-end;
@@ -75,7 +77,8 @@ section {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 5rem;
+  margin-right: 3rem;
+  padding: 4rem;
 }
 
 .form-control {
@@ -263,6 +266,7 @@ footer {
     width: 100vw;
     .form {
       align-items: center;
+      margin-right: 0;
     }
   }
 
@@ -286,20 +290,31 @@ footer {
   }
   nav {
     display: none;
+  }
+  .menu-mobile {
+    display: flex;
     position: fixed;
-    top: 58px;
+    top: 35px;
     right: 58px;
     color: var(--background-color);
 
     z-index: 4;
-    .menu {
-      flex-direction: column;
-      align-items: center;
-      li {
-        padding: 0.4rem;
-        a:hover {
-          color: var(--background-color);
-        }
+
+    flex-direction: column;
+    align-items: center;
+    li {
+      display: flex;
+      justify-content: center;
+      padding: 0.4rem;
+      list-style: none;
+      font-size: 1.2rem;
+      white-space: nowrap;
+      a {
+        cursor: pointer;
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--background-color);
       }
     }
   }

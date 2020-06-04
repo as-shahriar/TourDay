@@ -1,97 +1,36 @@
-{% extends 'base.html' %}{% load static %} {% block base %}
-<title>TourDay | Login</title>
-<link rel="stylesheet" href="{% static '_auth/css/login.css'%}" />
-<body>
-  <div class="container">
-    <nav id="nav">
-      <ul class="menu">
-        <li><a>Search</a></li>
-        <li><a>Blog</a></li>
-        <li><a>E-commerce</a></li>
-        <li><a>Sign up</a></li>
-      </ul>
-    </nav>
+{% extends 'base.html' %}{% load static %} {% block auth_template %}
 
-    <section>
-      <div class="left">
-        <img src="{% static 'image/logo.png'%}" id="logo" alt="logo" />
-        <h1 id="sub-text">With You Wherever You <span>GO</span></h1>
-      </div>
-      <div class="right">
-        <div class="form">
-          <div class="form-control">
-            <label for="username">Username:</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Enter username or email"
-            />
-          </div>
+<div class="form-control">
+  <label for="username">Username:</label>
+  <input
+    type="text"
+    name="username"
+    id="username"
+    placeholder="Enter username or email"
+  />
+</div>
 
-          <div class="form-control">
-            <label for="username">Password:</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Enter password"
-            />
-          </div>
+<div class="form-control">
+  <label for="username">Password:</label>
+  <input
+    type="password"
+    name="password"
+    id="password"
+    placeholder="Enter password"
+  />
+</div>
 
-          <div id="input-box">
-            <div><a>Forget Password?</a></div>
-            <button class="btn">Login</button>
-          </div>
-          <div class="social-auth">
-            <img src="{% static 'image/fb.png'%}" alt="FB logo" />
-            <p>Login with Facebook</p>
-          </div>
-          <div class="social-auth">
-            <img src="{% static 'image/google.png'%}" alt="Google logo" />
-            <p>Login with Google</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-  <!-- Mobile logo and menu bar start -->
-  <div class="mobile">
-    <div class="logo">
-      <img src="{% static 'image/logo.png'%}" alt="logo" />
-    </div>
-    <div class="menu-icon"><div class="hambargur"></div></div>
-    <div class="items" id="items"></div>
-  </div>
+<div id="input-box">
+  <div><a>Forget Password?</a></div>
+  <button class="btn">Login</button>
+</div>
+<div class="social-auth">
+  <img src="{% static 'image/fb.png'%}" alt="FB logo" />
+  <p>Login with Facebook</p>
+</div>
+<div class="social-auth">
+  <img src="{% static 'image/google.png'%}" alt="Google logo" />
+  <p>Login with Google</p>
+</div>
 
-  <!-- Mobile logo and menu bar end-->
-
-  <footer>
-    <h4>TourDay © 2020</h4>
-  </footer>
-</body>
-<script>
-  window.onresize = () => {
-    let mql = window.matchMedia("(max-width: 800px)");
-    if (mql.matches) {
-      console.log("dranging");
-      document.getElementById("nav").style.display = "flex";
-    }
-  };
-
-  isClicked = false;
-  document.querySelector(".menu-icon").addEventListener("click", () => {
-    document.querySelector(".menu-icon").classList.toggle("active");
-    document.querySelector("#items").classList.toggle("open");
-    document.getElementById("nav").style.display = "block";
-    if (!isClicked) {
-      document.getElementById("nav").style.display = "block";
-      isClicked = true;
-    } else {
-      isClicked = false;
-      document.getElementById("nav").style.display = "none";
-    }
-  });
-</script>
-
-{% endblock %}
+{%endblock%}
