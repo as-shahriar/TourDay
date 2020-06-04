@@ -1,6 +1,7 @@
 :root {
   --background-color: #fbfbfb;
   --primary-color: #00284e;
+  --primary-transparent-color: #00284eeb;
   --primary-dark-color: #021527;
   --secondary-color: #992f31;
 }
@@ -12,6 +13,7 @@
 }
 a {
   color: var(--primary-color);
+  outline: 0;
 }
 button::-moz-focus-inner {
   border: 0;
@@ -93,7 +95,7 @@ section {
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
-  height: 80vh;
+  height: 74vh;
 }
 
 .right {
@@ -266,7 +268,12 @@ footer {
   right: 10px;
   height: 50px;
   width: 50px;
+}
+.addColor {
   background-color: var(--primary-color);
+}
+.showNav {
+  display: flex;
 }
 
 .menu-icon:hover {
@@ -338,7 +345,7 @@ footer {
 }
 
 .items.open {
-  background: var(--primary-color);
+  background: var(--primary-transparent-color);
   -webkit-box-shadow: -4px 6px 25px rgba(0, 40, 78, 0.404);
   box-shadow: -4px 6px 25px rgba(0, 40, 78, 0.404);
   height: 280px;
@@ -422,5 +429,11 @@ footer {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+  }
+}
+
+@media (min-width: 800px) {
+  .showNav {
+    display: none;
   }
 }

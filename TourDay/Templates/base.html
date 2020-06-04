@@ -51,7 +51,7 @@
       <div class="logo">
         <img src="{% static 'image/logo.png'%}" alt="logo" />
       </div>
-      <div class="menu-icon"><div class="hambargur"></div></div>
+      <div class="menu-icon addColor"><div class="hambargur"></div></div>
       <div class="items" id="items"></div>
     </div>
 
@@ -67,13 +67,14 @@
       document.querySelector(".menu-icon").classList.toggle("active");
       document.querySelector("#items").classList.toggle("open");
       if (!isCliked) {
-        document.querySelector(".menu-mobile").style.display = "flex";
+        document.querySelector(".menu-mobile").classList.toggle("showNav");
+        document.querySelector(".menu-icon").classList.toggle("addColor");
         isCliked = true;
       } else {
-        document.querySelector(".menu-mobile").style.display = "none";
+        document.querySelector(".menu-mobile").classList.toggle("showNav");
+        document.querySelector(".menu-icon").classList.toggle("addColor");
         isCliked = false;
       }
-      console.log(isCliked);
     });
   </script>
 </html>
