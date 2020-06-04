@@ -3,6 +3,7 @@
 
 <title>TourDay | Login</title>
 <div class="form-control">
+  <h3 id="forget-title">Login</h3>
   <label for="username">Username:</label>
   <input
     type="text"
@@ -23,7 +24,7 @@
 </div>
 
 <div id="input-box">
-  <div><a>Forget Password?</a></div>
+  <div><a href="{% url 'forget_password_page'%}">Forget Password?</a></div>
   <button class="btn">Login</button>
 </div>
 <div class="social-auth">

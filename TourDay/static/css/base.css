@@ -114,8 +114,14 @@ section {
 #sub-text span {
   color: var(--secondary-color);
 }
-
+#forget-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
 .form {
+  min-height: 75vh;
+  justify-content: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -203,6 +209,7 @@ section {
 #input-box div a {
   cursor: pointer;
   font-size: 0.8rem;
+  text-decoration: none;
 }
 
 #input-box div a:hover {

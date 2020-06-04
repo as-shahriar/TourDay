@@ -6,3 +6,9 @@ def loginView(request):
  
 def signupView(request):
     return render(request, "_auth/signup.html")
+
+def forgetPasswordView(request):
+    return render(request, "_auth/forget_password.html")
+
+def resetPasswordView(request):
+    return render(request,'_auth/reset_password.html')
