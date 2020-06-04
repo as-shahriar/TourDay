@@ -5,28 +5,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/base.css'%}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'image/logo.png'%}"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <nav id="nav">
       <ul class="menu">
-        <li><a>Search</a></li>
-        <li><a>Blog</a></li>
-        <li><a>E-commerce</a></li>
-        <li><a>Login</a></li>
-        <li><a>Sign up</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">E-commerce</a></li>
+        <li><a href="{% url 'login_page'%}">Login</a></li>
+        <li><a href="{% url 'signup_page'%}">Sign up</a></li>
       </ul>
     </nav>
     <div class="menu-mobile">
       <ul>
-        <li><a>Search</a></li>
-        <li><a>Blog</a></li>
-        <li><a>E-commerce</a></li>
-        <li><a>Login</a></li>
-        <li><a>Sign up</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">E-commerce</a></li>
+        <li><a href="{% url 'login_page'%}">Login</a></li>
+        <li><a href="{% url 'signup_page'%}">Sign up</a></li>
       </ul>
     </div>
 
-    <title>TourDay | Login</title>
     <link rel="stylesheet" href="{% static '_auth/css/login.css'%}" />
 
     <div class="container">
@@ -58,9 +62,18 @@
     </footer>
   </body>
   <script>
+    isCliked = false;
     document.querySelector(".menu-icon").addEventListener("click", () => {
       document.querySelector(".menu-icon").classList.toggle("active");
       document.querySelector("#items").classList.toggle("open");
+      if (!isCliked) {
+        document.querySelector(".menu-mobile").style.display = "flex";
+        isCliked = true;
+      } else {
+        document.querySelector(".menu-mobile").style.display = "none";
+        isCliked = false;
+      }
+      console.log(isCliked);
     });
   </script>
 </html>
