@@ -12,6 +12,10 @@
     />
   </head>
   <body>
+    <div class="loader">
+      <img src="{% static 'image/loader.gif'%}" alt="Loading" />
+    </div>
+
     <nav id="nav">
       <ul class="menu">
         <li><a href="#">Search</a></li>
@@ -56,12 +60,17 @@
     </div>
 
     <!-- Mobile logo and menu bar end-->
-
-    <footer>
-      <h4>TourDay © 2020</h4>
-    </footer>
   </body>
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"
+  ></script>
   <script>
+    $(window).on("load", function () {
+      setInterval(() => $(".loader").fadeOut(), 1000);
+    });
+
     isCliked = false;
     document.querySelector(".menu-icon").addEventListener("click", () => {
       document.querySelector(".menu-icon").classList.toggle("active");
