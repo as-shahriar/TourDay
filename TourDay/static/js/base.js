@@ -2,6 +2,8 @@ $(window).on("load", function () {
   setInterval(() => $(".loader").fadeOut(), 1000);
 });
 
+let timeout = undefined;
+
 isCliked = false;
 document.querySelector(".menu-icon").addEventListener("click", () => {
   document.querySelector(".menu-icon").classList.toggle("active");
@@ -20,6 +22,9 @@ document.querySelector(".menu-icon").addEventListener("click", () => {
 $("#close-error").click(function () {
   //hide error on click close button
   $(".error").fadeOut();
+  if (timeout != undefined) {
+    clearTimeout(timeout);
+  }
 });
 
 //return csrf token
@@ -37,4 +42,8 @@ function getCookie(name) {
     }
   }
   return cookieValue;
+}
+
+function hide_error() {
+  timeout = setTimeout(() => $(".error").fadeOut(), 5000);
 }

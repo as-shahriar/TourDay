@@ -15,7 +15,6 @@ $("#login").click(function (e) {
   } else {
     password.removeClass("input-error");
   }
-
   $.ajax({
     url: "/ajaxlogin",
     type: "POST",
@@ -26,15 +25,15 @@ $("#login").click(function (e) {
     },
 
     success: function (result) {
-      console.log(result.status);
       if (result.status == 200) {
         location.href = "/";
       } else {
         $(".error").show();
+        hide_error();
       }
     },
     error: function (result) {
-      console.log(result);
+      console.log("Network Error");
     },
   });
 });
