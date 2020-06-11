@@ -85,7 +85,7 @@ nav .menu li a {
 }
 
 nav .menu li a:hover {
-  text-shadow: 0 0 4px #1a1a1a4f;
+  text-shadow: 1px 1px 1px #1a1a1a6b;
 }
 
 section {
@@ -360,7 +360,45 @@ section {
   width: 280px;
 }
 
+.error {
+  background-image: linear-gradient(to right, #e65758, #771d32);
+  display: inline-block;
+  position: absolute;
+  top: 2.8rem;
+  left: 1rem;
+}
+
+.error h4 {
+  color: #fff;
+  padding: 1rem;
+  margin: 0 1.5rem;
+}
+
+.error img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
 @media (max-width: 800px) {
+  .error {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: auto;
+    left: auto;
+    bottom: 0;
+  }
+
+  .error img {
+    padding: 5px;
+  }
+  .error h4 {
+    font-size: 0.7rem;
+  }
+
   .loader img {
     width: 30%;
   }
@@ -399,6 +437,8 @@ section {
   }
   #input-box div {
     margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
   }
   nav {
     display: none;
@@ -447,4 +487,8 @@ section {
   .showNav {
     display: none;
   }
+}
+
+.input-error {
+  border: 2px solid #b30000 !important;
 }

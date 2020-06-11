@@ -35,8 +35,6 @@
       </ul>
     </div>
 
-    <link rel="stylesheet" href="{% static '_auth/css/login.css'%}" />
-
     <div class="container">
       <section>
         <div class="left">
@@ -60,30 +58,15 @@
     </div>
 
     <!-- Mobile logo and menu bar end-->
-  </body>
-  <script
-    src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"
-  ></script>
-  <script>
-    $(window).on("load", function () {
-      setInterval(() => $(".loader").fadeOut(), 1000);
-    });
 
-    isCliked = false;
-    document.querySelector(".menu-icon").addEventListener("click", () => {
-      document.querySelector(".menu-icon").classList.toggle("active");
-      document.querySelector("#items").classList.toggle("open");
-      if (!isCliked) {
-        document.querySelector(".menu-mobile").classList.toggle("showNav");
-        document.querySelector(".menu-icon").classList.toggle("addColor");
-        isCliked = true;
-      } else {
-        document.querySelector(".menu-mobile").classList.toggle("showNav");
-        document.querySelector(".menu-icon").classList.toggle("addColor");
-        isCliked = false;
-      }
-    });
-  </script>
+    <!-- error msg start-->
+    <div class="error" style="display: none;">
+      <img src="{%static 'icon/close.svg'%}" id="close-error" alt="X" />
+      <h4>Wrong Username or Password. Try again.</h4>
+    </div>
+    <!-- error msg  end-->
+  </body>
+  <script src="{% static 'js/jquery.js'%}"></script>
+  <script src="{% static 'js/base.js'%}"></script>
+  {% block scripts %}{%endblock%}
 </html>
