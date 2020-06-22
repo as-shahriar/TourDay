@@ -21,6 +21,11 @@ button::-moz-focus-inner {
 
 body {
   background-color: #fbfbfb;
+  background-image: url("../image/bg.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
   color: var(--primary-color);
   font-family: Helvetica, sans-serif;
   height: 100%;
@@ -174,6 +179,7 @@ section {
   border-radius: 0.5rem;
   border-color: #24242449;
   width: 16rem;
+  background: #fffdfa14;
 }
 
 .form-control input:focus {
