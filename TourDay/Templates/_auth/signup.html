@@ -2,39 +2,43 @@
 <link rel="stylesheet" href="{% static '_auth/css/login.css'%}" />
 
 <title>TourDay | Sign up</title>
-<div class="form-control">
-  <h3 id="forget-title">Sign up</h3>
-  <label for="username">Username:</label>
-  <input
-    type="text"
-    name="username"
-    id="username"
-    placeholder="Enter username"
-  />
-</div>
-<div class="form-control">
-  <label for="email">Email:</label>
-  <input
-    type="text"
-    name="email"
-    id="email"
-    placeholder="Enter email address"
-  />
-</div>
+<form method="POST">
+  {% csrf_token%}
+  <div class="form-control">
+    <h3 id="forget-title">Sign up</h3>
+    <label for="username">Username:</label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      placeholder="Enter username"
+    />
+  </div>
+  <div class="form-control">
+    <label for="email">Email:</label>
+    <input
+      type="text"
+      name="email"
+      id="email"
+      placeholder="Enter email address"
+    />
+  </div>
 
-<div class="form-control">
-  <label for="password">Password:</label>
-  <input
-    type="password"
-    name="password"
-    id="password"
-    placeholder="Enter password"
-  />
-</div>
+  <div class="form-control">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Enter password"
+    />
+  </div>
 
-<div id="input-box">
-  <button class="btn">Sign up</button>
-</div>
+  <div id="input-box">
+    <button class="btn" id="signup">Sign up</button>
+  </div>
+</form>
+
 <div class="social-box">
   <div class="social-auth">
     <img src="{% static 'image/fb.png'%}" alt="FB logo" />
@@ -45,4 +49,6 @@
     <p>Sign up with Google</p>
   </div>
 </div>
+{%endblock%} {% block scripts%}
+<script src="{% static '_auth/js/signup.js'%}"></script>
 {%endblock%}
