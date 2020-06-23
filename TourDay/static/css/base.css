@@ -20,7 +20,7 @@ button::-moz-focus-inner {
 }
 
 body {
-  background-color: #fbfbfb;
+  background-color: var(--background-color);
   color: var(--primary-color);
   font-family: Helvetica, sans-serif;
   height: 100%;
