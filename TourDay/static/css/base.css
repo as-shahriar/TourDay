@@ -121,18 +121,6 @@ section {
   display: 100%;
 }
 
-#logo {
-  width: 26rem;
-  height: auto;
-}
-
-#sub-text {
-  margin-top: 1rem;
-}
-
-#sub-text span {
-  color: var(--secondary-color);
-}
 #forget-title {
   width: 100%;
   text-align: center;
@@ -396,6 +384,18 @@ section {
   cursor: pointer;
 }
 
+.logo {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.logo img {
+  width: 35%;
+  padding: 0.6rem;
+}
+
 @media (max-width: 800px) {
   .error {
     width: 100%;
@@ -432,17 +432,7 @@ section {
     align-items: center;
     margin-right: 0;
   }
-  .logo {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-  .logo img {
-    width: 35%;
-    padding: 0.6rem;
-  }
+
   #input-box {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

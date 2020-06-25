@@ -38,8 +38,7 @@
     <div class="container">
       <section>
         <div class="left">
-          <img src="{% static 'image/logo.png'%}" id="logo" alt="logo" />
-          <h1 id="sub-text">With You Wherever You <span>GO</span></h1>
+          <!-- put left side content here -->
         </div>
         <div class="right">
           <div class="form">
@@ -49,11 +48,12 @@
       </section>
     </div>
 
+    <div class="logo">
+      <img src="{% static 'image/logo.png'%}" alt="logo" />
+    </div>
+
     <!-- Mobile logo and menu bar start -->
     <div class="mobile">
-      <div class="logo">
-        <img src="{% static 'image/logo.png'%}" alt="logo" />
-      </div>
       <div class="menu-icon addColor"><div class="hambargur"></div></div>
       <div class="items" id="items"></div>
     </div>
