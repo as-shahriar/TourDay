@@ -32,29 +32,12 @@ def loginView(request):
     return render(request, "_auth/login.html")
  
 def signupView(request):
-    return render(request, "_auth/signup.html")
-
-def forgetPasswordView(request):
-    return render(request, "_auth/forget_password.html")
-
-def resetPasswordView(request,slug):
-    try:
-        user = User.objects.get(username=slug)
-        return render(request,'_auth/reset_password.html',{'slug':slug})
-    except:
-        return HttpResponse("404 Not Found")
-
-
-
-
-
-def ajax_signup(request):
     if request.method == "POST":
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
         if username!="" and password != "" and email!="":
-                               #TODO: Implement regx check here
+                              
             try:
             # if True:
                 if re.match(r"^[a-zA-Z0-9_]+$" ,username) == None:
@@ -80,6 +63,23 @@ def ajax_signup(request):
                 return JsonResponse({'status':200})  #user found
         else:
             return JsonResponse({'status':400}) #bad request
+    return render(request, "_auth/signup.html")
+
+def forgetPasswordView(request):
+    return render(request, "_auth/forget_password.html")
+
+def resetPasswordView(request,slug):
+    try:
+        user = User.objects.get(username=slug)
+        return render(request,'_auth/reset_password.html',{'slug':slug})
+    except:
+        return HttpResponse("404 Not Found")
+
+
+
+
+
+
 
 
 def ajax_forgetpassword(request):

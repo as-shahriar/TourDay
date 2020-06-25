@@ -118,7 +118,7 @@ $("#signup").click(function (e) {
   }
 
   $.ajax({
-    url: "/ajaxsignup",
+    url: "/signup/",
     type: "POST",
     data: {
       username: username.val(),
