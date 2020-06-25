@@ -7,7 +7,10 @@ from _auth.models import ResetCode
 
 from django.core.validators import validate_email
 import re
+
+#delete this
 from django.core.mail import send_mail
+from utils import async_send_mail
 from TourDay.settings import EMAIL_HOST_USER
 from django.db.models import Q
 from _auth.utils import get_code,get_hash
@@ -52,7 +55,7 @@ def signupView(request):
                 user.save()
                 subject ="Welcome to TourDay!"
                 message = f"Dear {username},\nYour new TourDay account has been created. Welcome to TourDay Community!\nFrom now on, please log in to your account using your email address or your username and your password.\n\nComplete your account at https://somesamapleaccount.com\n\nIf you received this email but didn't register for an TourDay account, something's gone wrong, Reply to this email to de-activate and close this account.\n\nThanks for registering!\nTourDay Team"
-                send_mail(subject, message, EMAIL_HOST_USER, [email], fail_silently = False)
+                async_send_mail(subject, message, EMAIL_HOST_USER, email)
             except:
                 return JsonResponse({'status':400}) #bad request
 
@@ -81,9 +84,8 @@ def forgetPasswordView(request):
             code_obj.code = get_hash(code)
             code_obj.save()
             subject = "Reset Password | TourDay"
-            message = f"Hi {user.username},\nYou recently requested to reset your password for your TourDay account.\n\nCODE: {code}\nGoto https://localhost:8000/reset-password/{user.username} and use this code to reset your password.\n\nIf you didn't request a password reset, please ignore this email.\n\nThanks,\nTourDay Team"
-            send_mail(subject, message, EMAIL_HOST_USER, [user.email], fail_silently = False)
-
+            message = f"Hi {user.username},\nYou recently requested to reset your password for your TourDay account.\n\nCODE: {code}\n\nGoto https://localhost:8000/reset-password/{user.username} and use this code to reset your password.\n\nIf you didn't request a password reset, please ignore this email.\n\nThanks,\nTourDay Team"
+            async_send_mail(subject, message, EMAIL_HOST_USER, user.email)
 
             return JsonResponse({
                 "status":200,
@@ -116,8 +118,7 @@ def resetPasswordView(request,slug):
                     code_obj.delete()
                     subject = "Success! Password Changed | TourDay"
                     message = f"Hi {user.username},\nSuccess! Your Password has been changed!\n\nIf you didn't changed your password, then your account is at risk. Contact TourDay Team as soon as possible.\n\nThanks,\nTourDay Team"
-                    send_mail(subject, message, EMAIL_HOST_USER, [user.email], fail_silently = False)
-
+                    async_send_mail(subject, message, EMAIL_HOST_USER, user.email)
                     user = authenticate(username=username, password=password1)
                     if user is not None:
                         login(request, user)
@@ -134,10 +135,7 @@ def resetPasswordView(request,slug):
             return JsonResponse({'status':400}) #bad request
     return render(request,'_auth/reset_password.html',{'slug':slug})
 
-   
 
-
-    
 
 def id_logout(request):
     logout(request)
