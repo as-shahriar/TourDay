@@ -3,7 +3,7 @@ from django.urls import path
 from _auth.views import (
     loginView,signupView,
     forgetPasswordView,resetPasswordView,
-    ajax_login,ajax_signup,ajax_forgetpassword,ajax_resetpassword,
+    ajax_signup,ajax_forgetpassword,ajax_resetpassword,
     checkusername,checkemail,
     id_logout)
 
@@ -19,7 +19,7 @@ urlpatterns = [
     path('checkusername',checkusername),
     path('checkemail',checkemail),
 #Ajax Urls
-    path('ajaxlogin',ajax_login),
+
     path('ajaxsignup',ajax_signup),
     path('ajaxforget',ajax_forgetpassword),
     path("ajaxreset",ajax_resetpassword),

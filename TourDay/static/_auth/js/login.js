@@ -16,7 +16,7 @@ $("#login").click(function (e) {
     password.removeClass("input-error");
   }
   $.ajax({
-    url: "/ajaxlogin",
+    url: "/login/",
     type: "POST",
     data: {
       username: username.val(),

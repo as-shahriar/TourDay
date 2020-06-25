@@ -13,6 +13,22 @@ from django.db.models import Q
 from _auth.utils import get_code,get_hash
 
 def loginView(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if username!="" and password != "":
+            user = authenticate(username=username, password=password)
+            if user is None:
+                try:
+                    obj = User.objects.get(email=username)
+                    user = authenticate(username=obj.username, password=password)
+                except:
+                    return JsonResponse({'status':404})  #user not found
+            if user is not None:
+                login(request, user)
+                return JsonResponse({'status':200})  #user found
+        else:
+            return JsonResponse({'status':400}) #bad request
     return render(request, "_auth/login.html")
  
 def signupView(request):
@@ -30,24 +46,6 @@ def resetPasswordView(request,slug):
 
 
 
-
-def ajax_login(request):
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        if username!="" and password != "":
-            user = authenticate(username=username, password=password)
-            if user is None:
-                try:
-                    obj = User.objects.get(email=username)
-                    user = authenticate(username=obj.username, password=password)
-                except:
-                    return JsonResponse({'status':404})  #user not found
-            if user is not None:
-                login(request, user)
-                return JsonResponse({'status':200})  #user found
-        else:
-            return JsonResponse({'status':400}) #bad request
 
 
 def ajax_signup(request):
