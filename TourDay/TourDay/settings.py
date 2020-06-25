@@ -107,3 +107,16 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+
+if not os.getenv("EMAIL_KEY"):
+    raise RuntimeError("EMAIL_KEY is not set")
+
+#mail setup
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tourday.bd@gmail.com'
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_KEY")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'CodingWithMitch Team <noreply@codingwithmitch.com>'
