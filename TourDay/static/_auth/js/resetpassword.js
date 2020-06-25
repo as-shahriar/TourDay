@@ -46,7 +46,7 @@ $("#save").click(function (e) {
   }
 
   $.ajax({
-    url: "/ajaxreset",
+    url: "/reset-password/" + username.val(),
     type: "POST",
     data: {
       code: code.val(),

@@ -10,7 +10,7 @@ $("#getcode").click(function (e) {
   }
 
   $.ajax({
-    url: "/ajaxforget",
+    url: "/forget-password/",
     type: "POST",
     data: {
       username_email: username.val(),

@@ -66,24 +66,7 @@ def signupView(request):
     return render(request, "_auth/signup.html")
 
 def forgetPasswordView(request):
-    return render(request, "_auth/forget_password.html")
-
-def resetPasswordView(request,slug):
-    try:
-        user = User.objects.get(username=slug)
-        return render(request,'_auth/reset_password.html',{'slug':slug})
-    except:
-        return HttpResponse("404 Not Found")
-
-
-
-
-
-
-
-
-def ajax_forgetpassword(request):
-     if request.method == "POST":
+    if request.method == "POST":
         username_email = request.POST.get('username_email')
         try:
             user = User.objects.get(
@@ -105,16 +88,19 @@ def ajax_forgetpassword(request):
             return JsonResponse({
                 "status":200,
                 "slug": user.username
-            })
-
-            
+            }) 
         except:  
             return JsonResponse({
                 "status":404,
             })
-        
+    return render(request, "_auth/forget_password.html")
 
-def ajax_resetpassword(request):
+def resetPasswordView(request,slug):
+    try:
+        user = User.objects.get(username=slug)
+    except:
+        return HttpResponse("404 Not Found")
+
     if request.method == "POST":
         code = request.POST.get('code')
         username = request.POST.get('username')
@@ -128,6 +114,10 @@ def ajax_resetpassword(request):
                     user.set_password(password1)
                     user.save()
                     code_obj.delete()
+                    subject = "Success! Password Changed | TourDay"
+                    message = f"Hi {user.username},\nSuccess! Your Password has been changed!\n\nIf you didn't changed your password, then your account is at risk. Contact TourDay Team as soon as possible.\n\nThanks,\nTourDay Team"
+                    send_mail(subject, message, EMAIL_HOST_USER, [user.email], fail_silently = False)
+
                     user = authenticate(username=username, password=password1)
                     if user is not None:
                         login(request, user)
@@ -142,7 +132,9 @@ def ajax_resetpassword(request):
 
         else:
             return JsonResponse({'status':400}) #bad request
-        
+    return render(request,'_auth/reset_password.html',{'slug':slug})
+
+   
 
 
     
