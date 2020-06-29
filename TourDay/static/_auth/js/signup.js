@@ -4,7 +4,7 @@ function validateEmail(email) {
 }
 
 function validateUsername(username) {
-  var re = /^[a-z0-9_]+$/;
+  var re = /^[a-zA-Z]{3}[a-z0-9_]*$/;
   return re.test(username);
 }
 
