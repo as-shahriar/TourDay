@@ -1,4 +1,4 @@
-# TourDay [![HitCount](http://hits.dwyl.com/asifo1/TourDay.svg)](http://hits.dwyl.com/asifo1/TourDay)
+# TourDay
 
 #### Tourism & Tourist Community
 
