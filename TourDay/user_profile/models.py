@@ -6,10 +6,10 @@ from django.core.exceptions import ValidationError
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=60, blank=True, null=True)
-    email = models.CharField(max_length=60, blank=True, null=True)
-    fb = models.CharField(max_length=60, blank=True, null=True)
-    bio = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=80, blank=True, null=True)
+    email = models.CharField(max_length=64, blank=True, null=True)
+    fb = models.CharField(max_length=50, blank=True, null=True)
+    bio = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):

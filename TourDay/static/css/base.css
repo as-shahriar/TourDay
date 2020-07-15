@@ -19,6 +19,10 @@ button::-moz-focus-inner {
   border: 0;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 body {
   background-color: var(--background-color);
   background-image: url("../image/bg.svg");

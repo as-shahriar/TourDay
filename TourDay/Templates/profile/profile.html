@@ -1,11 +1,15 @@
 {%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
-Profile{%endblock%} {%block css%}<link
+Edit Profile{%endblock%} {%block css%}<link
   rel="stylesheet"
   href="{% static 'profile/css/profile.css'%}"
-/>{%endblock%} {% block content %}
+/>{%endblock%} {% block content %} 
+
+{%if not is_complete %}
 <div class="complete_notice">
   <b>Complete your profile to access all pages</b>
 </div>
+{%endif%}
+<h2 style="margin-left:1.5rem;">Edit Profile</h2>
 <div class="profile">
   <div class="picture-box">
     <img
@@ -13,7 +17,7 @@ Profile{%endblock%} {%block css%}<link
       src="{% static 'image/profile_pic.jpg'%}"
       alt="profile_picture"
     />
-    <h2 align="center">Asif Shahriar</h2>
+    <h2 align="center">{%if profile.name%}{{profile.name}}{%endif%}</h2>
     <input type="file" id="selectedFile" style="display: none;" />
     <input
       type="button"
@@ -25,24 +29,44 @@ Profile{%endblock%} {%block css%}<link
   <div class="info-box">
     <div class="field">
       <div class="field-text">
-        <b>Name:</b> <span id="name">Asif Shahrair</span
-        ><input class="input-field" id="input-name" type="text" />
+        <b>Name:</b>
+        <span id="name">{%if profile.name%}{{profile.name}}{%endif%}</span
+        ><input
+          class="input-field"
+          id="input-name"
+          type="text"
+          placeholder="enter your full name"
+          value="{%if profile.name %}{{profile.name}}{%endif%}"
+        />
       </div>
       <div class="field-edit" id="btn-name">Edit</div>
     </div>
 
     <div class="field">
       <div class="field-text">
-        <b>Email:</b> <span id="email">asif.qubit@gmail.com</span>
-        <input class="input-field" id="input-email" type="text" />
+        <b>Email:</b> <span id="email">{{user.email}}</span>
+        <input
+          class="input-field"
+          id="input-email"
+          type="text"
+          placeholder="example@example.com"
+          value="{{user.email}}"
+        />
       </div>
       <div class="field-edit" id="btn-email">Edit</div>
     </div>
 
-    <div class="field">
-      <div class="field-text">
-        <b>Facebook:</b> <span id="fb">asif.8617</span>
-        <input class="input-field" id="input-fb" type="text" />
+    <div class="field" >
+      <div class="field-text pointer" title="Enter only your facebook username.  &#013;Example: www.facebook.com/username" >
+        <b>Facebook:</b>
+        <span id="fb">{%if profile.fb%}{{profile.fb}}{%endif%}</span>
+        <input
+          class="input-field"
+          id="input-fb"
+          type="text"
+          placeholder="enter facebook username only"
+          value="{%if profile.fb%}{{profile.fb}}{%endif%}"
+        />
       </div>
       <div class="field-edit" id="btn-fb">Edit</div>
     </div>
@@ -50,23 +74,42 @@ Profile{%endblock%} {%block css%}<link
     <div class="field">
       <div class="field-text">
         <b>Password:</b> <span id="password">********</span>
-        <input class="input-field" id="input-password" type="password" />
+        <input
+          class="input-field"
+          id="input-password"
+          type="password"
+          placeholder="must be 8 character"
+        />
       </div>
       <div class="field-edit" id="btn-password">Edit</div>
     </div>
 
     <div class="field">
-      <div class="field-text">
-        <b>Bio:</b> <span id="bio">Some sample bio</span>
-        <input class="input-field" id="input-bio" type="text" />
+      <div class="field-text pointer" title="Must be in 50 character.">
+        <b>Bio:</b>
+        <span id="bio">{%if profile.bio%}{{profile.bio}}{%endif%}</span>
+        <input
+          class="input-field"
+          id="input-bio"
+          type="text"
+          placeholder="Express yourself in one line"
+          value="{%if profile.bio%}{{profile.bio}}{%endif%}"
+        />
       </div>
       <div class="field-edit" id="btn-bio">Edit</div>
     </div>
 
     <div class="field">
       <div class="field-text">
-        <b>City:</b> <span id="city">Dhaka, Bangladesh</span>
-        <input class="input-field" id="input-city" type="text" />
+        <b>City:</b>
+        <span id="city">{%if profile.city%}{{profile.city}}{%endif%}</span>
+        <input
+          class="input-field"
+          id="input-city"
+          type="text"
+          placeholder="Dhaka, Bangladesh"
+          value="{%if profile.city%}{{profile.city}}{%endif%}"
+        />
       </div>
       <div class="field-edit" id="btn-city">Edit</div>
     </div>

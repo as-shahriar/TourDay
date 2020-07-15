@@ -121,3 +121,6 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_KEY")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'CodingWithMitch Team <noreply@codingwithmitch.com>'
+
+
+LOGIN_URL = '/login'
