@@ -13,7 +13,7 @@ SECRET_KEY = "w#d#t1y6r9q$+xfq)x#omv9m@nehjq7b5^j7n6#+7ljln(j0eb"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "192.168.0.102"]
+ALLOWED_HOSTS = ["127.0.0.1", "192.168.0.100"]
 
 
 # Application definition
@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     # Project Apps
     "_auth",
     "blog",
+    "user_profile",
     # Thirdparty Apps
 ]
 
@@ -80,9 +81,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
 
 
@@ -112,7 +113,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 if not os.getenv("EMAIL_KEY"):
     raise RuntimeError("EMAIL_KEY is not set")
 
-#mail setup
+# mail setup
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'tourday.bd@gmail.com'

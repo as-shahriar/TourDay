@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.complete_notice {
+  text-align: center;
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+  
+}
+
+
+.profile {
+  width: 100%;
+  display: grid;
+  grid-template-areas: "picture-box info-box info-box info-box";
+}
+
+.picture-box {
+  grid-area: picture-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.info-box {
+  grid-area: info-box;
+  width: 100%;
+  padding: 3rem;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#pro_pic {
+  max-width: 10rem;
+  max-height: auto;
+  border-radius: 50%;
+  margin: 1.5rem 1rem;
+}
+
+.field {
+  display: flex;
+  margin: 0.4rem 0;
+}
+
+.field-text {
+  min-width: 30rem;
+}
+
+.field-edit {
+  cursor: pointer;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+.field-edit:hover{
+  transform: scale(1.1);
+}
+
+#name,
+#email,
+#fb,
+#password,
+#bio {
+}
+.mt-2 {
+  margin-top: 1rem;
+}
+.input-field {
+  width: 80%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid rgba(92, 92, 92, 0.295);
+  color: var(--primary-color);
+  padding: 3px;
+  font-size: 1.1rem;
+  display: none;
+}
+
+.input-field:active,
+.input-field:focus {
+  border-bottom: 1px solid var(--primary-color);
+}
+
+/* edit-field custom width */
+#input-fb {
+  max-width: 22rem;
+}
+#input-password {
+  max-width: 22rem;
+}
+#input-bio {
+  min-width: 25.5rem;
+}
+
+@media (max-width: 800px) {
+  .profile {
+    grid-template-areas: "picture-box" "info-box";
+  }
+  #pro_pic {
+    max-width: 6rem;
+    max-height: auto;
+    border-radius: 50%;
+    margin: 1rem 1rem;
+  }
+  .info-box {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+  .field-text {
+    min-width: 18rem;
+  }
+
+  /* edit-field custom width */
+  #input-fb {
+    max-width: 12rem;
+  }
+
+  #input-password {
+    max-width: 12rem;
+  }
+  #input-bio {
+    min-width: 10rem;
+  }
+
+  .complete_notice {
+    font-size: .8rem;
+    margin-top: 1rem;
+}

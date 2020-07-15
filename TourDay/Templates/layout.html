@@ -1,0 +1,67 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/base.css'%}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'image/logo.png'%}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="{% static 'css/layout.css'%}" />
+    {%block css%}{%endblock%}
+    <title>{% block title %}{%endblock%}</title>
+  </head>
+  <body>
+    <nav id="nav">
+      <ul class="menu">
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">E-commerce</a></li>
+        {% if not user.is_authenticated %}
+        <li><a href="{% url 'login_page'%}">Login</a></li>
+        <li><a href="{% url 'signup_page'%}">Sign up</a></li>
+        {% else %}
+        <li><a href="{% url 'logout'%}">Logout</a></li>
+        {%endif%}
+      </ul>
+    </nav>
+    <div class="menu-mobile">
+      <ul>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">E-commerce</a></li>
+        {% if not user.is_authenticated %}
+        <li><a href="{% url 'login_page'%}">Login</a></li>
+        <li><a href="{% url 'signup_page'%}">Sign up</a></li>
+        {% else %}
+        <li><a href="{% url 'logout'%}">Logout</a></li>
+        {%endif%}
+      </ul>
+    </div>
+    <div class="logo">
+      <img src="{% static 'image/logo.png'%}" alt="logo" />
+    </div>
+
+    <!-- Mobile logo and menu bar start -->
+    <div class="mobile">
+      <div class="menu-icon addColor"><div class="hambargur"></div></div>
+      <div class="items" id="items"></div>
+    </div>
+    <div class="parent">
+      <div class="content">{% block content %} {% endblock %}</div>
+      <div class="ads">{% block ads %} {% endblock %}</div>
+    </div>
+
+    <!-- error msg start-->
+    <div class="error" style="display: none;">
+      <img src="{%static 'icon/close.svg'%}" id="close-error" alt="X" />
+      <h4 id="error-msg">Wrong Username or Password. Try again.</h4>
+    </div>
+    <!-- error msg  end-->
+  </body>
+  <script src="{% static 'js/jquery.js'%}"></script>
+  <script src="{% static 'js/base.js'%}"></script>
+  {% block scripts %}{%endblock%}
+</html>

@@ -1,0 +1,77 @@
+{%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
+Profile{%endblock%} {%block css%}<link
+  rel="stylesheet"
+  href="{% static 'profile/css/profile.css'%}"
+/>{%endblock%} {% block content %}
+<div class="complete_notice">
+  <b>Complete your profile to access all pages</b>
+</div>
+<div class="profile">
+  <div class="picture-box">
+    <img
+      id="pro_pic"
+      src="{% static 'image/profile_pic.jpg'%}"
+      alt="profile_picture"
+    />
+    <h2 align="center">Asif Shahriar</h2>
+    <input type="file" id="selectedFile" style="display: none;" />
+    <input
+      type="button"
+      value="Select Profile Picture"
+      class="btn mt-2"
+      onclick="document.getElementById('selectedFile').click();"
+    />
+  </div>
+  <div class="info-box">
+    <div class="field">
+      <div class="field-text">
+        <b>Name:</b> <span id="name">Asif Shahrair</span
+        ><input class="input-field" id="input-name" type="text" />
+      </div>
+      <div class="field-edit" id="btn-name">Edit</div>
+    </div>
+
+    <div class="field">
+      <div class="field-text">
+        <b>Email:</b> <span id="email">asif.qubit@gmail.com</span>
+        <input class="input-field" id="input-email" type="text" />
+      </div>
+      <div class="field-edit" id="btn-email">Edit</div>
+    </div>
+
+    <div class="field">
+      <div class="field-text">
+        <b>Facebook:</b> <span id="fb">asif.8617</span>
+        <input class="input-field" id="input-fb" type="text" />
+      </div>
+      <div class="field-edit" id="btn-fb">Edit</div>
+    </div>
+
+    <div class="field">
+      <div class="field-text">
+        <b>Password:</b> <span id="password">********</span>
+        <input class="input-field" id="input-password" type="password" />
+      </div>
+      <div class="field-edit" id="btn-password">Edit</div>
+    </div>
+
+    <div class="field">
+      <div class="field-text">
+        <b>Bio:</b> <span id="bio">Some sample bio</span>
+        <input class="input-field" id="input-bio" type="text" />
+      </div>
+      <div class="field-edit" id="btn-bio">Edit</div>
+    </div>
+
+    <div class="field">
+      <div class="field-text">
+        <b>City:</b> <span id="city">Dhaka, Bangladesh</span>
+        <input class="input-field" id="input-city" type="text" />
+      </div>
+      <div class="field-edit" id="btn-city">Edit</div>
+    </div>
+  </div>
+</div>
+{%endblock%} {%block ads %} ads {%endblock%} {% block scripts %}
+<script src="{% static 'profile/js/profile.js'%}"></script>
+{%endblock%}

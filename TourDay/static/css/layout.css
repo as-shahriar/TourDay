@@ -1,0 +1,33 @@
+body {
+  background-color: var(--background-color);
+  background-image: none;
+  min-height: 0;
+}
+
+.parent {
+  width: 100%;
+  display: grid;
+  grid-template-areas: "content  ads";
+  margin-top: 2rem;
+}
+
+.content {
+  grid-area: content;
+}
+
+.ads {
+  grid-area: ads;
+  background-color: crimson;
+
+  text-align: center;
+  color: beige;
+}
+
+@media (max-width: 800px) {
+  .parent {
+    grid-template-areas:
+      "content"
+      "  ads";
+    margin-top: 4rem;
+  }
+}
