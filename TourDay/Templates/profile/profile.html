@@ -14,7 +14,7 @@ Edit Profile{%endblock%} {%block css%}<link
   <div class="picture-box">
     <img
       id="pro_pic"
-      src="{% static 'image/profile_pic.jpg'%}"
+      src="{{profile.picture.url}}"
       alt="profile_picture"
     />
     <h2 align="center" id="name_pic">{%if profile.name%}{{profile.name}}{%endif%}</h2>

@@ -4,6 +4,12 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
 
+def user_directory_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"{instance.user.username}.{ext}"
+    return f"profile_pics/{instance.user.username}/{filename}"
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80, blank=True, null=True)
@@ -11,6 +17,8 @@ class Profile(models.Model):
     fb = models.CharField(max_length=50, blank=True, null=True)
     bio = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
+    picture = models.ImageField(upload_to=user_directory_path,
+                                blank=True, default="profile_pics/default.jpg")
 
     def __str__(self):
         return f"{self.id} {self.user.username}"

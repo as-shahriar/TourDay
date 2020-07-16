@@ -101,3 +101,41 @@ function validate_info(param, data) {
 
   return true;
 }
+
+// Upload Image
+document.getElementById("selectedFile").onchange = () => {
+  let picture = document.getElementById("selectedFile");
+  var name = picture.files[0].name;
+  var form_data = new FormData();
+  var ext = name.split(".").pop().toLowerCase();
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(picture.files[0]);
+  var f = picture.files[0];
+  var fsize = f.size || f.fileSize;
+  if (jQuery.inArray(ext, ["gif", "png", "jpg", "jpeg"]) == -1) {
+    alert("Invalid Image File");
+  } else if (fsize > 2000000) {
+    alert("Upload small size image");
+  } else {
+    form_data.append("picture", picture.files[0]);
+    form_data.append("csrfmiddlewaretoken", getCookie("csrftoken"));
+    $.ajax({
+      url: "/profile/picture",
+      method: "POST",
+      data: form_data,
+      contentType: false,
+      cache: false,
+      enctype: "multipart/form-data",
+      processData: false,
+      beforeSend: function () {
+        // $(".loader").show();
+      },
+      success: function (data) {
+        // $(".loader").hide();
+        if ((data.status = "201")) {
+          document.getElementById("pro_pic").src = data.new_img;
+        }
+      },
+    });
+  }
+};

@@ -28,8 +28,8 @@ def edit_profile(request):
 @login_required
 def add_info(request, param):
     if request.method == "POST":
-
-        data = request.POST.get('data').strip()
+        if 'data' in request.POST:
+            data = request.POST.get('data').strip()
         profile = Profile.objects.get(user=request.user)
         if param == "name" and data != "":
             profile.name = data
@@ -91,6 +91,14 @@ def add_info(request, param):
             profile.save()
             return JsonResponse({
                 "status": 201,
+            })
+
+        elif param == "picture":
+            profile.picture = request.FILES['picture']
+            profile.save()
+            return JsonResponse({
+                "status": 201,
+                "new_img": profile.picture.url
             })
         else:
             return JsonResponse({}, status=404)
