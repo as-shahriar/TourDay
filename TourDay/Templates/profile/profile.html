@@ -1,28 +1,27 @@
-{%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
-Edit Profile{%endblock%} {%block css%}<link
+{%extends 'layout.html'%} {% load static %}{%block title%}TourDay | Edit
+Profile{%endblock%} {%block css%}<link
   rel="stylesheet"
   href="{% static 'profile/css/profile.css'%}"
-/>{%endblock%} {% block content %} 
-
-{%if not is_complete %}
+/>
+<link rel="stylesheet" href="{% static 'css/croppie.css' %}" />
+{%endblock%} {% block content %} {%if not is_complete %}
 <div class="complete_notice">
   <b>Complete your profile to access all pages</b>
 </div>
 {%endif%}
-<h2 style="margin-left:1.5rem;">Edit Profile</h2>
+<h2 style="margin-left: 1.5rem;">Edit Profile</h2>
 <div class="profile">
   <div class="picture-box">
-    <img
-      id="pro_pic"
-      src="{{profile.picture.url}}"
-      alt="profile_picture"
-    />
-    <h2 align="center" id="name_pic">{%if profile.name%}{{profile.name}}{%endif%}</h2>
+    <img id="pro_pic" src="{{profile.picture.url}}" alt="profile_picture" />
+
+    <h2 align="center" id="name_pic">
+      {%if profile.name%}{{profile.name}}{%endif%}
+    </h2>
     <input type="file" id="selectedFile" style="display: none;" />
     <input
       type="button"
       value="Select Profile Picture"
-      class="btn mt-2"
+      class="my-btn mt-2"
       onclick="document.getElementById('selectedFile').click();"
     />
   </div>
@@ -56,8 +55,11 @@ Edit Profile{%endblock%} {%block css%}<link
       <div class="field-edit" id="btn-email">Edit</div>
     </div>
 
-    <div class="field" >
-      <div class="field-text pointer" title="Enter only your facebook username.  &#013;Example: www.facebook.com/username" >
+    <div class="field">
+      <div
+        class="field-text pointer"
+        title="Enter only your facebook username.  &#013;Example: www.facebook.com/username"
+      >
         <b>Facebook:</b>
         <span id="fb">{%if profile.fb%}{{profile.fb}}{%endif%}</span>
         <input
@@ -115,6 +117,42 @@ Edit Profile{%endblock%} {%block css%}<link
     </div>
   </div>
 </div>
+
+<div id="uploadimageModal" class="modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Crop Image & Upload</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="">
+            <div
+              id="image_demo"
+              style="width: 100%; margin-top: 1rem; height: auto;"
+            ></div>
+          </div>
+
+          <div
+            class=""
+            style="padding: 1rem 0; display: flex; justify-content: center;"
+          >
+            <button class="my-btn crop_image">
+              Upload Image
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {%endblock%} {%block ads %} ads {%endblock%} {% block scripts %}
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/croppie.js' %}"></script>
 <script src="{% static 'profile/js/profile.js'%}"></script>
+
 {%endblock%}

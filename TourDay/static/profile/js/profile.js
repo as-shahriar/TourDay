@@ -102,40 +102,112 @@ function validate_info(param, data) {
   return true;
 }
 
-// Upload Image
-document.getElementById("selectedFile").onchange = () => {
-  let picture = document.getElementById("selectedFile");
-  var name = picture.files[0].name;
-  var form_data = new FormData();
-  var ext = name.split(".").pop().toLowerCase();
-  var oFReader = new FileReader();
-  oFReader.readAsDataURL(picture.files[0]);
-  var f = picture.files[0];
-  var fsize = f.size || f.fileSize;
-  if (jQuery.inArray(ext, ["gif", "png", "jpg", "jpeg"]) == -1) {
-    alert("Invalid Image File");
-  } else if (fsize > 2000000) {
-    alert("Upload small size image");
-  } else {
-    form_data.append("picture", picture.files[0]);
-    form_data.append("csrfmiddlewaretoken", getCookie("csrftoken"));
-    $.ajax({
-      url: "/profile/picture",
-      method: "POST",
-      data: form_data,
-      contentType: false,
-      cache: false,
-      enctype: "multipart/form-data",
-      processData: false,
-      beforeSend: function () {
-        // $(".loader").show();
-      },
-      success: function (data) {
-        // $(".loader").hide();
-        if ((data.status = "201")) {
-          document.getElementById("pro_pic").src = data.new_img;
-        }
-      },
-    });
-  }
-};
+// // Upload Image
+// document.getElementById("selectedFile").onchange = () => {
+//   let picture = document.getElementById("selectedFile");
+//   var name = picture.files[0].name;
+//   var form_data = new FormData();
+//   var ext = name.split(".").pop().toLowerCase();
+//   var oFReader = new FileReader();
+//   oFReader.readAsDataURL(picture.files[0]);
+//   var f = picture.files[0];
+//   var fsize = f.size || f.fileSize;
+//   if (jQuery.inArray(ext, ["gif", "png", "jpg", "jpeg"]) == -1) {
+//     alert("Invalid Image File");
+//   } else if (fsize > 2000000) {
+//     alert("Upload small size image");
+//   } else {
+//     form_data.append("picture", picture.files[0]);
+//     form_data.append("csrfmiddlewaretoken", getCookie("csrftoken"));
+//     $.ajax({
+//       url: "/profile/picture",
+//       method: "POST",
+//       data: form_data,
+//       contentType: false,
+//       cache: false,
+//       enctype: "multipart/form-data",
+//       processData: false,
+//       beforeSend: function () {
+//         // $(".loader").show();
+//       },
+//       success: function (data) {
+//         // $(".loader").hide();
+//         if ((data.status = "201")) {
+//           document.getElementById("pro_pic").src = data.new_img;
+//         }
+//       },
+//     });
+//   }
+// };
+
+$(document).ready(function () {
+  $image_crop = $("#image_demo").croppie({
+    enableExif: true,
+    viewport: {
+      width: 200,
+      height: 200,
+      type: "square", //circle
+    },
+    boundary: {
+      width: 300,
+      height: 300,
+    },
+  });
+
+  $("#selectedFile").on("change", function () {
+    let picture = document.getElementById("selectedFile");
+    var name = picture.files[0].name;
+    var ext = name.split(".").pop().toLowerCase();
+    var oFReader = new FileReader();
+    oFReader.readAsDataURL(picture.files[0]);
+    var f = picture.files[0];
+    var fsize = f.size || f.fileSize;
+    if (jQuery.inArray(ext, ["gif", "png", "jpg", "jpeg"]) == -1) {
+      alert("Invalid Image File");
+      return;
+    } else if (fsize > 2000000) {
+      alert("Upload small size image");
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.onload = function (event) {
+      $image_crop
+        .croppie("bind", {
+          url: event.target.result,
+        })
+        .then(function () {});
+    };
+    reader.readAsDataURL(this.files[0]);
+    $("#uploadimageModal").modal("show");
+  });
+
+  $(".crop_image").click(function (event) {
+    $image_crop
+      .croppie("result", {
+        type: "canvas",
+        size: "viewport",
+      })
+      .then(function (response) {
+        var form_data = new FormData();
+        form_data.append("picture", response);
+        form_data.append("csrfmiddlewaretoken", getCookie("csrftoken"));
+
+        $.ajax({
+          url: "/profile/picture",
+          type: "POST",
+          data: form_data,
+          contentType: false,
+          cache: false,
+          enctype: "multipart/form-data",
+          processData: false,
+          success: function (data) {
+            if ((data.status = "201")) {
+              document.getElementById("pro_pic").src = data.new_img;
+              $("#uploadimageModal").modal("hide");
+            }
+          },
+        });
+      });
+  });
+});

@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 body {
   background-color: var(--background-color);
   background-image: none;
@@ -9,6 +13,32 @@ body {
   display: grid;
   grid-template-areas: "content  ads";
   margin-top: 2rem;
+}
+.my-btn {
+  padding: 0.7rem 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 0.8rem;
+  outline: none;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  transition: -webkit-transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out, -webkit-transform 0.1s ease-out;
+}
+.my-btn:hover {
+  background-color: var(--primary-dark-color);
+  outline: 0;
+  border: 0;
+  -webkit-box-shadow: 0 0 8px #1a1a1aa8;
+  box-shadow: 0 0 8px #1a1a1aa8;
+}
+
+.my-btn:active {
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
 }
 
 .content {
@@ -29,5 +59,8 @@ body {
       "content"
       "  ads";
     margin-top: 4rem;
+  }
+  html {
+    font-size: 16px;
   }
 }

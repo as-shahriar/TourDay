@@ -5,6 +5,8 @@ from django.http import JsonResponse
 from django.contrib.auth import login
 from utils import async_send_mail
 from TourDay.settings import EMAIL_HOST_USER
+import base64
+from django.core.files.base import ContentFile
 
 
 @login_required
@@ -94,8 +96,14 @@ def add_info(request, param):
             })
 
         elif param == "picture":
-            profile.picture = request.FILES['picture']
-            profile.save()
+            image_data = request.POST.get("picture")
+            format, imgstr = image_data.split(';base64,')
+            print("format", format)
+            ext = format.split('/')[-1]
+            data = ContentFile(base64.b64decode(imgstr))
+            file_name = "'myphoto." + ext
+            profile.picture.save(file_name, data, save=True)
+
             return JsonResponse({
                 "status": 201,
                 "new_img": profile.picture.url
