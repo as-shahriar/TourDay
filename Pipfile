@@ -7,6 +7,8 @@ verify_ssl = true
 
 [packages]
 Django = "==2.2"
+pillow = "*"
+django-cleanup = "*"
 
 [requires]
 python_version = "3.8"
