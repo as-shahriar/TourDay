@@ -69,7 +69,9 @@ function add_info(param, data) {
         hide_error();
         btn_email.click();
       } else if (response.status == 201) {
-        $(`#${param}`).text(data);
+        if (param != "password") {
+          $(`#${param}`).text(data);
+        }
         if (param === "name") {
           $("#name_pic").text(data);
         }

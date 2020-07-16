@@ -3,6 +3,8 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth import login
+from utils import async_send_mail
+from TourDay.settings import EMAIL_HOST_USER
 
 
 @login_required
@@ -37,8 +39,18 @@ def add_info(request, param):
             })
         elif param == "email" and data != "":
             try:
+                old_email = profile.email
                 profile.email = data
                 profile.save()
+                subject = "Success! Email Changed | TourDay"
+                message = f"Hi {request.user.username},\nSuccess! Your Email has been changed!\n\nYour new email address is {profile.email}.\n\nIf you didn't changed your email, then your account is at risk. Contact TourDay Team as soon as possible.\n\nThanks,\nTourDay Team"
+                async_send_mail(subject, message,
+                                EMAIL_HOST_USER, old_email)
+
+                subject = "Success! Email Added | TourDay"
+                message = f"Hi {request.user.username},\nSuccess! This email has been added as your default email for TourDay.\n\nIf you received this email but didn't register for an TourDay account, something's gone wrong, Reply to this email to de-activate and close this account.\n\nThanks,\nTourDay Team"
+                async_send_mail(subject, message,
+                                EMAIL_HOST_USER, profile.email)
                 return JsonResponse({
                     "status": 201,
                 })
@@ -59,6 +71,10 @@ def add_info(request, param):
             user.set_password(data)
             user.save()
             login(request, user)
+            subject = "Success! Password Changed | TourDay"
+            message = f"Hi {user.username},\nSuccess! Your Password has been changed!\n\nIf you didn't changed your password, then your account is at risk. Contact TourDay Team as soon as possible.\n\nThanks,\nTourDay Team"
+            async_send_mail(subject, message,
+                            EMAIL_HOST_USER, request.user.email)
             return JsonResponse({
                 "status": 201,
             })
