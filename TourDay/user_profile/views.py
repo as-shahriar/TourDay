@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.contrib.auth import login
 
 
 @login_required
@@ -22,6 +23,7 @@ def edit_profile(request):
     return render(request, "profile/profile.html", context)
 
 
+@login_required
 def add_info(request, param):
     if request.method == "POST":
 
@@ -30,7 +32,6 @@ def add_info(request, param):
         if param == "name" and data != "":
             profile.name = data
             profile.save()
-            print(profile.name)
             return JsonResponse({
                 "status": 201,
             })
@@ -57,6 +58,7 @@ def add_info(request, param):
             user = request.user
             user.set_password(data)
             user.save()
+            login(request, user)
             return JsonResponse({
                 "status": 201,
             })

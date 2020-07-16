@@ -17,7 +17,7 @@ Edit Profile{%endblock%} {%block css%}<link
       src="{% static 'image/profile_pic.jpg'%}"
       alt="profile_picture"
     />
-    <h2 align="center">{%if profile.name%}{{profile.name}}{%endif%}</h2>
+    <h2 align="center" id="name_pic">{%if profile.name%}{{profile.name}}{%endif%}</h2>
     <input type="file" id="selectedFile" style="display: none;" />
     <input
       type="button"

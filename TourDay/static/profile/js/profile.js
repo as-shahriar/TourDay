@@ -5,6 +5,21 @@ btn_password = $("#btn-password");
 btn_bio = $("#btn-bio");
 btn_city = $("#btn-city");
 
+inputs = ["name", "email", "fb", "password", "bio", "city"];
+inputs.forEach((element) => {
+  document
+    .querySelector(`#input-${element}`)
+    .addEventListener("keyup", function (event) {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.keyCode === 13) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        show_hide(element);
+      }
+    });
+});
+
 function show_hide(component) {
   value = document.querySelector(`#btn-${component}`);
   if (value.innerHTML === "Edit") {
@@ -40,7 +55,6 @@ btn_city.on("click", () => {
 });
 
 function add_info(param, data) {
-  console.log(data);
   $.ajax({
     type: "POST",
     url: `/profile/${param}`,
@@ -54,7 +68,17 @@ function add_info(param, data) {
         $(".error").show();
         hide_error();
         btn_email.click();
+      } else if (response.status == 201) {
+        $(`#${param}`).text(data);
+        if (param === "name") {
+          $("#name_pic").text(data);
+        }
       }
+    },
+    error: (res) => {
+      $("#error-msg").text("Network error.");
+      $(".error").show();
+      hide_error();
     },
   });
 }
