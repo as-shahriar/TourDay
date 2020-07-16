@@ -12,6 +12,8 @@ function show_hide(component) {
     $(`#input-${component}`).show();
     $(`#${component}`).hide();
   } else {
+    if (!validate_info(component, $(`#input-${component}`).val())) return;
+    add_info(component, $(`#input-${component}`).val());
     value.innerHTML = "Edit";
     $(`#input-${component}`).hide();
     $(`#${component}`).show();
@@ -36,3 +38,40 @@ btn_bio.on("click", () => {
 btn_city.on("click", () => {
   show_hide("city");
 });
+
+function add_info(param, data) {
+  console.log(data);
+  $.ajax({
+    type: "POST",
+    url: `/profile/${param}`,
+    data: {
+      data: data,
+      csrfmiddlewaretoken: getCookie("csrftoken"),
+    },
+    success: function (response) {
+      if (response.status == 400) {
+        $("#error-msg").text("Email address already exists.");
+        $(".error").show();
+        hide_error();
+        btn_email.click();
+      }
+    },
+  });
+}
+
+function validate_info(param, data) {
+  if (param === "password" && data.length < 8) {
+    $("#error-msg").text("Password must contain at least 8 Characters.");
+    $(".error").show();
+    hide_error();
+    return false;
+  }
+  if (param === "email" && !validateEmail(data)) {
+    $("#error-msg").text("Invalid Email Address.");
+    $(".error").show();
+    hide_error();
+    return false;
+  }
+
+  return true;
+}

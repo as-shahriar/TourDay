@@ -1,13 +1,3 @@
-function validateEmail(email) {
-  var re = /\S+@\S+\.\S+/;
-  return re.test(email);
-}
-
-function validateUsername(username) {
-  var re = /^[a-zA-Z]{3}[a-z0-9_]*$/;
-  return re.test(username);
-}
-
 $("#username").change(() => {
   var username = $("#username");
 

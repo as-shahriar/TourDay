@@ -4,7 +4,7 @@ from .models import Profile
 
 
 class ProfileConf(admin.ModelAdmin):
-    list_display = ('name', 'user', 'email')
+    list_display = ('user', 'name', 'email', 'id')
 
 
 admin.site.register(Profile, ProfileConf)

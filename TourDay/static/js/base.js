@@ -2,6 +2,16 @@ $(window).on("load", function () {
   setInterval(() => $(".loader").fadeOut(), 1000);
 });
 
+function validateEmail(email) {
+  var re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
+
+function validateUsername(username) {
+  var re = /^[a-zA-Z]{3}[a-z0-9_]*$/;
+  return re.test(username);
+}
+
 let timeout = undefined;
 
 isCliked = false;

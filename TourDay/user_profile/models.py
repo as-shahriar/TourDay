@@ -13,12 +13,15 @@ class Profile(models.Model):
     city = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.id} {self.user.username}"
 
     def save(self, *args, **kwargs):
         """Check for valid email and also save changed email to User model """
         if self.email != None:
             validate_email(self.email)
+            if User.objects.filter(email=self.email).exclude(
+                    username=self.user.username).count() != 0:
+                raise ValidationError
             self.user.email = self.email
             self.user.save()
         super().save(*args, **kwargs)
