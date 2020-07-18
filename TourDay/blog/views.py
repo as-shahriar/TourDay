@@ -9,3 +9,6 @@ def home(request):
 
 def details(request):
     return render(request,'blog/details.html')
+
+def addPost(request):
+    return render(request,'blog/add_post.html')
