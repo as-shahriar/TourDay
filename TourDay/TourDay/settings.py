@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     "blog",
     "user_profile",
     # Thirdparty Apps
+    'ckeditor',
+    'ckeditor_uploader',
     'django_cleanup.apps.CleanupConfig',  # must be in last
 ]
 
@@ -44,6 +46,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "TourDay.urls"
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 TEMPLATES = [
     {
@@ -127,3 +130,4 @@ MEDIA_URL = '/media/'
 STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = "/static/"
