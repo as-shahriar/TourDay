@@ -1,12 +1,22 @@
 {% extends 'blog/base.html' %}
 {% block blog_addpost %} 
-
-<div class="container-fluid" >
-    <form method="POST">
-        {% csrf_token %}
-        {{form.media}}
-        {{form}}
-        <button type="submit" class="btn btn-primary">Submit</button>
+{% load crispy_forms_tags %}
+<div class="container" >
+    <form enctype='multipart/form-data' method="POST">{% csrf_token %} 
+        <br>
+        <div class="row">
+            <div class="col-md-10">
+                
+                 
+                  {{form|crispy}}
+                  {{form.media}}
+              
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        
+        <button type="submit" name="blog_submit" class="btn btn-primary" >Add Post</button>
+        <br><br>
       </form>
 </div>
 {% endblock %}

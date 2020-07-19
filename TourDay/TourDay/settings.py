@@ -25,11 +25,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
     # Project Apps
     "_auth",
     "blog",
     "user_profile",
     # Thirdparty Apps
+    'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
     'django_cleanup.apps.CleanupConfig',  # must be in last
@@ -111,6 +113,8 @@ USE_TZ = True
 
 if not os.getenv("EMAIL_KEY"):
     raise RuntimeError("EMAIL_KEY is not set")
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # mail setup
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
