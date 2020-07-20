@@ -1,18 +1,21 @@
 {% extends 'blog/base.html' %}
 {% block blog %} 
+
 <div class="col-xl-8 px-md-5 py-5">
     <div class="row pt-md-4">
+       
         <div class="col-md-12">
+            {% for post in allpost %}
             <div class="blog-entry-2 ftco-animate">
-                <a href="single.html" class="img" style="background-image: url(images/image_1.jpg);"></a>
+                <a href="single.html" class="img" style="background-image: url({{post.image.url}});"></a>
                 <div class="text pt-4">
-          <h3 class="mb-4"><a href="#">A Loving Heart is the Truest Wisdom</a></h3>
-          <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+          <h3 class="mb-4"><a href="#">{{post.title}}</a></h3>
+          <p class="mb-4">{{post.description | safe |truncatewords:40}}</p>
           <div class="author mb-4 d-flex align-items-center">
-                <a href="#" class="img" style="background-image: url(images/person_1.jpg);"></a>
+                <a href="#" class="img" style="background-image: url({{post.blog_user.profile.picture.url}});"></a>
                 <div class="ml-3 info">
                     <span>Written by</span>
-                    <h3><a href="#">Dave Lewis</a>, <span>June 28, 2019</span></h3>
+                    <h3><a href="#">{{post.blog_user}}</a>, <span>{{post.date}}</span></h3>
                 </div>
             </div>
           <div class="meta-wrap d-md-flex align-items-center">
@@ -24,210 +27,17 @@
                   </p>
               </div>
               <div class="half">
-                <a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
-                  <!-- <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Continue Reading</a></p> -->
+                <a href="{% url 'blog_details' post.id %}" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
               </div>
           </div>
         </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <div class="blog-entry-2 ftco-animate">
-                <a href="single.html" class="img" style="background-image: url(images/image_2.jpg);"></a>
-                <div class="text pt-4">
-          <h3 class="mb-4"><a href="#">A Loving Heart is the Truest Wisdom</a></h3>
-          <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-          <div class="author mb-4 d-flex align-items-center">
-                <a href="#" class="img" style="background-image: url(images/person_1.jpg);"></a>
-                <div class="ml-3 info">
-                    <span>Written by</span>
-                    <h3><a href="#">Dave Lewis</a>, <span>June 28, 2019</span></h3>
-                </div>
-            </div>
-          <div class="meta-wrap d-md-flex align-items-center">
-              <div class="half order-md-last text-md-right">
-                  <p class="meta">
-                      <span><i class="icon-heart"></i>3</span>
-                      <span><i class="icon-eye"></i>100</span>
-                      <span><i class="icon-comment"></i>5</span>
-                  </p>
-              </div>
-              <div class="half">
-                <a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
-              </div>
-          </div>
-        </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="blog-entry-2 ftco-animate">
-                <a href="single.html" class="img" style="background-image: url(images/image_3.jpg);"></a>
-                <div class="text pt-4">
-          <h3 class="mb-4"><a href="#">A Loving Heart is the Truest Wisdom</a></h3>
-          <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-          <div class="author mb-4 d-flex align-items-center">
-                <a href="#" class="img" style="background-image: url(images/person_1.jpg);"></a>
-                <div class="ml-3 info">
-                    <span>Written by</span>
-                    <h3><a href="#">Dave Lewis</a>, <span>June 28, 2019</span></h3>
-                </div>
-            </div>
-          <div class="meta-wrap d-md-flex align-items-center">
-              <div class="half order-md-last text-md-right">
-                  <p class="meta">
-                      <span><i class="icon-heart"></i>3</span>
-                      <span><i class="icon-eye"></i>100</span>
-                      <span><i class="icon-comment"></i>5</span>
-                  </p>
-              </div>
-              <div class="half">
-                <a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
-              </div>
-          </div>
-        </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="blog-entry-2 ftco-animate">
-                <a href="single.html" class="img" style="background-image: url(images/image_4.jpg);"></a>
-                <div class="text pt-4">
-          <h3 class="mb-4"><a href="#">A Loving Heart is the Truest Wisdom</a></h3>
-          <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-          <div class="author mb-4 d-flex align-items-center">
-                <a href="#" class="img" style="background-image: url(images/person_1.jpg);"></a>
-                <div class="ml-3 info">
-                    <span>Written by</span>
-                    <h3><a href="#">Dave Lewis</a>, <span>June 28, 2019</span></h3>
-                </div>
-            </div>
-          <div class="meta-wrap d-md-flex align-items-center">
-              <div class="half order-md-last text-md-right">
-                  <p class="meta">
-                      <span><i class="icon-heart"></i>3</span>
-                      <span><i class="icon-eye"></i>100</span>
-                      <span><i class="icon-comment"></i>5</span>
-                  </p>
-              </div>
-              <div class="half">
-                <a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
-              </div>
-          </div>
-        </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="blog-entry-2 ftco-animate">
-                <a href="single.html" class="img" style="background-image: url(images/image_5.jpg);"></a>
-                <div class="text pt-4">
-          <h3 class="mb-4"><a href="#">A Loving Heart is the Truest Wisdom</a></h3>
-          <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-          <div class="author mb-4 d-flex align-items-center">
-                <a href="#" class="img" style="background-image: url(images/person_1.jpg);"></a>
-                <div class="ml-3 info">
-                    <span>Written by</span>
-                    <h3><a href="#">Dave Lewis</a>, <span>June 28, 2019</span></h3>
-                </div>
-            </div>
-          <div class="meta-wrap d-md-flex align-items-center">
-              <div class="half order-md-last text-md-right">
-                  <p class="meta">
-                      <span><i class="icon-heart"></i>3</span>
-                      <span><i class="icon-eye"></i>100</span>
-                      <span><i class="icon-comment"></i>5</span>
-                  </p>
-              </div>
-              <div class="half">
-                <a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
-              </div>
-          </div>
-        </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="blog-entry-2 ftco-animate">
-                <a href="single.html" class="img" style="background-image: url(images/image_6.jpg);"></a>
-                <div class="text pt-4">
-          <h3 class="mb-4"><a href="#">A Loving Heart is the Truest Wisdom</a></h3>
-          <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-          <div class="author mb-4 d-flex align-items-center">
-                <a href="#" class="img" style="background-image: url(images/person_1.jpg);"></a>
-                <div class="ml-3 info">
-                    <span>Written by</span>
-                    <h3><a href="#">Dave Lewis</a>, <span>June 28, 2019</span></h3>
-                </div>
-            </div>
-          <div class="meta-wrap d-md-flex align-items-center">
-              <div class="half order-md-last text-md-right">
-                  <p class="meta">
-                      <span><i class="icon-heart"></i>3</span>
-                      <span><i class="icon-eye"></i>100</span>
-                      <span><i class="icon-comment"></i>5</span>
-                  </p>
-              </div>
-              <div class="half">
-                <a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
-              </div>
-          </div>
-        </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="blog-entry-2 ftco-animate">
-                <a href="single.html" class="img" style="background-image: url(images/image_7.jpg);"></a>
-                <div class="text pt-4">
-          <h3 class="mb-4"><a href="#">A Loving Heart is the Truest Wisdom</a></h3>
-          <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-          <div class="author mb-4 d-flex align-items-center">
-                <a href="#" class="img" style="background-image: url(images/person_1.jpg);"></a>
-                <div class="ml-3 info">
-                    <span>Written by</span>
-                    <h3><a href="#">Dave Lewis</a>, <span>June 28, 2019</span></h3>
-                </div>
-            </div>
-          <div class="meta-wrap d-md-flex align-items-center">
-              <div class="half order-md-last text-md-right">
-                  <p class="meta">
-                      <span><i class="icon-heart"></i>3</span>
-                      <span><i class="icon-eye"></i>100</span>
-                      <span><i class="icon-comment"></i>5</span>
-                  </p>
-              </div>
-              <div class="half">
-                <a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
-              </div>
-          </div>
-        </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="blog-entry-2 ftco-animate">
-                <a href="single.html" class="img" style="background-image: url(images/image_8.jpg);"></a>
-                <div class="text pt-4">
-          <h3 class="mb-4"><a href="#">A Loving Heart is the Truest Wisdom</a></h3>
-          <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-          <div class="author mb-4 d-flex align-items-center">
-                <a href="#" class="img" style="background-image: url(images/person_1.jpg);"></a>
-                <div class="ml-3 info">
-                    <span>Written by</span>
-                    <h3><a href="#">Dave Lewis</a>, <span>June 28, 2019</span></h3>
-                </div>
-            </div>
-          <div class="meta-wrap d-md-flex align-items-center">
-              <div class="half order-md-last text-md-right">
-                  <p class="meta">
-                      <span><i class="icon-heart"></i>3</span>
-                      <span><i class="icon-eye"></i>100</span>
-                      <span><i class="icon-comment"></i>5</span>
-                  </p>
-              </div>
-              <div class="half">
-                <a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a>
-              </div>
-          </div>
-        </div>
-            </div>
+            {% endfor %}
         </div>
     </div><!-- END-->
+
+   
+
     <div class="row">
   <div class="col">
     <div class="block-27">

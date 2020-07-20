@@ -1,16 +1,24 @@
 from django.shortcuts import render, redirect
 from blog.forms import blogPostForm
 from django.contrib.auth.decorators import login_required
+from blog.models import blogPost
 
 # Create your views here.
 def search(request):
     return render(request,'blog/search.html')
 
 def home(request):
-    return render(request,'blog/home.html')
 
-def details(request):
-    return render(request,'blog/details.html')
+    allpost = blogPost.objects.all().order_by('-id')
+    
+
+    return render(request,'blog/home.html', {'allpost' : allpost})
+
+def details(request, id):
+
+    details_obj = blogPost.objects.get(id = id)
+
+    return render(request,'blog/details.html', {'details_obj' : details_obj})
 
 @login_required
 def addPost(request):
