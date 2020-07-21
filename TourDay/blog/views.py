@@ -68,3 +68,19 @@ def blog_edit(request, id):
     
     return render(request, 'blog/add_post.html', {'form' : form})
 
+
+@login_required
+def blog_delete(request, id):
+    
+    post = blogPost.objects.get(id=id)
+
+    if request.user == post.blog_user:
+        item = get_object_or_404(blogPost, id=id)
+        item.delete()
+
+        return redirect('blog_home')
+    else:
+        pass
+
+    return render(request, 'blog/delete.html', {'post' : post})
+

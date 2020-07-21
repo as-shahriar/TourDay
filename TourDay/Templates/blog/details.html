@@ -9,7 +9,8 @@
     </div>
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <button type="button" class="btn btn-danger">Delete</button>
+      <a href="{% url 'blog_delete' details_obj.id %}" onclick="return confirm('Are you sure you want to delete this item?');"><button type="button" class="btn btn-danger">Delete</button></a>
+      
     </div>
   </div>
   {% endif %}
