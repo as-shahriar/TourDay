@@ -2,6 +2,7 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 import datetime
+# from PIL import Image
 # Create your models here.
 
 MONTH_CHOICES = (
@@ -23,5 +24,17 @@ class blogPost(models.Model):
     district = models.CharField(max_length=9,
                   choices=MONTH_CHOICES,
                   default="JANUARY")
+    
+
+    # def save(self):
+    #     super().save()
+
+    #     img = Image.open(self.image.path)
+
+    #     if img.height > 1024 or img.width > 1024:
+    #         output_size = (400, 580)
+    #         img.thumbnail(output_size)
+    #         img.save(self.image.path)
+
     
 

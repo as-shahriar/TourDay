@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from blog.forms import blogPostForm
 from django.contrib.auth.decorators import login_required
 from blog.models import blogPost
+from django.core.paginator import Paginator
 
 # Create your views here.
 def search(request):
@@ -10,9 +11,18 @@ def search(request):
 def home(request):
 
     allpost = blogPost.objects.all().order_by('-id')
+    paginator = Paginator(allpost, 2)  # Show 10 obj per page
+
+    page = request.GET.get('page')
+    allpost = paginator.get_page(page)
+
+    context = {
+        # 'paginator_pages': paginator_pages,
+        'allpost' : allpost,
+    }
     
 
-    return render(request,'blog/home.html', {'allpost' : allpost})
+    return render(request,'blog/home.html', context)
 
 def details(request, id):
 
