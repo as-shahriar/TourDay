@@ -27,4 +27,5 @@ jobs:
       - name: Run Tests
         run: |
           cd TourDay
+          export EMAIL_KEY="123"
           python manage.py test
