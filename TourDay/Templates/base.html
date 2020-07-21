@@ -19,7 +19,7 @@
     <nav id="nav">
       <ul class="menu">
         <li><a href="#">Search</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="{% url 'blog_home' %}">Blog</a></li>
         <li><a href="#">E-commerce</a></li>
         {% if not user.is_authenticated %}
         <li><a href="{% url 'login_page'%}">Login</a></li>

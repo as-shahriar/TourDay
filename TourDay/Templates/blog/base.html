@@ -1,4 +1,7 @@
 {% load static %}
+{% url 'blog_home' as blog_home %}
+{% url 'addpost' as addpost %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,13 +45,22 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="fashion.html">Home(main)</a></li>
-					<li><a href="fashion.html">Login</a></li>
-
-					<li class="colorlib-active"><a href="travel.html">Travel</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="{% url 'search_page' %}">Main Home</a></li>
+					{% if request.get_full_path == blog_home %}
+					<li class="colorlib-active"><a href="{% url 'blog_home' %}">Home</a></li>
+					{% else %}
+					<li><a href="{% url 'blog_home' %}">Home</a></li>
+					{% endif %}
+					{% if user.is_authenticated %}
+					{% if request.get_full_path == addpost %}
+					<li class="colorlib-active"><a href="{% url 'addpost' %}">Add Post</a></li>
+					{% else %}
+					<li><a href="{% url 'addpost' %}">Add Post</a></li>
+					{% endif %}
+					<li><a href="{% url 'logout' %}">Logout</a></li>
+					{% else %}
+					<li><a href="{% url 'login_page' %}">Login</a></li>
+					{% endif %}
 				</ul>
 			</nav>
 
