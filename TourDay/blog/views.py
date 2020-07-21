@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from blog.forms import blogPostForm
 from django.contrib.auth.decorators import login_required
 from blog.models import blogPost
 from django.core.paginator import Paginator
+
 
 # Create your views here.
 def search(request):
@@ -45,3 +46,25 @@ def addPost(request):
     else:
         form = blogPostForm()
     return render(request,'blog/add_post.html', {'form':form})
+
+
+@login_required
+def blog_edit(request, id):
+    
+    post = blogPost.objects.get(id=id)
+
+    if request.user == post.blog_user:
+        item = get_object_or_404(blogPost, id=id)
+        form = blogPostForm(request.POST or None,request.FILES or None, instance=item)
+
+        if form.is_valid():
+            obj= form.save(commit= False)
+            obj.save()
+
+            return redirect('blog_home')
+    else:
+        pass
+
+    
+    return render(request, 'blog/add_post.html', {'form' : form})
+

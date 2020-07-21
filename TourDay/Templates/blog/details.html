@@ -1,8 +1,25 @@
 {% extends 'blog/base.html' %}
 {% block blog %}
 <div class="col-lg-8 px-md-5 py-5">
+  {% if details_obj.blog_user == user %}
+  <div class="row">
+    <div class="col-md-4">
+      <a href="{% url 'blog_edit' details_obj.id %}"><button type="button" class="btn btn-success">Update</button></a>
+      
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+  {% endif %}
+
     <div class="row pt-md-4">
+      
+      <br>
         <h1 class="mb-3">{{details_obj.title}}</h1>
+       
+      
 
   <img src="{{details_obj.image.url}}" alt="" class="img-fluid">
 
