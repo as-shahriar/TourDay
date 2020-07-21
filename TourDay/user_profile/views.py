@@ -22,7 +22,8 @@ def edit_profile(request):
         profile.save()
     context = {
         "profile": profile,
-        "is_complete": is_complete
+        "is_complete": is_complete,
+        "nav_img": profile.picture.url,
     }
     return render(request, "profile/profile.html", context)
 
@@ -111,7 +112,12 @@ def add_info(request, param):
 
             return JsonResponse({
                 "status": 201,
-                "new_img": profile.picture.url
+                "new_img": profile.picture.url,
+
             })
         else:
             return JsonResponse({}, status=404)
+
+
+def portfolio(request, username):
+    return render(request, 'profile/portfolio.html')

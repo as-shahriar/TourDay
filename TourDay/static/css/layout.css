@@ -3,12 +3,25 @@ body {
   background-image: none;
   min-height: 0;
 }
-
+a,
+a:visited,
+a:focus,
+a:active,
+a:hover {
+  outline: 0 none !important;
+}
 .parent {
   width: 100%;
   display: grid;
-  grid-template-areas: "content  ads";
+  grid-template-areas: "content content  ads";
   margin-top: 0.5rem;
+}
+
+.menu-mobile {
+  top: 25px;
+}
+.menu-mobile ul li a {
+  font-size: 18px;
 }
 .my-btn {
   padding: 0.7rem 1.2rem;
