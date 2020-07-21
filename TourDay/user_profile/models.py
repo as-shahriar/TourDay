@@ -15,7 +15,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=80, blank=True, null=True)
     email = models.CharField(max_length=64, blank=True, null=True)
     fb = models.CharField(max_length=50, blank=True, null=True)
-    bio = models.CharField(max_length=50, blank=True, null=True)
+    bio = models.CharField(max_length=101, blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
     picture = models.ImageField(upload_to=user_directory_path,
                                 blank=True, default="profile_pics/default.jpg")

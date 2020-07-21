@@ -4,12 +4,16 @@ Profile{%endblock%} {%block css%}<link
   href="{% static 'profile/css/profile.css'%}"
 />
 <link rel="stylesheet" href="{% static 'css/croppie.css' %}" />
-{%endblock%} {% block content %} {%if not is_complete %}
+{%endblock%} {% block content %}
+
+<h2 id="page-title" style="margin-left: 1.5rem;">Edit Profile</h2>
+<hr>
+ {%if not is_complete %}
 <div class="complete_notice">
   <b>Complete your profile to access all pages</b>
 </div>
 {%endif%}
-<h2 style="margin-left: 1.5rem;">Edit Profile</h2>
+
 <div class="profile">
   <div class="picture-box">
     <img id="pro_pic" src="{{profile.picture.url}}" alt="profile_picture" />
@@ -36,6 +40,7 @@ Profile{%endblock%} {%block css%}<link
           type="text"
           placeholder="enter your full name"
           value="{%if profile.name %}{{profile.name}}{%endif%}"
+          autocomplete="off"
         />
       </div>
       <div class="field-edit" id="btn-name">Edit</div>
@@ -50,6 +55,7 @@ Profile{%endblock%} {%block css%}<link
           type="text"
           placeholder="example@example.com"
           value="{{user.email}}"
+          autocomplete="off"
         />
       </div>
       <div class="field-edit" id="btn-email">Edit</div>
@@ -68,6 +74,7 @@ Profile{%endblock%} {%block css%}<link
           type="text"
           placeholder="enter facebook username only"
           value="{%if profile.fb%}{{profile.fb}}{%endif%}"
+          autocomplete="off"
         />
       </div>
       <div class="field-edit" id="btn-fb">Edit</div>
@@ -81,25 +88,13 @@ Profile{%endblock%} {%block css%}<link
           id="input-password"
           type="password"
           placeholder="must be 8 character"
+          autocomplete="off"
         />
       </div>
       <div class="field-edit" id="btn-password">Edit</div>
     </div>
 
-    <div class="field">
-      <div class="field-text pointer" title="Must be in 50 character.">
-        <b>Bio:</b>
-        <span id="bio">{%if profile.bio%}{{profile.bio}}{%endif%}</span>
-        <input
-          class="input-field"
-          id="input-bio"
-          type="text"
-          placeholder="Express yourself in one line"
-          value="{%if profile.bio%}{{profile.bio}}{%endif%}"
-        />
-      </div>
-      <div class="field-edit" id="btn-bio">Edit</div>
-    </div>
+    
 
     <div class="field">
       <div class="field-text">
@@ -111,9 +106,25 @@ Profile{%endblock%} {%block css%}<link
           type="text"
           placeholder="Dhaka, Bangladesh"
           value="{%if profile.city%}{{profile.city}}{%endif%}"
+          autocomplete="off"
         />
       </div>
       <div class="field-edit" id="btn-city">Edit</div>
+    </div>
+    <div class="field bio-field">
+      <div class="field-text pointer" title="Must be in 100 character.">
+        <b>Bio:</b>
+        <span id="bio">{%if profile.bio%}{{profile.bio}}{%endif%}</span>
+        <input
+          class="input-field"
+          id="input-bio"
+          type="text"
+          placeholder="Express yourself in 40 Characters"
+          value="{%if profile.bio%}{{profile.bio}}{%endif%}"
+          autocomplete="off"
+        />
+      </div>
+      <div class="field-edit" id="btn-bio">Edit</div>
     </div>
   </div>
 </div>

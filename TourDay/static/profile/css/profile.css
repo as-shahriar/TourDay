@@ -7,9 +7,7 @@
   text-align: center;
   font-size: 1.3rem;
   color: var(--secondary-color);
-  
 }
-
 
 .profile {
   width: 100%;
@@ -57,7 +55,7 @@
   align-items: center;
   font-size: 1rem;
 }
-.field-edit:hover{
+.field-edit:hover {
   transform: scale(1.1);
 }
 
@@ -97,8 +95,16 @@
 #input-bio {
   min-width: 25.5rem;
 }
-
+.bio-field {
+  max-width: 490.533px;
+}
+#bio {
+  display: block;
+}
 @media (max-width: 800px) {
+  .bio-field {
+    max-width: 331.25px;
+  }
   .profile {
     grid-template-areas: "picture-box" "info-box";
   }
@@ -129,6 +135,10 @@
   }
 
   .complete_notice {
-    font-size: .8rem;
+    font-size: 0.8rem;
     margin-top: 1rem;
+  }
+  #page-title {
+    font-size: 1.3rem;
+  }
 }
