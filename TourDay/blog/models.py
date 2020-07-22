@@ -19,7 +19,7 @@ MONTH_CHOICES = (
 class blogPost(models.Model):
     blog_user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    # slug = models.SlugField(blank=True, null = True, max_length=50)
+    slug = models.SlugField(blank=True, null = True, max_length=50)
     date = models.DateField(default=datetime.date.today)
     title = models.CharField(max_length=200, blank=False)
     description =  RichTextUploadingField(blank=False, null=False)

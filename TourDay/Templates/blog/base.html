@@ -59,6 +59,11 @@
 					{% else %}
 					<li><a href="{% url 'addpost' %}">Add Post</a></li>
 					{% endif %}
+					{% if request.path|slice:":10" == '/blog/user' %}
+					<li class="colorlib-active"><a href="{% url 'user_post' request.user %}">Your Posts</a></li>
+					{% else %}
+					<li><a href="{% url 'user_post' request.user %}">Your Posts</a></li>
+					{% endif %}
 					<li><a href="{% url 'logout' %}">Logout</a></li>
 					{% else %}
 					<li><a href="{% url 'login_page' %}">Login</a></li>
