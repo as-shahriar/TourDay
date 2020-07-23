@@ -19,4 +19,5 @@ urlpatterns = [
   path('blog/edit/<int:id>', blog_edit, name='blog_edit' ),
   path('blog/delete/<int:id>', blog_delete, name='blog_delete' ),
   path('blog/user/<slug>', user_post, name='user_post' ),
+  
 ]

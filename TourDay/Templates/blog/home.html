@@ -1,16 +1,15 @@
 {% extends 'blog/base.html' %}
 {% block blog %} 
-
 <div class="col-xl-8 px-md-5 py-5">
-    <div class="row pt-md-4">
+    <!-- <div class="row pt-md-4"> -->
        
-        <div class="col-md-12">
+        <!-- <div class="col-md-12"> -->
             {% for post in allpost %}
             <div class="blog-entry-2 ftco-animate">
                 <a href= "{% url 'blog_details' post.id %}" class="img" style="background-image: url({{post.image.url}});"></a>
                 <div class="text pt-4">
           <h3 class="mb-4"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
-          <p class="mb-4">{{post.description | safe |truncatewords:40}}</p>
+          <p class="mb-4">{{post.description | safe |truncatewords:20}}</p>
           <div class="author mb-4 d-flex align-items-center">
                 <a href="{% url 'user_post' post.slug %}" class="img" style="background-image: url({{post.blog_user.profile.picture.url}});"></a>
                 <div class="ml-3 info">
@@ -33,8 +32,8 @@
         </div>
             </div>
             {% endfor %}
-        </div>
-    </div><!-- END-->
+        <!-- </div> -->
+    <!-- </div> -->
 
 
     {% if allpost.has_previous %}

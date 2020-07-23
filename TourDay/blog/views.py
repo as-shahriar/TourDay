@@ -85,25 +85,9 @@ def blog_delete(request, id):
 
     return render(request, 'blog/delete.html', {'post' : post})
 
-# @login_required
-# def your_post(request):
 
-#     post = blogPost.objects.filter(blog_user=request.user).order_by('-id')
-#     paginator = Paginator(post, 2)  # Show 10 obj per page
-
-#     page = request.GET.get('page')
-#     post = paginator.get_page(page)
-
-#     # post = get_object_or_404(blogPost, blog_user=request.user)
-#     # print(post)
-
-#     # post = blogPost.objects.get(blog_user=request.user)
-
-#     return render(request, 'blog/your_post.html', {'post':post})
-
-@login_required
 def user_post(request, slug):
-
+    
     post = blogPost.objects.filter(slug=slug).order_by('-id')
     paginator = Paginator(post, 2)  # Show 10 obj per page
 
