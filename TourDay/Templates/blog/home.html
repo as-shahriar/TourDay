@@ -9,7 +9,7 @@
                 <a href= "{% url 'blog_details' post.id %}" class="img" style="background-image: url({{post.image.url}});"></a>
                 <div class="text pt-4">
           <h3 class="mb-4"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
-          <p class="mb-4">{{post.description | safe |truncatewords:20}}</p>
+          <p class="mb-4">{{post.description | safe |truncatewords:40}}</p>
           <div class="author mb-4 d-flex align-items-center">
                 <a href="{% url 'user_post' post.slug %}" class="img" style="background-image: url({{post.blog_user.profile.picture.url}});"></a>
                 <div class="ml-3 info">
