@@ -1,5 +1,5 @@
 $(window).on("load", function () {
-  setInterval(() => $(".loader").fadeOut(), 1000);
+  setInterval(() => $(".loader").hide(), 1000);
 });
 
 function validateEmail(email) {
@@ -33,7 +33,7 @@ document.querySelector(".menu-icon").addEventListener("click", () => {
 
 $("#close-error").click(function () {
   //hide error on click close button
-  $(".error").fadeOut();
+  $(".error").hide();
   if (timeout != undefined) {
     clearTimeout(timeout);
   }
@@ -57,5 +57,5 @@ function getCookie(name) {
 }
 
 function hide_error() {
-  timeout = setTimeout(() => $(".error").fadeOut(), 5000);
+  timeout = setTimeout(() => $(".error").hide(), 5000);
 }
