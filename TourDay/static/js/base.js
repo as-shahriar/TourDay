@@ -19,7 +19,9 @@ document.querySelector(".menu-icon").addEventListener("click", () => {
   document.querySelector(".menu-icon").classList.toggle("active");
   document.querySelector("#items").classList.toggle("open");
   if (!isCliked) {
-    document.querySelector(".menu-mobile").classList.toggle("showNav");
+    setTimeout(() => {
+      document.querySelector(".menu-mobile").classList.toggle("showNav");
+    }, 130);
     document.querySelector(".menu-icon").classList.toggle("addColor");
     isCliked = true;
   } else {
