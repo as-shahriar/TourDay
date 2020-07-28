@@ -13,7 +13,7 @@ a:hover {
 .parent {
   width: 100%;
   display: grid;
-  grid-template-areas: "content content  ads";
+  grid-template-areas: "content  ads";
   margin-top: 0.5rem;
 }
 

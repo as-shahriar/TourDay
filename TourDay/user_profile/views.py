@@ -7,6 +7,7 @@ from utils import async_send_mail
 from TourDay.settings import EMAIL_HOST_USER
 import base64
 from django.core.files.base import ContentFile
+from django.contrib.auth.models import User
 
 
 @login_required
@@ -120,4 +121,13 @@ def add_info(request, param):
 
 
 def portfolio(request, username):
-    return render(request, 'profile/portfolio.html')
+    try:
+        user = User.objects.get(username=username)
+        profile = Profile.objects.get(user=user)
+        # make username to full fb url
+        profile.fb = f"https://facebook.com/{profile.fb}"
+        return render(request, 'profile/portfolio.html', {
+            'profile': profile,
+        })
+    except:
+        return render(request, 'profile/portfolio.html')

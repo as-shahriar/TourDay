@@ -25,7 +25,7 @@
 .info-box {
   grid-area: info-box;
   width: 100%;
-  padding: 3rem;
+  /* padding: 3rem; */
   font-size: 1.2rem;
   display: flex;
   flex-direction: column;
@@ -36,9 +36,12 @@
   max-width: 10rem;
   max-height: auto;
   border-radius: 50%;
-  margin: 1.5rem 1rem;
+  /* margin: 1.5rem 1rem; */
 }
 
+#name_pic {
+  margin-bottom: -6px;
+}
 .field {
   display: flex;
   margin: 0.4rem 0;

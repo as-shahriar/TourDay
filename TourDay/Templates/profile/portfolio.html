@@ -1,7 +1,37 @@
-{%extends 'layout.html'%} {% load static %}{%block title%}TourDay | Edit
+{%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
 Profile{%endblock%} {%block css%}<link
   rel="stylesheet"
   href="{% static 'profile/css/portfolio.css'%}"
 />
-{%endblock%} {% block content %} {%endblock%} {%block ads %} ads {%endblock%} 
-{%block scripts %} {%endblock%}
+{%endblock%} {% block content %}
+<div class="root">
+  <div class="left-div">
+    <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
+    <div class="info">
+      <h3>{{profile.name}}</h3>
+      <p>
+        {{profile.bio}}
+        <br />
+        {{profile.city}}
+      </p>
+    </div>
+  </div>
+  <div class="right-div">
+    <div>
+      <img class="profile-icon" src="{% static 'icon/map.png' %}" alt="map" />
+      <a href="{{profile.fb}}" target="_blank"
+        ><img class="profile-icon" src="{% static 'icon/fb.png' %}" alt="FB"
+      /></a>
+      <a href="mailto: {{profile.email}}">
+        <img
+          class="profile-icon"
+          src="{% static 'icon/mail.png' %}"
+          alt="mail"
+          title="{{profile.email}}"
+      /></a>
+      <a href="{% url 'edit_profile' %}" class="my-btn" id="edit-link">Edit</a>
+    </div>
+  </div>
+</div>
+
+{%endblock%} {%block ads %} ads {%endblock%} {%block scripts %} {%endblock%}
