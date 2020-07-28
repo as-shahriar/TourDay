@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def search(request):
-    return render(request,'blog/base.html')
+    return render(request,'blog/home.html')
 
 # def home(request):
 

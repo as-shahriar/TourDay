@@ -28,7 +28,7 @@
   }
 
 body {
-    overflow: hidden;
+    /* overflow: hidden; */
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
     font-weight: 300;
