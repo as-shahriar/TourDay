@@ -7,46 +7,59 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def search(request):
-    return render(request,'blog/home.html')
+    return render(request,'blog/search.html')
 
-# def home(request):
+def home(request):
 
-#     allpost = blogPost.objects.all().order_by('-id')
-#     paginator = Paginator(allpost, 2)  # Show 10 obj per page
+    random_post = blogPost.objects.order_by('?')
+    recent_post = blogPost.objects.order_by('-id')
+    # print("Randomly post:  " + str(random_post.title))
 
-#     page = request.GET.get('page')
-#     allpost = paginator.get_page(page)
 
-#     context = {
-#         # 'paginator_pages': paginator_pages,
-#         'allpost' : allpost,
-#     }
+    allpost = blogPost.objects.all().order_by('-id')
+    paginator = Paginator(allpost, 4)  # Show 10 obj per page
+
+    page = request.GET.get('page')
+    allpost = paginator.get_page(page)
+
+    context = {
+        # # 'paginator_pages': paginator_pages,
+        'allpost' : allpost,
+        'recent_post':recent_post,
+        'random_post':random_post,
+    }
     
 
-#     return render(request,'blog/home.html', context)
+    return render(request,'blog/home.html', context)
 
-# def details(request, id):
+def details(request, id):
 
-#     details_obj = blogPost.objects.get(id = id)
+    details_obj = blogPost.objects.get(id = id)
+    random_post = blogPost.objects.order_by('?')
 
-#     return render(request,'blog/details.html', {'details_obj' : details_obj})
+    context = {
+        'details_obj' : details_obj,
+        'random_post' : random_post,
+    }
 
-# @login_required
-# def addPost(request):
+    return render(request,'blog/details.html', context)
+
+@login_required
+def addPost(request):
     
-#     if request.method == 'POST'  and 'blog_submit' in request.POST:
-#         form = blogPostForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             post_item = form.save(commit=False)
-#             post_item.blog_user = request.user
-#             post_item.slug = request.user
-#             # info.user_id = request.user.id
-#             post_item.save()
-#             return redirect('blog_home')
+    if request.method == 'POST'  and 'blog_submit' in request.POST:
+        form = blogPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post_item = form.save(commit=False)
+            post_item.blog_user = request.user
+            post_item.slug = request.user
+            # info.user_id = request.user.id
+            post_item.save()
+            return redirect('blog_home')
            
-#     else:
-#         form = blogPostForm()
-#     return render(request,'blog/add_post.html', {'form':form})
+    else:
+        form = blogPostForm()
+    return render(request,'blog/add_post.html', {'form':form})
 
 
 # @login_required
@@ -86,17 +99,25 @@ def search(request):
 #     return render(request, 'blog/delete.html', {'post' : post})
 
 
-# def user_post(request, slug):
+def user_post(request, slug):
     
-#     post = blogPost.objects.filter(slug=slug).order_by('-id')
-#     paginator = Paginator(post, 2)  # Show 10 obj per page
+    post1 = blogPost.objects.filter(slug=slug).order_by('id')
+    post = blogPost.objects.filter(slug=slug).order_by('-id')
+    paginator = Paginator(post, 5)  # Show 10 obj per page
+    random_post = blogPost.objects.order_by('?')
 
-#     page = request.GET.get('page')
-#     post = paginator.get_page(page)
+    page = request.GET.get('page')
+    post = paginator.get_page(page)
 
-#     # post = get_object_or_404(blogPost, blog_user=request.user)
-#     # print(post)
+    context = {
+        'post':post, 
+        'post1':post1,
+        'random_post' : random_post,
+    }
 
-#     # post = blogPost.objects.get(blog_user=request.user)
+    # post = get_object_or_404(blogPost, blog_user=request.user)
+    # print(post)
 
-#     return render(request, 'blog/user_post.html', {'post':post})
+    # post = blogPost.objects.get(blog_user=request.user)
+
+    return render(request, 'blog/user_post.html', context)

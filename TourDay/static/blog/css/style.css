@@ -1,4 +1,63 @@
 
+
+.post-img-1 {
+   
+    height: 333px;
+    width: 555px;
+    overflow: hidden; 
+    
+}
+
+.post-img-2 {
+    
+    height: 216px;
+    width: 360px;
+    overflow: hidden; 
+    
+}
+
+.post-img-3 {
+   
+    height: 425px;
+    width: 770px;
+    overflow: hidden; 
+    
+}
+
+.post-img-4 {
+   
+    height: 90px;
+    width: 90px;
+    overflow: hidden; 
+    
+}
+
+.post-img-5 {
+   
+    height: 220px;
+    width: 350px;
+    overflow: hidden; 
+    
+}
+
+.post-img-6 {
+    
+    height: 180px;
+    width: 300px;
+    overflow: hidden; 
+    
+}
+.logo-1 {
+    
+    height: 70px;
+    width: 188px;
+}
+
+
+.text-justify {
+    text-align: justify;
+  }
+
 #preloader {
     position: fixed;
     top: 0;
@@ -29,7 +88,7 @@
 
 body {
     /* overflow: hidden; */
-    font-family: 'SolaimanLipi','Nunito', Arial, sans-serif !important;
+    font-family: 'SolaimanLipi', 'Poppins', Arial, sans-serif !important;
     font-size: 16px;
     font-weight: 300;
     color: #3d455c;
@@ -38,7 +97,7 @@ body {
     overflow-x: hidden;
 }
  h1, h2, h3, h4, h5, h6 {
-     font-family: 'Nunito Sans', sans-serif;
+    font-family: 'SolaimanLipi', 'Poppins', Arial, sans-serif !important;
      font-weight: 700;
      color: #212631;
      margin: 0px 0px 15px;
@@ -963,6 +1022,7 @@ body {
 		 font-size: 28px;
 	}
      .post.post-row .post-img {
+        object-fit: contain;
          width: 100%;
          float: none;
     }

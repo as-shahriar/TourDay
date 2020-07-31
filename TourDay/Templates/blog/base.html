@@ -10,7 +10,10 @@
 		<title>WebMag HTML Template</title>
 
 		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"> 
+	
+    	
 
 		<!-- Bootstrap -->
 		<link type="text/css" rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}"/>
@@ -47,13 +50,15 @@
 					<div class="container">
 						<!-- logo -->
 						<div class="nav-logo">
-							<a href="index.html" class="logo"><img src="{% static 'image/logo.png'%}" alt=""></a>
+							<a href="{% url 'blog_home' %}" class="logo logo-1"><img src="{% static 'image/logo.png'%}" alt=""></a>
 						</div>
 						<!-- /logo -->
 
 						<!-- nav -->
 						<ul class="nav-menu nav navbar-nav">
-							<li class="cat-1"><a href="#">Home</a></li>
+							<li class="cat-1"><a href="{% url 'blog_home' %}">Home</a></li>
+							<li><a href="{% url 'addpost' %}">Add Post</a></li>
+							<li><a href="">Posts</a></li>
 							<li><a href="">Login</a></li>
 							
 						</ul>

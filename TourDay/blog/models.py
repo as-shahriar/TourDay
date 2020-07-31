@@ -2,7 +2,10 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 import datetime
-# from PIL import Image
+from PIL import Image
+
+
+# from sorl.thumbnail import ImageField, get_thumbnail
 # Create your models here.
 
 MONTH_CHOICES = (
@@ -28,15 +31,16 @@ class blogPost(models.Model):
                   choices=MONTH_CHOICES,
                   default="Rajshahi")
     
+    
 
     # def save(self):
-    #     super().save()
+    #     super().save()  # saving image first
 
-    #     img = Image.open(self.image.path)
+    #     img = Image.open(self.image.path) # Open image using self
 
-    #     if img.height > 1024 or img.width > 1024:
-    #         output_size = (400, 580)
-    #         img.thumbnail(output_size)
+    #     if img.width > 750:
+    #         new_img = (750, 450)
+    #         img.thumbnail(new_img)
     #         img.save(self.image.path)
 
     
