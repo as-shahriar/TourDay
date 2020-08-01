@@ -58,7 +58,7 @@
 						<ul class="nav-menu nav navbar-nav">
 							<li class="cat-1"><a href="{% url 'blog_home' %}">Home</a></li>
 							<li><a href="{% url 'addpost' %}">Add Post</a></li>
-							<li><a href="">Posts</a></li>
+							<li><a href="{% url 'user_post' request.user %}">Posts</a></li>
 							<li><a href="">Login</a></li>
 							
 						</ul>

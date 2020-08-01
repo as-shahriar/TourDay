@@ -14,7 +14,7 @@
 							<a class="post-img post-img-1" href="{% url 'blog_details' post1.id %}"><img src="{{post1.image.url}}" alt=""></a>
 							<div class="post-body">
 								<div class="post-meta">
-									<a class="post-category cat-2" href="category.html">{{post1.division}}</a>
+									<a class="post-category cat-2" href="{% url 'division_post' post1.division %}">{{post1.division}}</a>
 									<span class="post-date">{{post.date}}</span>
 								</div>
 								<h3 class="post-title"><a href="{% url 'blog_details' post1.id %}">{{post1.title}}</a></h3>
@@ -46,7 +46,7 @@
 							<a class="post-img post-img-2" href="{% url 'blog_details' post2.id %}"><img src="{{post2.image.url}}" alt=""></a>
 							<div class="post-body">
 								<div class="post-meta">
-									<a class="post-category cat-1" href="{% url 'blog_details' post2.id %}">{{post2.division}}</a>
+									<a class="post-category cat-1" href="{% url 'division_post' post2.division %}" >{{post2.division}}</a>
 									<span class="post-date">{{post2.date}}</span>
 								</div>
 								<h3 class="post-title"><a href="{% url 'blog_details' post2.id %}">{{post2.title}}</a></h3>
@@ -70,7 +70,7 @@
 									<a class="post-img post-img-3" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
 									<div class="post-body">
 										<div class="post-meta">
-											<a class="post-category cat-3" href="category.html">{{post.division}}</a>
+											<a class="post-category cat-3" href="{% url 'division_post' post.division %}">{{post.division}}</a>
 											<span class="post-date">{{post.date}}</span>
 										</div>
 										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
@@ -88,7 +88,7 @@
 									<a class="post-img post-img-2" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
 									<div class="post-body">
 										<div class="post-meta">
-											<a class="post-category cat-4" href="category.html">{{post.division}}</a>
+											<a class="post-category cat-4" href="{% url 'division_post' post.division %}">{{post.division}}</a>
 											<span class="post-date">{{post.date}}</span>
 										</div>
 										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
@@ -142,7 +142,7 @@
 								<a class="post-img post-img-2" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
 								<div class="post-body">
 									<div class="post-meta">
-										<a class="post-category cat-3" href="category.html">{{post.division}}</a>
+										<a class="post-category cat-3" href="{% url 'division_post' post.division %}">{{post.division}}</a>
 										<span class="post-date">{{post.date}}</span>
 									</div>
 									<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
@@ -188,7 +188,7 @@
 							<a class="post-img post-img-2" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
 							<div class="post-body">
 								<div class="post-meta">
-									<a class="post-category cat-2" href="category.html">{{post.division}}</a>
+									<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
 									<span class="post-date">{{post.date}}</span>
 								</div>
 								<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
@@ -229,13 +229,13 @@
 
 							
 							<!-- post -->
-							{% for post in recent_post|slice:":4" %}
+							{% for post in allpost %}
 							<div class="col-md-12">
 								<div class="post post-row">
 									<a class="post-img post-img-5" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
 									<div class="post-body">
 										<div class="post-meta">
-											<a class="post-category cat-2" href="category.html">{{post.division}}</a>
+											<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
 											<span class="post-date">{{post.date}}</span>
 										</div>
 										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
@@ -251,7 +251,25 @@
 							
 							<div class="col-md-12">
 								<div class="section-row">
-									<button class="primary-button center-block">Load More</button>
+
+									{% if allpost.has_previous %}
+								<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ allpost.previous_page_number }}">Previous</a>
+								{% endif %}
+
+								{% for num in allpost.paginator.page_range %}
+								{% if allpost.number == num %}
+									<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+								{% elif num > allpost.number|add:'-3' and num < allpost.number|add:'3' %}
+									<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+								{% endif %}
+								{% endfor %}
+
+								{% if allpost.has_next %}
+								<a class="btn btn-outline-info mb-4" href="?page={{ allpost.next_page_number }}">Next</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ allpost.paginator.num_pages }}">Last</a>
+								{% endif %}
+									<!-- <button class="primary-button center-block">Load More</button> -->
 								</div>
 							</div>
 						</div>
@@ -273,6 +291,7 @@
 							</div>
 							<div class="category-widget">
 								<ul>
+									
 									<li><a href="#" class="cat-1">Web Design<span>340</span></a></li>
 									<li><a href="#" class="cat-2">JavaScript<span>74</span></a></li>
 									<li><a href="#" class="cat-4">JQuery<span>41</span></a></li>

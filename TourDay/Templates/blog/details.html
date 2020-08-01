@@ -43,7 +43,24 @@
 								<div class="text-justify" style="font-size: 17px;"> 
 									<p>{{details_obj.description|safe}}</p>
 								</div>
-								
+								{% if details_obj.blog_user == request.user %}
+								<div class="row">
+									<div class="col-md-2">
+										<a href="{% url 'blog_edit' details_obj.id %}">
+											<button type="button" class="btn btn-primary">Edit Post</button>
+										</a>
+										
+									</div>
+									<div class="col-md-2">
+										<a href="{%  url 'blog_delete' details_obj.id %}" onclick="return confirm('Are you sure you want to delete this Post?');">
+											<button type="button" class="btn btn-danger">Delete Post</button>
+										</a>
+									</div>
+									<div class="col-md-8"></div>
+									
+									
+								</div>
+								{% endif %}
 								
                             
                                 </div>
