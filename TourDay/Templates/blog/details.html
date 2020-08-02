@@ -87,13 +87,19 @@
 							<div class="post-author">
 								<div class="media">
 									<div class="media-left">
-										<img class="media-object" src="{{details_obj.blog_user.picture}}" alt="">
+										<a href="{% url 'user_post' details_obj.blog_user%}">
+											<img class="media-object" src="{{details_obj.blog_user.profile.picture.url}}" alt="">
+										</a>
+										
 									</div>
 									<div class="media-body">
 										<div class="media-heading">
-											<h3>{{details_obj.user.Profile.name}}</h3>
+											<a href="{% url 'user_post' details_obj.blog_user%}">
+												<h3>{{details_obj.blog_user.profile.name}}</h3>
+											</a>
+											
 										</div>
-										<p>  {{details_obj.blog_user.bio}}</p>
+										<p>  {{details_obj.blog_user.profile.bio}}</p>
 										<ul class="author-social">
 											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -263,7 +269,7 @@
 							<div class="section-title">
 								<h2>Division</h2>
 							</div>
-							
+
 							<div class="category-widget">
 								<ul>
 									<li><a href="{% url 'division_post' 'Barishal' %}" class="cat-1">Barishal<span>{{di_count.Barishal}}</span></a></li>

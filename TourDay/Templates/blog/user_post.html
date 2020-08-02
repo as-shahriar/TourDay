@@ -8,10 +8,14 @@
 					<div class="row">
 						<div class="col-md-10">
 							<ul class="page-header-breadcrumb">
-								<li><a href="index.html">Home</a></li>
+								<li><a href="{% url 'blog_home' %}">Home</a></li>
 								<li>JavaScript</li>
 							</ul>
-							<h1>JavaScript</h1>
+							
+							<h1>{{request.path}}</h1>
+							
+
+							
 						</div>
 					</div>
 				</div>
@@ -82,13 +86,13 @@
 							<!-- post -->
 							<div class="col-md-12">
 								<div class="post post-row">
-									<a class="post-img post-img-6" href="blog-post.html"><img src="{{ post.image.url }}" alt=""></a>
+									<a class="post-img post-img-6" href="{% url 'blog_details' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
 									<div class="post-body">
 										<div class="post-meta">
 											<a class="post-category cat-2" href="#">{{post.division}}</a>
 											<span class="post-date">{{post.date}}</span>
 										</div>
-										<h3 class="post-title"><a href="blog-post.html">{{post.title}}</a></h3>
+										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
 										<!-- <p>{{post.description |safe | truncatewords:30 }}</p> -->
 									</div>
 								</div>
@@ -99,9 +103,29 @@
 
 						
 							<div class="col-md-12">
+
 								<div class="section-row">
-									<button class="primary-button center-block">Load More</button>
+
+									{% if post.has_previous %}
+								<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ post.previous_page_number }}">Previous</a>
+								{% endif %}
+
+								{% for num in post.paginator.page_range %}
+								{% if post.number == num %}
+									<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+								{% elif num > post.number|add:'-3' and num < post.number|add:'3' %}
+									<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+								{% endif %}
+								{% endfor %}
+
+								{% if post.has_next %}
+								<a class="btn btn-outline-info mb-4" href="?page={{ post.next_page_number }}">Next</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ post.paginator.num_pages }}">Last</a>
+								{% endif %}
+									<!-- <button class="primary-button center-block">Load More</button> -->
 								</div>
+
 							</div>
 						</div>
 					</div>

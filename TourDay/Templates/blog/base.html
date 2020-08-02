@@ -61,6 +61,7 @@
 							{% else %}
 							<li><a href="{% url 'blog_home' %}">Home</a></li>
 							{% endif %}
+							<li><a href="#">Main Home</a></li>
 
 							{% if user.is_authenticated %}
 								{% if 'addpost' in request.path %}

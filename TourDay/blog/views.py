@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 
 
 class division_post_count:
+
     Rajshahi = blogPost.objects.filter(division='Rajshahi').count()
     Chittagong = blogPost.objects.filter(division='Chittagong').count()
     Dhaka = blogPost.objects.filter(division='Dhaka').count()
@@ -24,21 +25,23 @@ def search(request):
 
 def home(request):
 
-    di_count = division_post_count() 
+    # di_count = division_post_count()
+   
     random_post = blogPost.objects.order_by('?')
     recent_post = blogPost.objects.order_by('-id')
     # print("Randomly post:  " + str(random_post.title))
 
 
     allpost = blogPost.objects.all().order_by('-id')
-    paginator = Paginator(allpost, 4)  # Show 10 obj per page
+    paginator = Paginator(allpost, 5)  # Show 5 obj per page
 
     page = request.GET.get('page')
     allpost = paginator.get_page(page)
 
     context = {
         # # 'paginator_pages': paginator_pages,
-        'di_count' : di_count,
+
+        'di_count' : division_post_count(),
         'allpost' : allpost,
         'recent_post':recent_post,
         'random_post':random_post,
@@ -50,13 +53,13 @@ def home(request):
 def details(request, id):
 
 
-    di_count = division_post_count() 
+    # di_count = division_post_count() 
 
     details_obj = blogPost.objects.get(id = id)
     random_post = blogPost.objects.order_by('?')
 
     context = {
-        'di_count' : di_count,
+        'di_count' : division_post_count(),
         'details_obj' : details_obj,
         'random_post' : random_post,
     }
@@ -120,7 +123,7 @@ def blog_delete(request, id):
 
 def user_post(request, slug):
 
-    di_count = division_post_count()
+    # di_count = division_post_count()
     
     post1 = blogPost.objects.filter(slug=slug).order_by('id')
     post = blogPost.objects.filter(slug=slug).order_by('-id')
@@ -131,7 +134,7 @@ def user_post(request, slug):
     post = paginator.get_page(page)
 
     context = {
-        'di_count' : di_count,
+        'di_count' : division_post_count(),
         'post':post, 
         'post1':post1,
         'random_post' : random_post,
@@ -148,7 +151,7 @@ def user_post(request, slug):
 
 def division_post(request, slug):
 
-    di_count = division_post_count()
+    # di_count = division_post_count()
 
     post1 = blogPost.objects.filter(division=slug).order_by('id')
     post = blogPost.objects.filter(division=slug).order_by('-id')
@@ -159,7 +162,7 @@ def division_post(request, slug):
     post = paginator.get_page(page)
 
     context = {
-        'di_count' : di_count,
+        'di_count' : division_post_count(),
         'post':post, 
         'post1':post1,
         'random_post' : random_post,

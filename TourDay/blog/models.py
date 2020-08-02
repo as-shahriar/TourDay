@@ -9,7 +9,7 @@ from PIL import Image
 # Create your models here.
 
 MONTH_CHOICES = (
-    ("Barishal ", "Barishal"),
+    ("Barishal", "Barishal"),
     ("Chittagong", "Chittagong"),
     ("Dhaka", "Dhaka"),
     ("Mymensingh", "Mymensingh"),
