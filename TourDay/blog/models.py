@@ -24,7 +24,7 @@ class blogPost(models.Model):
 
     slug = models.SlugField(blank=True, null = True, max_length=50)
     date = models.DateField(default=datetime.date.today)
-    title = models.CharField(max_length=200, blank=False)
+    title = models.CharField(max_length=100, blank=False)
     description =  RichTextUploadingField(blank=False, null=False)
     image = models.ImageField(upload_to='blog_pics', blank=False)
     division = models.CharField(max_length=20,

@@ -5,9 +5,9 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		
 
-		<title>WebMag HTML Template</title>
+		<title>TourdayBlog</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
@@ -56,10 +56,24 @@
 
 						<!-- nav -->
 						<ul class="nav-menu nav navbar-nav">
+							{% if request.path == '/blog/home' %}
 							<li class="cat-1"><a href="{% url 'blog_home' %}">Home</a></li>
-							<li><a href="{% url 'addpost' %}">Add Post</a></li>
+							{% else %}
+							<li><a href="{% url 'blog_home' %}">Home</a></li>
+							{% endif %}
+
+							{% if user.is_authenticated %}
+								{% if 'addpost' in request.path %}
+								<li class="cat-1"><a href="{% url 'addpost' %}">Add Post</a></li>
+								{% else %}
+								<li><a href="{% url 'addpost' %}">Add Post</a></li>
+								{% endif %}
 							<li><a href="{% url 'user_post' request.user %}">Posts</a></li>
-							<li><a href="">Login</a></li>
+							<li><a href="{% url 'signup_page' %}">Logout</a></li>
+							
+							{% else %}
+							<li><a href="{% url 'login_page' %}">Login</a></li>
+							{% endif %}
 							
 						</ul>
 						<!-- /nav -->
@@ -79,14 +93,6 @@
 				<!-- /Main Nav -->
 
 			
-
-			
-					<!-- /social links -->
-
-					<!-- aside nav close -->
-					
-				
-				<!-- Aside Nav -->
 			</div>
 			<!-- /Nav -->
 		</header>
@@ -112,36 +118,17 @@
 								<li><a href="#">Advertisement</a></li>
 							</ul>
 							<div class="footer-copyright">
-								<span>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> Tourday</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
+								<span>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  <i class="fa fa-heart-o" aria-hidden="true"></i> Tourday</a>
+</span>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-md-4">
 						<div class="row">
-							<div class="col-md-6">
-								<div class="footer-widget">
-									<h3 class="footer-title">About Us</h3>
-									<ul class="footer-links">
-										<li><a href="about.html">About Us</a></li>
-										<li><a href="#">Join Us</a></li>
-										<li><a href="contact.html">Contacts</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="footer-widget">
-									<h3 class="footer-title">Catagories</h3>
-									<ul class="footer-links">
-										<li><a href="category.html">Web Design</a></li>
-										<li><a href="category.html">JavaScript</a></li>
-										<li><a href="category.html">Css</a></li>
-										<li><a href="category.html">Jquery</a></li>
-									</ul>
-								</div>
-							</div>
+							<div class="col-md-6"></div>
+							<div class="col-md-6"></div>
 						</div>
 					</div>
 
