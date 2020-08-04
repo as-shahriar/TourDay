@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="post-meta">
-                        <a class="post-category cat-2" href="category.html">{{details_obj.division}}</a>
+                        <a class="post-category cat-2" href="{% url 'division_post' details_obj.division %}">{{details_obj.division}}</a>
                         <span class="post-date">{{details_obj.date}}</span>
                     </div>
                     <h1>{{details_obj.title}}</h1>
