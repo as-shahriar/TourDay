@@ -1,5 +1,5 @@
 $(window).on("load", function () {
-  setInterval(() => $(".loader").fadeOut(), 1000);
+  setInterval(() => $(".loader").hide(), 1000);
 });
 
 function validateEmail(email) {
@@ -19,7 +19,9 @@ document.querySelector(".menu-icon").addEventListener("click", () => {
   document.querySelector(".menu-icon").classList.toggle("active");
   document.querySelector("#items").classList.toggle("open");
   if (!isCliked) {
-    document.querySelector(".menu-mobile").classList.toggle("showNav");
+    setTimeout(() => {
+      document.querySelector(".menu-mobile").classList.toggle("showNav");
+    }, 130);
     document.querySelector(".menu-icon").classList.toggle("addColor");
     isCliked = true;
   } else {
@@ -31,7 +33,7 @@ document.querySelector(".menu-icon").addEventListener("click", () => {
 
 $("#close-error").click(function () {
   //hide error on click close button
-  $(".error").fadeOut();
+  $(".error").hide();
   if (timeout != undefined) {
     clearTimeout(timeout);
   }
@@ -55,5 +57,5 @@ function getCookie(name) {
 }
 
 function hide_error() {
-  timeout = setTimeout(() => $(".error").fadeOut(), 5000);
+  timeout = setTimeout(() => $(".error").hide(), 5000);
 }

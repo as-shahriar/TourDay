@@ -17,8 +17,22 @@
   <body>
     <nav id="nav">
       <ul class="menu">
-        <li><a href="#">Search</a></li>
-        <li><a href="{% url 'blog_home' %}">Blog</a></li>
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'portfolio' user.username %}"
+            ><div style="display: flex; align-items: center;">
+              {%if nav_img%}<img
+                src="{{nav_img}}"
+                width="20px"
+                height="20px"
+                style="border-radius: 50%; margin-right: 5px;"
+              />{%endif%}{{user.username}}
+            </div>
+          </a>
+        </li>
+        {%endif%}
+        <li><a href="{% url 'search_page'%}">Search</a></li>
+        <li><a href="#">Blog</a></li>
         <li><a href="#">E-commerce</a></li>
         {% if not user.is_authenticated %}
         <li><a href="{% url 'login_page'%}">Login</a></li>
@@ -30,7 +44,12 @@
     </nav>
     <div class="menu-mobile">
       <ul>
-        <li><a href="#">Search</a></li>
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'portfolio' user.username %}">{{user.username}}</a>
+        </li>
+        {%endif%}
+        <li><a href="{% url 'search_page'%}">Search</a></li>
         <li><a href="#">Blog</a></li>
         <li><a href="#">E-commerce</a></li>
         {% if not user.is_authenticated %}
@@ -42,7 +61,9 @@
       </ul>
     </div>
     <div class="logo">
-      <img src="{% static 'image/logo.png'%}" alt="logo" />
+      <a href="{% url 'search_page'%}">
+        <img src="{% static 'image/logo.png'%}" alt="logo"
+      /></a>
     </div>
 
     <!-- Mobile logo and menu bar start -->

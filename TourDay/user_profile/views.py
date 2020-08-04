@@ -7,6 +7,7 @@ from utils import async_send_mail
 from TourDay.settings import EMAIL_HOST_USER
 import base64
 from django.core.files.base import ContentFile
+from django.contrib.auth.models import User
 
 
 @login_required
@@ -22,7 +23,8 @@ def edit_profile(request):
         profile.save()
     context = {
         "profile": profile,
-        "is_complete": is_complete
+        "is_complete": is_complete,
+        "nav_img": profile.picture.url,
     }
     return render(request, "profile/profile.html", context)
 
@@ -111,7 +113,19 @@ def add_info(request, param):
 
             return JsonResponse({
                 "status": 201,
-                "new_img": profile.picture.url
+                "new_img": profile.picture.url,
+
             })
         else:
             return JsonResponse({}, status=404)
+
+
+def portfolio(request, username):
+    try:
+        user = User.objects.get(username=username)
+        profile = Profile.objects.get(user=user)
+        return render(request, 'profile/portfolio.html', {
+            'profile': profile,
+        })
+    except:
+        return render(request, 'profile/portfolio.html')
