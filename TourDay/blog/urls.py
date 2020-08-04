@@ -12,7 +12,7 @@ urlpatterns = [
   path('ckeditor/browse/', never_cache(uploader_views.browse), name='ckeditor_browse'),
 
 
-  path("search",search,name="search_page"),
+  path("",search,name="search_page"),
   path('blog/home', home, name='blog_home' ),
   path('blog/details/<int:id>', details, name='blog_details' ),
   path('blog/addpost', addPost, name='addpost' ),
