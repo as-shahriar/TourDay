@@ -1,0 +1,76 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+}
+.big-logo {
+  width: 480px;
+  height: auto;
+}
+.input-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: -28px;
+}
+.input-text {
+  margin: 1.5rem 0;
+  min-width: 35rem;
+  padding-right: 2rem;
+  padding-left: 3.2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-radius: 23px;
+  border: none;
+  -webkit-box-shadow: -1px 4px 15px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 4px 15px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 4px 15px -6px rgba(0, 0, 0, 0.75);
+  font-size: 1.3rem;
+}
+
+.search-btn {
+  min-width: 10rem;
+  border-radius: 23px;
+  -webkit-box-shadow: -1px 4px 15px -4px rgba(0, 0, 0, 0.75) !important;
+  -moz-box-shadow: -1px 4px 15px -4px rgba(0, 0, 0, 0.75) !important;
+  box-shadow: -1px 4px 15px -4px rgba(0, 0, 0, 0.75) !important;
+  font-size: 1rem;
+}
+
+.input-icon {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  left: 37px;
+  opacity: 0.7;
+}
+
+footer {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 0.7rem;
+}
+
+@media (max-width: 800px) {
+  .main {
+    height: 85vh;
+  }
+  .big-logo {
+    width: 240px;
+  }
+  .input-text {
+    min-width: 10rem;
+    font-size: 1rem;
+  }
+  .search-btn {
+    font-size: 1rem;
+    min-width: 8rem;
+
+    padding: 0.5rem 0;
+  }
+}
