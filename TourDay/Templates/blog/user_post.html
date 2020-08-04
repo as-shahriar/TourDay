@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 {% block blog %}
 
 							<!-- /post -->
@@ -75,7 +76,7 @@
 							<div class="col-md-12">
 								<div class="section-row">
 									<a href="#">
-										<img class="img-responsive center-block" src="./img/ad-2.jpg" alt="">
+										<img class="img-responsive center-block" src="{% static 'image/ad/ad-2.jpg'%}" alt="">
 									</a>
 								</div>
 							</div>
@@ -134,7 +135,7 @@
 						<!-- ad -->
 						<div class="aside-widget text-center">
 							<a href="#" style="display: inline-block;margin: auto;">
-								<img class="img-responsive" src="./img/ad-1.jpg" alt="">
+								<img class="img-responsive" src="{% static 'image/ad/ad-1.jpg'%}" alt="">
 							</a>
 						</div>
 						<!-- /ad -->

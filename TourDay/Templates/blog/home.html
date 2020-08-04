@@ -1,5 +1,6 @@
 
 {% extends 'blog/base.html' %}
+{% load static %}
 {% block blog %}
 		<!-- section -->
 		<div class="section">
@@ -156,7 +157,7 @@
 						<!-- ad -->
 						<div class="aside-widget text-center">
 							<a href="#" style="display: inline-block;margin: auto;">
-								<img class="img-responsive" src="https://picsum.photos/200" alt="">
+								<img class="img-responsive" src="{% static 'image/ad/ad-1.jpg'%}" alt="">
 							</a>
 						</div>
 						<!-- /ad -->
@@ -279,7 +280,7 @@
 						<!-- ad -->
 						<div class="aside-widget text-center">
 							<a href="#" style="display: inline-block;margin: auto;">
-								<img class="img-responsive" src="./img/ad-1.jpg" alt="">
+								<img class="img-responsive" src="{% static 'image/ad/ad-1.jpg'%}" alt="">
 							</a>
 						</div>
 						<!-- /ad -->
