@@ -26,9 +26,21 @@ Profile{%endblock%} {%block css%}<link
         alt="map"
         data-toggle="modal"
         data-target=".bd-example-modal-lg"
+        title="Open map with visited places"
       />
-      <a href="{{profile.fb}}" target="_blank"
-        ><img class="profile-icon" src="{% static 'icon/fb.png' %}" alt="FB"
+      <a href="https://facebook.com/{{profile.fb}}" target="_blank"
+        ><img
+          class="profile-icon"
+          src="{% static 'icon/fb.png' %}"
+          alt="FB"
+          title="Open Facebook profile"
+      /></a>
+      <a href="https://m.me/{{profile.fb}}" target="_blank">
+        <img
+          class="profile-icon"
+          src="https://facebookbrand.com/wp-content/uploads/2018/09/Header-e1538151782912.png?w=399&h=399"
+          alt="messenger"
+          title="Send message via Messenger"
       /></a>
       <a href="mailto: {{profile.email}}">
         <img

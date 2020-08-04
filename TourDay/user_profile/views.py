@@ -124,8 +124,6 @@ def portfolio(request, username):
     try:
         user = User.objects.get(username=username)
         profile = Profile.objects.get(user=user)
-        # make username to full fb url
-        profile.fb = f"https://facebook.com/{profile.fb}"
         return render(request, 'profile/portfolio.html', {
             'profile': profile,
         })
