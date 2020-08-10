@@ -54,6 +54,44 @@ Profile{%endblock%} {%block css%}<link
   </div>
 </div>
 
+<div>
+  <div class="add_post">
+    <div class="head">Create post</div>
+
+    <textarea id="add-post-text" placeholder="Write your story"></textarea>
+    <div class="info-box">
+      <div>Date:<input type="date" id="date" /></div>
+      <div>
+        Location:
+        <select name="" id="city">
+          <option value="Rangpur">Rangpur</option>
+          <option value="Rangpur">Dhaka</option>
+          <option value="">Chapainawabganj</option>
+        </select>
+      </div>
+      <div>
+        Picture:<input type="file" id="picture" style="display: none;" />
+        <button
+          onClick="document.getElementById('picture').click();"
+          id="pic-btn"
+        >
+          Browse...
+        </button>
+        <div id="preview" style="display: none;">
+          <img style="margin: 0 0.5rem;" height="40px" id="pic_preview" /><span
+            style="cursor: pointer;"
+            id="preview-close"
+            >x</span
+          >
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: flex-end;">
+      <button class="my-btn post-btn">Post</button>
+    </div>
+  </div>
+</div>
+
 <!-- Map Modal -->
 
 <div
@@ -1061,7 +1099,7 @@ Profile{%endblock%} {%block css%}<link
 
 <!-- Map modal end -->
 
-{%endblock%} {%block ads %} ads {%endblock%} {%block scripts %}
+{%endblock%} {%block scripts %}
 <script
   src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -1078,4 +1116,5 @@ Profile{%endblock%} {%block css%}<link
   crossorigin="anonymous"
 ></script>
 <script src="{%static 'profile/js/map.js'%}"></script>
+<script src="{% static 'profile/js/portfolio.js'%}"></script>
 {%endblock%}

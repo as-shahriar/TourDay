@@ -7,7 +7,7 @@
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin-right: 2rem;
+  margin-right: 4rem;
   align-items: center;
 }
 
@@ -16,7 +16,7 @@
   justify-content: flex-start;
   width: 100%;
   margin: 1.5rem 1rem;
-  margin-left: 3rem;
+  margin-left: 4rem;
 }
 #edit-link {
   color: white;
@@ -52,6 +52,108 @@ h3 {
   transform: translateY(2px);
 }
 
+.add_post {
+  padding: 1.2rem;
+  margin-left: 10rem;
+  background-color: var(--background-color);
+  -webkit-box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  margin-right: 3rem;
+}
+.head {
+  margin-bottom: 0.3rem;
+}
+#add-post-text {
+  width: 100%;
+  resize: vertical;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  outline: 0;
+  border: 0.5px rgba(0, 0, 0, 0.192) solid;
+}
+.info-box {
+  display: flex;
+  justify-content: space-evenly;
+
+  margin-bottom: 0.6rem;
+}
+
+.info-box div {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.info-box div input,
+.info-box div select,
+.info-box div button {
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* date style */
+/* Removes the clear button from date inputs */
+input[type="date"] {
+  border: none;
+  box-sizing: border-box;
+  outline: 0;
+  position: relative;
+  border: 0.5px rgba(0, 0, 0, 0.192) solid;
+  border-radius: 1rem;
+  padding-left: 1rem;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+input[type="date"]::-webkit-clear-button {
+  display: none;
+} /* Removes the spin button */
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+} /* Always display the drop down caret */
+
+input[type="date"]:focus {
+  color: var(--primary-color);
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  outline: none;
+}
+/* date style */
+
+#city {
+  min-width: 11rem;
+  outline: none;
+  padding: 0.2rem;
+  border: 0.5px rgba(0, 0, 0, 0.192) solid;
+  background: transparent;
+}
+
+#pic-btn,
+#pic-btn:focus {
+  min-width: 3rem;
+  padding: 0.2rem 0.8rem;
+  border: 0.5px rgba(0, 0, 0, 0.192) solid;
+  background: transparent;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+#preview {
+  min-width: 84px;
+}
+
 @media (max-width: 800px) {
   .root {
     flex-direction: column;
@@ -71,5 +173,16 @@ h3 {
   }
   .profile-icon {
     max-width: 2rem;
+  }
+
+  .add_post {
+    margin: 1rem;
+  }
+  .info-box {
+    flex-direction: column;
+  }
+
+  .post-btn {
+    width: 100%;
   }
 }
