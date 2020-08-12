@@ -119,7 +119,7 @@ $("#signup").click(function (e) {
 
     success: function (result) {
       if (result.status == 200) {
-        location.href = "/";
+        location.href = "/profile";
       } else {
         $("#error-msg").text("Username or Email already Exists.");
         $(".error").show();
