@@ -104,6 +104,40 @@ Profile{%endblock%} {%block css%}
   </div>
 </div>
 
+<div class="posts">
+  <div class="post">
+    <div class="post-head">
+      <div class="user-info">
+        <img src="{{profile.picture.url}}" class="user-img" />
+        {{profile.name}}
+      </div>
+      <div>August 10,2020</div>
+    </div>
+    <div class="post-body">
+      <p class="post-text">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic
+        consequatur corporis dolor fugiat harum error in
+      </p>
+      <div class="post-img"></div>
+      <div class="lower">
+        <div>
+          <img
+            src="{% static 'icon/like.png'%}"
+            width="20px"
+            class="like"
+            style="cursor: pointer;"
+          />
+          125k
+        </div>
+        <div style="display: flex; align-items: center;">
+          <i class="material-icons">location_on</i>
+          <span style="margin-top: 7px;">Location</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Map Modal -->
 
 <div
