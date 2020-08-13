@@ -1,8 +1,10 @@
 {%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
-Profile{%endblock%} {%block css%}<link
+Profile{%endblock%} {%block css%}
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
   rel="stylesheet"
-  href="{% static 'profile/css/portfolio.css'%}"
 />
+<link rel="stylesheet" href="{% static 'profile/css/portfolio.css'%}" />
 <link rel="stylesheet" href="{% static 'profile/css/map.css'%}" />
 
 {%endblock%} {% block content %}
@@ -10,7 +12,13 @@ Profile{%endblock%} {%block css%}<link
   <div class="left-div">
     <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
     <div class="info">
-      <h3>{{profile.name}}</h3>
+      <div style="display: flex; align-items: center;">
+        <h3>{{profile.name}}</h3>
+        <a href="{% url 'edit_profile' %}" id="edit-link"
+          ><i class="material-icons">edit</i></a
+        >
+      </div>
+
       <p>
         {{profile.bio}}
         <br />
@@ -49,7 +57,6 @@ Profile{%endblock%} {%block css%}<link
           alt="mail"
           title="{{profile.email}}"
       /></a>
-      <a href="{% url 'edit_profile' %}" class="my-btn" id="edit-link">Edit</a>
     </div>
   </div>
 </div>
@@ -60,17 +67,22 @@ Profile{%endblock%} {%block css%}<link
 
     <textarea id="add-post-text" placeholder="Write your story"></textarea>
     <div class="info-box">
-      <div>Date:<input type="date" id="date" /></div>
       <div>
-        Location:
+        <i class="material-icons">event_note</i><input type="date" id="date" />
+      </div>
+      <div>
+        <i class="material-icons">location_on</i>
         <select name="" id="city">
-          <option value="Rangpur">Rangpur</option>
-          <option value="Rangpur">Dhaka</option>
-          <option value="">Chapainawabganj</option>
+          {% for district,id in districts.items %}
+          <option value="{{id}}">{{district}}</option>
+          {%empty%}
+          <option value="">Emplty</option>
+          {%endfor%}
         </select>
       </div>
       <div>
-        Picture:<input type="file" id="picture" style="display: none;" />
+        <i class="material-icons">add_photo_alternate</i>
+        <input type="file" id="picture" style="display: none;" />
         <button
           onClick="document.getElementById('picture').click();"
           id="pic-btn"
@@ -79,7 +91,7 @@ Profile{%endblock%} {%block css%}<link
         </button>
         <div id="preview" style="display: none;">
           <img style="margin: 0 0.5rem;" height="40px" id="pic_preview" /><span
-            style="cursor: pointer;"
+            style="cursor: pointer; padding: 5px;"
             id="preview-close"
             >x</span
           >

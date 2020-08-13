@@ -3,7 +3,7 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth import login
-from utils import async_send_mail
+from utils import async_send_mail,districts
 from TourDay.settings import EMAIL_HOST_USER
 import base64
 from django.core.files.base import ContentFile
@@ -126,6 +126,7 @@ def portfolio(request, username):
         profile = Profile.objects.get(user=user)
         return render(request, 'profile/portfolio.html', {
             'profile': profile,
+            'districts': districts
         })
     except:
         return render(request, 'profile/portfolio.html')

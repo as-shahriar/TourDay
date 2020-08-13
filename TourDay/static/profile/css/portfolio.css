@@ -19,9 +19,15 @@
   margin-left: 4rem;
 }
 #edit-link {
-  color: white;
+  margin-top: 20px;
+  margin-left: 0.7rem;
   text-decoration: none;
 }
+
+#edit-link i {
+  color: #00284ed6;
+}
+
 #pro_pic {
   max-width: 6rem;
   max-height: 6rem;
@@ -83,8 +89,11 @@ h3 {
 
 .info-box div {
   display: flex;
-  align-items: center;
   margin-right: 0.5rem;
+}
+
+.info-box div i {
+  color: #00284ed6;
 }
 
 .info-box div input,
@@ -182,6 +191,7 @@ input[type="date"]:focus {
   }
   .info-box {
     flex-direction: column;
+    align-items: flex-end;
   }
 
   .post-btn {
