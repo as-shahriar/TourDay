@@ -80,6 +80,7 @@ h3 {
   margin-bottom: 0.5rem;
   outline: 0;
   border: 0.5px rgba(0, 0, 0, 0.192) solid;
+  background: transparent;
 }
 .info-box {
   display: flex;
@@ -183,11 +184,12 @@ input[type="date"]:focus {
 .post-head {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   background-color: #c4c4c4;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   padding: 0.4rem 1.2rem;
+  font-size: 0.8rem;
 }
 
 .user-img {
@@ -200,13 +202,13 @@ input[type="date"]:focus {
 }
 
 .post-img {
-  background-image: url("https://bit.ly/2E0HhlL");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-width: 100%;
-  min-height: 15rem;
   margin: 0 -1.2rem 0 -1.2rem;
+  cursor: pointer;
+}
+.post-img img {
+  object-fit: cover;
+  height: 20rem;
+  width: 100%;
 }
 
 .post-text {
@@ -244,6 +246,7 @@ input[type="date"]:focus {
   .add_post,
   .post {
     margin: 1rem;
+    margin-bottom: 2rem;
   }
   .info-box {
     flex-direction: column;
@@ -252,5 +255,9 @@ input[type="date"]:focus {
 
   .post-btn {
     width: 100%;
+  }
+
+  .post-img img {
+    height: 15rem;
   }
 }
