@@ -132,7 +132,11 @@ def portfolio(request, username):
             'is_profile':True
         })
     except:
-        nav_img = Profile.objects.get(user=request.user).picture.url
+        try:
+            nav_img = Profile.objects.get(user=request.user).picture.url
+        except:
+            nav_img = None
+        
         return render(request, 'profile/portfolio.html',{ 
             "nav_img": nav_img,
             'is_profile':False
