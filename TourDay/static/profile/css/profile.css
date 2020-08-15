@@ -2,7 +2,11 @@
   margin: 0;
   padding: 0;
 }
-
+.content {
+  z-index: 100;
+  background: var(--background-color);
+  margin-right: 1rem;
+}
 #nav {
   display: none;
 }

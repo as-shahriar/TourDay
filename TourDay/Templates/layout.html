@@ -99,11 +99,7 @@
           <a href="#"><li><i class="material-icons">explore</i><span>Event</span></li></a>
           <a href="#"><li><i class="material-icons">add_shopping_cart</i><span>E-commerce</span></li></a>
           {% if user.is_authenticated %}
-          <a href="#"
-            ><li>
-              <i class="material-icons">delete</i><span>Delete Account</span>
-            </li></a
-          >
+          
           <a href="{% url 'logout'%}"
             ><li><i class="material-icons">login</i><span>Logout</span></li></a
           >
