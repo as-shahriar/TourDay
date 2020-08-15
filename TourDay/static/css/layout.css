@@ -13,7 +13,7 @@ a:hover {
 .parent {
   width: 100%;
   display: grid;
-  grid-template-areas: "content  ads";
+  grid-template-areas: "menu content  ads";
   margin-top: 0.5rem;
 }
 
@@ -54,12 +54,69 @@ a:hover {
   grid-area: content;
 }
 
+.left-menu {
+  grid-area: menu;
+  min-width: 15rem;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.left-menu > ul {
+  position: fixed;
+  font-size: 1.1rem;
+  list-style: none;
+}
+.left-menu ul li {
+  margin-bottom: 1rem;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem 2rem;
+  border-top-right-radius: 0.7rem;
+  border-bottom-right-radius: 0.7rem;
+  transition: all 0.2s ease-out;
+  display: flex;
+  align-items: center;
+}
+
+.left-menu ul li span {
+  margin-top: 6px;
+}
+
+.left-menu ul li i {
+  margin-right: 5px;
+}
+
+.left-menu ul li:hover {
+  box-shadow: 0px 3px 2px -2px rgba(0, 0, 0, 0.2);
+  background-color: #ebebeb;
+  background-image: linear-gradient(to right, #ebebeb, #ebebeb5b);
+}
+
+.left-menu ul a {
+  text-decoration: none;
+}
+
+.left-menu ul a:hover {
+  color: var(--primary-dark-color);
+}
+
 .ads {
   grid-area: ads;
-  background-color: crimson;
-
+  background-color: rgba(220, 20, 60, 0.096);
+  min-width: 20rem;
+  min-height: 20rem;
   text-align: center;
   color: beige;
+}
+
+.logo {
+  left: 15px;
+  position: fixed;
+}
+
+.parent {
+  margin-top: 0;
 }
 
 .card_ad {
@@ -76,5 +133,8 @@ a:hover {
   }
   html {
     font-size: 16px;
+  }
+  .left-menu {
+    display: none;
   }
 }

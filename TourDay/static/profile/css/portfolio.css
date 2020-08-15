@@ -221,6 +221,18 @@ input[type="date"]:focus {
   align-items: center;
   color: #6a6868;
 }
+
+.not-found {
+  width: 53.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  opacity: 0.5;
+  font-weight: 600;
+}
+
 /*  */
 @media (max-width: 800px) {
   .root {
@@ -259,5 +271,12 @@ input[type="date"]:focus {
 
   .post-img img {
     height: 15rem;
+  }
+
+  .not-found {
+    width: 100%;
+    min-height: 10rem;
+    font-weight: 300;
+    font-size: 1rem;
   }
 }

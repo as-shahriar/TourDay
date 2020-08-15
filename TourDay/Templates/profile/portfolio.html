@@ -1,14 +1,15 @@
 {%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
 Profile{%endblock%} {%block css%}
-<link
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-  rel="stylesheet"
-/>
+
 <link rel="stylesheet" href="{% static 'profile/css/portfolio.css'%}" />
 <link rel="stylesheet" href="{% static 'profile/css/map.css'%}" />
 
 {%endblock%} {% block content %}
+
+<style>#nav{display:none;}</style>
+{% if is_profile%}
 <div class="root">
+ 
   <div class="left-div">
     <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
     <div class="info">
@@ -1211,9 +1212,10 @@ Profile{%endblock%} {%block css%}
 </div>
 
 {% comment %} Map modal end  {% endcomment %}
+{%else%}
+<div class="not-found">No User Found</div>
 
-
-
+{%endif%}
 
 {%endblock%} {%block scripts %}
 <script
