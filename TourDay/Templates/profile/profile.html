@@ -7,16 +7,19 @@ Profile{%endblock%} {%block css%}<link
 {%endblock%} {% block content %}
 
 <h2 id="page-title" style="margin-left: 1.5rem;">Edit Profile</h2>
-<hr>
- {%if not is_complete %}
-<div class="complete_notice">
-  <b>Complete your profile to access all pages</b>
-</div>
-{%endif%}
+<hr />
 
 <div class="profile">
   <div class="picture-box">
-    <img id="pro_pic" src="{{profile.picture.url}}" alt="profile_picture" />
+    <div style="position: relative;">
+      <img id="pro_pic" src="{{profile.picture.url}}" alt="profile_picture" />
+      <div
+        class="edit_pic_text"
+        onclick="document.getElementById('selectedFile').click();"
+      >
+        <span>Change Picture</span>
+      </div>
+    </div>
 
     <h2 align="center" id="name_pic">
       {%if profile.name%}{{profile.name}}{%endif%}
@@ -26,10 +29,16 @@ Profile{%endblock%} {%block css%}<link
       type="button"
       value="Select Profile Picture"
       class="my-btn mt-2"
+      id="image-btn"
       onclick="document.getElementById('selectedFile').click();"
     />
   </div>
   <div class="info-box">
+    {%if not is_complete %}
+    <div class="complete_notice">
+      Complete your profile to access all pages
+    </div>
+    {%endif%}
     <div class="field">
       <div class="field-text">
         <b>Name:</b>
@@ -93,8 +102,6 @@ Profile{%endblock%} {%block css%}<link
       </div>
       <div class="field-edit" id="btn-password">Edit</div>
     </div>
-
-    
 
     <div class="field">
       <div class="field-text">
