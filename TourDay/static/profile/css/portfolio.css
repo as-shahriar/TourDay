@@ -232,7 +232,9 @@ input[type="date"]:focus {
   opacity: 0.5;
   font-weight: 600;
 }
-
+.content {
+  background: var(--background-color);
+}
 /*  */
 @media (max-width: 800px) {
   .root {
