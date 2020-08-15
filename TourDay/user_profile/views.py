@@ -124,7 +124,10 @@ def portfolio(request, username):
     try:
         user = User.objects.get(username=username)
         profile = Profile.objects.get(user=user)
-        nav_img = Profile.objects.get(user=request.user).picture.url
+        try:
+            nav_img = Profile.objects.get(user=request.user).picture.url
+        except:
+            nav_img = None
         return render(request, 'profile/portfolio.html', {
             'profile': profile,
             'districts': districts,
