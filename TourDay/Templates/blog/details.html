@@ -1,0 +1,242 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block blog %}
+
+<header id="header">
+
+    <div id="post-header" class="page-header">
+        <div class="background-img" style="background-image: url('./img/post-page.jpg');"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="post-meta">
+                        <a class="post-category cat-2" href="{% url 'division_post' details_obj.division %}">{{details_obj.division}}</a>
+                        <span class="post-date">{{details_obj.date}}</span>
+                    </div>
+                    <h1>{{details_obj.title}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</header>
+
+
+		<!-- section -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- Post content -->
+					<div class="col-md-8">
+						<div class="section-row sticky-container">
+							<div class="main-post">
+
+                                <figure class="figure-img">
+									<img class="img-responsive" src="{{ details_obj.image.url }}" alt="">
+									
+								</figure>
+								<div class="my-3">
+									<div class="fb-like" data-href="http://127.0.0.1:8000/blog/details/{{details_obj.id}}" data-width="" data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
+								</div>
+								<div class="text-justify" style="font-size: 17px;"> 
+									<p>{{details_obj.description|safe}}</p>
+								</div>
+								{% if details_obj.blog_user == request.user %}
+								<div class="row">
+									<div class="col-md-2">
+										<a href="{% url 'blog_edit' details_obj.id %}">
+											<button type="button" class="btn btn-primary">Edit Post</button>
+										</a>
+										
+									</div>
+									<div class="col-md-2">
+										<a href="{%  url 'blog_delete' details_obj.id %}" onclick="return confirm('Are you sure you want to delete this Post?');">
+											<button type="button" class="btn btn-danger">Delete Post</button>
+										</a>
+									</div>
+									<div class="col-md-8"></div>
+									
+									
+								</div>
+								{% endif %}
+								
+                            
+                                </div>
+							<div class="post-shares sticky-shares">
+								<a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
+								<a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
+								<a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
+								<a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
+								<a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
+								<a href="#"><i class="fa fa-envelope"></i></a>
+							</div>
+						</div>
+
+						<!-- ad -->
+						<div class="section-row text-center">
+							<a href="#" style="display: inline-block;margin: auto;">
+								<img class="img-responsive" src="{% static 'image/ad/ad-2.jpg'%}" alt="">
+							</a>
+						</div>
+						<!-- ad -->
+						
+						<!-- author -->
+						<div class="section-row">
+							<div class="post-author">
+								<div class="media">
+									<div class="media-left">
+										<a href="{% url 'user_post' details_obj.blog_user%}">
+											<img class="media-object" src="{{details_obj.blog_user.profile.picture.url}}" alt="">
+										</a>
+										
+									</div>
+									<div class="media-body">
+										<div class="media-heading">
+											<a href="{% url 'user_post' details_obj.blog_user%}">
+												<h3>{{details_obj.blog_user.profile.name}}</h3>
+											</a>
+											
+										</div>
+										<p>  {{details_obj.blog_user.profile.bio}}</p>
+										<ul class="author-social">
+											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+											<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /author -->
+
+						<!-- comments -->
+						<div class="section-row">
+
+
+							<div class="fb-comments" data-href="http://127.0.0.1:8000/blog/details/{{details_obj.id}}" data-numposts="5" data-width="720"></div>
+
+
+
+
+
+						</div>
+						<!-- /comments -->
+
+						<!-- reply -->
+						
+					</div>
+					<!-- /Post content -->
+
+					<!-- aside -->
+					<div class="col-md-4">
+						<!-- ad -->
+						<div class="aside-widget text-center">
+							<a href="#" style="display: inline-block;margin: auto;">
+								<img class="img-responsive" src="{% static 'image/ad/ad-1.jpg'%}" alt="">
+							</a>
+						</div>
+						<!-- /ad -->
+
+						<!-- post widget -->
+						
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Most Read</h2>
+							</div>
+
+							{% for post in random_post|slice:":4" %}
+							<div class="post post-widget">
+								<a class="post-img post-img-4" href="{% url 'blog_details' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
+								<div class="post-body">
+									<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+								</div>
+							</div>
+
+							{% endfor %}
+
+							
+
+							
+
+						</div>
+						<!-- /post widget -->
+
+						<!-- post widget -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Featured Posts</h2>
+							</div>
+							{% for post in random_post|slice:"5:7"  %}
+							<div class="post post-thumb">
+								<a class="post-img post-img-2" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+								<div class="post-body">
+									<div class="post-meta">
+										<a class="post-category cat-3" href="#">{{post.division}}</a>
+										<span class="post-date">{{post.date}}</span>
+									</div>
+									<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+								</div>
+							</div>
+							{% endfor %}
+
+						</div>
+						<!-- /post widget -->
+						
+						<!-- catagories -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Division</h2>
+							</div>
+
+							<div class="category-widget">
+								<ul>
+									<li><a href="{% url 'division_post' 'Barishal' %}" class="cat-1">Barishal<span>{{di_count.Barishal}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Chittagong' %}" class="cat-1">Chittagong<span>{{di_count.Chittagong}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Dhaka' %}" class="cat-1">Dhaka<span>{{di_count.Dhaka}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Mymensingh' %}" class="cat-1">Mymensingh<span>{{di_count.Mymensingh}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Khulna' %}" class="cat-1">Khulna<span>{{di_count.Khulna}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Rajshahi' %}" class="cat-1">Rajshahi<span>{{di_count.Rajshahi}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Rangpur' %}" class="cat-1">Rangpur<span>{{di_count.Rangpur}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Sylhet' %}" class="cat-1">Sylhet<span>{{di_count.Sylhet}}</span></a></li>
+								</ul>
+							</div>
+							
+						</div>
+						<!-- /catagories -->
+						
+						
+						
+						<!-- archive -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Archive</h2>
+							</div>
+							<div class="archive-widget">
+								<ul>
+									<li><a href="#">January 2018</a></li>
+									<li><a href="#">Febuary 2018</a></li>
+									<li><a href="#">March 2018</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- /archive -->
+					</div>
+					<!-- /aside -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
+
+
+
+
+{% endblock %}

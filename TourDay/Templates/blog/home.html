@@ -1,0 +1,337 @@
+
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block blog %}
+		<!-- section -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">	
+                    <!-- post -->
+                   {% for post1 in recent_post|slice:":2" %}
+					<div class="col-md-6">
+						<div class="post post-thumb">
+							<a class="post-img post-img-1" href="{% url 'blog_details' post1.id %}"><img src="{{post1.image.url}}" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<a class="post-category cat-2" href="{% url 'division_post' post1.division %}">{{post1.division}}</a>
+									<span class="post-date">{{post.date}}</span>
+								</div>
+								<h3 class="post-title"><a href="{% url 'blog_details' post1.id %}">{{post1.title}}</a></h3>
+							</div>
+						</div>
+					</div>
+					<!-- /post -->
+                    {% endfor %}
+					
+				</div>
+				<!-- /row -->
+
+
+				
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title">
+							<h2>Some Posts</h2>
+						</div>
+					</div>
+
+				
+					
+					<!-- post -->
+					{% for post2 in random_post|slice:":6" %}
+					<div class="col-md-4">
+						<div class="post">
+							<a class="post-img post-img-2" href="{% url 'blog_details' post2.id %}"><img src="{{post2.image.url}}" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<a class="post-category cat-1" href="{% url 'division_post' post2.division %}" >{{post2.division}}</a>
+									<span class="post-date">{{post2.date}}</span>
+								</div>
+								<h3 class="post-title"><a href="{% url 'blog_details' post2.id %}">{{post2.title}}</a></h3>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- /post -->
+
+
+
+
+                <!-- row -->
+                {% for post in random_post|slice:"8:9" %}
+				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+							<!-- post -->
+							<div class="col-md-12">
+								<div class="post post-thumb">
+									<a class="post-img post-img-3" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<a class="post-category cat-3" href="{% url 'division_post' post.division %}">{{post.division}}</a>
+											<span class="post-date">{{post.date}}</span>
+										</div>
+										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+									</div>
+								</div>
+							</div>
+							<!-- /post -->
+							{% endfor %}
+							
+
+							{% for post in recent_post|slice:":6" %}
+							<!-- post -->
+							<div class="col-md-6">
+								<div class="post">
+									<a class="post-img post-img-2" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<a class="post-category cat-4" href="{% url 'division_post' post.division %}">{{post.division}}</a>
+											<span class="post-date">{{post.date}}</span>
+										</div>
+										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+									</div>
+								</div>
+							</div>
+							<!-- /post -->
+							{% endfor %}
+						
+							<div class="clearfix visible-md visible-lg"></div>
+
+							
+
+						
+
+							<div class="clearfix visible-md visible-lg"></div>
+
+						
+						
+
+
+							<!-- /post -->
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<!-- post widget -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Most Read</h2>
+							</div>
+                            {% for post in recent_post|slice:":4" %}
+							<div class="post post-widget">
+								<a class="post-img post-img-4" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+								<div class="post-body">
+									<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+								</div>
+							</div>
+                            {% endfor %}
+							
+						</div>
+						<!-- /post widget -->
+
+						<!-- post widget -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Featured Posts</h2>
+							</div>
+							{% for post in recent_post|slice:":2" %}
+							<div class="post post-thumb">
+								<a class="post-img post-img-2" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+								<div class="post-body">
+									<div class="post-meta">
+										<a class="post-category cat-3" href="{% url 'division_post' post.division %}">{{post.division}}</a>
+										<span class="post-date">{{post.date}}</span>
+									</div>
+									<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+								</div>
+							</div>
+							{% endfor %}
+							
+						</div>
+						<!-- /post widget -->
+						
+						<!-- ad -->
+						<div class="aside-widget text-center">
+							<a href="#" style="display: inline-block;margin: auto;">
+								<img class="img-responsive" src="{% static 'image/ad/ad-1.jpg'%}" alt="">
+							</a>
+						</div>
+						<!-- /ad -->
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
+        
+        
+		<!-- section -->
+		<div class="section section-grey">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title text-center">
+							<h2>Featured Posts</h2>
+						</div>
+					</div>
+
+					<!-- post -->
+					{% for post in recent_post|slice:":3" %}
+					<div class="col-md-4">
+						<div class="post">
+							<a class="post-img post-img-2" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+							<div class="post-body">
+								<div class="post-meta">
+									<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
+									<span class="post-date">{{post.date}}</span>
+								</div>
+								<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- /post -->
+
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
+
+
+
+
+
+
+
+		<!-- section -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="section-title">
+									<h2>Most Read</h2>
+								</div>
+							</div>
+						
+
+
+							
+							<!-- post -->
+							{% for post in allpost %}
+							<div class="col-md-12">
+								<div class="post post-row">
+									<a class="post-img post-img-5" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
+											<span class="post-date">{{post.date}}</span>
+										</div>
+										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+										<!-- <p>{{post.description |safe | truncatewords:5 }}</p> -->
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+							<!-- /post -->
+						
+
+							
+							
+							<div class="col-md-12">
+								<div class="section-row">
+
+									{% if allpost.has_previous %}
+								<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ allpost.previous_page_number }}">Previous</a>
+								{% endif %}
+
+								{% for num in allpost.paginator.page_range %}
+								{% if allpost.number == num %}
+									<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+								{% elif num > allpost.number|add:'-3' and num < allpost.number|add:'3' %}
+									<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+								{% endif %}
+								{% endfor %}
+
+								{% if allpost.has_next %}
+								<a class="btn btn-outline-info mb-4" href="?page={{ allpost.next_page_number }}">Next</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ allpost.paginator.num_pages }}">Last</a>
+								{% endif %}
+									<!-- <button class="primary-button center-block">Load More</button> -->
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<!-- ad -->
+						<div class="aside-widget text-center">
+							<a href="#" style="display: inline-block;margin: auto;">
+								<img class="img-responsive" src="{% static 'image/ad/ad-1.jpg'%}" alt="">
+							</a>
+						</div>
+						<!-- /ad -->
+						
+						<!-- catagories -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Division</h2>
+							</div>
+
+							<div class="category-widget">
+								<ul>
+									<li><a href="{% url 'division_post' 'Barishal' %}" class="cat-1">Barishal<span>{{di_count.Barishal}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Chittagong' %}" class="cat-1">Chittagong<span>{{di_count.Chittagong}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Dhaka' %}" class="cat-1">Dhaka<span>{{di_count.Dhaka}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Mymensingh' %}" class="cat-1">Mymensingh<span>{{di_count.Mymensingh}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Khulna' %}" class="cat-1">Khulna<span>{{di_count.Khulna}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Rajshahi' %}" class="cat-1">Rajshahi<span>{{di_count.Rajshahi}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Rangpur' %}" class="cat-1">Rangpur<span>{{di_count.Rangpur}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Sylhet' %}" class="cat-1">Sylhet<span>{{di_count.Sylhet}}</span></a></li>
+								</ul>
+							</div>
+
+						</div>
+						<!-- /catagories -->
+						
+						<!-- tags -->
+						<div class="aside-widget">
+							<div class="tags-widget">
+								<ul>
+									<li><a href="#">Chrome</a></li>
+									<li><a href="#">CSS</a></li>
+									<li><a href="#">Tutorial</a></li>
+									<li><a href="#">Backend</a></li>
+									<li><a href="#">JQuery</a></li>
+									<li><a href="#">Design</a></li>
+									<li><a href="#">Development</a></li>
+									<li><a href="#">JavaScript</a></li>
+									<li><a href="#">Website</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- /tags -->
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
+
+
+
+        {% endblock %}

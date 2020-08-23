@@ -25,11 +25,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
     # Project Apps
     "_auth",
     "blog",
     "user_profile",
     # Thirdparty Apps
+    'crispy_forms',
+    'ckeditor',
+    'ckeditor_uploader',
     'django_cleanup.apps.CleanupConfig',  # must be in last
 ]
 
@@ -44,6 +48,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "TourDay.urls"
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 TEMPLATES = [
     {
@@ -109,6 +114,8 @@ USE_TZ = True
 if not os.getenv("EMAIL_KEY"):
     raise RuntimeError("EMAIL_KEY is not set")
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 # mail setup
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -127,3 +134,4 @@ MEDIA_URL = '/media/'
 STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = "/static/"
