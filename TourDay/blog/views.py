@@ -6,15 +6,15 @@ from django.core.paginator import Paginator
 
 
 class division_post_count:
-
-    Rajshahi = blogPost.objects.filter(division='Rajshahi').count()
-    Chittagong = blogPost.objects.filter(division='Chittagong').count()
-    Dhaka = blogPost.objects.filter(division='Dhaka').count()
-    Mymensingh = blogPost.objects.filter(division='Mymensingh').count()
-    Khulna = blogPost.objects.filter(division='Khulna').count()
-    Barishal = blogPost.objects.filter(division='Barishal').count()
-    Rangpur = blogPost.objects.filter(division='Rangpur').count()
-    Sylhet = blogPost.objects.filter(division='Sylhet').count()
+    def __init__(self):
+        self.Rajshahi = blogPost.objects.filter(division='Rajshahi').count()
+        self.Chittagong = blogPost.objects.filter(division='Chittagong').count()
+        self.Dhaka = blogPost.objects.filter(division='Dhaka').count()
+        self.Mymensingh = blogPost.objects.filter(division='Mymensingh').count()
+        self.Khulna = blogPost.objects.filter(division='Khulna').count()
+        self.Barishal = blogPost.objects.filter(division='Barishal').count()
+        self.Rangpur = blogPost.objects.filter(division='Rangpur').count()
+        self.Sylhet = blogPost.objects.filter(division='Sylhet').count()
 
     
 
