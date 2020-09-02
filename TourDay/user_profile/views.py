@@ -1,13 +1,20 @@
-from django.shortcuts import render
-from .models import Profile
+import json
+from django.core import serializers
+from django.shortcuts import render, get_object_or_404
+from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth import login
-from utils import async_send_mail,districts
+from utils import async_send_mail, districts
 from TourDay.settings import EMAIL_HOST_USER
 import base64
 from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from .serializers import PostSerializer
+from rest_framework.response import Response
 
 
 @login_required
@@ -132,15 +139,30 @@ def portfolio(request, username):
             'profile': profile,
             'districts': districts,
             "nav_img": nav_img,
-            'is_profile':True
+            'is_profile': True,
+            'user_obj': user
         })
     except:
         try:
             nav_img = Profile.objects.get(user=request.user).picture.url
         except:
             nav_img = None
-        
-        return render(request, 'profile/portfolio.html',{ 
+
+        return render(request, 'profile/portfolio.html', {
             "nav_img": nav_img,
-            'is_profile':False
-            })
+            'is_profile': False
+        })
+
+
+class PostList(APIView, LimitOffsetPagination):
+    permission_classes = [IsAuthenticated]
+    serializer_class = PostSerializer
+    #pagination_class = LimitOffsetPagination
+
+    def get(self, request, *args, **kwargs):
+        username = kwargs.get('username')
+        user = get_object_or_404(User, username=username)
+        instance = Post.objects.filter(user=user)
+        instance = self.paginate_queryset(instance, request, view=self)
+        serializer = self.serializer_class(instance, many=True)
+        return self.get_paginated_response(serializer.data)

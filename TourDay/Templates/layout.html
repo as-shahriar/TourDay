@@ -21,7 +21,7 @@
   <body>
     <nav id="nav">
       <ul class="menu">
-        {% if user.is_authenticated %}
+        {% if request.user.is_authenticated %}
         <li>
           <a href="{% url 'portfolio' user.username %}"
             ><div style="display: flex; align-items: center;">
@@ -30,7 +30,7 @@
                 width="20px"
                 height="20px"
                 style="border-radius: 50%; margin-right: 5px;"
-              />{%endif%}{{user.username}}
+              />{%endif%}{{request.user.username}}
             </div>
           </a>
         </li>

@@ -6,18 +6,22 @@ Profile{%endblock%} {%block css%}
 
 {%endblock%} {% block content %}
 
-<style>#nav{display:none;}</style>
+<style>
+  #nav {
+    display: none;
+  }
+</style>
 {% if is_profile%}
 <div class="root">
- 
   <div class="left-div">
     <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
     <div class="info">
-      <div style="display: flex; align-items: center;">
-        <h3>{{profile.name}}</h3>
+      <div style="display: flex; align-items: center">
+        <h3 id="name">{{profile.name}}</h3>
+        {% if request.user == user_obj %}
         <a href="{% url 'edit_profile' %}" id="edit-link"
           ><i class="material-icons">edit</i></a
-        >
+        >{%endif%}
       </div>
 
       <p>
@@ -62,6 +66,7 @@ Profile{%endblock%} {%block css%}
   </div>
 </div>
 
+{% if request.user == user_obj %}
 <div>
   <div class="add_post">
     <div class="head">Create post</div>
@@ -83,63 +88,69 @@ Profile{%endblock%} {%block css%}
       </div>
       <div>
         <i class="material-icons">add_photo_alternate</i>
-        <input type="file" id="picture" style="display: none;" />
+        <input type="file" id="picture" style="display: none" />
         <button
           onClick="document.getElementById('picture').click();"
           id="pic-btn"
         >
           Browse...
         </button>
-        <div id="preview" style="display: none;">
-          <img style="margin: 0 0.5rem;" height="40px" id="pic_preview" /><span
-            style="cursor: pointer; padding: 5px;"
+        <div id="preview" style="display: none">
+          <img style="margin: 0 0.5rem" height="40px" id="pic_preview" /><span
+            style="cursor: pointer; padding: 5px"
             id="preview-close"
             >x</span
           >
         </div>
       </div>
     </div>
-    <div style="display: flex; justify-content: flex-end;">
+    <div style="display: flex; justify-content: flex-end">
       <button class="my-btn post-btn">Post</button>
     </div>
   </div>
 </div>
-
+{%endif%}
 <div class="posts">
-  <div class="post">
-    <div class="post-head">
-      <div class="user-info">
-        <img src="{{profile.picture.url}}" class="user-img" />
-        {{profile.name}}
-      </div>
-      <div>August 10,2020</div>
-    </div>
-    <div class="post-body">
-      <p class="post-text">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic
-        consequatur corporis dolor fugiat harum error in
-      </p>
-      <div class="post-img"><img src="https://bit.ly/2E0HhlL" data-toggle="modal"
-        data-target=".modal-image"/></div>
-      <div class="lower">
-        <div>
-          <img
-            src="{% static 'icon/like.png'%}"
-            width="25px"
-            class="like"
-            style="cursor: pointer;"
-          />
-          125k
+  <div id="post-section">
+    <div class="post">
+      <div class="post-head">
+        <div class="user-info">
+          <img src="{{profile.picture.url}}" class="user-img" />
+          <span> {{profile.name}}</span>
         </div>
-        <div style="display: flex; align-items: center;">
-          <i class="material-icons">location_on</i>
-          <span style="margin-top: 7px;">Location</span>
+        <div>August 10,2020</div>
+      </div>
+      <div class="post-body">
+        <p class="post-text">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic
+          consequatur corporis dolor fugiat harum error in
+        </p>
+        <div class="post-img">
+          <img
+            src="https://bit.ly/2E0HhlL"
+            data-toggle="modal"
+            data-target=".modal-image"
+          />
+        </div>
+        <div class="lower">
+          <div>
+            <img src="{% static 'icon/like.png'%}" width="25px" class="like" />
+            <span>125k</span>
+          </div>
+          <div class="location-div">
+            <i class="material-icons">location_on</i>
+            <span>Location</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
 </div>
-
 
 {% comment %} image Modal {% endcomment %}
 <div
@@ -150,64 +161,65 @@ Profile{%endblock%} {%block css%}
   aria-hidden="true"
 >
   <div class="modal-dialog modal-lsm">
-    <div class="modal-content" style="border-radius: 1.1rem;">
+    <div class="modal-content" style="border-radius: 1.1rem">
+      <div class="post" style="margin: 0">
+        <div class="post-head" style="padding-right: 0">
+          <div class="user-info">
+            <img src="{{profile.picture.url}}" class="user-img" />
+            {{profile.name}}
+          </div>
+          <div style="display: flex; align-items: center">
+            <div>August 10,2020</div>
 
-      <div class="post" style="margin:0;">
-    <div class="post-head" style="padding-right:0;">
-      <div class="user-info">
-        <img src="{{profile.picture.url}}" class="user-img" />
-        {{profile.name}}
-      </div>
-      <div style="display:flex; align-items:center;">
-        <div>August 10,2020</div>
-      
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-            style="margin-top:-7px; margin-left:7px;"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-      </div>
-    </div>
-    <div class="post-body">
-      <p class="post-text">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic
-        consequatur corporis dolor fugiat harum error in
-      </p>
-      {% comment %} <div class="post-img"><img src="https://i.ibb.co/gRb7Qm8/niclas-moser-YVWj0vd-BT8-M-unsplash.jpg" style="height:100%;"/></div> {% endcomment %}
-       <div class="post-img"><img src="https://bit.ly/2E0HhlL" style="height:100%;"/></div>
-      
-      <div class="lower">
-        <div>
-          <img
-            src="{% static 'icon/like.png'%}"
-            width="25px"
-            class="like"
-            style="cursor: pointer;"
-          />
-          125k
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              style="margin-top: -7px; margin-left: 7px"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
-        <div style="display: flex; align-items: center;">
-          <i class="material-icons">location_on</i>
-          <span style="margin-top: 7px;">Location</span>
+        <div class="post-body">
+          <p class="post-text">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic
+            consequatur corporis dolor fugiat harum error in
+          </p>
+          {% comment %}
+          <div class="post-img">
+            <img
+              src="https://i.ibb.co/gRb7Qm8/niclas-moser-YVWj0vd-BT8-M-unsplash.jpg"
+              style="height: 100%"
+            />
+          </div>
+          {% endcomment %}
+          <div class="post-img">
+            <img src="https://bit.ly/2E0HhlL" style="height: 100%" />
+          </div>
+
+          <div class="lower">
+            <div>
+              <img
+                src="{% static 'icon/like.png'%}"
+                id="like-icon"
+                class="like"
+              />
+              125k
+            </div>
+            <div style="display: flex; align-items: center">
+              <i class="material-icons">location_on</i>
+              <span style="margin-top: 7px">Location</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
     </div>
   </div>
 </div>
 
-{% comment %} Image Model {% endcomment %}
-
-
-
-
- {% comment %} Map Modal  {% endcomment %}
-
+{% comment %} Image Modal {% endcomment %}
 <div
   class="modal bd-map"
   tabindex="-1"
@@ -1211,13 +1223,10 @@ Profile{%endblock%} {%block css%}
   </div>
 </div>
 
-{% comment %} Map modal end  {% endcomment %}
-{%else%}
+{% comment %} Map modal end {% endcomment %} {%else%}
 <div class="not-found">No User Found</div>
 
-{%endif%}
-
-{%endblock%} {%block scripts %}
+{%endif%} {%endblock%} {%block scripts %}
 <script
   src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -1237,34 +1246,27 @@ Profile{%endblock%} {%block css%}
 <script src="{% static 'profile/js/portfolio.js'%}"></script>
 
 <script>
+  $(document).ready(function () {
+    function alignModal() {
+      var modalDialog = $(this).find(".modal-dialog");
 
-$(document).ready(function(){
+      /* Applying the top margin on modal dialog to align it vertically center */
 
-    function alignModal(){
-
-        var modalDialog = $(this).find(".modal-dialog");
-
-        /* Applying the top margin on modal dialog to align it vertically center */
-
-        modalDialog.css("margin-top", Math.max(0, ($(window).height() - modalDialog.height()) / 2));
-
+      modalDialog.css(
+        "margin-top",
+        Math.max(0, ($(window).height() - modalDialog.height()) / 2)
+      );
     }
 
     // Align modal when it is displayed
 
     $(".modal").on("shown.bs.modal", alignModal);
 
-    
-
     // Align modal when user resize the window
 
-    $(window).on("resize", function(){
-
-        $(".modal:visible").each(alignModal);
-
-    });   
-
-});
-
+    $(window).on("resize", function () {
+      $(".modal:visible").each(alignModal);
+    });
+  });
 </script>
 {%endblock%}

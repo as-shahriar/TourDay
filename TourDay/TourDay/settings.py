@@ -13,7 +13,7 @@ SECRET_KEY = "w#d#t1y6r9q$+xfq)x#omv9m@nehjq7b5^j7n6#+7ljln(j0eb"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "192.168.31.100","*"]
+ALLOWED_HOSTS = ["127.0.0.1", "192.168.31.100", "*"]
 
 
 # Application definition
@@ -30,8 +30,14 @@ INSTALLED_APPS = [
     "blog",
     "user_profile",
     # Thirdparty Apps
+    'rest_framework',
     'django_cleanup.apps.CleanupConfig',  # must be in last
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 1
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

@@ -10,6 +10,12 @@ def user_directory_path(instance, filename):
     return f"profile_pics/{instance.user.username}/{filename}"
 
 
+def post_image_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"{instance.id}.{ext}"
+    return f"profile_pics/{instance.user.username}/posts/{filename}"
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80, blank=True, null=True)
@@ -33,3 +39,16 @@ class Profile(models.Model):
             self.user.email = self.email
             self.user.save()
         super().save(*args, **kwargs)
+
+
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.CharField(max_length=300, blank=True, null=True)
+    image = models.ImageField(upload_to=post_image_path,
+                              blank=True)
+    timestamp = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(
+        User,  blank=True, related_name="liked_user")
+
+    def __str__(self):
+        return f"{self.id} {self.user.username}"
