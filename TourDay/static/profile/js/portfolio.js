@@ -50,7 +50,7 @@ function isFileImage(file) {
   return file && acceptedImageTypes.includes(file["type"]);
 }
 
-function add_post(date, img_src, like, location) {
+function add_post(post, date, img_src, like, location) {
   post_section = document.getElementById("post-section");
   div_post = document.createElement("div");
   div_post.setAttribute("class", "post");
@@ -72,7 +72,7 @@ function add_post(date, img_src, like, location) {
   div_body.setAttribute("class", "post-body");
   p = document.createElement("p");
   p.setAttribute("class", "post-text");
-  p.textContent = "loasdasd lkjf hsdfsa ihsadfhlkjsdahkjsdflkj fhkjs";
+  p.textContent = post;
   div_img = document.createElement("div");
   div_img.setAttribute("class", "post-img");
   img2 = document.createElement("img");
@@ -104,7 +104,7 @@ function add_post(date, img_src, like, location) {
   div_lower.appendChild(div_location);
   div_img.appendChild(img2);
   div_body.appendChild(p);
-  div_body.appendChild(div_img);
+  if (img_src != null) div_body.appendChild(div_img);
   div_body.appendChild(div_lower);
   div_user_info.appendChild(img);
   div_user_info.appendChild(span);
@@ -116,4 +116,33 @@ function add_post(date, img_src, like, location) {
   post_section.appendChild(div_post);
 }
 
-add_post("August 20, 2001", "https://bit.ly/2E0HhlL", 2, "Dhaka");
+let next;
+
+function get_post(url) {
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      next = data.next;
+
+      data.results.forEach((post) => {
+        console.log(post); //remove later
+        add_post(
+          post.post,
+          post.timestamp,
+          post.image,
+          post.likes.length,
+          post.location
+        );
+      });
+    });
+}
+
+$(window).scroll(function () {
+  if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+    get_post(next);
+  }
+});
+
+$(document).ready(() => {
+  get_post(`/get_post/asif?format=json`);
+});

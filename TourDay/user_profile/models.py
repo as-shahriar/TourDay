@@ -46,7 +46,8 @@ class Post(models.Model):
     post = models.CharField(max_length=300, blank=True, null=True)
     image = models.ImageField(upload_to=post_image_path,
                               blank=True)
-    timestamp = models.DateTimeField(auto_now=True)
+    date = models.DateField(blank=True,null=True)
+    location = models.CharField(max_length=17, blank=True, null=True)
     likes = models.ManyToManyField(
         User,  blank=True, related_name="liked_user")
 
