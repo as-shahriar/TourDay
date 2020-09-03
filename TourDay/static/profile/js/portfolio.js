@@ -3,25 +3,25 @@ pic_btn = document.getElementById("pic-btn");
 preview_div = document.getElementById("preview");
 preview_close = document.getElementById("preview-close");
 pic_preview = document.getElementById("pic_preview");
+if (select_picture != null) {
+  select_picture.addEventListener("change", () => {
+    const file = select_picture.files[0];
+    if (!isFileImage(file)) {
+      select_picture.value = "";
+      return;
+    }
+    previewFile(file);
+    pic_btn.style.display = "none";
 
-select_picture.addEventListener("change", () => {
-  const file = select_picture.files[0];
-  if (!isFileImage(file)) {
+    preview_div.style.display = "block";
+  });
+
+  preview_close.addEventListener("click", () => {
+    pic_btn.style.display = "block";
+    preview_div.style.display = "none";
     select_picture.value = "";
-    return;
-  }
-  previewFile(file);
-  pic_btn.style.display = "none";
-
-  preview_div.style.display = "block";
-});
-
-preview_close.addEventListener("click", () => {
-  pic_btn.style.display = "block";
-  preview_div.style.display = "none";
-  select_picture.value = "";
-});
-
+  });
+}
 function previewFile(file) {
   const reader = new FileReader();
 
@@ -50,7 +50,7 @@ function isFileImage(file) {
   return file && acceptedImageTypes.includes(file["type"]);
 }
 
-function add_post(post, date, img_src, like, like_btn, location) {
+function add_post(id, post, date, img_src, like, like_btn, location) {
   like_btn_icon = "/static/icon/like.png";
   dislike_btn_icon = "/static/icon/like2.png";
   post_section = document.getElementById("post-section");
@@ -94,10 +94,31 @@ function add_post(post, date, img_src, like, like_btn, location) {
   div_lower.setAttribute("class", "lower");
   div = document.createElement("div");
   img3 = document.createElement("img");
-  if (like_btn) img3.setAttribute("src", like_btn_icon);
-  else img3.setAttribute("src", dislike_btn_icon);
+
+  if (like_btn) {
+    img3.setAttribute("src", like_btn_icon);
+    img3.setAttribute("data-is-liked", "1"); //1 for liked
+  } else {
+    img3.setAttribute("src", dislike_btn_icon);
+    img3.setAttribute("data-is-liked", "0"); //0 for unliked
+  }
+  img3.setAttribute("id", `like-btn-${id}`);
   img3.setAttribute("class", "like");
+  img3.addEventListener("click", (e) => {
+    is_liked = e.target.getAttribute("data-is-liked");
+
+    element = document.getElementById(`like-btn-${id}`);
+    if (is_liked == "1") {
+      element.setAttribute("src", dislike_btn_icon);
+      element.setAttribute("data-is-liked", "0");
+    } else {
+      element.setAttribute("src", like_btn_icon);
+      element.setAttribute("data-is-liked", "1");
+    }
+    like_event(id);
+  });
   span1 = document.createElement("span");
+  span1.setAttribute("id", `like-count-${id}`);
   span1.textContent = like;
   div_location = document.createElement("div");
   div_location.setAttribute("class", "location-div");
@@ -138,6 +159,7 @@ function get_post(url) {
 
       data.results.forEach((post) => {
         add_post(
+          post.id,
           post.post,
           post.timestamp,
           post.image,
@@ -160,3 +182,22 @@ $(window).scroll(function () {
 $(document).ready(() => {
   get_post(`/get_post/asif?format=json`);
 });
+
+function like_event(id) {
+  form = new FormData();
+  form.append("id", id);
+
+  fetch("/like/", {
+    method: "POST",
+    body: form,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.status == 200) {
+        document.getElementById(`like-count-${data.id}`).textContent =
+          data.like_count;
+      } else {
+        console.log("Like error.");
+      }
+    });
+}

@@ -15,6 +15,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from .serializers import PostSerializer
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
 
 
 @login_required
@@ -165,6 +166,22 @@ class PostList(APIView, LimitOffsetPagination):
         instance = Post.objects.filter(user=user).order_by("-date")
         instance = self.paginate_queryset(instance, request, view=self)
         serializer = self.serializer_class(instance, many=True)
-        print(serializer.data)
         return self.get_paginated_response(serializer.data)
 
+
+@csrf_exempt
+@login_required
+def like_event(request):
+    if request.method == "POST":
+        post_id = request.POST.get("id")
+        try:
+            post = Post.objects.get(id=post_id)
+            if post.likes.all().filter(id=request.user.id).exists(): #user already liked
+                post.likes.remove(request.user)
+            else:
+                post.likes.add(request.user)
+            post.save()
+            return JsonResponse({"id":post.id,"like_count":post.likes.count(),"status":200})
+        except:
+            return JsonResponse({"status":404})
+    return JsonResponse({"Error":"Only Post Request is Accepteble"})
