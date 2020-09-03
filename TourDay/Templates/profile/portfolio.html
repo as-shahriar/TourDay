@@ -13,6 +13,7 @@ Profile{%endblock%} {%block css%}
 </style>
 {% if is_profile%}
 <input type="hidden" id="user-id" value="{{request.user.id}}" />
+<input type="hidden" id="my-username" value="{{user_obj.username}}" />
 <div class="root">
   <div class="left-div">
     <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
@@ -137,8 +138,6 @@ Profile{%endblock%} {%block css%}
             {{profile.name}}
           </div>
           <div style="display: flex; align-items: center">
-            <div>August 10,2020</div>
-
             <button
               type="button"
               class="close"
@@ -150,35 +149,13 @@ Profile{%endblock%} {%block css%}
             </button>
           </div>
         </div>
-        <div class="post-body">
-          <p class="post-text" id="modal-post-text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic
-            consequatur corporis dolor fugiat harum error in
-          </p>
-
+        <div class="post-body" style="padding: 0 1.2rem">
           <div class="post-img">
             <img
               src="https://bit.ly/2E0HhlL"
               style="height: 100%"
               id="post-image-modal"
             />
-          </div>
-
-          <div class="lower">
-            <div>
-              <img
-                src="{% static 'icon/like.png'%}"
-                id="like-icon"
-                class="like"
-              />
-              <span id="modal-post-like">125k</span>
-            </div>
-            <div style="display: flex; align-items: center">
-              <i class="material-icons">location_on</i>
-              <span style="margin-top: 7px" id="modal-post-location"
-                >Location</span
-              >
-            </div>
           </div>
         </div>
       </div>

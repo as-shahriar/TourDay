@@ -178,10 +178,12 @@ def like_event(request):
             post = Post.objects.get(id=post_id)
             if post.likes.all().filter(id=request.user.id).exists(): #user already liked
                 post.likes.remove(request.user)
+                
             else:
                 post.likes.add(request.user)
+                
             post.save()
-            return JsonResponse({"id":post.id,"like_count":post.likes.count(),"status":200})
+            return JsonResponse({"id":post.id,"status":200})
         except:
             return JsonResponse({"status":404})
     return JsonResponse({"Error":"Only Post Request is Accepteble"})

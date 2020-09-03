@@ -80,15 +80,11 @@ function add_post(id, post, date, img_src, like, like_btn, location) {
   img2 = document.createElement("img");
   img2.setAttribute("data-toggle", "modal");
   img2.setAttribute("data-target", ".modal-image");
+  img2.setAttribute("id", `post-image-${id}`);
   img2.setAttribute("src", img_src);
   img2.addEventListener("click", () => {
+    //modal to copy from content
     document.getElementById("post-image-modal").src = img_src;
-    document.getElementById("modal-post-text").textContent = post;
-    document.getElementById("modal-post-location").textContent = location;
-    document.getElementById("modal-post-like").textContent = like;
-    document.getElementById("like-icon").src = like_btn
-      ? like_btn_icon
-      : dislike_btn_icon;
   });
   div_lower = document.createElement("div");
   div_lower.setAttribute("class", "lower");
@@ -108,12 +104,15 @@ function add_post(id, post, date, img_src, like, like_btn, location) {
     is_liked = e.target.getAttribute("data-is-liked");
 
     element = document.getElementById(`like-btn-${id}`);
+    like_count_text = document.getElementById(`like-count-${id}`);
     if (is_liked == "1") {
       element.setAttribute("src", dislike_btn_icon);
       element.setAttribute("data-is-liked", "0");
+      like_count_text.textContent = parseInt(like_count_text.textContent) - 1;
     } else {
       element.setAttribute("src", like_btn_icon);
       element.setAttribute("data-is-liked", "1");
+      like_count_text.textContent = parseInt(like_count_text.textContent) + 1;
     }
     like_event(id);
   });
@@ -161,7 +160,7 @@ function get_post(url) {
         add_post(
           post.id,
           post.post,
-          post.timestamp,
+          post.date,
           post.image,
           post.likes.length,
           post.likes.includes(
@@ -180,7 +179,8 @@ $(window).scroll(function () {
 });
 
 $(document).ready(() => {
-  get_post(`/get_post/asif?format=json`);
+  username = document.getElementById("my-username").value;
+  get_post(`/get_post/${username}?format=json`);
 });
 
 function like_event(id) {
@@ -193,10 +193,7 @@ function like_event(id) {
   })
     .then((res) => res.json())
     .then((data) => {
-      if (data.status == 200) {
-        document.getElementById(`like-count-${data.id}`).textContent =
-          data.like_count;
-      } else {
+      if (data.status != 200) {
         console.log("Like error.");
       }
     });
