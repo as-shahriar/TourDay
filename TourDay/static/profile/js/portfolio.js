@@ -50,7 +50,9 @@ function isFileImage(file) {
   return file && acceptedImageTypes.includes(file["type"]);
 }
 
-function add_post(post, date, img_src, like, location) {
+function add_post(post, date, img_src, like, like_btn, location) {
+  like_btn_icon = "/static/icon/like.png";
+  dislike_btn_icon = "/static/icon/like2.png";
   post_section = document.getElementById("post-section");
   div_post = document.createElement("div");
   div_post.setAttribute("class", "post");
@@ -79,11 +81,21 @@ function add_post(post, date, img_src, like, location) {
   img2.setAttribute("data-toggle", "modal");
   img2.setAttribute("data-target", ".modal-image");
   img2.setAttribute("src", img_src);
+  img2.addEventListener("click", () => {
+    document.getElementById("post-image-modal").src = img_src;
+    document.getElementById("modal-post-text").textContent = post;
+    document.getElementById("modal-post-location").textContent = location;
+    document.getElementById("modal-post-like").textContent = like;
+    document.getElementById("like-icon").src = like_btn
+      ? like_btn_icon
+      : dislike_btn_icon;
+  });
   div_lower = document.createElement("div");
   div_lower.setAttribute("class", "lower");
   div = document.createElement("div");
   img3 = document.createElement("img");
-  img3.setAttribute("src", document.getElementById("like-icon").src);
+  if (like_btn) img3.setAttribute("src", like_btn_icon);
+  else img3.setAttribute("src", dislike_btn_icon);
   img3.setAttribute("class", "like");
   span1 = document.createElement("span");
   span1.textContent = like;
@@ -125,12 +137,14 @@ function get_post(url) {
       next = data.next;
 
       data.results.forEach((post) => {
-        console.log(post); //remove later
         add_post(
           post.post,
           post.timestamp,
           post.image,
           post.likes.length,
+          post.likes.includes(
+            parseInt(document.getElementById("user-id").value)
+          ),
           post.location
         );
       });

@@ -227,6 +227,9 @@ input[type="date"]:focus {
   cursor: pointer;
   width: 25px;
 }
+.lower > div > span {
+  margin-left: 0.2rem;
+}
 .location-div {
   display: flex;
   align-items: center;

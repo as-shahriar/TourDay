@@ -12,6 +12,7 @@ Profile{%endblock%} {%block css%}
   }
 </style>
 {% if is_profile%}
+<input type="text" id="user-id" value="{{user_obj.id}}" />
 <div class="root">
   <div class="left-div">
     <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
@@ -150,20 +151,17 @@ Profile{%endblock%} {%block css%}
           </div>
         </div>
         <div class="post-body">
-          <p class="post-text">
+          <p class="post-text" id="modal-post-text">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic
             consequatur corporis dolor fugiat harum error in
           </p>
-          {% comment %}
+
           <div class="post-img">
             <img
-              src="https://i.ibb.co/gRb7Qm8/niclas-moser-YVWj0vd-BT8-M-unsplash.jpg"
+              src="https://bit.ly/2E0HhlL"
               style="height: 100%"
+              id="post-image-modal"
             />
-          </div>
-          {% endcomment %}
-          <div class="post-img">
-            <img src="https://bit.ly/2E0HhlL" style="height: 100%" />
           </div>
 
           <div class="lower">
@@ -173,11 +171,13 @@ Profile{%endblock%} {%block css%}
                 id="like-icon"
                 class="like"
               />
-              125k
+              <span id="modal-post-like">125k</span>
             </div>
             <div style="display: flex; align-items: center">
               <i class="material-icons">location_on</i>
-              <span style="margin-top: 7px">Location</span>
+              <span style="margin-top: 7px" id="modal-post-location"
+                >Location</span
+              >
             </div>
           </div>
         </div>
@@ -186,7 +186,7 @@ Profile{%endblock%} {%block css%}
   </div>
 </div>
 
-{% comment %} Image Modal {% endcomment %}
+{% comment %} map Modal{% endcomment %}
 <div
   class="modal bd-map"
   tabindex="-1"
