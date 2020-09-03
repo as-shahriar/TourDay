@@ -12,7 +12,7 @@ from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny
 from .serializers import PostSerializer
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
@@ -156,7 +156,7 @@ def portfolio(request, username):
 
 
 class PostList(APIView, LimitOffsetPagination):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     serializer_class = PostSerializer
     #pagination_class = LimitOffsetPagination
 
