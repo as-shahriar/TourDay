@@ -52,10 +52,10 @@ function isFileImage(file) {
   return file && acceptedImageTypes.includes(file["type"]);
 }
 
-function add_post(id, post, date, img_src, like, like_btn, location) {
+function add_post(root, id, post, date, img_src, like, like_btn, location) {
   like_btn_icon = "/static/icon/like.png";
   dislike_btn_icon = "/static/icon/like2.png";
-  post_section = document.getElementById("post-section");
+  post_section = document.getElementById(root);
   div_post = document.createElement("div");
   div_post.setAttribute("class", "post");
   div_head = document.createElement("div");
@@ -160,6 +160,7 @@ function get_post(url) {
 
       data.results.forEach((post) => {
         add_post(
+          "post-section",
           post.id,
           post.post,
           post.date,
@@ -204,25 +205,27 @@ function like_event(id) {
 }
 
 // set Current Date
-Date.prototype.toDateInputValue = function () {
-  var local = new Date(this);
-  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-  return local.toJSON().slice(0, 10);
-};
-document.getElementById("date").value = new Date().toDateInputValue();
+function set_current_date() {
+  Date.prototype.toDateInputValue = function () {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0, 10);
+  };
+  document.getElementById("date").value = new Date().toDateInputValue();
+}
 
 document.getElementById("post-btn").addEventListener("click", () => {
   post = document.getElementById("add-post-text");
   date = document.getElementById("date");
   location_ = document.getElementById("city");
   file = select_picture.files[0];
+
   if (post.value == "" || location_.value == "null" || file == null) return;
   form = new FormData();
   form.append("post", post.value);
   form.append("date", date.value);
   form.append("location", location_.value);
-
-  // form.append("image", file);
+  form.append("image", file);
 
   fetch("/add_post/", {
     method: "POST",
@@ -230,6 +233,24 @@ document.getElementById("post-btn").addEventListener("click", () => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      if (data.status == 201) {
+        add_post(
+          "new-post",
+          data.id,
+          post.value.trim(),
+          date.value,
+          data.image,
+          0,
+          false,
+          data.location
+        );
+        preview_close.click();
+        post.value = "";
+        set_current_date();
+      } else {
+        console.log("uploading error");
+      }
     });
 });
+
+set_current_date();

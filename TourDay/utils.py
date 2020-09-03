@@ -101,4 +101,4 @@ def async_send_mail(subject, message, EMAIL_HOST_USER, user_email):
 
 def number_to_location(number):
     """Take number and return location"""
-    return list(d.keys())[list(d.values()).index(number)]
+    return list(districts.keys())[list(districts.values()).index(number)]

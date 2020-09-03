@@ -5,7 +5,7 @@ from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth import login
-from utils import async_send_mail, districts
+from utils import async_send_mail, districts,number_to_location
 from TourDay.settings import EMAIL_HOST_USER
 import base64
 from django.core.files.base import ContentFile
@@ -166,8 +166,8 @@ class PostList(APIView, LimitOffsetPagination):
         instance = Post.objects.filter(user=user).order_by("-date")
         instance = self.paginate_queryset(instance, request, view=self)
         for i in instance:
-            i.location = "asif"
-            i.save()
+            i.location = number_to_location(i.location)
+            
         serializer = self.serializer_class(instance, many=True)
         
         return self.get_paginated_response(serializer.data)
@@ -202,7 +202,7 @@ def add_post(request):
         post_text = request.POST.get("post")
         date = request.POST.get("date")
         location = request.POST.get("location")
-        # image = request.POST.get("image")
+        image = request.FILES.get("image")
         if post_text=="" or date == "" or location == "":
             return JsonResponse({"status":400})
      
@@ -211,7 +211,13 @@ def add_post(request):
         post.post = post_text.strip()
         post.date = date
         post.location = location
+        post.image =image
         post.save()
-        return JsonResponse({"status":201})
+        return JsonResponse({
+            "id":post.id,
+            "image":post.image.url,
+            "location": number_to_location(post.location),
+            "status":201
+            })
 
     return JsonResponse({"Error":"Only Post Request is Accepteble"})
