@@ -3,6 +3,7 @@ pic_btn = document.getElementById("pic-btn");
 preview_div = document.getElementById("preview");
 preview_close = document.getElementById("preview-close");
 pic_preview = document.getElementById("pic_preview");
+
 if (select_picture != null) {
   select_picture.addEventListener("change", () => {
     const file = select_picture.files[0];
@@ -22,6 +23,7 @@ if (select_picture != null) {
     select_picture.value = "";
   });
 }
+
 function previewFile(file) {
   const reader = new FileReader();
 
@@ -172,11 +174,13 @@ function get_post(url) {
     });
 }
 
-$(window).scroll(function () {
-  if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-    get_post(next);
-  }
-});
+if (next != null) {
+  $(window).scroll(function () {
+    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+      get_post(next);
+    }
+  });
+}
 
 $(document).ready(() => {
   username = document.getElementById("my-username").value;
@@ -198,3 +202,34 @@ function like_event(id) {
       }
     });
 }
+
+// set Current Date
+Date.prototype.toDateInputValue = function () {
+  var local = new Date(this);
+  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+  return local.toJSON().slice(0, 10);
+};
+document.getElementById("date").value = new Date().toDateInputValue();
+
+document.getElementById("post-btn").addEventListener("click", () => {
+  post = document.getElementById("add-post-text");
+  date = document.getElementById("date");
+  location_ = document.getElementById("city");
+  file = select_picture.files[0];
+  if (post.value == "" || location_.value == "null" || file == null) return;
+  form = new FormData();
+  form.append("post", post.value);
+  form.append("date", date.value);
+  form.append("location", location_.value);
+
+  // form.append("image", file);
+
+  fetch("/add_post/", {
+    method: "POST",
+    body: form,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+});

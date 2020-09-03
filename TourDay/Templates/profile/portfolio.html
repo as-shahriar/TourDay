@@ -76,11 +76,13 @@ Profile{%endblock%} {%block css%}
     <textarea id="add-post-text" placeholder="Write your story"></textarea>
     <div class="info-box">
       <div>
-        <i class="material-icons">event_note</i><input type="date" id="date" />
+        <i class="material-icons">event_note</i
+        ><input type="date" id="date" required />
       </div>
       <div>
         <i class="material-icons">location_on</i>
         <select name="" id="city">
+          <option disabled selected="true" value="null">Select District</option>
           {% for district,id in districts.items %}
           <option value="{{id}}">{{district}}</option>
           {%empty%}
@@ -107,7 +109,7 @@ Profile{%endblock%} {%block css%}
       </div>
     </div>
     <div style="display: flex; justify-content: flex-end">
-      <button class="my-btn post-btn">Post</button>
+      <button class="my-btn" id="post-btn">Post</button>
     </div>
   </div>
 </div>
@@ -128,6 +130,7 @@ Profile{%endblock%} {%block css%}
   role="dialog"
   aria-labelledby="myLargeModalLabel"
   aria-hidden="true"
+  style="padding-top: 1rem"
 >
   <div class="modal-dialog modal-lsm">
     <div class="modal-content" style="border-radius: 1.1rem">
@@ -137,13 +140,13 @@ Profile{%endblock%} {%block css%}
             <img src="{{profile.picture.url}}" class="user-img" />
             {{profile.name}}
           </div>
-          <div style="display: flex; align-items: center">
+          <div style="display: flex; align-items: center; outline: 0">
             <button
               type="button"
               class="close"
               data-dismiss="modal"
               aria-label="Close"
-              style="margin-top: -7px; margin-left: 7px"
+              style="margin-top: -7px; margin-left: 7px; outline: 0"
             >
               <span aria-hidden="true">&times;</span>
             </button>

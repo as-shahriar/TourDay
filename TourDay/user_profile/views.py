@@ -165,8 +165,13 @@ class PostList(APIView, LimitOffsetPagination):
         user = get_object_or_404(User, username=username)
         instance = Post.objects.filter(user=user).order_by("-date")
         instance = self.paginate_queryset(instance, request, view=self)
+        for i in instance:
+            i.location = "asif"
+            i.save()
         serializer = self.serializer_class(instance, many=True)
+        
         return self.get_paginated_response(serializer.data)
+
 
 
 @csrf_exempt
@@ -186,4 +191,27 @@ def like_event(request):
             return JsonResponse({"id":post.id,"status":200})
         except:
             return JsonResponse({"status":404})
+    return JsonResponse({"Error":"Only Post Request is Accepteble"})
+
+
+
+@csrf_exempt
+@login_required
+def add_post(request):
+    if request.method == "POST":
+        post_text = request.POST.get("post")
+        date = request.POST.get("date")
+        location = request.POST.get("location")
+        # image = request.POST.get("image")
+        if post_text=="" or date == "" or location == "":
+            return JsonResponse({"status":400})
+     
+        post = Post()
+        post.user = request.user
+        post.post = post_text.strip()
+        post.date = date
+        post.location = location
+        post.save()
+        return JsonResponse({"status":201})
+
     return JsonResponse({"Error":"Only Post Request is Accepteble"})
