@@ -28,12 +28,14 @@ svg {
   align-items: center;
   margin-top: 1rem;
   width: 100%;
+  color: white;
 }
 .box {
-  height: 12px;
-  width: 12px;
-  background-color: #e36e79;
+  height: 15px;
+  width: 15px;
+  background-color: var(--visited-color);
   margin-left: 5px;
+  margin-bottom: 3px;
 }
 
 .close-con {
@@ -44,4 +46,15 @@ svg {
 .close {
   padding-right: 10px !important;
   padding-top: 5px !important;
+}
+
+#rangpur path,
+#rajshahi path,
+#mymensingh path,
+#dhaka path,
+#khulna path,
+#barishal path,
+#chit path,
+.sylhet path {
+  fill: white;
 }

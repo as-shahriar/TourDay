@@ -264,7 +264,25 @@ input[type="date"]:focus {
 .content {
   background: var(--background-color);
 }
-/*  */
+
+.modal {
+  background-color: #000000c2;
+}
+.modal * {
+  opacity: 1;
+}
+.modal-content {
+  background-color: transparent;
+  border: none;
+}
+.close {
+  color: white;
+  text-shadow: none;
+}
+.close:hover {
+  color: rgb(253, 223, 223);
+}
+
 @media (max-width: 800px) {
   .root {
     flex-direction: column;
