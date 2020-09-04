@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "_auth",
     "blog",
     "user_profile",
+    "event",
     # Thirdparty Apps
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',  # must be in last

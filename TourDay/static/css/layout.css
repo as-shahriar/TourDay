@@ -18,10 +18,13 @@ a:hover {
 }
 
 .menu-mobile {
-  top: 25px;
+  top: 13px;
 }
 .menu-mobile ul li a {
   font-size: 18px;
+}
+.menu-mobile li {
+  padding: 0.3rem 0.4rem;
 }
 .my-btn {
   padding: 0.7rem 1.2rem;

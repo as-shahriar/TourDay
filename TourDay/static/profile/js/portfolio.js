@@ -311,7 +311,6 @@ function get_map_data() {
     .then((data) => {
       if (data.status == 200) {
         data.visited.forEach((e) => {
-          console.log(e);
           document.getElementById(`path${e}`).style.fill = "#940808";
         });
       }

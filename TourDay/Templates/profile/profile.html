@@ -6,12 +6,12 @@ Profile{%endblock%} {%block css%}<link
 <link rel="stylesheet" href="{% static 'css/croppie.css' %}" />
 {%endblock%} {% block content %}
 
-<h2 id="page-title" style="margin-left: 1.5rem;">Edit Profile</h2>
+<h2 id="page-title" class="mt-4" style="margin-left: 1.5rem">Edit Profile</h2>
 <hr />
 
 <div class="profile">
   <div class="picture-box">
-    <div style="position: relative;">
+    <div style="position: relative">
       <img id="pro_pic" src="{{profile.picture.url}}" alt="profile_picture" />
       <div
         class="edit_pic_text"
@@ -21,10 +21,10 @@ Profile{%endblock%} {%block css%}<link
       </div>
     </div>
 
-    <h2 align="center" id="name_pic">
+    <h2 align="center" class="mt-3" id="name_pic">
       {%if profile.name%}{{profile.name}}{%endif%}
     </h2>
-    <input type="file" id="selectedFile" style="display: none;" />
+    <input type="file" id="selectedFile" style="display: none" />
     <input
       type="button"
       value="Select Profile Picture"
@@ -35,9 +35,7 @@ Profile{%endblock%} {%block css%}<link
   </div>
   <div class="info-box">
     {%if not is_complete %}
-    <div class="complete_notice">
-      Complete your profile to access all pages
-    </div>
+    <div class="complete_notice">Complete your profile to access all pages</div>
     {%endif%}
     <div class="field">
       <div class="field-text">
@@ -140,27 +138,25 @@ Profile{%endblock%} {%block css%}<link
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="modal-title">Crop Image & Upload</h4>
         <button type="button" class="close" data-dismiss="modal">
           &times;
         </button>
-        <h4 class="modal-title">Crop Image & Upload</h4>
       </div>
       <div class="modal-body">
-        <div class="row">
+        <div class="row" style="flex-direction: column">
           <div class="">
             <div
               id="image_demo"
-              style="width: 100%; margin-top: 1rem; height: auto;"
+              style="width: 100%; margin-top: 1rem; height: auto"
             ></div>
           </div>
 
           <div
             class=""
-            style="padding: 1rem 0; display: flex; justify-content: center;"
+            style="padding: 1rem 0; display: flex; justify-content: center"
           >
-            <button class="my-btn crop_image">
-              Upload Image
-            </button>
+            <button class="my-btn crop_image">Upload Image</button>
           </div>
         </div>
       </div>
