@@ -9,6 +9,7 @@ urlpatterns = [
     path("get_post/<str:username>", views.PostList.as_view()),
     path("like/", views.like_event),
     path("add_post/", views.add_post),
-    path("delete_post/", views.delete_post)
+    path("delete_post/", views.delete_post),
+    path("visited/<int:id>", views.get_map_data)
 
 ]

@@ -43,20 +43,27 @@ Profile{%endblock%} {%block css%}
         data-target=".bd-map"
         title="Open map with visited places"
       />
-      <a href="https://facebook.com/{{profile.fb}}" target="_blank"
+
+      <a
+        href="https://facebook.com/{% if profile.fb%}{{profile.fb}}{%endif%}"
+        target="_blank"
         ><img
           class="profile-icon"
           src="{% static 'icon/fb.png' %}"
           alt="FB"
           title="Open Facebook profile"
       /></a>
-      <a href="https://m.me/{{profile.fb}}" target="_blank">
+      <a
+        href="https://m.me/{% if profile.fb%}{{profile.fb}}{%endif%}"
+        target="_blank"
+      >
         <img
           class="profile-icon"
           src="{% static 'icon/messenger.png' %}"
           alt="messenger"
           title="Send message via Messenger"
       /></a>
+
       <a href="mailto: {{profile.email}}">
         <img
           class="profile-icon"
@@ -115,7 +122,7 @@ Profile{%endblock%} {%block css%}
 </div>
 {%endif%}
 <div class="posts">
-  <div id="post-section"><div id="new-post"></div></div>
+  <div id="post-section"></div>
   <div class="d-flex justify-content-center">
     <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>

@@ -210,6 +210,8 @@ if (next != null) {
 
 $(document).ready(() => {
   username = document.getElementById("my-username").value;
+  set_current_date();
+  get_map_data();
   get_post(`/get_post/${username}?format=json`);
 });
 
@@ -277,13 +279,12 @@ document.getElementById("post-btn").addEventListener("click", () => {
         preview_close.click();
         post.value = "";
         set_current_date();
+        get_map_data();
       } else {
         console.log("uploading error");
       }
     });
 });
-
-set_current_date();
 
 function delete_post(id) {
   form = new FormData();
@@ -298,6 +299,20 @@ function delete_post(id) {
       if (data.status == 200) {
         elem = document.getElementById(`post-div-${id}`);
         elem.parentNode.removeChild(elem);
+      }
+    });
+}
+
+function get_map_data() {
+  user_id = document.getElementById("user-id").value;
+  fetch(`/visited/${user_id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.status == 200) {
+        data.visited.forEach((e) => {
+          console.log(e);
+          document.getElementById(`path${e}`).style.fill = "#940808";
+        });
       }
     });
 }

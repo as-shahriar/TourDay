@@ -1,9 +1,5 @@
 :root {
-  --visited-color: rgb(148, 8, 8);
-}
-
-#path5 {
-  fill: var(--visited-color) !important;
+  --visited-color: #940808;
 }
 
 .modal-backdrop {

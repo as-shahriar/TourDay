@@ -234,3 +234,14 @@ def delete_post(request):
         return JsonResponse({"status": 200})
 
     return JsonResponse({"Error": "Only Post Request is Accepteble"})
+
+
+def get_map_data(request, id):
+    user = get_object_or_404(User, id=id)
+    posts = Post.objects.filter(user=user)
+    visited = []
+    for i in posts:
+        if i.location not in visited:
+            visited.append(i.location)
+
+    return JsonResponse({"visited": visited, "status": 200})
