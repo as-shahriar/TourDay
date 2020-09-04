@@ -160,7 +160,7 @@ input[type="date"]:focus {
   border: 0.5px rgba(0, 0, 0, 0.192) solid;
   background: transparent;
   border-radius: 0.5rem;
-  outline: none;
+  outline: 1px;
 }
 
 #preview {
@@ -185,14 +185,25 @@ input[type="date"]:focus {
 .post-head {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   background-color: #c4c4c4;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   padding: 0.4rem 1.2rem;
   font-size: 0.8rem;
 }
+.date-div {
+  display: flex;
+  align-items: center;
+}
 
+.date-div span {
+  padding-top: 5px;
+}
+.date-div i {
+  cursor: pointer;
+  margin-left: 0.6rem;
+}
 .user-img {
   width: 20px;
   border-radius: 50%;

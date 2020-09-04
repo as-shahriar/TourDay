@@ -52,12 +52,23 @@ function isFileImage(file) {
   return file && acceptedImageTypes.includes(file["type"]);
 }
 
-function add_post(root, id, post, date, img_src, like, like_btn, location) {
+// direction true to append false to prepend
+function add_post(
+  direction,
+  id,
+  post,
+  date,
+  img_src,
+  like,
+  like_btn,
+  location
+) {
   like_btn_icon = "/static/icon/like.png";
   dislike_btn_icon = "/static/icon/like2.png";
-  post_section = document.getElementById(root);
+  post_section = document.getElementById("post-section");
   div_post = document.createElement("div");
   div_post.setAttribute("class", "post");
+  div_post.setAttribute("id", `post-div-${id}`);
   div_head = document.createElement("div");
   div_head.setAttribute("class", "post-head");
   div_user_info = document.createElement("div");
@@ -71,7 +82,21 @@ function add_post(root, id, post, date, img_src, like, like_btn, location) {
   span.textContent = document.getElementById("name").textContent;
 
   div_date = document.createElement("div");
-  div_date.textContent = date;
+  div_date.setAttribute("class", "date-div");
+  span_date = document.createElement("span");
+  span_date.textContent = date;
+
+  div_date.appendChild(span_date);
+  if (select_picture != null) {
+    i_delete = document.createElement("i");
+    i_delete.setAttribute("class", "material-icons");
+    i_delete.textContent = "delete";
+
+    i_delete.addEventListener("click", () => {
+      delete_post(id);
+    });
+    div_date.appendChild(i_delete);
+  }
   div_body = document.createElement("div");
   div_body.setAttribute("class", "post-body");
   p = document.createElement("p");
@@ -146,8 +171,8 @@ function add_post(root, id, post, date, img_src, like, like_btn, location) {
   div_head.appendChild(div_date);
   div_post.appendChild(div_head);
   div_post.appendChild(div_body);
-
-  post_section.appendChild(div_post);
+  if (direction) post_section.appendChild(div_post);
+  else post_section.prepend(div_post);
 }
 
 let next;
@@ -160,7 +185,7 @@ function get_post(url) {
 
       data.results.forEach((post) => {
         add_post(
-          "post-section",
+          true,
           post.id,
           post.post,
           post.date,
@@ -220,7 +245,12 @@ document.getElementById("post-btn").addEventListener("click", () => {
   location_ = document.getElementById("city");
   file = select_picture.files[0];
 
-  if (post.value == "" || location_.value == "null" || file == null) return;
+  if (post.value == "" || location_.value == "null" || file == null) {
+    $("#error-msg").text("All fileds are required.");
+    $(".error").show();
+    hide_error();
+    return;
+  }
   form = new FormData();
   form.append("post", post.value);
   form.append("date", date.value);
@@ -235,7 +265,7 @@ document.getElementById("post-btn").addEventListener("click", () => {
     .then((data) => {
       if (data.status == 201) {
         add_post(
-          "new-post",
+          false,
           data.id,
           post.value.trim(),
           date.value,
@@ -254,3 +284,20 @@ document.getElementById("post-btn").addEventListener("click", () => {
 });
 
 set_current_date();
+
+function delete_post(id) {
+  form = new FormData();
+  form.append("id", id);
+
+  fetch("/delete_post/", {
+    method: "POST",
+    body: form,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.status == 200) {
+        elem = document.getElementById(`post-div-${id}`);
+        elem.parentNode.removeChild(elem);
+      }
+    });
+}

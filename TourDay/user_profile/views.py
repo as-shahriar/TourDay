@@ -5,7 +5,7 @@ from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth import login
-from utils import async_send_mail, districts,number_to_location
+from utils import async_send_mail, districts, number_to_location
 from TourDay.settings import EMAIL_HOST_USER
 import base64
 from django.core.files.base import ContentFile
@@ -127,6 +127,7 @@ def add_info(request, param):
         else:
             return JsonResponse({}, status=404)
 
+
 @login_required
 def portfolio(request, username):
     try:
@@ -167,12 +168,10 @@ class PostList(APIView, LimitOffsetPagination):
         instance = self.paginate_queryset(instance, request, view=self)
         for i in instance:
             i.location = number_to_location(i.location)
-            
-            
-        serializer = self.serializer_class(instance, many=True)
-        
-        return self.get_paginated_response(serializer.data)
 
+        serializer = self.serializer_class(instance, many=True)
+
+        return self.get_paginated_response(serializer.data)
 
 
 @csrf_exempt
@@ -182,18 +181,17 @@ def like_event(request):
         post_id = request.POST.get("id")
         try:
             post = Post.objects.get(id=post_id)
-            if post.likes.all().filter(id=request.user.id).exists(): #user already liked
+            if post.likes.all().filter(id=request.user.id).exists():  # user already liked
                 post.likes.remove(request.user)
-                
+
             else:
                 post.likes.add(request.user)
-                
-            post.save()
-            return JsonResponse({"id":post.id,"status":200})
-        except:
-            return JsonResponse({"status":404})
-    return JsonResponse({"Error":"Only Post Request is Accepteble"})
 
+            post.save()
+            return JsonResponse({"id": post.id, "status": 200})
+        except:
+            return JsonResponse({"status": 404})
+    return JsonResponse({"Error": "Only Post Request is Accepteble"})
 
 
 @csrf_exempt
@@ -204,21 +202,35 @@ def add_post(request):
         date = request.POST.get("date")
         location = request.POST.get("location")
         image = request.FILES.get("image")
-        if post_text=="" or date == "" or location == "":
-            return JsonResponse({"status":400})
-     
+        if post_text == "" or date == "" or location == "":
+            return JsonResponse({"status": 400})
+
         post = Post()
         post.user = request.user
         post.post = post_text.strip()
         post.date = date
         post.location = location
-        post.image =image
+        post.image = image
         post.save()
         return JsonResponse({
-            "id":post.id,
-            "image":post.image.url,
+            "id": post.id,
+            "image": post.image.url,
             "location": number_to_location(post.location),
-            "status":201
-            })
+            "status": 201
+        })
 
-    return JsonResponse({"Error":"Only Post Request is Accepteble"})
+    return JsonResponse({"Error": "Only Post Request is Accepteble"})
+
+
+@csrf_exempt
+@login_required
+def delete_post(request):
+    if request.method == "POST":
+        post_id = request.POST.get("id")
+        post = Post.objects.get(id=post_id)
+        if request.user != post.user:
+            return JsonResponse({"status": 403})
+        post.delete()
+        return JsonResponse({"status": 200})
+
+    return JsonResponse({"Error": "Only Post Request is Accepteble"})
