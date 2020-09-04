@@ -127,7 +127,7 @@ def add_info(request, param):
         else:
             return JsonResponse({}, status=404)
 
-
+@login_required
 def portfolio(request, username):
     try:
         user = User.objects.get(username=username)
@@ -167,6 +167,7 @@ class PostList(APIView, LimitOffsetPagination):
         instance = self.paginate_queryset(instance, request, view=self)
         for i in instance:
             i.location = number_to_location(i.location)
+            
             
         serializer = self.serializer_class(instance, many=True)
         

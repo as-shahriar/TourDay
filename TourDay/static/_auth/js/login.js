@@ -26,7 +26,7 @@ $("#login").click(function (e) {
 
     success: function (result) {
       if (result.status == 200) {
-        location.href = "/";
+        redirect();
       } else {
         $(".error").show();
         hide_error();
@@ -37,3 +37,14 @@ $("#login").click(function (e) {
     },
   });
 });
+
+function redirect() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  if (urlParams.has("next")) {
+    const next = urlParams.get("next");
+    location.href = next;
+  } else {
+    location.href = "/";
+  }
+}
