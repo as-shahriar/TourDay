@@ -299,6 +299,7 @@ function delete_post(id) {
       if (data.status == 200) {
         elem = document.getElementById(`post-div-${id}`);
         elem.parentNode.removeChild(elem);
+        //  Todo: Update map when post deleted
       }
     });
 }

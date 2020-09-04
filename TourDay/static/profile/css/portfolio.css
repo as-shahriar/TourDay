@@ -92,6 +92,7 @@ h3 {
 .info-box div {
   display: flex;
   margin-right: 0.5rem;
+  z-index: 0;
 }
 
 .info-box div i {
