@@ -360,6 +360,7 @@ section {
   border-bottom-left-radius: 380px;
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+  z-index: 1;
 }
 
 .items.open {

@@ -97,10 +97,8 @@ def async_send_mail(subject, message, EMAIL_HOST_USER, user_email):
     thread.start()
 
 
-def location_to_number(location):
-    """Take location and return number to save in database"""
-    global districts
-    try:
-        return districts[location]
-    except:
-        return None
+
+
+def number_to_location(number):
+    """Take number and return location"""
+    return list(districts.keys())[list(districts.values()).index(number)]

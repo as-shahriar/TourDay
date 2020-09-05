@@ -1,0 +1,50 @@
+.root {
+  width: 100%;
+  background-color: rgba(165, 42, 42, 0.034);
+  z-index: 100;
+  padding: 0 1rem;
+  background-color: var(--background-color);
+}
+
+.head {
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+}
+.head div {
+  display: flex;
+}
+
+.head i {
+  font-size: 1.7rem;
+  margin-right: 0.5rem;
+}
+
+.head h1 {
+  font-size: 1.7rem;
+}
+
+#add_event {
+  cursor: pointer;
+}
+.card-a {
+  text-decoration: none !important;
+}
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+@media (max-width: 800px) {
+  .head i {
+    font-size: 1.2rem;
+    margin-right: 0.2rem;
+  }
+
+  .head h1 {
+    font-size: 1.2rem;
+  }
+}

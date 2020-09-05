@@ -1,13 +1,21 @@
-from django.shortcuts import render
-from .models import Profile
+import json
+from django.core import serializers
+from django.shortcuts import render, get_object_or_404
+from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth import login
-from utils import async_send_mail,districts
+from utils import async_send_mail, districts, number_to_location
 from TourDay.settings import EMAIL_HOST_USER
 import base64
 from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
+from .serializers import PostSerializer
+from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
 
 
 @login_required
@@ -120,6 +128,7 @@ def add_info(request, param):
             return JsonResponse({}, status=404)
 
 
+@login_required
 def portfolio(request, username):
     try:
         user = User.objects.get(username=username)
@@ -132,15 +141,107 @@ def portfolio(request, username):
             'profile': profile,
             'districts': districts,
             "nav_img": nav_img,
-            'is_profile':True
+            'is_profile': True,
+            'user_obj': user
         })
     except:
         try:
             nav_img = Profile.objects.get(user=request.user).picture.url
         except:
             nav_img = None
-        
-        return render(request, 'profile/portfolio.html',{ 
+
+        return render(request, 'profile/portfolio.html', {
             "nav_img": nav_img,
-            'is_profile':False
-            })
+            'is_profile': False
+        })
+
+
+class PostList(APIView, LimitOffsetPagination):
+    permission_classes = [AllowAny]
+    serializer_class = PostSerializer
+    #pagination_class = LimitOffsetPagination
+
+    def get(self, request, *args, **kwargs):
+        username = kwargs.get('username')
+        user = get_object_or_404(User, username=username)
+        instance = Post.objects.filter(user=user).order_by("-date")
+        instance = self.paginate_queryset(instance, request, view=self)
+        for i in instance:
+            i.location = number_to_location(i.location)
+
+        serializer = self.serializer_class(instance, many=True)
+
+        return self.get_paginated_response(serializer.data)
+
+
+@csrf_exempt
+@login_required
+def like_event(request):
+    if request.method == "POST":
+        post_id = request.POST.get("id")
+        try:
+            post = Post.objects.get(id=post_id)
+            if post.likes.all().filter(id=request.user.id).exists():  # user already liked
+                post.likes.remove(request.user)
+
+            else:
+                post.likes.add(request.user)
+
+            post.save()
+            return JsonResponse({"id": post.id, "status": 200})
+        except:
+            return JsonResponse({"status": 404})
+    return JsonResponse({"Error": "Only Post Request is Accepteble"})
+
+
+@csrf_exempt
+@login_required
+def add_post(request):
+    if request.method == "POST":
+        post_text = request.POST.get("post")
+        date = request.POST.get("date")
+        location = request.POST.get("location")
+        image = request.FILES.get("image")
+        if post_text == "" or date == "" or location == "":
+            return JsonResponse({"status": 400})
+
+        post = Post()
+        post.user = request.user
+        post.post = post_text.strip()
+        post.date = date
+        post.location = location
+        post.image = image
+        post.save()
+        return JsonResponse({
+            "id": post.id,
+            "image": post.image.url,
+            "location": number_to_location(post.location),
+            "status": 201
+        })
+
+    return JsonResponse({"Error": "Only Post Request is Accepteble"})
+
+
+@csrf_exempt
+@login_required
+def delete_post(request):
+    if request.method == "POST":
+        post_id = request.POST.get("id")
+        post = Post.objects.get(id=post_id)
+        if request.user != post.user:
+            return JsonResponse({"status": 403})
+        post.delete()
+        return JsonResponse({"status": 200})
+
+    return JsonResponse({"Error": "Only Post Request is Accepteble"})
+
+
+def get_map_data(request, id):
+    user = get_object_or_404(User, id=id)
+    posts = Post.objects.filter(user=user)
+    visited = []
+    for i in posts:
+        if i.location not in visited:
+            visited.append(i.location)
+
+    return JsonResponse({"visited": visited, "status": 200})

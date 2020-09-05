@@ -92,6 +92,7 @@ h3 {
 .info-box div {
   display: flex;
   margin-right: 0.5rem;
+  z-index: 0;
 }
 
 .info-box div i {
@@ -160,7 +161,7 @@ input[type="date"]:focus {
   border: 0.5px rgba(0, 0, 0, 0.192) solid;
   background: transparent;
   border-radius: 0.5rem;
-  outline: none;
+  outline: 1px;
 }
 
 #preview {
@@ -172,6 +173,7 @@ input[type="date"]:focus {
 .post {
   padding-top: 0;
   margin-left: 10rem;
+  margin-bottom: 2rem;
   background-color: var(--background-color);
   -webkit-box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
@@ -184,17 +186,29 @@ input[type="date"]:focus {
 .post-head {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   background-color: #c4c4c4;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   padding: 0.4rem 1.2rem;
   font-size: 0.8rem;
 }
+.date-div {
+  display: flex;
+  align-items: center;
+}
 
+.date-div span {
+  padding-top: 5px;
+}
+.date-div i {
+  cursor: pointer;
+  margin-left: 0.6rem;
+}
 .user-img {
   width: 20px;
   border-radius: 50%;
+  margin-right: 0.4rem;
 }
 
 .post-body {
@@ -221,6 +235,21 @@ input[type="date"]:focus {
   align-items: center;
   color: #6a6868;
 }
+.like {
+  cursor: pointer;
+  width: 25px;
+}
+.lower > div > span {
+  margin-left: 0.2rem;
+}
+.location-div {
+  display: flex;
+  align-items: center;
+}
+
+.location-div span {
+  margin-top: 7px;
+}
 
 .not-found {
   width: 53.5rem;
@@ -235,7 +264,25 @@ input[type="date"]:focus {
 .content {
   background: var(--background-color);
 }
-/*  */
+
+.modal {
+  background-color: #000000c2;
+}
+.modal * {
+  opacity: 1;
+}
+.modal-content {
+  background-color: transparent;
+  border: none;
+}
+.close {
+  color: white;
+  text-shadow: none;
+}
+.close:hover {
+  color: rgb(253, 223, 223);
+}
+
 @media (max-width: 800px) {
   .root {
     flex-direction: column;
@@ -267,8 +314,9 @@ input[type="date"]:focus {
     align-items: flex-end;
   }
 
-  .post-btn {
+  #post-btn {
     width: 100%;
+    margin-top: 1rem;
   }
 
   .post-img img {
