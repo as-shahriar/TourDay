@@ -173,4 +173,4 @@ def division_post(request, slug):
 
     # post = blogPost.objects.get(blog_user=request.user)
 
-    return render(request, 'blog/user_post.html', context)
+    return render(request, 'blog/division_post.html', context)

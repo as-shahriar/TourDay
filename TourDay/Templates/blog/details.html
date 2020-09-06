@@ -69,7 +69,7 @@
                             
                                 </div>
 							<div class="post-shares sticky-shares">
-								<a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
+								<a href="http://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/{{ request.get_full_path|urlencode }}"class="share-facebook"><i class="fa fa-facebook"></i></a>
 								<a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
 								<a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
 								<a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
@@ -178,7 +178,7 @@
 								<a class="post-img post-img-2" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
 								<div class="post-body">
 									<div class="post-meta">
-										<a class="post-category cat-3" href="#">{{post.division}}</a>
+										<a class="post-category cat-3" href="{% url 'division_post' post.division %}">{{post.division}}</a>
 										<span class="post-date">{{post.date}}</span>
 									</div>
 									<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
@@ -213,20 +213,7 @@
 						
 						
 						
-						<!-- archive -->
-						<div class="aside-widget">
-							<div class="section-title">
-								<h2>Archive</h2>
-							</div>
-							<div class="archive-widget">
-								<ul>
-									<li><a href="#">January 2018</a></li>
-									<li><a href="#">Febuary 2018</a></li>
-									<li><a href="#">March 2018</a></li>
-								</ul>
-							</div>
-						</div>
-						<!-- /archive -->
+						
 					</div>
 					<!-- /aside -->
 				</div>

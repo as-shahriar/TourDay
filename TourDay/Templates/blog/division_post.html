@@ -12,9 +12,9 @@
 								<li><a href="{% url 'blog_home' %}">Home</a>{{request.path}}</li>
 							</ul>
 							{% for post in post1|slice:":1" %}
-							<h2>Post by {{post.blog_user.profile.name}}</h2>
+							<h2>Sort by {{post.division}} Division</h2>
 							{% endfor %}
-
+                            
 							
 						</div>
 					</div>
@@ -179,7 +179,7 @@
 
 						</div>
 						<!-- /catagories -->
-					
+						
 						
 					
 					</div>
