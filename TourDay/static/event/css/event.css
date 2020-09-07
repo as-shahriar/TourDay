@@ -47,10 +47,29 @@
 
 .event-details {
   padding: 2rem;
+  padding-bottom: 0.5rem;
   font-size: 1.2rem;
   text-align: center;
 }
+.copy {
+  position: relative;
+  margin-bottom: 1rem;
+}
 
+.copy i {
+  position: absolute;
+  margin-top: -4px;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+#img-preview {
+  display: flex;
+  align-items: center;
+}
+
+#preview-close {
+  cursor: pointer;
+}
 .event-going {
   text-align: center;
   font-size: 1.2rem;

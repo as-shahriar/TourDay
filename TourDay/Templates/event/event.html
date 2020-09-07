@@ -22,10 +22,17 @@ Event{%endblock%} {%block css%}<link
     <div class="event-info">
       <h1>Tour to Bandarban</h1>
       <h5>Thanchi, Bandarban</h5>
-      <h5>20-6-2020</h5>
+      <h5>20-9-2020</h5>
     </div>
-    <div class="edit-event" data-toggle="modal" data-target=".edit_event">
-      <i class="material-icons text-white">border_color</i>
+
+    <div class="edit-event">
+      <i
+        class="material-icons text-white"
+        data-toggle="modal"
+        data-target=".edit_event"
+        >border_color</i
+      >
+      <i class="material-icons text-white ml-2" id="preview-close">delete</i>
     </div>
   </div>
   <p class="event-details">
@@ -36,6 +43,9 @@ Event{%endblock%} {%block css%}<link
     blanditiis eveniet, laudantium earum accusamus optio non voluptatem. Libero
     voluptatibus magni recusandae aperiam, reiciendis repellendus ipsam omnis
     vero consectetur, quod est.
+  </p>
+  <p align="center" class="copy">
+    Copy Event Link <i class="material-icons">content_copy</i>
   </p>
   <hr />
   <p class="event-going">
@@ -149,10 +159,20 @@ Event{%endblock%} {%block css%}<link
             <input type="file" id="image" style="display: none" />
             <button
               class="btn my-btn"
+              id="pic-btn"
               onClick="document.getElementById('image').click()"
             >
               Upload Cover Image
             </button>
+            <div id="img-preview" style="display: none">
+              <img
+                src="https://www.saanimages.com/wp-content/uploads/edd/2018/11/AFZ_4924_1-copy-820x480.jpeg"
+                width="100px"
+                class="ml-4"
+                id="pic_preview"
+              />
+              <i class="material-icons ml-2" id="preview-close">close</i>
+            </div>
           </div>
         </form>
       </div>
