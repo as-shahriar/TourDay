@@ -1,26 +1,30 @@
 
 
 .post-img-1 {
-   
+ 
     height: 333px;
     width: 555px;
+    object-fit: cover;
     overflow: hidden; 
-    
+    object-fit: cover;
+  
 }
 
 .post-img-2 {
     
-    height: 216px;
-    width: 360px;
+    height: 215px;
+    width: 361px;
     overflow: hidden; 
+    object-fit: cover;
     
 }
 
 .post-img-3 {
    
     height: 425px;
-    width: 770px;
+    width: 763px;
     overflow: hidden; 
+    object-fit: cover;
     
 }
 
@@ -29,6 +33,7 @@
     height: 90px;
     width: 90px;
     overflow: hidden; 
+    object-fit: cover;
     
 }
 
@@ -37,6 +42,7 @@
     height: 220px;
     width: 350px;
     overflow: hidden; 
+    object-fit: cover;
     
 }
 
@@ -44,9 +50,43 @@
     
     height: 180px;
     width: 300px;
-    overflow: hidden; 
+    overflow: hidden;
+    object-fit: cover; 
     
 }
+.post-img-7 {
+    
+    height: 215px;
+    width: 369px;
+    overflow: hidden; 
+    object-fit: cover;
+    
+}
+.post-img-8 {
+    
+    height: 474px;
+    width: 670px;
+    overflow: hidden; 
+    object-fit: cover;
+    
+}
+
+.add-1 {
+    height: 250px;
+    width: 300px;
+    overflow: hidden; 
+    object-fit: cover;
+}
+.add-2 {
+    height: 90px;
+    width: 728px;
+    overflow: hidden; 
+    object-fit: cover;
+}
+
+
+
+
 .logo-1 {
     
     height: 70px;

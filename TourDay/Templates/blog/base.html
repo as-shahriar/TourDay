@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 
-		<title>TourdayBlog</title>
+		<title>Tourday | Blog</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
@@ -72,7 +72,7 @@
 								{% else %}
 								<li><a href="{% url 'user_post' request.user %}">Posts</a></li>
 								{% endif %}
-							<li><a href="{% url 'signup_page' %}">Logout</a></li>
+							<li><a href="{% url 'login_page' %}">Logout</a></li>
 							
 							{% else %}
 							<li><a href="{% url 'login_page' %}">Login</a></li>
@@ -83,17 +83,57 @@
 
 						<!-- search & aside toggle -->
 						<div class="nav-btns">
-							<!-- <button class="aside-btn"><i class="fa fa-bars"></i></button> -->
+							<button class="aside-btn"><i class="fa fa-bars"></i></button>
 							<button class="search-btn"><i class="fa fa-search"></i></button>
-							<div class="search-form">
-								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
-								<button class="search-close"><i class="fa fa-times"></i></button>
-							</div>
+							<form method="POST">
+								{% csrf_token %}
+								<div class="search-form">
+									<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+									<button type="submit" name="btn-search" class="search-close" ><i class="fa fa-search"></i></button>
+								
+								</div>
+							</form>
 						</div>
+
 						<!-- /search & aside toggle -->
 					</div>
 				</div>
 				<!-- /Main Nav -->
+
+				
+				
+				<!-- Aside Nav -->
+				<div id="nav-aside" style="background-color:   #76d7c4;">
+					<!-- nav -->
+					<div class="section-row">
+						<ul class="nav-aside-menu"  >
+							<li><a href="{% url 'blog_home' %}">Home</a></li>
+							<li><a href="{% url 'portfolio' request.user %}">Profile</a></li>
+
+							{% if user.is_authenticated %}
+								
+								<li><a href="{% url 'addpost' %}">Add Post</a></li>
+								<li><a href="{% url 'user_post' request.user %}">Posts</a></li>
+								<li><a href="{% url 'login_page' %}">Logout</a></li>
+							
+							{% else %}
+							<li><a href="{% url 'login_page' %}">Login</a></li>
+							{% endif %}
+						</ul>
+					</div>
+					<!-- /nav -->
+
+				
+					
+
+					<!-- aside nav close -->
+					<button class="nav-aside-close" style="color: red;" ><i class="fa fa-times"></i></button>
+					<!-- /aside nav close -->
+				</div>
+				<!-- Aside Nav -->
+
+
+
 
 			
 			</div>

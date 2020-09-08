@@ -3,6 +3,9 @@ from blog.forms import blogPostForm
 from django.contrib.auth.decorators import login_required
 from blog.models import blogPost
 from django.core.paginator import Paginator
+from django.db.models import Q
+
+
 
 
 class division_post_count:
@@ -16,14 +19,21 @@ class division_post_count:
         self.Rangpur = blogPost.objects.filter(division='Rangpur').count()
         self.Sylhet = blogPost.objects.filter(division='Sylhet').count()
 
-    
 
 
+ 
 # Create your views here.
 def search(request):
     return render(request,'blog/search.html')
 
+
 def home(request):
+
+    if request.method == 'POST' and 'btn-search' in request.POST:
+        q = request.POST.get('search').strip()
+        if q:
+            request.session['q'] = q
+            return redirect('blog_search')
 
     # di_count = division_post_count()
    
@@ -51,7 +61,11 @@ def home(request):
     return render(request,'blog/home.html', context)
 
 def details(request, id):
-
+    if request.method == 'POST' and 'btn-search' in request.POST:
+        q = request.POST.get('search').strip()
+        if q:
+            request.session['q'] = q
+            return redirect('blog_search')
 
     # di_count = division_post_count() 
 
@@ -68,6 +82,12 @@ def details(request, id):
 
 @login_required
 def addPost(request):
+
+    if request.method == 'POST' and 'btn-search' in request.POST:
+        q = request.POST.get('search').strip()
+        if q:
+            request.session['q'] = q
+            return redirect('blog_search')
     
     if request.method == 'POST'  and 'blog_submit' in request.POST:
         form = blogPostForm(request.POST, request.FILES)
@@ -86,6 +106,12 @@ def addPost(request):
 
 @login_required
 def blog_edit(request, id):
+
+    if request.method == 'POST' and 'btn-search' in request.POST:
+        q = request.POST.get('search').strip()
+        if q:
+            request.session['q'] = q
+            return redirect('blog_search')
     
     post = blogPost.objects.get(id=id)
 
@@ -107,6 +133,12 @@ def blog_edit(request, id):
 
 @login_required
 def blog_delete(request, id):
+
+    if request.method == 'POST' and 'btn-search' in request.POST:
+        q = request.POST.get('search').strip()
+        if q:
+            request.session['q'] = q
+            return redirect('blog_search')
     
     post = blogPost.objects.get(id=id)
 
@@ -122,6 +154,12 @@ def blog_delete(request, id):
 
 
 def user_post(request, slug):
+
+    if request.method == 'POST' and 'btn-search' in request.POST:
+        q = request.POST.get('search').strip()
+        if q:
+            request.session['q'] = q
+            return redirect('blog_search')
 
     # di_count = division_post_count()
     
@@ -151,6 +189,12 @@ def user_post(request, slug):
 
 def division_post(request, slug):
 
+    if request.method == 'POST' and 'btn-search' in request.POST:
+        q = request.POST.get('search').strip()
+        if q:
+            request.session['q'] = q
+            return redirect('blog_search')
+
     # di_count = division_post_count()
 
     post1 = blogPost.objects.filter(division=slug).order_by('id')
@@ -174,3 +218,25 @@ def division_post(request, slug):
     # post = blogPost.objects.get(blog_user=request.user)
 
     return render(request, 'blog/division_post.html', context)
+
+
+def blog_search(request):
+
+    q = request.session.get('q')
+    post_query = blogPost.objects.all().filter(
+        Q(title__icontains=q)|
+		Q(description__icontains=q)|
+		Q(division__icontains=q))
+    paginator = Paginator(post_query, 10)  # Show 10 obj per page
+
+    page = request.GET.get('page')
+    post = paginator.get_page(page)
+
+    context = {
+        
+        'di_count' : division_post_count(),
+        'post' : post,
+        'query':q,
+    }
+
+    return render(request, 'blog/blog_search.html', context)

@@ -12,9 +12,9 @@
                     <ul class="page-header-breadcrumb">
 						<li><a href="{% url 'blog_home' %}">Home</a>{{request.path}}</li>
 					</ul>
-                    {% for post in post1|slice:":1" %}
-					<h2 style="color: aqua;">Post by {{post.blog_user.profile.name}}</h2>
-					{% endfor %}
+                    
+					<h2 style="color: aqua;">Search Result for "{{query}}"</h2>
+					
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
 					<div class="col-md-8">
 						<div class="row">
 
-							{% for post in post1|slice:":1" %}
+							{% for post in post|slice:":1" %}
 							<!-- post -->
 							<div class="col-md-12">
 								<div class="post post-thumb">
@@ -50,7 +50,7 @@
 							<!-- /post -->
 							{% endfor %}
 
-                            {% for post in post1|slice:"2:4" %}
+                            {% for post in post|slice:"2:4" %}
 							<!-- post -->
 							<div class="col-md-6">
 								<div class="post">
@@ -81,7 +81,7 @@
 							</div>
                             <!-- ad -->
                             
-                            {% for post in post %}
+                            {% for post in post|slice:"5:"  %}
 							
 							<!-- post -->
 							<div class="col-md-12">

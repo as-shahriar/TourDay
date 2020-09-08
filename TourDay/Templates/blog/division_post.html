@@ -2,27 +2,27 @@
 {% load static %}
 {% block blog %}
 
-							<!-- /post -->
-			<!-- Page Header -->
-			<div class="page-header">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-10">
-							<ul class="page-header-breadcrumb">
-								<li><a href="{% url 'blog_home' %}">Home</a>{{request.path}}</li>
-							</ul>
-							{% for post in post1|slice:":1" %}
-							<h2>Sort by {{post.division}} Division</h2>
-							{% endfor %}
-                            
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /Page Header -->
-		</header>
-		<!-- /Header -->
+<header id="header">
+
+    <div id="post-header" class="page-header">
+        <div class="background-img" style="background-image: url('https://source.unsplash.com/user/erondu/1350x270');"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <ul class="page-header-breadcrumb">
+						<li><a href="{% url 'blog_home' %}">Home</a>{{request.path}}</li>
+					</ul>
+                    {% for post in post1|slice:":1" %}
+						<h2 style="color: aqua;" >All Post in {{post.division}} Division</h2>
+					{% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</header>
+
 		
 		<!-- section -->
 		<div class="section">
@@ -37,7 +37,7 @@
 							<!-- post -->
 							<div class="col-md-12">
 								<div class="post post-thumb">
-									<a class="post-img post-img-3" href="{% url 'blog_details' post.id %}"><img src="{{post.image.url}}" alt=""></a>
+									<a class="post-img" href="{% url 'blog_details' post.id %}"><img class="img-responsive post-img-3" src="{{post.image.url}}" alt=""></a>
 									<div class="post-body">
 										<div class="post-meta">
 											<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
@@ -54,7 +54,7 @@
 							<!-- post -->
 							<div class="col-md-6">
 								<div class="post">
-									<a class="post-img post-img-2" href="{% url 'blog_details' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
+									<a class="post-img" href="{% url 'blog_details' post.id %}"><img class="img-responsive post-img-2" src="{{ post.image.url }}" alt=""></a>
 									<div class="post-body">
 										<div class="post-meta">
 											<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
@@ -75,7 +75,7 @@
 							<div class="col-md-12">
 								<div class="section-row">
 									<a href="#">
-										<img class="img-responsive center-block" src="{% static 'image/ad/ad-2.jpg'%}" alt="">
+										<img class="img-responsive center-block add-2" src="{% static 'image/ad/ad-2.jpg'%}" alt="">
 									</a>
 								</div>
 							</div>
@@ -86,7 +86,7 @@
 							<!-- post -->
 							<div class="col-md-12">
 								<div class="post post-row">
-									<a class="post-img post-img-6" href="{% url 'blog_details' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
+									<a class="post-img" href="{% url 'blog_details' post.id %}"><img class="img-responsive post-img-6" src="{{ post.image.url }}" alt=""></a>
 									<div class="post-body">
 										<div class="post-meta">
 											<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
@@ -134,7 +134,7 @@
 						<!-- ad -->
 						<div class="aside-widget text-center">
 							<a href="#" style="display: inline-block;margin: auto;">
-								<img class="img-responsive" src="{% static 'image/ad/ad-1.jpg'%}" alt="">
+								<img class="img-responsive add-1" src="{% static 'image/ad/ad-1.jpg'%}" alt="">
 							</a>
 						</div>
 						<!-- /ad -->
@@ -179,7 +179,7 @@
 
 						</div>
 						<!-- /catagories -->
-						
+					
 						
 					
 					</div>
@@ -189,8 +189,6 @@
 			<!-- /container -->
 		</div>
 		<!-- /section -->
-
-
 
 
 {% endblock %}
