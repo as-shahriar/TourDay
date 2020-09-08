@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   btn_password = $("#btn-password");
   btn_bio = $("#btn-bio");
   btn_city = $("#btn-city");
+  btn_insta = $("#btn-insta");
 
-  inputs = ["name", "email", "fb", "password", "bio", "city"];
+  inputs = ["name", "email", "fb", "password", "bio", "city", "insta"];
   inputs.forEach((element) => {
     document
       .querySelector(`#input-${element}`)
@@ -39,11 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
   btn_name.on("click", () => {
     show_hide("name");
   });
+
   btn_email.on("click", () => {
     show_hide("email");
   });
+
   btn_fb.on("click", () => {
     show_hide("fb");
+  });
+  btn_insta.on("click", () => {
+    show_hide("insta");
   });
   btn_password.on("click", () => {
     show_hide("password");

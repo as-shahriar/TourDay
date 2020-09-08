@@ -80,6 +80,13 @@ def add_info(request, param):
             return JsonResponse({
                 "status": 201,
             })
+        elif param == "insta" and data != "":
+            if profile.insta != data:
+                profile.insta = data
+                profile.save()
+            return JsonResponse({
+                "status": 201,
+            })
 
         elif param == "password" and data != "":
             user = request.user

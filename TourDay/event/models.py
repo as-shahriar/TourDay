@@ -18,6 +18,7 @@ class Transactions(models.Model):
     event = models.ManyToManyField(Event)
     user = models.ManyToManyField(User)
     tr = models.CharField(max_length=50, null=True, blank=True)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
