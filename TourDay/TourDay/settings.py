@@ -33,9 +33,12 @@ INSTALLED_APPS = [
     "event",
     # Thirdparty Apps
 
+    #for blog
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+    
+
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',  # must be in last
 ]

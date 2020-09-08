@@ -76,6 +76,7 @@ def details(request, id):
         'di_count' : division_post_count(),
         'details_obj' : details_obj,
         'random_post' : random_post,
+      
     }
 
     return render(request,'blog/details.html', context)

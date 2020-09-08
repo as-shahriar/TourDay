@@ -2,6 +2,7 @@
 {% load static %}
 {% block blog %}
 
+
 <header id="header">
 
     <div id="post-header" class="page-header">
@@ -69,12 +70,10 @@
                             
                                 </div>
 							<div class="post-shares sticky-shares">
-								<a href="http://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/{{ request.get_full_path|urlencode }}"class="share-facebook"><i class="fa fa-facebook"></i></a>
-								<a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
-								<a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
-								<a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
-								<a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
-								<a href="#"><i class="fa fa-envelope"></i></a>
+								<a href="http://www.facebook.com/sharer.php?u={{request.build_absolute_uri}} &title={{details_obj.title}}" onclick="window.open(this.href, 'windowName', 'width=600, height=400, left=24, top=24, scrollbars, resizable'); return false;" rel="nofollow" target="_blank" class="share-facebook"><i class="fa fa-facebook"></i></a>
+								<a href="http://twitter.com/share?url={{request.build_absolute_uri}} &title={{details_obj.title}}" onclick="window.open(this.href, 'windowName', 'width=600, height=400, left=24, top=24, scrollbars, resizable'); return false;" rel="nofollow" target="_blank" class="share-twitter"><i class="fa fa-twitter"></i></a>
+								<a href="http://www.linkedin.com/shareArticle?url={{request.build_absolute_uri}}&title={{details_obj.title}}" onclick="window.open(this.href, 'windowName', 'width=600, height=400, left=24, top=24, scrollbars, resizable'); return false;" rel="nofollow" target="_blank" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
+								
 							</div>
 						</div>
 
