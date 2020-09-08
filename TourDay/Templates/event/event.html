@@ -53,7 +53,11 @@ Event{%endblock%} {%block css%}<link
     People Are Going
   </p>
   <hr />
-
+  <div class="d-flex justify-content-center my-4">
+    <button class="btn my-btn" data-toggle="modal" data-target=".join_event">
+      Join This Event
+    </button>
+  </div>
   <div class="section-root">
     <div class="card bg-white mb-3 my-card">
       <div class="card-header">
@@ -97,6 +101,7 @@ Event{%endblock%} {%block css%}<link
           <a href="#">
             <h5>Asif Shahrair</h5>
           </a>
+          <h5>Bkash</h5>
           <h5>Transaction ID</h5>
           <div class="actions">
             <button class="btn accept">Accept</button>
@@ -135,25 +140,65 @@ Event{%endblock%} {%block css%}<link
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Title:</label>
+            <label for="recipient-name" class="col-form-label">Title</label>
             <input type="text" class="form-control" id="recipient-name" />
           </div>
           <div class="form-group">
             <div class="row">
               <div class="col-md-6">
-                <label for="location" class="col-form-label">Location:</label>
+                <label for="location" class="col-form-label">Location</label>
                 <input type="text" class="form-control" id="location" />
               </div>
 
               <div class="col-md-6">
-                <label for="date" class="col-form-label">Date:</label>
+                <label for="date" class="col-form-label">Date</label>
                 <input type="date" class="form-control" id="date" required />
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Decription:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="location" class="col-form-label"
+                  >Payment Method</label
+                ><select class="form-control">
+                  <option>Bkash</option>
+                  <option>Rocket</option>
+                  <option>Nagad</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="date" class="col-form-label">Account No</label>
+                <input type="number" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="location" class="col-form-label"
+                  >Payment Method</label
+                ><select class="form-control">
+                  <option>Bkash</option>
+                  <option>Rocket</option>
+                  <option>Nagad</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="date" class="col-form-label">Account No</label>
+                <input type="number" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Decription</label>
+            <textarea
+              class="form-control"
+              id="message-text"
+              placeholder="write event description and Payment info"
+            ></textarea>
           </div>
           <div style="display: flex; justify-content: center">
             <input type="file" id="image" style="display: none" />
@@ -184,6 +229,72 @@ Event{%endblock%} {%block css%}<link
   </div>
 </div>
 <!-- modal edit event  -->
+
+<!-- Modal join event -->
+
+<div
+  class="modal join_event"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tour to Bandarban</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
+              porro aut, quos, quaerat veniam repudiandae sequi voluptates odit
+              id excepturi non quasi. Quod quo harum impedit reprehenderit velit
+              dolorum itaque?
+            </p>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-5 col-lg-3">
+                <label for="location" class="col-form-label"
+                  >Payment Method</label
+                ><select class="form-control">
+                  <option>Bkash</option>
+                  <option>Rocket</option>
+                  <option>Nagad</option>
+                </select>
+              </div>
+
+              <div class="col-md-7 col-lg-9">
+                <label for="date" class="col-form-label">Transaction ID</label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <p align="center" class="text-danger">
+              *You can send the transaction number only once. Please check
+              before submit.
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn my-btn accept">Join Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal join event  -->
 
 {%endblock%} {%block scripts%}
 <script

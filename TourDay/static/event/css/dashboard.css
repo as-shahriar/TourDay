@@ -31,8 +31,10 @@
 #add_event i {
   margin-left: 0.5rem;
 }
-.card-a {
+.card-a,
+.card-a:hover {
   text-decoration: none !important;
+  color: var(--primary-color);
 }
 .card-text {
   overflow: hidden;
@@ -90,6 +92,13 @@ input[type="date"]:focus {
 /* outline remove for clone btn */
 .modal-header .close {
   outline: 0;
+}
+.bg-white {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px #00000014;
+}
+.bg-white:hover {
+  box-shadow: 0px 0px 10px #00000028;
 }
 @media (max-width: 800px) {
   .head i {

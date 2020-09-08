@@ -34,8 +34,12 @@
   right: 0;
   padding: 0.7rem;
   padding-right: 1rem;
-  cursor: pointer;
+
   text-shadow: 2px 2px 10px black;
+}
+.edit-event i {
+  cursor: pointer;
+  padding: 0.2rem;
 }
 
 .event-info h1 {

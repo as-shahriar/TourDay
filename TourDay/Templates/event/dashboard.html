@@ -24,7 +24,7 @@ Event{%endblock%} {%block css%}<link
     <div class="col-sm-12 col-md-12 col-lg-4">
       <div class="items-card">
         <a href="#" class="card-a">
-          <div class="card text-white bg-info mb-3" style="max-width: auto">
+          <div class="card bg-white mb-3" style="max-width: auto">
             <div class="card-header" style="text-align: center">2-10-2024</div>
             <div class="card-body">
               <h5 class="card-title">Tour to Cox's Bazar</h5>
@@ -70,26 +70,66 @@ Event{%endblock%} {%block css%}<link
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Title:</label>
+            <label for="recipient-name" class="col-form-label">Title</label>
             <input type="text" class="form-control" id="recipient-name" />
           </div>
 
           <div class="form-group">
             <div class="row">
               <div class="col-md-6">
-                <label for="location" class="col-form-label">Location:</label>
+                <label for="location" class="col-form-label">Location</label>
                 <input type="text" class="form-control" id="location" />
               </div>
 
               <div class="col-md-6">
-                <label for="date" class="col-form-label">Date:</label>
+                <label for="date" class="col-form-label">Date</label>
                 <input type="date" class="form-control" id="date" required />
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Decription:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="location" class="col-form-label"
+                  >Payment Method</label
+                ><select class="form-control">
+                  <option>Bkash</option>
+                  <option>Rocket</option>
+                  <option>Nagad</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="date" class="col-form-label">Account No</label>
+                <input type="number" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="location" class="col-form-label"
+                  >Payment Method</label
+                ><select class="form-control">
+                  <option>Bkash</option>
+                  <option>Rocket</option>
+                  <option>Nagad</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="date" class="col-form-label">Account No</label>
+                <input type="number" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Decription</label>
+            <textarea
+              class="form-control"
+              id="message-text"
+              placeholder="write event description and Payment info"
+            ></textarea>
           </div>
         </form>
       </div>

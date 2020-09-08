@@ -43,7 +43,7 @@ Profile{%endblock%} {%block css%}
         data-target=".bd-map"
         title="Open map with visited places"
       />
-
+      {% if profile.fb%}
       <a
         href="https://facebook.com/{% if profile.fb%}{{profile.fb}}{%endif%}"
         target="_blank"
@@ -61,8 +61,8 @@ Profile{%endblock%} {%block css%}
           class="profile-icon"
           src="{% static 'icon/messenger.png' %}"
           alt="messenger"
-          title="Send message via Messenger"
-      /></a>
+          title="Send message via Messenger" /></a
+      >{%endif%} {%if profile.insta%}
       <a
         href="https://instagram.com/{%if profile.insta%}{{profile.insta}}{%endif%}"
         target="_blank"
@@ -71,8 +71,8 @@ Profile{%endblock%} {%block css%}
           class="profile-icon"
           src="{% static 'icon/insta.png' %}"
           alt="messenger"
-          title="Send message via Messenger"
-      /></a>
+          title="Send message via Messenger" /></a
+      >{%endif%}
 
       <a href="mailto: {{profile.email}}">
         <img
