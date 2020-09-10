@@ -32,9 +32,10 @@ class Event(models.Model):
 
 class Transactions(models.Model):
     event = models.ManyToManyField(Event)
-    user = models.ManyToManyField(User)
-    tr = models.CharField(max_length=50, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    tr = models.CharField(max_length=50, null=True)
+    method = models.CharField(max_length=7, null=True)
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        return self.tr

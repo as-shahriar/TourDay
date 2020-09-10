@@ -3,6 +3,7 @@
   background-color: rgba(165, 42, 42, 0.034);
   z-index: 100;
   background-color: var(--background-color);
+  padding: 0;
 }
 
 .head-image {

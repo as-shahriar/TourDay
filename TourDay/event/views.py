@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Event
+from .models import Event, Transactions
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .serializer import EventSerializer
@@ -7,6 +7,8 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from user_profile.models import Profile
+from _auth.models import User
 
 
 @csrf_exempt
@@ -61,4 +63,35 @@ def edit_event(request, id):
 
 def eventView(request, id):
     event = Event.objects.get(id=id)
-    return render(request, 'event/event.html', {"event": event})
+    going = Profile.objects.filter(user__in=event.going.all())
+    transaction = Transactions.objects.filter(user__in=event.pending.all())
+    return render(request, 'event/event.html', {"event": event, "going": going, "transaction": transaction})
+
+
+@csrf_exempt
+def action(request, id):
+    if request.method == "POST":
+        event = Event.objects.get(id=id)
+        is_accepted = request.POST.get("is_accepted")
+        user = User.objects.get(id=request.POST.get("user_id"))
+        tr = Transactions.objects.get(user=user)
+        if is_accepted == "1":
+            event.going.add(user)
+            event.pending.remove(user)
+            tr.status = True
+            tr.save()
+            profile = Profile.objects.get(user=user)
+            context = {
+                'status': 200,
+                'img': profile.picture.url,
+                "name": profile.name,
+                "username": user.username,
+                "email": user.email
+            }
+            return JsonResponse(context)
+        elif is_accepted == "0":
+            event.pending.remove(user)
+            tr.delete()
+            return JsonResponse({'status': 200})
+
+    return JsonResponse({'status': 400})

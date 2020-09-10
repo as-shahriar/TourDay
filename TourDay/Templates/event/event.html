@@ -21,7 +21,7 @@ Event{%endblock%} {%block css%}<link
       <h5>{{event.location}}</h5>
       <h5>{{event.date}}</h5>
     </div>
-
+    {%if request.user == event.host%}
     <div class="edit-event">
       <i
         class="material-icons text-white"
@@ -30,6 +30,7 @@ Event{%endblock%} {%block css%}<link
         >border_color</i
       >
     </div>
+    {%endif%}
   </div>
   <p class="event-details">{{event.details}}</p>
   <p align="center" class="copy">
@@ -37,15 +38,17 @@ Event{%endblock%} {%block css%}<link
   </p>
   <hr />
   <p class="event-going">
-    <span>{{event.going.all.count}}</span><br />
+    <span id="going-count-2">{{event.going.all.count}}</span><br />
     People Are Going
   </p>
   <hr />
+  {%if request.user != event.host%}
   <div class="d-flex justify-content-center my-4">
     <button class="btn my-btn" data-toggle="modal" data-target=".join_event">
       Join This Event
     </button>
   </div>
+  {%endif%}
   <div class="section-root">
     <div class="card bg-white mb-3 my-card">
       <div class="card-header">
@@ -54,23 +57,23 @@ Event{%endblock%} {%block css%}<link
         </div>
         <div>
           <i class="material-icons">import_export</i>
-          <span>{{event.going.all.count}}</span>
+          <span id="going-count">{{event.going.all.count}}</span>
         </div>
       </div>
-      <div class="card-body">
-        {%for i in "asdasdasdasdasdas"%}
-        <a href="#">
+      <div class="card-body" id="going-list">
+        {%for u in going %}
+        <a href="/u/{{u.user.username}}" target="_blank">
           <div class="travelers">
-            <img src="https://asifo1.github.io/images/profile-pic.jpg" />
-            <h5>Asif Shahrair</h5>
-            <h5>asif.past@gmail.com</h5>
+            <img src="{{u.picture.url}}" />
+            <h5>{{u.name}}</h5>
+            <h5>{{u.email}}</h5>
           </div>
         </a>
         {%endfor%}
       </div>
     </div>
   </div>
-  <div class="transtaction">
+  <div class="transtaction mb-4">
     <div class="card bg-white mb-3 my-card">
       <div class="card-header">
         <div>
@@ -78,31 +81,40 @@ Event{%endblock%} {%block css%}<link
         </div>
         <div>
           <i class="material-icons">import_export</i>
-          <span>{{event.pending.all.count}}</span>
+          <span id="pending-counter">{{event.pending.all.count}}</span>
         </div>
       </div>
+      {%if request.user == event.host%}
       <div class="card-body">
-        {%for i in "asdasdasdasdasdas"%}
+        {%for u in transaction %}
 
-        <div class="travelers">
-          <img src="https://asifo1.github.io/images/profile-pic.jpg" />
-          <a href="#">
-            <h5>Asif Shahrair</h5>
+        <div class="travelers" id="pending-{{u.user.id}}">
+          <a href="/u/{{u.user.username}}" target="_blank">
+            <h5>{{u.user.username}}</h5>
           </a>
-          <h5>Bkash</h5>
-          <h5>Transaction ID</h5>
+          <a href="/u/{{u.user.username}}" target="_blank">
+            <h5>{{u.user.email}}</h5>
+          </a>
+          <h5>{{u.method}}</h5>
+          <h5 title="Transactio ID">{{u.tr}}</h5>
           <div class="actions">
-            <button class="btn accept">Accept</button>
-            <button class="btn cancel">Cancel</button>
+            <button class="btn accept accept-btn" data-id="{{u.user.id}}">
+              Accept
+            </button>
+            <button class="btn cancel cancel-btn" data-id="{{u.user.id}}">
+              Cancel
+            </button>
           </div>
         </div>
 
         {%endfor%}
       </div>
+      {%endif%}
     </div>
   </div>
 </div>
 
+{%if request.user == event.host%}
 <!-- Modal edit event -->
 
 <div
@@ -247,7 +259,7 @@ Event{%endblock%} {%block css%}<link
   </div>
 </div>
 <!-- modal edit event  -->
-
+{%endif%} {%if request.user != event.host%}
 <!-- Modal join event -->
 
 <div
@@ -313,8 +325,7 @@ Event{%endblock%} {%block css%}<link
   </div>
 </div>
 <!-- modal join event  -->
-
-{%endblock%} {%block scripts%}
+{%endif%} {%endblock%} {%block scripts%}
 <script
   src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
