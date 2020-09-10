@@ -377,6 +377,7 @@ section {
   position: absolute;
   top: 4.8rem;
   left: 1rem;
+  z-index: 10000;
 }
 
 .error h4 {

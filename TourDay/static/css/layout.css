@@ -55,11 +55,12 @@ a:hover {
 
 .content {
   grid-area: content;
+  min-width: 60rem;
 }
 
 .left-menu {
   grid-area: menu;
-  min-width: 15rem;
+  min-width: 10rem;
   display: flex;
   align-items: center;
   height: 100vh;
@@ -107,7 +108,7 @@ a:hover {
 .ads {
   grid-area: ads;
   background-color: rgba(220, 20, 60, 0.096);
-  min-width: 20rem;
+  min-width: 10rem;
   min-height: 20rem;
   text-align: center;
   color: beige;
@@ -139,5 +140,8 @@ a:hover {
   }
   .left-menu {
     display: none;
+  }
+  .content {
+    min-width: 0;
   }
 }

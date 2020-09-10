@@ -19,30 +19,7 @@ Event{%endblock%} {%block css%}<link
       <i class="material-icons">add_box</i>
     </div>
   </div>
-  <div class="row mt-3">
-    {%for i in "123456789|make_list"%}
-    <div class="col-sm-12 col-md-12 col-lg-4">
-      <div class="items-card">
-        <a href="#" class="card-a">
-          <div class="card bg-white mb-3" style="max-width: auto">
-            <div class="card-header" style="text-align: center">2-10-2024</div>
-            <div class="card-body">
-              <h5 class="card-title">Tour to Cox's Bazar</h5>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content. Lorem, ipsum dolor sit amet
-                consectetur adipisicing elit. Saepe, id. Commodi veniam optio
-                architecto omnis nam inventore quisquam, consectetur deserunt,
-                dolor placeat rem dignissimos amet ipsa debitis quo, reiciendis
-                sunt.
-              </p>
-            </div>
-          </div></a
-        >
-      </div>
-    </div>
-    {%endfor%}
-  </div>
+  <div class="row mt-3" id="root-div"></div>
 </div>
 
 <!-- Modal add event -->
@@ -70,8 +47,8 @@ Event{%endblock%} {%block css%}<link
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Title</label>
-            <input type="text" class="form-control" id="recipient-name" />
+            <label for="title" class="col-form-label">Title</label>
+            <input type="text" class="form-control" id="title" />
           </div>
 
           <div class="form-group">
@@ -90,18 +67,17 @@ Event{%endblock%} {%block css%}<link
           <div class="form-group">
             <div class="row">
               <div class="col-md-6">
-                <label for="location" class="col-form-label"
-                  >Payment Method</label
-                ><select class="form-control">
-                  <option>Bkash</option>
-                  <option>Rocket</option>
-                  <option>Nagad</option>
+                <label class="col-form-label">Payment Method</label
+                ><select class="form-control" id="pay1_method">
+                  <option value="Bkash">Bkash</option>
+                  <option value="Rocket">Rocket</option>
+                  <option value="Nagad">Nagad</option>
                 </select>
               </div>
 
               <div class="col-md-6">
                 <label for="date" class="col-form-label">Account No</label>
-                <input type="number" class="form-control" />
+                <input type="number" class="form-control" id="pay1" />
               </div>
             </div>
           </div>
@@ -110,31 +86,33 @@ Event{%endblock%} {%block css%}<link
               <div class="col-md-6">
                 <label for="location" class="col-form-label"
                   >Payment Method</label
-                ><select class="form-control">
-                  <option>Bkash</option>
-                  <option>Rocket</option>
-                  <option>Nagad</option>
+                ><select class="form-control" id="pay2_method">
+                  <option value="Bkash">Bkash</option>
+                  <option value="Rocket">Rocket</option>
+                  <option value="Nagad">Nagad</option>
                 </select>
               </div>
 
               <div class="col-md-6">
                 <label for="date" class="col-form-label">Account No</label>
-                <input type="number" class="form-control" />
+                <input type="number" class="form-control" id="pay2" />
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Decription</label>
+            <label for="details" class="col-form-label">Decription</label>
             <textarea
               class="form-control"
-              id="message-text"
+              id="details"
               placeholder="write event description and Payment info"
             ></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn my-btn">Create</button>
+        <button type="button" id="create-event" class="btn my-btn">
+          Create
+        </button>
       </div>
     </div>
   </div>
