@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+def event_directory_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"{instance.id}.{ext}"
+    return f"event/{filename}"
+
+
 class Event(models.Model):
     host = models.ForeignKey(
         User, on_delete=models.CASCADE)
@@ -13,6 +19,8 @@ class Event(models.Model):
     pay1_method = models.CharField(max_length=7, null=True, blank=True)
     pay2 = models.CharField(max_length=15, null=True, blank=True)
     pay2_method = models.CharField(max_length=7, null=True, blank=True)
+    image = models.ImageField(upload_to=event_directory_path,
+                              blank=True, default="default/event.jpg")
     going = models.ManyToManyField(
         User, related_name="going_user", blank=True)
     pending = models.ManyToManyField(

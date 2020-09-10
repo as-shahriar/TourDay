@@ -72,7 +72,7 @@ document.getElementById("create-event").addEventListener("click", () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.status == 200) {
-        location.href = "/event/1";
+        location.href = `/event/${data.id}`;
       }
     });
 });

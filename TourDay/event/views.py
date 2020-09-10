@@ -23,7 +23,7 @@ def dashboard(request):
         event.pay1_method = request.POST.get('pay1_method')
         event.pay2_method = request.POST.get('pay2_method')
         event.save()
-        return JsonResponse({'status': 200})
+        return JsonResponse({'status': 200, "id": event.id})
     return render(request, 'event/dashboard.html')
 
 
@@ -39,5 +39,26 @@ class EventList(APIView, LimitOffsetPagination):
         return self.get_paginated_response(serializer.data)
 
 
+@csrf_exempt
+def edit_event(request, id):
+    if request.method == "POST":
+        event = Event.objects.get(id=id)
+        if request.user == event.host:
+            event.title = request.POST.get('title').title()
+            event.location = request.POST.get('location')
+            event.date = request.POST.get('date')
+            event.details = request.POST.get('details')
+            event.pay1 = request.POST.get('pay1')
+            event.pay2 = request.POST.get('pay2')
+            event.pay1_method = request.POST.get('pay1_method')
+            event.pay2_method = request.POST.get('pay2_method')
+            if request.FILES.get("image") != None:
+                event.image = request.FILES.get("image")
+            event.save()
+            return JsonResponse({'status': 200, "id": event.id})
+    return JsonResponse({'status': 400})
+
+
 def eventView(request, id):
-    return render(request, 'event/event.html')
+    event = Event.objects.get(id=id)
+    return render(request, 'event/event.html', {"event": event})
