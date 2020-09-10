@@ -9,11 +9,15 @@ env/
 #DataBase
 .DS_Store
 *.sqlite3
-media/
 *.pyc
 *.db
 
 
+#Media Files
+*/media/blog_pics
+*/media/event
+*/media/profile_pics
+*/media/uploads
 
 # django migrations 
 **/migrations/**
