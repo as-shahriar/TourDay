@@ -20,7 +20,7 @@ class Event(models.Model):
     pay2 = models.CharField(max_length=15, null=True, blank=True)
     pay2_method = models.CharField(max_length=7, null=True, blank=True)
     image = models.ImageField(upload_to=event_directory_path,
-                              blank=True, default="default/event.jpg")
+                              blank=True, default="defaults/event.jpg")
     going = models.ManyToManyField(
         User, related_name="going_user", blank=True)
     pending = models.ManyToManyField(

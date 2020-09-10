@@ -25,7 +25,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=101, blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
     picture = models.ImageField(upload_to=user_directory_path,
-                                blank=True, default="profile_pics/default.jpg")
+                                blank=True, default="defaults/user.png")
 
     def __str__(self):
         return f"{self.id} {self.user.username}"
