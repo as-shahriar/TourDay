@@ -1,0 +1,196 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block blog %}
+
+<header id="header">
+
+    <div id="post-header" class="page-header">
+        <div class="background-img" style="background-image: url('https://source.unsplash.com/user/erondu/1350x270');"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <ul class="page-header-breadcrumb">
+						<li><a href="{% url 'blog_home' %}">Home</a>{{request.path}}</li>
+					</ul>
+                    {% for post in post1|slice:":1" %}
+					<h2 style="color: aqua;">Post by {{post.blog_user.profile.name}}</h2>
+					{% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</header>
+
+
+		<!-- section -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+
+							{% for post in post1|slice:":1" %}
+							<!-- post -->
+							<div class="col-md-12">
+								<div class="post post-thumb">
+									<a class="post-img" href="{% url 'blog_details' post.id %}"><img class="img-responsive post-img-3" src="{{post.image.url}}" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
+											<span class="post-date">{{post.date}}</span>
+										</div>
+										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+									</div>
+								</div>
+							</div>
+							<!-- /post -->
+							{% endfor %}
+
+                            {% for post in post1|slice:"2:4" %}
+							<!-- post -->
+							<div class="col-md-6">
+								<div class="post">
+									<a class="post-img" href="{% url 'blog_details' post.id %}"><img class="img-responsive post-img-2" src="{{ post.image.url }}" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
+											<span class="post-date">{{post.date}}</span>
+										</div>
+										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+									</div>
+								</div>
+							</div>
+							<!-- /post -->
+
+                            {% endfor %}
+
+							
+							<div class="clearfix visible-md visible-lg"></div>
+							
+							<!-- ad -->
+							<div class="col-md-12">
+								<div class="section-row">
+									<a href="#">
+										<img class="img-responsive center-block add-2" src="{% static 'image/ad/ad-2.jpg'%}" alt="">
+									</a>
+								</div>
+							</div>
+                            <!-- ad -->
+                            
+                            {% for post in post %}
+							
+							<!-- post -->
+							<div class="col-md-12">
+								<div class="post post-row">
+									<a class="post-img" href="{% url 'blog_details' post.id %}"><img class="img-responsive post-img-6" src="{{ post.image.url }}" alt=""></a>
+									<div class="post-body">
+										<div class="post-meta">
+											<a class="post-category cat-2" href="{% url 'division_post' post.division %}">{{post.division}}</a>
+											<span class="post-date">{{post.date}}</span>
+										</div>
+										<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+										<!-- <p>{{post.description |safe | truncatewords:30 }}</p> -->
+									</div>
+								</div>
+							</div>
+							<!-- /post -->
+							
+							{% endfor %}
+
+						
+							<div class="col-md-12">
+
+								<div class="section-row">
+
+									{% if post.has_previous %}
+								<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ post.previous_page_number }}">Previous</a>
+								{% endif %}
+
+								{% for num in post.paginator.page_range %}
+								{% if post.number == num %}
+									<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+								{% elif num > post.number|add:'-3' and num < post.number|add:'3' %}
+									<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+								{% endif %}
+								{% endfor %}
+
+								{% if post.has_next %}
+								<a class="btn btn-outline-info mb-4" href="?page={{ post.next_page_number }}">Next</a>
+								<a class="btn btn-outline-info mb-4" href="?page={{ post.paginator.num_pages }}">Last</a>
+								{% endif %}
+									<!-- <button class="primary-button center-block">Load More</button> -->
+								</div>
+
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-4">
+						<!-- ad -->
+						<div class="aside-widget text-center">
+							<a href="#" style="display: inline-block;margin: auto;">
+								<img class="img-responsive add-1" src="{% static 'image/ad/ad-1.jpg'%}" alt="">
+							</a>
+						</div>
+						<!-- /ad -->
+
+                        <!-- post widget -->
+                        
+						<!-- <div class="aside-widget">
+							<div class="section-title">
+								<h2>Most Read</h2>
+							</div>
+
+							{% for post in random_post|slice:":4" %}
+							<div class="post post-widget">
+								<a class="post-img post-img-4" href="{% url 'blog_details' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
+								<div class="post-body">
+									<h3 class="post-title"><a href="{% url 'blog_details' post.id %}">{{post.title}}</a></h3>
+								</div>
+							</div>
+
+							{% endfor %} -->
+
+
+						
+						<!-- catagories -->
+						<div class="aside-widget">
+							<div class="section-title">
+								<h2>Division</h2>
+							</div>
+
+							<div class="category-widget">
+								<ul>
+									<li><a href="{% url 'division_post' 'Barishal' %}" class="cat-1">Barishal<span>{{di_count.Barishal}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Chittagong' %}" class="cat-1">Chittagong<span>{{di_count.Chittagong}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Dhaka' %}" class="cat-1">Dhaka<span>{{di_count.Dhaka}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Mymensingh' %}" class="cat-1">Mymensingh<span>{{di_count.Mymensingh}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Khulna' %}" class="cat-1">Khulna<span>{{di_count.Khulna}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Rajshahi' %}" class="cat-1">Rajshahi<span>{{di_count.Rajshahi}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Rangpur' %}" class="cat-1">Rangpur<span>{{di_count.Rangpur}}</span></a></li>
+									<li><a href="{% url 'division_post' 'Sylhet' %}" class="cat-1">Sylhet<span>{{di_count.Sylhet}}</span></a></li>
+								</ul>
+							</div>
+
+						</div>
+						<!-- /catagories -->
+					
+						
+					
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /section -->
+
+
+
+
+{% endblock %}

@@ -41,7 +41,7 @@
         </li>
         {%endif%}
         <li><a href="{% url 'search_page'%}">Search</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="{% url 'blog_home'%}">Blog</a></li>
         <li><a href="#">E-commerce</a></li>
         {% if not user.is_authenticated %}
         <li><a href="{% url 'login_page'%}">Login</a></li>
@@ -59,8 +59,11 @@
         </li>
         {%endif%}
         <li><a href="{% url 'search_page'%}">Search</a></li>
-        <li><a href="#">Blog</a></li>
+
+        <li><a href="{% url 'blog_home'%}">Blog</a></li>
+
         <li><a href="#">Event</a></li>
+
         <li><a href="#">E-commerce</a></li>
         {% if not user.is_authenticated %}
         <li><a href="{% url 'login_page'%}">Login</a></li>
@@ -81,7 +84,7 @@
       <div class="menu-icon addColor"><div class="hambargur"></div></div>
       <div class="items" id="items"></div>
     </div>
-
+    <div>{% block search %} {% endblock %}</div>
     <div class="parent">
       <div class="left-menu">
         <ul>

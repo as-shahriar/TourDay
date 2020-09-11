@@ -1,5 +1,29 @@
-{% extends 'base.html' %}{% load static %} {% block auth_template %}
+{% extends 'layout.html' %}{% load static %} {%block css%}<link
+  rel="stylesheet"
+  href="{% static 'blog/css/search.css'%}"
+/>{%endblock%} {% block title %}TourDay | Search{%endblock%} {% block search %}
+<style>
+  .left-menu,
+  .ads {
+    display: none;
+  }
+</style>
+<form>
+  <div class="main">
+    <img src="{% static 'image/logo.png'%}" alt="TourDay" class="big-logo" />
 
-<title>TourDay</title>
+    <div class="input-box">
+      <img src="{% static 'icon/search.png'%}" alt="" class="input-icon" />
+      <input
+        class="input-text"
+        type="text"
+        name="q"
+        placeholder="Explore your desire"
+      />
+    </div>
+    <button class="my-btn search-btn" type="submit">Search</button>
+  </div>
+</form>
+<footer>TourDay &copy; 2020</footer>
 
 {%endblock%}

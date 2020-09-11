@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+
+		<title>Tourday | Blog</title>
+
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"> 
+	
+    	
+
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}"/>
+
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="{% static 'blog/css/font-awesome.min.css' %}">
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="{% static 'blog/css/style.css' %}"/>
+
+		<link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
+
+		<!-- facebook comment  -->
+		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=443012716074216&autoLogAppEvents=1" nonce="5ZC714Ts"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    </head>
+	<body>
+
+		<div id="preloader">
+			<div id="status">
+				<img src="{% static 'image/loader.gif'%}" alt="">
+				&nbsp;</div>
+		  </div>
+		  
+		<!-- Header -->
+		<header id="header">
+			<!-- Nav -->
+			<div id="nav">
+				<!-- Main Nav -->
+				<div id="nav-fixed">
+					<div class="container">
+						<!-- logo -->
+						<div class="nav-logo">
+							<a href="{% url 'blog_home' %}" class="logo logo-1"><img src="{% static 'image/logo.png'%}" alt=""></a>
+						</div>
+						<!-- /logo -->
+
+						<!-- nav -->
+						<ul class="nav-menu nav navbar-nav">
+							{% if request.path == '/blog/home' %}
+							<li class="cat-1"><a href="{% url 'blog_home' %}">Home</a></li>
+							{% else %}
+							<li><a href="{% url 'blog_home' %}">Home</a></li>
+							{% endif %}
+							<li><a href="{% url 'portfolio' request.user %}">Profile</a></li>
+
+							{% if user.is_authenticated %}
+								{% if 'addpost' in request.path %}
+								<li class="cat-1"><a href="{% url 'addpost' %}">Add Post</a></li>
+								{% else %}
+								<li><a href="{% url 'addpost' %}">Add Post</a></li>
+								{% endif %}
+								{% if request.path|slice:":11" == '/blog/user/' %}
+								<li class="cat-1"><a href="{% url 'user_post' request.user %}">Posts</a></li>
+								{% else %}
+								<li><a href="{% url 'user_post' request.user %}">Posts</a></li>
+								{% endif %}
+							<li><a href="{% url 'login_page' %}">Logout</a></li>
+							
+							{% else %}
+							<li><a href="{% url 'login_page' %}">Login</a></li>
+							{% endif %}
+							
+						</ul>
+						<!-- /nav -->
+
+						<!-- search & aside toggle -->
+						<div class="nav-btns">
+							<button class="aside-btn"><i class="fa fa-bars"></i></button>
+							<button class="search-btn"><i class="fa fa-search"></i></button>
+							<form method="POST">
+								{% csrf_token %}
+								<div class="search-form">
+									<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+									<button type="submit" name="btn-search" class="search-close" ><i class="fa fa-search"></i></button>
+								
+								</div>
+							</form>
+						</div>
+
+						<!-- /search & aside toggle -->
+					</div>
+				</div>
+				<!-- /Main Nav -->
+
+				
+				
+				<!-- Aside Nav -->
+				<div id="nav-aside" style="background-color:   #76d7c4;">
+					<!-- nav -->
+					<div class="section-row">
+						<ul class="nav-aside-menu"  >
+							<li><a href="{% url 'blog_home' %}">Home</a></li>
+							<li><a href="{% url 'portfolio' request.user %}">Profile</a></li>
+
+							{% if user.is_authenticated %}
+								
+								<li><a href="{% url 'addpost' %}">Add Post</a></li>
+								<li><a href="{% url 'user_post' request.user %}">Posts</a></li>
+								<li><a href="{% url 'login_page' %}">Logout</a></li>
+							
+							{% else %}
+							<li><a href="{% url 'login_page' %}">Login</a></li>
+							{% endif %}
+						</ul>
+					</div>
+					<!-- /nav -->
+
+				
+					
+
+					<!-- aside nav close -->
+					<button class="nav-aside-close" style="color: red;" ><i class="fa fa-times"></i></button>
+					<!-- /aside nav close -->
+				</div>
+				<!-- Aside Nav -->
+
+
+
+
+			
+			</div>
+			<!-- /Nav -->
+		</header>
+		<!-- /Header -->
+
+		{% block blog %} {% endblock %}
+
+
+
+		<!-- Footer -->
+		<footer id="footer">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-5">
+						<div class="footer-widget">
+							<div class="footer-logo">
+								<a href="index.html" class="logo"><img src="" alt=""></a>
+							</div>
+							<ul class="footer-nav">
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">Advertisement</a></li>
+							</ul>
+							<div class="footer-copyright">
+								<span>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  <i class="fa fa-heart-o" aria-hidden="true"></i> Tourday</a>
+</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-6"></div>
+							<div class="col-md-6"></div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="footer-widget">
+							<h3 class="footer-title">Join our Newsletter</h3>
+							<div class="footer-newsletter">
+								<form>
+									<input class="input" type="email" name="newsletter" placeholder="Enter your email">
+									<button class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
+								</form>
+							</div>
+							<ul class="footer-social">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</footer>
+		<!-- /Footer -->
+
+		<!-- jQuery Plugins -->
+		<script src="{% static 'blog/js/jquery.min.js' %}"></script>
+		<script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'blog/js/main.js' %}"></script>
+
+	</body>
+</html>
