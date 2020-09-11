@@ -86,6 +86,24 @@ Profile{%endblock%} {%block css%}<link
       </div>
       <div class="field-edit" id="btn-fb">Edit</div>
     </div>
+    <div class="field">
+      <div
+        class="field-text pointer"
+        title="Enter only your Instagram username.  &#013;Example: www.instagramcom/username"
+      >
+        <b>Instagram:</b>
+        <span id="insta">{%if profile.insta%}{{profile.insta}}{%endif%}</span>
+        <input
+          class="input-field"
+          id="input-insta"
+          type="text"
+          placeholder="Enter only your Instagram username"
+          value="{%if profile.insta%}{{profile.insta}}{%endif%}"
+          autocomplete="off"
+        />
+      </div>
+      <div class="field-edit" id="btn-insta">Edit</div>
+    </div>
 
     <div class="field">
       <div class="field-text">

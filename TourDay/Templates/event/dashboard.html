@@ -14,35 +14,125 @@ Event{%endblock%} {%block css%}<link
       <i class="material-icons">explore</i>
       <h1>Events</h1>
     </div>
-    <div id="add_event">
+    <div id="add_event" data-toggle="modal" data-target=".add_event">
+      <h1>Create</h1>
       <i class="material-icons">add_box</i>
-      <h1>Create Event</h1>
     </div>
   </div>
-  <div class="row mt-3">
-    {%for i in "123456789|make_list"%}
-    <div class="col-sm-12 col-md-12 col-lg-4">
-      <div class="items-card">
-        <a href="#" class="card-a">
-          <div class="card text-white bg-info mb-3" style="max-width: auto">
-            <div class="card-header" style="text-align: center">2-10-2024</div>
-            <div class="card-body">
-              <h5 class="card-title">Tour to Cox's Bazar</h5>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content. Lorem, ipsum dolor sit amet
-                consectetur adipisicing elit. Saepe, id. Commodi veniam optio
-                architecto omnis nam inventore quisquam, consectetur deserunt,
-                dolor placeat rem dignissimos amet ipsa debitis quo, reiciendis
-                sunt.
-              </p>
-            </div>
-          </div></a
-        >
-      </div>
-    </div>
-    {%endfor%}
-  </div>
+  <div class="row mt-3" id="root-div"></div>
 </div>
 
+<!-- Modal add event -->
+
+<div
+  class="modal add_event"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Upcoming Event</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="title" class="col-form-label">Title</label>
+            <input type="text" class="form-control" id="title" />
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="location" class="col-form-label">Location</label>
+                <input type="text" class="form-control" id="location" />
+              </div>
+
+              <div class="col-md-6">
+                <label for="date" class="col-form-label">Date</label>
+                <input type="date" class="form-control" id="date" required />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label class="col-form-label">Payment Method</label
+                ><select class="form-control" id="pay1_method">
+                  <option value="Bkash">Bkash</option>
+                  <option value="Rocket">Rocket</option>
+                  <option value="Nagad">Nagad</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="date" class="col-form-label">Account No</label>
+                <input type="number" class="form-control" id="pay1" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="location" class="col-form-label"
+                  >Payment Method</label
+                ><select class="form-control" id="pay2_method">
+                  <option value="Bkash">Bkash</option>
+                  <option value="Rocket">Rocket</option>
+                  <option value="Nagad">Nagad</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="date" class="col-form-label">Account No</label>
+                <input type="number" class="form-control" id="pay2" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="details" class="col-form-label">Decription</label>
+            <textarea
+              class="form-control"
+              id="details"
+              placeholder="write event description and Payment info"
+            ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="create-event" class="btn my-btn">
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal add event  -->
+{%endblock%} {%block scripts%}
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'event/js/dashboard.js'%}"></script>
 {%endblock%}

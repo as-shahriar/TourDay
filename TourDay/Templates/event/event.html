@@ -1,0 +1,345 @@
+{%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
+Event{%endblock%} {%block css%}<link
+  rel="stylesheet"
+  href="{% static 'event/css/dashboard.css'%}"
+/><link
+  rel="stylesheet"
+  href="{% static 'event/css/event.css'%}"
+/>{%endblock%}{% block content %}
+<style>
+  #nav {
+    display: none;
+  }
+</style>
+
+<div class="root">
+  <input type="hidden" value="{{event.id}}" id="id" />
+  <div class="head-image">
+    <img src="{{event.image.url}}" srcset="" />
+    <div class="event-info">
+      <h1>{{event.title}}</h1>
+      <h5>{{event.location}}</h5>
+      <h5>{{event.date}}</h5>
+    </div>
+    {%if request.user == event.host%}
+    <div class="edit-event">
+      <i
+        class="material-icons text-white"
+        data-toggle="modal"
+        data-target=".edit_event"
+        >border_color</i
+      >
+    </div>
+    {%endif%}
+  </div>
+  <p class="event-details">{{event.details}}</p>
+  <p align="center" class="copy">
+    Copy Event Link <i class="material-icons" id="copy-url">content_copy</i>
+  </p>
+  <hr />
+  <p class="event-going">
+    <span id="going-count-2">{{event.going.all.count}}</span><br />
+    People Are Going
+  </p>
+  <hr />
+  {%if request.user != event.host%}
+  <div class="d-flex justify-content-center my-4">
+    <button class="btn my-btn" data-toggle="modal" data-target=".join_event">
+      Join This Event
+    </button>
+  </div>
+  {%endif%}
+  <div class="section-root">
+    <div class="card bg-white mb-3 my-card">
+      <div class="card-header">
+        <div>
+          <span>Going </span><i class="material-icons">flight_takeoff</i>
+        </div>
+        <div>
+          <i class="material-icons">import_export</i>
+          <span id="going-count">{{event.going.all.count}}</span>
+        </div>
+      </div>
+      <div class="card-body" id="going-list">
+        {%for u in going %}
+        <a href="/u/{{u.user.username}}" target="_blank">
+          <div class="travelers">
+            <img src="{{u.picture.url}}" />
+            <h5>{{u.name}}</h5>
+            <h5>{{u.email}}</h5>
+          </div>
+        </a>
+        {%endfor%}
+      </div>
+    </div>
+  </div>
+  <div class="transtaction mb-4">
+    <div class="card bg-white mb-3 my-card">
+      <div class="card-header">
+        <div>
+          <span>Pending Payments</span><i class="material-icons">data_usage</i>
+        </div>
+        <div>
+          <i class="material-icons">import_export</i>
+          <span id="pending-counter">{{event.pending.all.count}}</span>
+        </div>
+      </div>
+      {%if request.user == event.host%}
+      <div class="card-body">
+        {%for u in transaction %}
+
+        <div class="travelers" id="pending-{{u.user.id}}">
+          <a href="/u/{{u.user.username}}" target="_blank">
+            <h5>{{u.user.username}}</h5>
+          </a>
+          <a href="/u/{{u.user.username}}" target="_blank">
+            <h5>{{u.user.email}}</h5>
+          </a>
+          <h5>{{u.method}}</h5>
+          <h5 title="Transactio ID">{{u.tr}}</h5>
+          <div class="actions">
+            <button class="btn accept accept-btn" data-id="{{u.user.id}}">
+              Accept
+            </button>
+            <button class="btn cancel cancel-btn" data-id="{{u.user.id}}">
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        {%endfor%}
+      </div>
+      {%endif%}
+    </div>
+  </div>
+</div>
+
+{%if request.user == event.host%}
+<!-- Modal edit event -->
+
+<div
+  class="modal edit_event"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Event</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="title" class="col-form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            value="{{event.title}}"
+          />
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="location" class="col-form-label">Location</label>
+              <input
+                type="text"
+                class="form-control"
+                id="location"
+                value="{{event.location}}"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="date" class="col-form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                value="{{event.date|date:'Y-m-d'}}"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="location" class="col-form-label">Payment Method</label
+              ><select class="form-control" id="pay1_method">
+                <option selected="selected">{{event.pay1_method}}</option>
+                <option>Bkash</option>
+                <option>Rocket</option>
+                <option>Nagad</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="date" class="col-form-label">Account No</label>
+              <input
+                type="number"
+                class="form-control"
+                value="{{event.pay1}}"
+                id="pay1"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="location" class="col-form-label">Payment Method</label
+              ><select class="form-control" id="pay2_method">
+                <option selected="selected" value="{{event.pay2}}">
+                  {{event.pay2_method}}
+                </option>
+                <option>Bkash</option>
+                <option>Rocket</option>
+                <option>Nagad</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="date" class="col-form-label">Account No</label>
+              <input
+                type="number"
+                class="form-control"
+                value="{{event.pay2}}"
+                id="pay2"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="details" class="col-form-label">Decription</label>
+          <textarea
+            class="form-control"
+            id="details"
+            placeholder="write event description and Payment info"
+          >
+{{event.details}}</textarea
+          >
+        </div>
+        <div style="display: flex; justify-content: center">
+          <input type="file" id="image" style="display: none" />
+          <button
+            class="btn my-btn"
+            id="pic-btn"
+            onClick="document.getElementById('image').click()"
+          >
+            Upload Cover Image
+          </button>
+          <div id="img-preview" style="display: none">
+            <img
+              src="https://www.saanimages.com/wp-content/uploads/edd/2018/11/AFZ_4924_1-copy-820x480.jpeg"
+              width="100px"
+              class="ml-4"
+              id="pic_preview"
+            />
+            <i class="material-icons ml-2" id="preview-close">close</i>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn my-btn cancel">Delete</button>
+        <button type="button" id="edit-event" class="btn my-btn accept">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal edit event  -->
+{%endif%} {%if request.user != event.host%}
+<!-- Modal join event -->
+
+<div
+  class="modal join_event"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tour to Bandarban</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
+              porro aut, quos, quaerat veniam repudiandae sequi voluptates odit
+              id excepturi non quasi. Quod quo harum impedit reprehenderit velit
+              dolorum itaque?
+            </p>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-5 col-lg-3">
+                <label for="location" class="col-form-label"
+                  >Payment Method</label
+                ><select class="form-control">
+                  <option>Bkash</option>
+                  <option>Rocket</option>
+                  <option>Nagad</option>
+                </select>
+              </div>
+
+              <div class="col-md-7 col-lg-9">
+                <label for="date" class="col-form-label">Transaction ID</label>
+                <input type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <p align="center" class="text-danger">
+              *You can send the transaction number only once. Please check
+              before submit.
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn my-btn accept">Join Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal join event  -->
+{%endif%} {%endblock%} {%block scripts%}
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"
+></script>
+<script src="{% static 'event/js/event.js'%}"></script>
+{%endblock%}

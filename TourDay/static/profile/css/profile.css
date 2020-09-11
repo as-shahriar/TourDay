@@ -129,7 +129,8 @@ h2 {
 }
 
 /* edit-field custom width */
-#input-fb {
+#input-fb,
+#input-insta {
   max-width: 22rem;
 }
 #input-password {

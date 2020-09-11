@@ -43,7 +43,7 @@ h3 {
 }
 
 .profile-icon {
-  max-width: 3rem;
+  max-width: 2.2rem;
   cursor: pointer;
   margin-right: 0.8rem;
   transition: all 0.2s ease-out;
@@ -62,8 +62,8 @@ h3 {
   padding: 1.2rem;
   margin-left: 10rem;
   background-color: var(--background-color);
-  -webkit-box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  -webkit-close-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  -moz-close-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
   margin-right: 3rem;
   border-radius: 1rem;
@@ -279,8 +279,11 @@ input[type="date"]:focus {
   color: white;
   text-shadow: none;
 }
-.close:hover {
+.close:hover,
+.close:focus,
+.close:active {
   color: rgb(253, 223, 223);
+  outline: 0;
 }
 
 @media (max-width: 800px) {

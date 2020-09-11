@@ -2,7 +2,7 @@
   --background-color: #fbfbfb;
   --primary-color: #00284e;
   --primary-transparent-color: #00284eeb;
-  --primary-dark-color: #021527;
+  --primary-dark-color: #012241;
   --secondary-color: #992f31;
 }
 
@@ -377,6 +377,7 @@ section {
   position: absolute;
   top: 4.8rem;
   left: 1rem;
+  z-index: 10000;
 }
 
 .error h4 {

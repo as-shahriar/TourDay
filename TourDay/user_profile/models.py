@@ -21,10 +21,11 @@ class Profile(models.Model):
     name = models.CharField(max_length=80, blank=True, null=True)
     email = models.CharField(max_length=64, blank=True, null=True)
     fb = models.CharField(max_length=50, blank=True, null=True)
+    insta = models.CharField(max_length=50, blank=True, null=True)
     bio = models.CharField(max_length=101, blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
     picture = models.ImageField(upload_to=user_directory_path,
-                                blank=True, default="profile_pics/default.jpg")
+                                blank=True, default="defaults/user.png")
 
     def __str__(self):
         return f"{self.id} {self.user.username}"
@@ -46,7 +47,7 @@ class Post(models.Model):
     post = models.CharField(max_length=300, blank=True, null=True)
     image = models.ImageField(upload_to=post_image_path,
                               blank=True)
-    date = models.DateField(blank=True,null=True)
+    date = models.DateField(blank=True, null=True)
     location = models.CharField(max_length=17, blank=True, null=True)
     likes = models.ManyToManyField(
         User,  blank=True, related_name="liked_user")
