@@ -104,8 +104,8 @@
 										</div>
 										<p>  {{details_obj.blog_user.profile.bio}}</p>
 										<ul class="author-social">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+											<li><a href="http://www.facebook.com/{{details_obj.blog_user.profile.fb}}" onclick="window.open(this.href, 'windowName', 'width=1000, height=600, left=150, top=30, scrollbars, resizable'); return false;" rel="nofollow" target="_blank" ><i class="fa fa-facebook"></i></a></li>
+											<li><a href="http://www.instagram.com/{{details_obj.blog_user.profile.insta}}"onclick="window.open(this.href, 'windowName', 'width=1000, height=600, left=150, top=30, scrollbars, resizable'); return false;" rel="nofollow" target="_blank" ><i class="fa fa-instagram"></i></a></li>
 										</ul>
 										<br>
 										<a href="{% url 'portfolio' details_obj.blog_user %}">
