@@ -43,7 +43,7 @@
 									
 								</figure>
 								<div class="my-3">
-									<div class="fb-like" data-href="http://127.0.0.1:8000/blog/details/{{details_obj.id}}" data-width="" data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
+									<div class="fb-like" data-href="{{request.build_absolute_uri}}{{details_obj.id}}" data-width="" data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
 								</div>
 								<div class="text-justify" style="font-size: 17px;"> 
 									<p>{{details_obj.description|safe}}</p>
@@ -109,7 +109,7 @@
 										</ul>
 										<br>
 										<a href="{% url 'portfolio' details_obj.blog_user %}">
-										<h3>Writer's Profile</h3></a>
+										<h4>Writer's Profile</h4></a>
 									</div>
 								</div>
 							</div>
@@ -120,7 +120,7 @@
 						<div class="section-row">
 
 
-							<div class="fb-comments" data-href="http://127.0.0.1:8000/blog/details/{{details_obj.id}}" data-numposts="5" data-width="720"></div>
+							<div class="fb-comments" data-href="{{request.build_absolute_uri}}{{details_obj.id}}" data-numposts="5" data-width="720"></div>
 
 
 
