@@ -107,6 +107,14 @@ section {
   -ms-grid-columns: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
 }
+.link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+.link:hover {
+  color: var(--primary-dark-color-color);
+  text-decoration: none;
+}
 
 .left {
   display: -webkit-box;

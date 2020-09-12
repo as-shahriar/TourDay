@@ -29,7 +29,9 @@ def dashboard(request):
         event.pay2_method = request.POST.get('pay2_method')
         event.save()
         return JsonResponse({'status': 200, "id": event.id})
-    return render(request, 'event/dashboard.html')
+
+    events = Event.objects.filter(going__in=[request.user])
+    return render(request, 'event/dashboard.html', {"going_events": events})
 
 
 class EventList(APIView, LimitOffsetPagination):

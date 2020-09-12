@@ -19,11 +19,19 @@ Event{%endblock%} {%block css%}<link
       <i class="material-icons">add_box</i>
     </div>
   </div>
+  <hr />
+  <div class="going">
+    <a href="#" data-toggle="modal" data-target=".going_event"
+      ><h5 align="center">
+        Going <span class="badge badge-secondary">{{going_events.count}}</span>
+      </h5></a
+    >
+  </div>
+  <hr />
   <div class="row mt-3" id="root-div"></div>
 </div>
 
 <!-- Modal add event -->
-
 <div
   class="modal add_event"
   tabindex="-1"
@@ -132,6 +140,45 @@ Event{%endblock%} {%block css%}<link
         <button type="button" id="create-event" class="btn my-btn">
           Create
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal add event  -->
+<!-- Modal going event list-->
+<div
+  class="modal going_event"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Going Event List</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% for event in going_events %}
+        <div class="card mb-2">
+          <a href="{%url 'event_page' id=event.id%}" class="link"
+            ><div class="card-body">
+              <div class="box-root">
+                <div>{{event.title}}</div>
+                <div>{{event.date}}</div>
+              </div>
+            </div></a
+          >
+        </div>
+        {%endfor%}
       </div>
     </div>
   </div>

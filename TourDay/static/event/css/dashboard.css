@@ -15,7 +15,33 @@
 .head div {
   display: flex;
 }
+.going a {
+  color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+}
+.going a h5 {
+  display: inline;
+  margin-bottom: 0;
+}
 
+.going a h5 span {
+  background-color: var(--primary-dark-color);
+  padding: 0.4rem;
+}
+
+.going a:hover {
+  color: var(--primary-dark-color);
+  text-decoration: none;
+}
+
+.box-root {
+  display: flex;
+  justify-content: space-between;
+}
+.box-root div {
+  margin: 0 0.5rem;
+}
 .head i {
   font-size: 1.4rem;
   margin-right: 0.5rem;
