@@ -39,6 +39,8 @@
             </div>
           </a>
         </li>
+
+        <li><a href="{% url 'event_dashboard'%}">Event</a></li>
         {%endif%}
         <li><a href="{% url 'search_page'%}">Search</a></li>
         <li><a href="{% url 'blog_home'%}">Blog</a></li>
@@ -57,12 +59,14 @@
         <li>
           <a href="{% url 'portfolio' user.username %}">{{user.username}}</a>
         </li>
+        <li><a href="{% url 'event_dashboard'%}">Event</a></li>
         {%endif%}
         <li><a href="{% url 'search_page'%}">Search</a></li>
 
         <li><a href="{% url 'blog_home'%}">Blog</a></li>
 
-        <li><a href="#">Event</a></li>
+        
+       
 
         <li><a href="#">E-commerce</a></li>
         {% if not user.is_authenticated %}
@@ -104,7 +108,7 @@
           >
           {%endif%}
           <a href="{% url 'search_page'%}"><li><i class="material-icons">search</span></i><span>Search</span></li></a>
-          <a href="#"><li><i class="material-icons">article</i><span>Blog</span></li></a>
+          <a href="{% url 'blog_home'%}"><li><i class="material-icons">article</i><span>Blog</span></li></a>
           <a href="{% url 'event_dashboard'%}"><li><i class="material-icons">explore</i><span>Event</span></li></a>
           <a href="#"><li><i class="material-icons">add_shopping_cart</i><span>E-commerce</span></li></a>
           {% if user.is_authenticated %}

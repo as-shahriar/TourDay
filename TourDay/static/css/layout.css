@@ -60,7 +60,7 @@ a:hover {
 
 .left-menu {
   grid-area: menu;
-  min-width: 10rem;
+  min-width: 12rem;
   display: flex;
   align-items: center;
   height: 100vh;
@@ -143,5 +143,11 @@ a:hover {
   }
   .content {
     min-width: 0;
+  }
+}
+
+@media (max-height: 550px) {
+  .left-menu {
+    align-items: flex-end;
   }
 }

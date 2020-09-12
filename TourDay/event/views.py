@@ -9,8 +9,10 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from user_profile.models import Profile
 from _auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 @csrf_exempt
 def dashboard(request):
     if request.method == "POST":

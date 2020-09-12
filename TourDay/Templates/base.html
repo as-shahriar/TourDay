@@ -21,12 +21,12 @@
         {% if user.is_authenticated %}
         <li>
           <a href="{% url 'portfolio' user.username %}"
-            ><div style="display: flex; align-items: center;">
+            ><div style="display: flex; align-items: center">
               {%if nav_img%}<img
                 src="{{nav_img}}"
                 width="20px"
                 height="20px"
-                style="border-radius: 50%; margin-right: 5px;"
+                style="border-radius: 50%; margin-right: 5px"
               />{%endif%}{{user.username}}
             </div>
           </a>
@@ -68,9 +68,7 @@
           <!-- put left side content here -->
         </div>
         <div class="right">
-          <div class="form">
-            {% block auth_template %} {% endblock %}
-          </div>
+          <div class="form">{% block auth_template %} {% endblock %}</div>
         </div>
       </section>
     </div>
@@ -90,7 +88,7 @@
     <!-- Mobile logo and menu bar end-->
 
     <!-- error msg start-->
-    <div class="error" style="display: none;">
+    <div class="error" style="display: none">
       <img src="{%static 'icon/close.svg'%}" id="close-error" alt="X" />
       <h4 id="error-msg">Wrong Username or Password. Try again.</h4>
     </div>

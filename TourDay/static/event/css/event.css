@@ -42,6 +42,12 @@
   cursor: pointer;
   padding: 0.2rem;
 }
+.login_signup_link {
+  font-size: 1.2rem;
+}
+.login_signup_link a:hover {
+  color: var(--primary-dark-color);
+}
 
 .event-info h1 {
   font-weight: 600;

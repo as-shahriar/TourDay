@@ -42,7 +42,13 @@ Event{%endblock%} {%block css%}<link
     People Are Going
   </p>
   <hr />
-  {%if request.user != event.host%}
+  {%if not request.user.is_authenticated %}
+  <p align="center" class="login_signup_link">
+    <a href="{% url 'login_page' %}?next=/event/{{event.id}}">Login</a> or
+    <a href="{% url 'signup_page' %}?next=/event/{{event.id}}">Sign up</a> to
+    join this event.
+  </p>
+  {%elif request.user != event.host%}
   <div class="d-flex justify-content-center my-4">
     <button class="btn my-btn" data-toggle="modal" data-target=".join_event">
       Join This Event
@@ -186,10 +192,11 @@ Event{%endblock%} {%block css%}<link
             <div class="col-md-6">
               <label for="date" class="col-form-label">Account No</label>
               <input
-                type="number"
+                type="text"
                 class="form-control"
                 value="{{event.pay1}}"
                 id="pay1"
+                placeholder="01xxxxxxxxx"
               />
             </div>
           </div>
@@ -211,10 +218,11 @@ Event{%endblock%} {%block css%}<link
             <div class="col-md-6">
               <label for="date" class="col-form-label">Account No</label>
               <input
-                type="number"
+                type="text"
                 class="form-control"
                 value="{{event.pay2}}"
                 id="pay2"
+                placeholder="01xxxxxxxxx"
               />
             </div>
           </div>
