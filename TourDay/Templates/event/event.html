@@ -20,6 +20,7 @@ Event{%endblock%} {%block css%}<link
       <h1>{{event.title}}</h1>
       <h5>{{event.location}}</h5>
       <h5>{{event.date}}</h5>
+      <h5>&#2547; {{event.cost}}</h5>
     </div>
     {%if request.user == event.host%}
     <div class="edit-event">
@@ -49,10 +50,23 @@ Event{%endblock%} {%block css%}<link
     join this event.
   </p>
   {%elif request.user != event.host%}
-  <div class="d-flex justify-content-center my-4">
-    <button class="btn my-btn" data-toggle="modal" data-target=".join_event">
+  <div class="d-flex justify-content-center my-4" id="payment-div">
+    {%if request.user in event.pending.all %}
+    <h3><span class="badge badge-info px-5 py-2">Payment Pending</span></h3>
+    {%elif request.user in event.going.all %}
+    <h3>
+      <span class="badge badge-success px-5 py-2">Payment Confirmed</span>
+    </h3>
+    {%else%}
+    <button
+      class="btn my-btn"
+      id="join-modal-btn"
+      data-toggle="modal"
+      data-target=".join_event"
+    >
       Join This Event
     </button>
+    {%endif%}
   </div>
   {%endif%}
   <div class="section-root">
@@ -155,7 +169,7 @@ Event{%endblock%} {%block css%}<link
         </div>
         <div class="form-group">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="location" class="col-form-label">Location</label>
               <input
                 type="text"
@@ -165,7 +179,7 @@ Event{%endblock%} {%block css%}<link
               />
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="date" class="col-form-label">Date</label>
               <input
                 type="date"
@@ -173,6 +187,16 @@ Event{%endblock%} {%block css%}<link
                 id="date"
                 value="{{event.date|date:'Y-m-d'}}"
                 required
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="location" class="col-form-label">Travel Cost</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cost"
+                value="{{event.cost}}"
+                placeholder="&#2547; xxxx"
               />
             </div>
           </div>
@@ -247,12 +271,7 @@ Event{%endblock%} {%block css%}<link
             Upload Cover Image
           </button>
           <div id="img-preview" style="display: none">
-            <img
-              src="https://www.saanimages.com/wp-content/uploads/edd/2018/11/AFZ_4924_1-copy-820x480.jpeg"
-              width="100px"
-              class="ml-4"
-              id="pic_preview"
-            />
+            <img src="" width="100px" class="ml-4" id="pic_preview" />
             <i class="material-icons ml-2" id="preview-close">close</i>
           </div>
         </div>
@@ -280,12 +299,13 @@ Event{%endblock%} {%block css%}<link
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Tour to Bandarban</h5>
+        <h5 class="modal-title">{{event.title}}</h5>
         <button
           type="button"
           class="close"
           data-dismiss="modal"
           aria-label="Close"
+          id="close-modal"
         >
           <span aria-hidden="true">&times;</span>
         </button>
@@ -293,11 +313,12 @@ Event{%endblock%} {%block css%}<link
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-              porro aut, quos, quaerat veniam repudiandae sequi voluptates odit
-              id excepturi non quasi. Quod quo harum impedit reprehenderit velit
-              dolorum itaque?
+            <p class="mb-1">Payment Amount: <b>&#2547; {{event.cost}}</b></p>
+
+            <p class="mb-1">Payment Information:</p>
+            <p align="center">
+              <b>Bkash - 01719563829</b> <br />
+              <b>Rocket - 01719563829</b>
             </p>
           </div>
           <div class="form-group">
@@ -305,7 +326,7 @@ Event{%endblock%} {%block css%}<link
               <div class="col-md-5 col-lg-3">
                 <label for="location" class="col-form-label"
                   >Payment Method</label
-                ><select class="form-control">
+                ><select class="form-control" id="pay_method">
                   <option>Bkash</option>
                   <option>Rocket</option>
                   <option>Nagad</option>
@@ -314,7 +335,12 @@ Event{%endblock%} {%block css%}<link
 
               <div class="col-md-7 col-lg-9">
                 <label for="date" class="col-form-label">Transaction ID</label>
-                <input type="text" class="form-control" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="tr-id"
+                  placeholder="TrxID xxxxxxxxxx"
+                />
               </div>
             </div>
           </div>
@@ -327,7 +353,9 @@ Event{%endblock%} {%block css%}<link
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn my-btn accept">Join Now</button>
+        <button type="button" class="btn my-btn accept" id="join-send-btn">
+          Join Now
+        </button>
       </div>
     </div>
   </div>

@@ -164,6 +164,7 @@
   color: var(--primary-color);
   text-decoration: none;
 }
+
 @media (max-width: 800px) {
   .travelers {
     flex-direction: column;

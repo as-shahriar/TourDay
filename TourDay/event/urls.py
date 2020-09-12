@@ -6,5 +6,6 @@ urlpatterns = [
     path("get_events/", views.EventList.as_view()),
     path("edit_events/<int:id>", views.edit_event),
     path("action/<int:id>", views.action),
+    path("pay/<int:id>", views.pay),
 
 ]

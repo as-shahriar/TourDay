@@ -24,6 +24,7 @@ def dashboard(request):
         event.details = request.POST.get('details')
         event.pay1 = request.POST.get('pay1')
         event.pay2 = request.POST.get('pay2')
+        event.cost = request.POST.get('cost')
         event.pay1_method = request.POST.get('pay1_method')
         event.pay2_method = request.POST.get('pay2_method')
         event.save()
@@ -43,6 +44,7 @@ class EventList(APIView, LimitOffsetPagination):
         return self.get_paginated_response(serializer.data)
 
 
+@login_required
 @csrf_exempt
 def edit_event(request, id):
     if request.method == "POST":
@@ -54,6 +56,7 @@ def edit_event(request, id):
             event.details = request.POST.get('details')
             event.pay1 = request.POST.get('pay1')
             event.pay2 = request.POST.get('pay2')
+            event.cost = request.POST.get('cost')
             event.pay1_method = request.POST.get('pay1_method')
             event.pay2_method = request.POST.get('pay2_method')
             if request.FILES.get("image") != None:
@@ -70,6 +73,7 @@ def eventView(request, id):
     return render(request, 'event/event.html', {"event": event, "going": going, "transaction": transaction})
 
 
+@login_required
 @csrf_exempt
 def action(request, id):
     if request.method == "POST":
@@ -97,3 +101,25 @@ def action(request, id):
             return JsonResponse({'status': 200})
 
     return JsonResponse({'status': 400})
+
+
+@login_required
+@csrf_exempt
+def pay(request, id):
+    if request.method == "POST":
+        method = request.POST.get("method").strip()
+        tr = request.POST.get("tr").strip()
+        try:
+            event = Event.objects.get(id=id)
+            obj = Transactions()
+            obj.event = event
+            obj.method = method
+            obj.tr = tr
+            obj.user = request.user
+            obj.save()
+            event.pending.add(request.user)
+            event.save()
+            return JsonResponse({"status": 200})
+        except:
+            pass
+    return JsonResponse({"status": 400})

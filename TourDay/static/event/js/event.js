@@ -59,7 +59,14 @@ if (select_picture != null) {
     location_ = document.getElementById("location").value;
     date = document.getElementById("date").value;
     details = document.getElementById("details").value;
-    if (title == "" || location_ == "" || date == "" || details == "") {
+    cost = document.getElementById("cost").value;
+    if (
+      title == "" ||
+      location_ == "" ||
+      date == "" ||
+      details == "" ||
+      cost == ""
+    ) {
       $("#error-msg").text("Fill up all fileds.");
       $(".error").show();
       hide_error();
@@ -70,6 +77,7 @@ if (select_picture != null) {
     form.append("location", location_);
     form.append("date", date);
     form.append("details", details);
+    form.append("cost", cost);
     form.append("pay1", document.getElementById("pay1").value);
     form.append("pay2", document.getElementById("pay2").value);
     form.append("pay1_method", document.getElementById("pay1_method").value);
@@ -171,4 +179,40 @@ function hide_pending(id) {
   document.getElementById(`pending-${id}`).style.display = "none";
   counter = document.getElementById("pending-counter");
   counter.textContent = parseInt(counter.textContent) - 1;
+}
+
+join_send_btn = document.getElementById("join-send-btn");
+if (join_send_btn != null) {
+  join_send_btn.addEventListener("click", () => {
+    id = document.getElementById("id").value;
+    tr = document.getElementById("tr-id").value;
+    method = document.getElementById("pay_method").value;
+    if (tr == "") {
+      $("#error-msg").text("Transaction ID is required");
+      $(".error").show();
+      hide_error();
+      return;
+    }
+
+    form = new FormData();
+    form.append("method", method);
+    form.append("tr", tr);
+
+    fetch(`/event/pay/${id}`, { method: "POST", body: form })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status == 200) {
+          h3 = document.createElement("h3");
+          span = document.createElement("span");
+          span.setAttribute("class", "badge badge-info px-5 py-2");
+          span.textContent = "Payment Pending";
+          h3.appendChild(span);
+          document.getElementById("payment-div").appendChild(h3);
+          document.getElementById("join-modal-btn").style.display = "none";
+          counter = document.getElementById("pending-counter");
+          counter.textContent = parseInt(counter.textContent) + 1;
+          document.getElementById("close-modal").click();
+        }
+      });
+  });
 }

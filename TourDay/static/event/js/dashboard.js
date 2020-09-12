@@ -49,7 +49,14 @@ document.getElementById("create-event").addEventListener("click", () => {
   location_ = document.getElementById("location").value;
   date = document.getElementById("date").value;
   details = document.getElementById("details").value;
-  if (title == "" || location_ == "" || date == "" || details == "") {
+  cost = document.getElementById("cost").value;
+  if (
+    title == "" ||
+    location_ == "" ||
+    date == "" ||
+    details == "" ||
+    cost == ""
+  ) {
     $("#error-msg").text("Fill up all fileds.");
     $(".error").show();
     hide_error();
@@ -60,6 +67,7 @@ document.getElementById("create-event").addEventListener("click", () => {
   form.append("location", location_);
   form.append("date", date);
   form.append("details", details);
+  form.append("cost", cost);
   form.append("pay1", document.getElementById("pay1").value);
   form.append("pay2", document.getElementById("pay2").value);
   form.append("pay1_method", document.getElementById("pay1_method").value);
