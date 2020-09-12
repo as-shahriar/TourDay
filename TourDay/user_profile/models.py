@@ -15,7 +15,6 @@ def post_image_path(instance, filename):
     filename = f"{instance.id}.{ext}"
     return f"profile_pics/{instance.user.username}/posts/{filename}"
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80, blank=True, null=True)

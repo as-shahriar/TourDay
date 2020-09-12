@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from blog.models import blogPost
 from django.core.paginator import Paginator
 from django.db.models import Q
-
+from user_profile.models import Profile
 
 
 
@@ -83,6 +83,7 @@ def details(request, id):
 
 @login_required
 def addPost(request):
+    pro = get_object_or_404(Profile, user=request.user)
 
     if request.method == 'POST' and 'btn-search' in request.POST:
         q = request.POST.get('search').strip()
@@ -91,14 +92,19 @@ def addPost(request):
             return redirect('blog_search')
     
     if request.method == 'POST'  and 'blog_submit' in request.POST:
-        form = blogPostForm(request.POST, request.FILES)
-        if form.is_valid():
-            post_item = form.save(commit=False)
-            post_item.blog_user = request.user
-            post_item.slug = request.user
-            # info.user_id = request.user.id
-            post_item.save()
-            return redirect('blog_home')
+
+        if pro.name is not None and pro.bio is not None and pro.fb is not None and pro.insta is not None:
+            
+            form = blogPostForm(request.POST, request.FILES)
+            if form.is_valid():
+                post_item = form.save(commit=False)
+                post_item.blog_user = request.user
+                post_item.slug = request.user
+                # info.user_id = request.user.id
+                post_item.save()
+                return redirect('blog_home')
+        else:
+            return redirect('edit_profile')
            
     else:
         form = blogPostForm()
