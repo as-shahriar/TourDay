@@ -3,6 +3,7 @@ const { task, src, dest, series, watch } = gulp;
 const sass = require("gulp-sass");
 const cleanCSS = require("gulp-clean-css");
 const uglify = require("gulp-uglify-es").default;
+const rename = require("gulp-rename");
 
 //convert base.scss to css and minify
 task("base", (done) => {
@@ -80,6 +81,26 @@ task("profile", (done) => {
     .pipe(sass().on("error", sass.logError))
     .pipe(cleanCSS())
     .pipe(dest("TourDay/static/profile/css/"));
+
+  done();
+});
+
+// blog -> style.css minify
+task("style", (done) => {
+  src("TourDay/static/blog/css/style.css")
+    .pipe(cleanCSS())
+    .pipe(rename({ suffix: ".min" }))
+    .pipe(dest("TourDay/static/blog/css/"));
+
+  done();
+});
+
+// blog -> search.css minify
+task("search", (done) => {
+  src("TourDay/static/blog/css/search.css")
+    .pipe(cleanCSS())
+    .pipe(rename({ suffix: ".min" }))
+    .pipe(dest("TourDay/static/blog/css/"));
 
   done();
 });
@@ -172,6 +193,15 @@ task("croppiejs", (done) => {
   done();
 });
 
+// minify mainjs
+task("mainjs", (done) => {
+  src("TourDay/static/blog/js/main.js")
+    .pipe(uglify())
+    .pipe(rename({ suffix: ".min" }))
+    .pipe(dest("TourDay/static/blog/js"));
+  done();
+});
+
 task("watch", function () {
   watch("TourDay/static/sass/base.scss", series("base"));
   watch("TourDay/static/sass/croppie.scss", series("croppie"));
@@ -204,6 +234,8 @@ task(
     "map",
     "portfolio",
     "profile",
+    "style",
+    "search",
     "forgetjs",
     "loginjs",
     "resetjs",
@@ -214,6 +246,7 @@ task(
     "portfoliojs",
     "profilejs",
     "basejs",
-    "croppiejs"
+    "croppiejs",
+    "mainjs"
   )
 );
