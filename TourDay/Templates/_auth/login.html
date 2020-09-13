@@ -3,7 +3,7 @@
 
 <title>TourDay | Login</title>
 <form method="POST">
-{% csrf_token%}
+  {% csrf_token%}
   <div class="form-control">
     <h3 id="forget-title">Login</h3>
     <label for="username">Username:</label>
@@ -33,17 +33,16 @@
   </div>
 </form>
 <div class="social-box">
-<div class="social-auth">
-  <img src="{% static 'image/fb.png'%}" alt="FB logo" />
-  <p>Login with Facebook</p>
-</div>
-<div class="social-auth">
-  <img src="{% static 'image/google.png'%}" alt="Google logo" />
-  <p>Login with Google</p>
-</div>
+  <div class="social-auth">
+    <img src="{% static 'image/fb.png'%}" alt="FB logo" />
+    <p>Login with Facebook</p>
+  </div>
+  <div class="social-auth">
+    <img src="{% static 'image/google.png'%}" alt="Google logo" />
+    <p>Login with Google</p>
+  </div>
 </div>
 
+{%endblock%} {% block scripts%}
+<script src="{% static '_auth/js-min/login.js'%}"></script>
 {%endblock%}
-
-
-{% block scripts%}<script src="{% static '_auth/js/login.js'%}"></script>{%endblock%}

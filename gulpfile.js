@@ -1,6 +1,8 @@
-const { task, src, dest, series, watch } = require("gulp");
+const gulp = require("gulp");
+const { task, src, dest, series, watch } = gulp;
 const sass = require("gulp-sass");
 const cleanCSS = require("gulp-clean-css");
+const uglify = require("gulp-uglify-es").default;
 
 //convert base.scss to css and minify
 task("base", (done) => {
@@ -82,6 +84,94 @@ task("profile", (done) => {
   done();
 });
 
+// minify forget.js
+task("forgetjs", (done) => {
+  src("TourDay/static/_auth/js/forgetpassword.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/_auth/js-min"));
+  done();
+});
+
+// minify login.js
+task("loginjs", (done) => {
+  src("TourDay/static/_auth/js/login.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/_auth/js-min"));
+  done();
+});
+
+// minify reset.js
+task("resetjs", (done) => {
+  src("TourDay/static/_auth/js/resetpassword.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/_auth/js-min"));
+  done();
+});
+
+// minify signup.js
+task("signupjs", (done) => {
+  src("TourDay/static/_auth/js/signup.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/_auth/js-min"));
+  done();
+});
+
+// minify dashboard.js
+task("dashboardjs", (done) => {
+  src("TourDay/static/event/js/dashboard.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/event/js-min"));
+  done();
+});
+
+// minify eventjs
+task("eventjs", (done) => {
+  src("TourDay/static/event/js/event.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/event/js-min"));
+  done();
+});
+
+// minify mapjs
+task("mapjs", (done) => {
+  src("TourDay/static/profile/js/map.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/profile/js-min"));
+  done();
+});
+
+// minify portfoliojs
+task("portfoliojs", (done) => {
+  src("TourDay/static/profile/js/portfolio.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/profile/js-min"));
+  done();
+});
+
+// minify profilejs
+task("profilejs", (done) => {
+  src("TourDay/static/profile/js/profile.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/profile/js-min"));
+  done();
+});
+
+// minify basejs
+task("basejs", (done) => {
+  src("TourDay/static/js/base.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/js-min"));
+  done();
+});
+
+// minify croppiejs
+task("croppiejs", (done) => {
+  src("TourDay/static/js/croppie.js")
+    .pipe(uglify())
+    .pipe(dest("TourDay/static/js-min"));
+  done();
+});
+
 task("watch", function () {
   watch("TourDay/static/sass/base.scss", series("base"));
   watch("TourDay/static/sass/croppie.scss", series("croppie"));
@@ -91,16 +181,39 @@ task("watch", function () {
   watch("TourDay/static/profile/sass/map.scss", series("map"));
   watch("TourDay/static/profile/sass/portfolio.scss", series("portfolio"));
   watch("TourDay/static/profile/sass/profile.scss", series("profile"));
+  watch("TourDay/static/_auth/js/forgetpassword.js", series("forgetjs"));
+  watch("TourDay/static/_auth/js/login.js", series("loginjs"));
+  watch("TourDay/static/_auth/js/resetpassword.js", series("resetjs"));
+  watch("TourDay/static/_auth/js/signup.js", series("signupjs"));
+  watch("TourDay/static/event/js/dashboard.js", series("dashboardjs"));
+  watch("TourDay/static/event/js/event.js", series("eventjs"));
+  watch("TourDay/static/profile/js/map.js", series("mapjs"));
+  watch("TourDay/static/profile/js/portfolio.js", series("portfoliojs"));
+  watch("TourDay/static/profile/js/profile.js", series("profilejs"));
+  watch("TourDay/static/js/base.js", series("basejs"));
 });
 
-task("default", (done) => {
-  series("base");
-  series("croppie");
-  series("layout");
-  series("event");
-  series("dashboard");
-  series("map");
-  series("portfolio");
-  series("profile");
-  done();
-});
+task(
+  "default",
+  series(
+    "base",
+    "croppie",
+    "layout",
+    "event",
+    "dashboard",
+    "map",
+    "portfolio",
+    "profile",
+    "forgetjs",
+    "loginjs",
+    "resetjs",
+    "signupjs",
+    "dashboardjs",
+    "eventjs",
+    "mapjs",
+    "portfoliojs",
+    "profilejs",
+    "basejs",
+    "croppiejs"
+  )
+);
