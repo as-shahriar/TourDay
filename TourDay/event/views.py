@@ -125,3 +125,28 @@ def pay(request, id):
         except:
             pass
     return JsonResponse({"status": 400})
+
+
+@login_required
+def delete_event(request, id):
+    event = Event.objects.get(id=id)
+    if request.user == event.host:
+        event.delete()
+        return JsonResponse({"status": 200})
+    return JsonResponse({"status": 400})
+
+
+def create_event(n, request):
+    for i in range(n):
+        event = Event()
+        event.host = request.user
+        event.title = str(n)
+        event.location = "xyz"
+        event.date = "1990-02-02"
+        event.details = "xyz"
+        event.pay1 = 12
+        event.pay2 = 12
+        event.cost = 12
+        event.pay1_method = "xyz"
+        event.pay2_method = "xyz"
+        event.save()

@@ -44,6 +44,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  overflow: hidden;
 }
 .loader {
   background-color: var(--background-color);
@@ -95,6 +96,17 @@ nav {
         }
       }
     }
+  }
+}
+#post-loder {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+
+  img {
+    width: 35px;
+    height: auto;
   }
 }
 
