@@ -1,0 +1,149 @@
+.root {
+  width: 100%;
+  background-color: rgba(165, 42, 42, 0.034);
+  z-index: 100;
+  padding: 0 5rem;
+  background-color: var(--background-color);
+}
+.head {
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  div {
+    display: flex;
+  }
+}
+.going {
+  a {
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    h5 {
+      display: inline;
+      margin-bottom: 0;
+      span {
+        background-color: var(--primary-dark-color);
+        padding: 0.4rem;
+      }
+    }
+    &:hover {
+      color: var(--primary-dark-color);
+      text-decoration: none;
+    }
+  }
+}
+
+.box-root {
+  display: flex;
+  justify-content: space-between;
+  div {
+    margin: 0 0.5rem;
+  }
+}
+.head {
+  i {
+    font-size: 1.4rem;
+    margin-right: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+}
+#add_event {
+  cursor: pointer;
+  i {
+    margin-left: 0.5rem;
+  }
+}
+.card-a,
+.card-a:hover {
+  text-decoration: none !important;
+  color: var(--primary-color);
+}
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+.card {
+  min-width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  box-shadow: none !important;
+  border-color: var(--primary-color);
+}
+/* date style */
+/* Removes the clear button from date inputs */
+input[type="date"] {
+  border: none;
+  box-sizing: border-box;
+  outline: 0;
+  position: relative;
+  border: 0.5px rgba(0, 0, 0, 0.192) solid;
+  border-radius: 1rem;
+  padding-left: 1rem;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+input[type="date"]::-webkit-clear-button {
+  display: none;
+} /* Removes the spin button */
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+} /* Always display the drop down caret */
+
+input[type="date"]:focus {
+  color: var(--primary-color);
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  outline: none;
+}
+/* date style */
+
+/* outline remove for clone btn */
+.modal-header .close {
+  outline: 0;
+}
+.bg-white {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px #00000014;
+  &:hover {
+    box-shadow: 0px 0px 10px #00000028;
+  }
+}
+.card-header {
+  text-align: center;
+}
+@media (max-width: 800px) {
+  .head {
+    i {
+      font-size: 1.2rem;
+      margin-right: 0.2rem;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+    }
+  }
+  .root {
+    padding: 1rem;
+  }
+}

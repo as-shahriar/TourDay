@@ -1,0 +1,24 @@
+{
+  "name": "tourday",
+  "version": "1.0.0",
+  "description": "#### Tourism & Tourist Community",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asifo1/TourDay.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asifo1/TourDay/issues"
+  },
+  "homepage": "https://github.com/asifo1/TourDay#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^4.1.0"
+  }
+}

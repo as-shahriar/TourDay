@@ -1,0 +1,327 @@
+.root {
+  display: flex;
+  width: 100%;
+}
+
+.right-div {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 4rem;
+  align-items: center;
+}
+
+.left-div {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 1.5rem 1rem;
+  margin-left: 4rem;
+}
+#edit-link {
+  margin-top: 20px;
+  margin-left: 0.7rem;
+  text-decoration: none;
+  i {
+    color: #00284ed6;
+  }
+}
+
+#pro_pic {
+  max-width: 6rem;
+  max-height: 6rem;
+  border-radius: 50%;
+}
+
+h3 {
+  margin-bottom: 1px;
+}
+
+.info {
+  margin-left: 1rem;
+}
+
+.profile-icon {
+  max-width: 2.2rem;
+  cursor: pointer;
+  margin-right: 0.8rem;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.9);
+    transform: translateY(2px);
+  }
+}
+
+.add_post {
+  padding: 1.2rem;
+  margin-left: 10rem;
+  background-color: var(--background-color);
+  -webkit-close-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  -moz-close-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  margin-right: 3rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+.head {
+  margin-bottom: 0.4rem;
+}
+#add-post-text {
+  width: 100%;
+  resize: vertical;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  outline: 0;
+  border: 0.5px rgba(0, 0, 0, 0.192) solid;
+  background: transparent;
+}
+.info-box {
+  display: flex;
+  justify-content: space-evenly;
+
+  margin-bottom: 0.1rem;
+  div {
+    display: flex;
+    margin-right: 0.5rem;
+    z-index: 0;
+    i {
+      color: #00284ed6;
+    }
+    input,
+    select,
+    button {
+      margin-left: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+/* date style */
+/* Removes the clear button from date inputs */
+input[type="date"] {
+  border: none;
+  box-sizing: border-box;
+  outline: 0;
+  position: relative;
+  border: 0.5px rgba(0, 0, 0, 0.192) solid;
+  border-radius: 1rem;
+  padding-left: 1rem;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+input[type="date"]::-webkit-clear-button {
+  display: none;
+} /* Removes the spin button */
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+} /* Always display the drop down caret */
+
+input[type="date"]:focus {
+  color: var(--primary-color);
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  outline: none;
+}
+/* date style */
+
+#city {
+  min-width: 11rem;
+  outline: none;
+  padding: 0.2rem;
+  border: 0.5px rgba(0, 0, 0, 0.192) solid;
+  background: transparent;
+}
+
+#pic-btn,
+#pic-btn:focus {
+  min-width: 3rem;
+  padding: 0.2rem 0.8rem;
+  border: 0.5px rgba(0, 0, 0, 0.192) solid;
+  background: transparent;
+  border-radius: 0.5rem;
+  outline: 1px;
+}
+
+#preview {
+  min-width: 84px;
+}
+.posts {
+  margin-bottom: 2rem;
+}
+.post {
+  padding-top: 0;
+  margin-left: 10rem;
+  margin-bottom: 2rem;
+  background-color: var(--background-color);
+  -webkit-box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.3);
+  margin-right: 3rem;
+  border-radius: 1rem;
+  background-color: #ebebeb;
+}
+
+.post-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #c4c4c4;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.8rem;
+}
+.date-div {
+  display: flex;
+  align-items: center;
+  span {
+    padding-top: 5px;
+  }
+  i {
+    cursor: pointer;
+    margin-left: 0.6rem;
+  }
+}
+
+.user-img {
+  width: 20px;
+  border-radius: 50%;
+  margin-right: 0.4rem;
+}
+
+.post-body {
+  padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+}
+
+.post-img {
+  margin: 0 -1.2rem 0 -1.2rem;
+  cursor: pointer;
+  img {
+    object-fit: cover;
+    height: 20rem;
+    width: 100%;
+  }
+}
+.post-text {
+  color: #6a6868;
+}
+.lower {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #6a6868;
+}
+.like {
+  cursor: pointer;
+  width: 25px;
+}
+.lower > div > span {
+  margin-left: 0.2rem;
+}
+.location-div {
+  display: flex;
+  align-items: center;
+  span {
+    margin-top: 7px;
+  }
+}
+
+.not-found {
+  width: 53.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  opacity: 0.5;
+  font-weight: 600;
+}
+.content {
+  background: var(--background-color);
+}
+
+.modal {
+  background-color: #000000c2;
+}
+.modal * {
+  opacity: 1;
+}
+.modal-content {
+  background-color: transparent;
+  border: none;
+}
+.close {
+  color: white;
+  text-shadow: none;
+}
+.close:hover,
+.close:focus,
+.close:active {
+  color: rgb(253, 223, 223);
+  outline: 0;
+}
+
+@media (max-width: 800px) {
+  .root {
+    flex-direction: column;
+  }
+  .left-div {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+  .info {
+    margin: 0 1rem;
+    text-align: center;
+  }
+  .right-div {
+    margin: 0;
+    justify-content: center;
+  }
+  .profile-icon {
+    max-width: 2rem;
+  }
+
+  .add_post,
+  .post {
+    margin: 1rem;
+    margin-bottom: 2rem;
+  }
+  .info-box {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  #post-btn {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .post-img img {
+    height: 15rem;
+  }
+
+  .not-found {
+    width: 100%;
+    min-height: 10rem;
+    font-weight: 300;
+    font-size: 1rem;
+  }
+}
