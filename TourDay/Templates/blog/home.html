@@ -82,7 +82,7 @@
 							{% endfor %}
 							
 
-							{% for post in recent_post|slice:":6" %}
+							{% for post in recent_post|slice:"2:8" %}
 							<!-- post -->
 							<div class="col-md-6">
 								<div class="post">
@@ -113,7 +113,7 @@
 							<div class="section-title">
 								<h2>Most Read</h2>
 							</div>
-                            {% for post in recent_post|slice:":4" %}
+                            {% for post in recent_post|slice:"8:12" %}
 							<div class="post post-widget">
 								<a class="post-img" href="{% url 'blog_details' post.id %}"><img class="img-responsive post-img-4" src="{{post.image.url}}" alt=""></a>
 								<div class="post-body">
@@ -130,7 +130,7 @@
 							<div class="section-title">
 								<h2>Featured Posts</h2>
 							</div>
-							{% for post in recent_post|slice:":2" %}
+							{% for post in random_post|slice:"9:11" %}
 							<div class="post post-thumb">
 								<a class="post-img" href="{% url 'blog_details' post.id %}"><img class="img-responsive post-img-7" src="{{post.image.url}}" alt=""></a>
 								<div class="post-body">
@@ -175,7 +175,7 @@
 					</div>
 
 					<!-- post -->
-					{% for post in recent_post|slice:":3" %}
+					{% for post in recent_post|slice:"11:14" %}
 					<div class="col-md-4">
 						<div class="post">
 							<a class="post-img" href="{% url 'blog_details' post.id %}"><img class="img-responsive post-img-2" src="{{post.image.url}}" alt=""></a>
