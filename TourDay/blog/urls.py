@@ -14,7 +14,7 @@ urlpatterns = [
 
   path('blog/search', blog_search, name='blog_search'),
   path("",search,name="search_page"),
-  path('blog/home', home, name='blog_home' ),
+  path('blog', home, name='blog_home' ),
   path('blog/details/<int:id>', details, name='blog_details' ),
   path('blog/addpost', addPost, name='addpost' ),
   path('blog/edit/<int:id>', blog_edit, name='blog_edit' ),
