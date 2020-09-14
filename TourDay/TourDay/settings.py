@@ -33,11 +33,11 @@ INSTALLED_APPS = [
     "event",
     # Thirdparty Apps
 
-    #for blog
+    # for blog
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
-    
+
 
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',  # must be in last
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 5
+    'PAGE_SIZE': 10
 }
 
 MIDDLEWARE = [

@@ -1,5 +1,8 @@
 $(window).on("load", function () {
-  setInterval(() => $(".loader").hide(), 1000);
+  setInterval(() => {
+    $(".loader").hide();
+    $("body").css({ overflow: "visible" });
+  }, 1000);
 });
 
 function validateEmail(email) {

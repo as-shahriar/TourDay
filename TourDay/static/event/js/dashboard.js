@@ -5,6 +5,8 @@ Date.prototype.toDateInputValue = function () {
 };
 document.getElementById("date").value = new Date().toDateInputValue();
 
+post_loader = document.getElementById("post-loder");
+
 function card(date, title, text, id) {
   div1 = document.createElement("div");
   div1.setAttribute("class", "col-sm-12 col-md-12 col-lg-12");
@@ -85,15 +87,28 @@ document.getElementById("create-event").addEventListener("click", () => {
     });
 });
 
-function get_events() {
-  fetch("/event/get_events", {
+var next;
+function get_events(url) {
+  fetch(url, {
     method: "GET",
   })
     .then((res) => res.json())
     .then((data) => {
+      next = data.next;
+      post_loader.style.display = "none";
       data.results.forEach((e) => {
         card(e.date, e.title, e.details, e.id);
       });
     });
 }
-get_events();
+
+$(window).scroll(function () {
+  if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+    if (next != null) {
+      post_loader.style.display = "flex";
+      get_events(next);
+    }
+  }
+});
+
+get_events("/event/get_events");

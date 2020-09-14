@@ -169,6 +169,7 @@ class PostList(APIView, LimitOffsetPagination):
     #pagination_class = LimitOffsetPagination
 
     def get(self, request, *args, **kwargs):
+
         username = kwargs.get('username')
         user = get_object_or_404(User, username=username)
         instance = Post.objects.filter(user=user).order_by("-date")

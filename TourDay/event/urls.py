@@ -7,5 +7,6 @@ urlpatterns = [
     path("edit_events/<int:id>", views.edit_event),
     path("action/<int:id>", views.action),
     path("pay/<int:id>", views.pay),
+    path("delete/<int:id>", views.delete_event),
 
 ]

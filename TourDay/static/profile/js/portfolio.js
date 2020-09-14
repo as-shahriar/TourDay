@@ -4,6 +4,8 @@ preview_div = document.getElementById("preview");
 preview_close = document.getElementById("preview-close");
 pic_preview = document.getElementById("pic_preview");
 
+post_loader = document.getElementById("post-loder");
+
 if (select_picture != null) {
   select_picture.addEventListener("change", () => {
     const file = select_picture.files[0];
@@ -182,7 +184,8 @@ function get_post(url) {
     .then((res) => res.json())
     .then((data) => {
       next = data.next;
-
+      post_loader.style.display = "none";
+      console.log(data);
       data.results.forEach((post) => {
         add_post(
           true,
@@ -203,6 +206,7 @@ function get_post(url) {
 if (next != null) {
   $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+      post_loader.style.display = "flex";
       get_post(next);
     }
   });

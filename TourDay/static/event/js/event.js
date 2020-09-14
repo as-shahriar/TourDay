@@ -216,3 +216,21 @@ if (join_send_btn != null) {
       });
   });
 }
+
+delete_btn = document.getElementById("delete-btn");
+
+if (delete_btn != null) {
+  delete_btn.addEventListener("click", () => {
+    var r = confirm("Delete this event?");
+    if (r) {
+      id = document.getElementById("id").value;
+      fetch(`/event/delete/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status == 200) {
+            location.href = "/event/dashboard";
+          }
+        });
+    }
+  });
+}
