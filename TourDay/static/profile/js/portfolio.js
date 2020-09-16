@@ -308,8 +308,8 @@ function delete_post(id) {
 }
 
 function get_map_data() {
-  user_id = document.getElementById("user-id").value;
-  fetch(`/visited/${user_id}`)
+  user = document.getElementById("my-username").value;
+  fetch(`/visited/${user}`)
     .then((res) => res.json())
     .then((data) => {
       if (data.status == 200) {
