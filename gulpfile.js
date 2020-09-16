@@ -75,6 +75,16 @@ task("portfolio", (done) => {
   done();
 });
 
+// convert users scss to css and minify
+task("users", (done) => {
+  src("TourDay/static/profile/sass/users.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(cleanCSS())
+    .pipe(dest("TourDay/static/profile/css/"));
+
+  done();
+});
+
 // convert profile.scss to css and minify
 task("profile", (done) => {
   src("TourDay/static/profile/sass/profile.scss")
@@ -211,6 +221,7 @@ task("watch", function () {
   watch("TourDay/static/profile/sass/map.scss", series("map"));
   watch("TourDay/static/profile/sass/portfolio.scss", series("portfolio"));
   watch("TourDay/static/profile/sass/profile.scss", series("profile"));
+  watch("TourDay/static/profile/sass/users.scss", series("users"));
   watch("TourDay/static/_auth/js/forgetpassword.js", series("forgetjs"));
   watch("TourDay/static/_auth/js/login.js", series("loginjs"));
   watch("TourDay/static/_auth/js/resetpassword.js", series("resetjs"));
@@ -235,6 +246,7 @@ task(
     "map",
     "portfolio",
     "profile",
+    "users",
     "style",
     "search",
     "forgetjs",

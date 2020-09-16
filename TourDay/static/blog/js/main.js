@@ -114,6 +114,7 @@ if (search != null) {
     for (var i = 0, length = radios.length; i < length; i++) {
       if (radios[i].checked) {
         if (radios[i].value == "user") {
+          location.href = `/users/?q=${q.value}`;
         } else if (radios[i].value == "post") {
           location.href = `/blog/search/?q=${q.value}`;
         } else {

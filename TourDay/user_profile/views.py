@@ -1,6 +1,6 @@
 import json
 from django.core import serializers
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -16,6 +16,19 @@ from rest_framework.permissions import AllowAny
 from .serializers import PostSerializer
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
+
+
+def users(request):
+    q = request.GET.get("q")
+    if q == None:
+        return redirect("blog_home")
+    users = Profile.objects.filter(
+
+        Q(name__icontains=q) | Q(email__icontains=q) | Q(city__icontains=q)
+    )
+    profile = Profile.objects.get(user=request.user)
+    return render(request, "profile/users.html", {"users": users, "q": q, "nav_img": profile.picture.url})
 
 
 @login_required

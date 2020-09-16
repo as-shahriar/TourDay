@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}{% load static %} {%block css%}<link
+  rel="stylesheet"
+  href="{% static 'profile/css/users.css'%}"
+/>
+{%endblock%} {% block title %}TourDay | Users{%endblock%} {% block content %}
+<style>
+  #nav {
+    display: none;
+  }
+</style>
+
+<div class="container my-4 bg">
+  <h5 class="pt-4 mb-4">Search Result for: {{q}}</h5>
+  <hr />
+  <ul class="list-unstyled">
+    {%for user in users%}
+    <a href="/u/{{user.user.username}}"
+      ><li class="users mb-3">
+        <img src="{{user.picture.url}}" class="mr-3" alt="image" width="40" />
+
+        <div class="user-details">
+          <h5>{{user.name}}</h5>
+          <h5>{{user.email}}</h5>
+        </div>
+      </li></a
+    >{%endfor%}
+  </ul>
+</div>
+{% endblock %}

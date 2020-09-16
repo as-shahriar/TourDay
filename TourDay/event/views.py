@@ -29,9 +29,9 @@ def dashboard(request):
         event.pay2_method = request.POST.get('pay2_method')
         event.save()
         return JsonResponse({'status': 200, "id": event.id})
-
+    profile = Profile.objects.get(user=request.user)
     events = Event.objects.filter(going__in=[request.user])
-    return render(request, 'event/dashboard.html', {"going_events": events})
+    return render(request, 'event/dashboard.html', {"going_events": events, "nav_img": profile.picture.url})
 
 
 class EventList(APIView, LimitOffsetPagination):
@@ -72,7 +72,11 @@ def eventView(request, id):
     event = Event.objects.get(id=id)
     going = Profile.objects.filter(user__in=event.going.all())
     transaction = Transactions.objects.filter(user__in=event.pending.all())
-    return render(request, 'event/event.html', {"event": event, "going": going, "transaction": transaction})
+    nav_img = None
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        nav_img = profile.picture.url
+    return render(request, 'event/event.html', {"event": event, "going": going, "transaction": transaction, "nav_img": nav_img})
 
 
 @login_required
