@@ -8,22 +8,57 @@
     display: none;
   }
 </style>
-<form>
-  <div class="main">
-    <img src="{% static 'image/logo.png'%}" alt="TourDay" class="big-logo" />
 
-    <div class="input-box">
-      <img src="{% static 'icon/search.png'%}" alt="" class="input-icon" />
-      <input
-        class="input-text"
-        type="text"
-        name="q"
-        placeholder="Explore your desire"
-      />
-    </div>
-    <button class="my-btn search-btn" type="submit">Search</button>
+<div class="main">
+  <img src="{% static 'image/logo.png'%}" alt="TourDay" class="big-logo" />
+
+  <div class="input-box">
+    <img src="{% static 'icon/search.png'%}" alt="" class="input-icon" />
+    <input
+      class="input-text"
+      type="text"
+      id="q-field"
+      autocomplete="off"
+      placeholder="Explore your desire"
+    />
   </div>
-</form>
+  <div class="mb-2">
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="inlineRadioOptions"
+        id="inlineRadio1"
+        value="user"
+      />
+      <label class="form-check-label" for="inlineRadio1">User</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="inlineRadioOptions"
+        id="inlineRadio2"
+        value="post"
+      />
+      <label class="form-check-label" for="inlineRadio2">Post</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="inlineRadioOptions"
+        id="inlineRadio3"
+        value="product"
+      />
+      <label class="form-check-label" for="inlineRadio3">Product</label>
+    </div>
+  </div>
+  <button class="my-btn search-btn" type="submit" id="search">Search</button>
+</div>
+
 <footer>TourDay &copy; 2020</footer>
 
+{%endblock%} {%block scripts%}
+<script src="{% static 'blog/js/main.min.js' %}"></script>
 {%endblock%}

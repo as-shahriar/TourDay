@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+
 
 		<title>Tourday | Blog</title>
 
@@ -85,12 +85,12 @@
 						<div class="nav-btns">
 							<button class="aside-btn"><i class="fa fa-bars"></i></button>
 							<button class="search-btn"><i class="fa fa-search"></i></button>
-							<form method="POST">
-								{% csrf_token %}
+							<form method="GET"  action="/blog/search/" >
 								<div class="search-form">
-									<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
-									<button type="submit" name="btn-search" class="search-close" ><i class="fa fa-search"></i></button>
-								
+									
+										<input class="search-input" type="text" name="q" placeholder="Enter Your Search ...">
+										<button type="submit"class="search-close" ><i class="fa fa-search"></i></button>
+									
 								</div>
 							</form>
 						</div>

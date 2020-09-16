@@ -221,6 +221,7 @@ task("watch", function () {
   watch("TourDay/static/profile/js/portfolio.js", series("portfoliojs"));
   watch("TourDay/static/profile/js/profile.js", series("profilejs"));
   watch("TourDay/static/js/base.js", series("basejs"));
+  watch("TourDay/static/blog/js/main.js", series("mainjs"));
 });
 
 task(
