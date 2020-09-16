@@ -24,6 +24,51 @@ if (select_picture != null) {
     preview_div.style.display = "none";
     select_picture.value = "";
   });
+
+  document.getElementById("post-btn").addEventListener("click", () => {
+    post = document.getElementById("add-post-text");
+    date = document.getElementById("date");
+    location_ = document.getElementById("city");
+    file = select_picture.files[0];
+
+    if (post.value == "" || location_.value == "null" || file == null) {
+      $("#error-msg").text("All fileds are required.");
+      $(".error").show();
+      hide_error();
+      return;
+    }
+    form = new FormData();
+    form.append("post", post.value);
+    form.append("date", date.value);
+    form.append("location", location_.value);
+    form.append("image", file);
+
+    fetch("/add_post/", {
+      method: "POST",
+      body: form,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status == 201) {
+          add_post(
+            false,
+            data.id,
+            post.value.trim(),
+            date.value,
+            data.image,
+            0,
+            false,
+            data.location
+          );
+          preview_close.click();
+          post.value = "";
+          set_current_date();
+          get_map_data();
+        } else {
+          console.log("uploading error");
+        }
+      });
+  });
 }
 
 function previewFile(file) {
@@ -185,7 +230,6 @@ function get_post(url) {
     .then((data) => {
       next = data.next;
       post_loader.style.display = "none";
-      console.log(data);
       data.results.forEach((post) => {
         add_post(
           true,
@@ -214,7 +258,7 @@ if (next != null) {
 
 $(document).ready(() => {
   username = document.getElementById("my-username").value;
-  set_current_date();
+  if (select_picture != null) set_current_date();
   get_map_data();
   get_post(`/get_post/${username}?format=json`);
 });
@@ -244,51 +288,6 @@ function set_current_date() {
   };
   document.getElementById("date").value = new Date().toDateInputValue();
 }
-
-document.getElementById("post-btn").addEventListener("click", () => {
-  post = document.getElementById("add-post-text");
-  date = document.getElementById("date");
-  location_ = document.getElementById("city");
-  file = select_picture.files[0];
-
-  if (post.value == "" || location_.value == "null" || file == null) {
-    $("#error-msg").text("All fileds are required.");
-    $(".error").show();
-    hide_error();
-    return;
-  }
-  form = new FormData();
-  form.append("post", post.value);
-  form.append("date", date.value);
-  form.append("location", location_.value);
-  form.append("image", file);
-
-  fetch("/add_post/", {
-    method: "POST",
-    body: form,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.status == 201) {
-        add_post(
-          false,
-          data.id,
-          post.value.trim(),
-          date.value,
-          data.image,
-          0,
-          false,
-          data.location
-        );
-        preview_close.click();
-        post.value = "";
-        set_current_date();
-        get_map_data();
-      } else {
-        console.log("uploading error");
-      }
-    });
-});
 
 function delete_post(id) {
   form = new FormData();

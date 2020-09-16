@@ -27,8 +27,11 @@ def users(request):
 
         Q(name__icontains=q) | Q(email__icontains=q) | Q(city__icontains=q)
     )
-    profile = Profile.objects.get(user=request.user)
-    return render(request, "profile/users.html", {"users": users, "q": q, "nav_img": profile.picture.url})
+    nav_img = None
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        nav_img = profile.picture.url
+    return render(request, "profile/users.html", {"users": users, "q": q, "nav_img": nav_img})
 
 
 @login_required

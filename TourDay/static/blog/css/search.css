@@ -17,6 +17,7 @@
   margin-left: -28px;
 }
 .input-text {
+  outline: 0;
   margin: 1.5rem 0;
   min-width: 35rem;
   padding-right: 2rem;
@@ -30,6 +31,7 @@
 }
 
 .search-btn {
+  outline: 0 !important;
   min-width: 10rem;
   border-radius: 23px;
   -webkit-box-shadow: -1px 4px 15px -4px rgba(0, 0, 0, 0.75) !important;
