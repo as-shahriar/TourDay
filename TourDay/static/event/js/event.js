@@ -52,8 +52,9 @@ function previewFile(file) {
   }
 }
 
-if (select_picture != null) {
-  document.getElementById("edit-event").addEventListener("click", () => {
+edit_btn = document.getElementById("edit-event");
+if (edit_btn != null) {
+  edit_btn.addEventListener("click", () => {
     id = document.getElementById("id").value;
     title = document.getElementById("title").value;
     location_ = document.getElementById("location").value;
@@ -83,7 +84,6 @@ if (select_picture != null) {
     form.append("pay1_method", document.getElementById("pay1_method").value);
     form.append("pay2_method", document.getElementById("pay2_method").value);
     form.append("image", select_picture.files[0]);
-    console.log(select_picture.files[0]);
 
     fetch(`/event/edit_events/${id}`, {
       method: "POST",
@@ -97,7 +97,6 @@ if (select_picture != null) {
       });
   });
 }
-
 function copy_url() {
   var dummy = document.createElement("input"),
     text = window.location.href;
