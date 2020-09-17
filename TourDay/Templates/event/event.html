@@ -33,7 +33,7 @@ Event{%endblock%} {%block css%}<link
     </div>
     {%endif%}
   </div>
-  <p class="event-details">{{event.details}}</p>
+  <p class="event-details">{{event.details|linebreaks }}</p>
   <p align="center" class="copy">
     Copy Event Link <i class="material-icons" id="copy-url">content_copy</i>
   </p>
