@@ -83,15 +83,15 @@
     object-fit: cover;
 }
 
-
-
-
 .logo-1 {
     
     height: 70px;
     width: 188px;
 }
 
+.loader img {
+    width:30%;
+}
 
 .text-justify {
     text-align: justify;
