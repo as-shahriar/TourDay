@@ -64,12 +64,3 @@ class ProfileView(APIView):
         return Response({
 
         }, status=status.HTTP_200_OK)
-
-
-# class FileUploadView(APIView):
-#     parser_classes = (FileUploadParser,)
-
-#     def post(self, request, format=None):
-#         file_obj = request.FILES['file']
-#         # do some stuff with uploaded file
-#         return Response(status=204)

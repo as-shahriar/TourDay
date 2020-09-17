@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,6 +7,32 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="keywords"
+      content="Tourday, tour, blog, tour blog, DIU, TourDay"
+    />
+    <meta
+      name="description"
+      content="A platform where people can showcase their tours, share information, experiences & know more about tourist places in Bangladesh."
+    />
+    <meta name="subject" content="Tourism & Tourist Community" />
+    <meta name="copyright" content="TourDay" />
+    <meta name="language" content="ES" />
+    <meta name="url" content="https://tourday.team" />
+    <meta name="identifier-URL" content="https://tourday.team" />
+
+    <meta name="og:title" content="TourDay" />
+    <meta name="og:url" content="https://tourday.team" />
+    <meta name="og:image" content="{% static 'image/logo.png'%}" />
+    <meta
+      name="og:description"
+      content="A platform where people can showcase their tours, share information, experiences & know more about tourist places in Bangladesh."
+    />
+    <link
+      rel="shortcut icon"
+      href="{% static 'image/logo.png'%}"
+      type="image/x-icon"
     />
 
     <!-- Bootstrap CSS -->
@@ -16,12 +43,17 @@
       crossorigin="anonymous"
     />
 
-    <title>TourDay API Doc</title>
+    <title>TourDay | API Doc</title>
   </head>
   <body>
     <div class="container mt-3">
       <blockquote class="blockquote text-center">
-        <h3 class="mb-0">TourDay</h3>
+        <img
+          width="300"
+          class="img-fluid"
+          src="{% static 'image/logo.png'%}"
+          alt="TourDay"
+        />
         <p class="mb-0">API Documentation</p>
       </blockquote>
       <hr />
@@ -132,6 +164,43 @@
             <span class="ml-4">"insta": "_asif_shahriar",</span><br />
             <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
             <span class="ml-4">"bio": "Full Stack web developer"</span><br />
+            }<br />
+          </code>
+        </blockquote>
+      </div>
+
+      <hr />
+      <div class="my-2 mt-4">
+        <div class="d-flex">
+          <h5 class="mb-0 mr-2">Get User Posts</h5>
+          <kbd>GET</kbd>
+          <p class="mb-0 ml-2 text-success">
+            <i>"https://tourday.team/api/get_posts/username"</i>
+          </p>
+        </div>
+        <p>
+          Send username with the url and get the response containing all posts.
+          If that user has more than 10 posts, you will get next page url in
+          "next" in the response.
+        </p>
+
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            {<br />
+            <span class="ml-4">"count": "post count",</span><br />
+            <span class="ml-4">"next": "next page url",</span><br />
+            <span class="ml-4">"previous": "previous page url",</span><br />
+            <span class="ml-4">"results": </span><br /><spna class="ml-4"
+              >{</spna
+            ><br />
+            <span class="ml-5">"id": 1,</span><br />
+            <span class="ml-5">"post": "post here"</span><br />
+            <span class="ml-5">"image": "/media/user/pic.jpg",</span><br />
+            <span class="ml-5">"date": "2020-09-16",</span><br />
+            <span class="ml-5">"location": "Dhaka",</span><br />
+            <span class="ml-5">"user": 1,</span><br />
+            <span class="ml-5">"liikes": [1,2,3]</span><br />
+            <span class="ml-4">}</span><br />
             }<br />
           </code>
         </blockquote>

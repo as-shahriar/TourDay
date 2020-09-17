@@ -1,6 +1,6 @@
 from django.urls import path, include
 from api import auth, profile
-
+from user_profile.views import PostList
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -8,6 +8,6 @@ urlpatterns = [
     path('auth/', include('rest_auth.urls')),
     path('auth/signup/', auth.Signup.as_view()),
     path('profile/', profile.ProfileView.as_view()),
-    # path('picture/', profile.FileUploadView.as_view()),
+    path('get_posts/<str:username>', PostList.as_view())
 
 ]
