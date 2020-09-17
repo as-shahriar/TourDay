@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <title>TourDay API Doc</title>
+  </head>
+  <body>
+    <div class="container mt-3">
+      <blockquote class="blockquote text-center">
+        <h3 class="mb-0">TourDay</h3>
+        <p class="mb-0">API Documentation</p>
+      </blockquote>
+      <hr />
+      <div class="my-2 mt-4">
+        <div class="d-flex">
+          <h5 class="mb-0 mr-2">Login</h5>
+          <kbd>POST</kbd>
+          <p class="mb-0 ml-2 text-success">
+            <i>"https://tourday.team/api/auth/login/"</i>
+          </p>
+        </div>
+        <p>
+          Send either username or email address with password. If the
+          credentials are valid then the response will contain a key. use that
+          key to acces all data.
+        </p>
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            {<br />
+            <span class="ml-4">"username": "asif",</span><br />
+            <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
+            <span class="ml-4">"password": "******"</span> <br />}
+          </code>
+        </blockquote>
+      </div>
+      <hr />
+      <div class="my-2 mt-4">
+        <div class="d-flex">
+          <h5 class="mb-0 mr-2">Signup</h5>
+          <kbd>POST</kbd>
+          <p class="mb-0 ml-2 text-success">
+            <i>"https://tourday.team/api/auth/signup/"</i>
+          </p>
+        </div>
+        <p>
+          If the credentials are valid then the response will contain a key. use
+          that key to acces all data.
+        </p>
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            {<br />
+            <span class="ml-4">"username": "asif",</span><br />
+            <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
+            <span class="ml-4">"password": "******"</span> <br />}
+          </code>
+        </blockquote>
+      </div>
+
+      <hr />
+      <div class="my-2 mt-4">
+        <div class="d-flex">
+          <h5 class="mb-0 mr-2">Get Profile Info</h5>
+          <kbd>GET</kbd>
+          <p class="mb-0 ml-2 text-success">
+            <i>"https://tourday.team/api/profile/"</i>
+          </p>
+        </div>
+        <p>Token is required. Add token with request header.</p>
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            Request: <br />{<br />
+            <span class="ml-4"
+              >"Authorization": "Token
+              93bc86220b144548e5bb507851b6ef7c2a5e1a14",</span
+            ><br />
+            }
+          </code>
+        </blockquote>
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            Response: <br />{<br />
+            <span class="ml-4">"profile": {</span><br />
+            <span class="ml-4">"name": "Asif Shahriar",</span><br />
+            <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+            <span class="ml-4">"fb": "asif.8617",</span><br />
+            <span class="ml-4">"insta": "_asif_shahriar",</span><br />
+            <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
+            <span class="ml-4">"bio": "Full Stack web developer"</span><br />
+            <span class="ml-4">"picture": "/media/user/pic.jpg"</span><br />
+            <span class="ml-4">},</span><br />
+            <span class="ml-4">"is_completed": true</span> <br />}
+          </code>
+        </blockquote>
+      </div>
+
+      <hr />
+      <div class="my-2 mt-4">
+        <div class="d-flex">
+          <h5 class="mb-0 mr-2">Update Profile Info</h5>
+          <kbd>POST</kbd>
+          <p class="mb-0 ml-2 text-success">
+            <i>"https://tourday.team/api/profile/"</i>
+          </p>
+        </div>
+        <p>
+          Token is required. Add token with request header. Send only specific
+          filed to update it. <br />
+          Ex: If you want to update only name filed, just send name in the
+          request.
+        </p>
+
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            {<br />
+            <span class="ml-4">"name": "Asif Shahriar",</span><br />
+            <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+            <span class="ml-4">"fb": "asif.8617",</span><br />
+            <span class="ml-4">"insta": "_asif_shahriar",</span><br />
+            <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
+            <span class="ml-4">"bio": "Full Stack web developer"</span><br />
+            }<br />
+          </code>
+        </blockquote>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Event, Transactions
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -39,7 +39,9 @@ class EventList(APIView, LimitOffsetPagination):
     serializer_class = EventSerializer
 
     def get(self, request, *args, **kwargs):
-        instance = Event.objects.filter(host=request.user).order_by("-date")
+        username = kwargs.get('username')
+        user = get_object_or_404(User, username=username)
+        instance = Event.objects.filter(host=user).order_by("-date")
         # instance = Event.objects.all()
         instance = self.paginate_queryset(instance, request, view=self)
         serializer = self.serializer_class(instance, many=True)
