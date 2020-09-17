@@ -110,5 +110,5 @@ $(window).scroll(function () {
     }
   }
 });
-
-get_events("/event/get_events");
+username = document.getElementById("my-username").value;
+get_events(`/event/get_events/${username}?format=json`);

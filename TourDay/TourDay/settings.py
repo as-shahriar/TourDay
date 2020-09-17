@@ -26,6 +26,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
 
     # Project Apps
     "_auth",
@@ -33,6 +36,7 @@ INSTALLED_APPS = [
     "user_profile",
     "event",
     "ecommerce",
+    "api",
     # Thirdparty Apps
 
     # for blog
@@ -40,15 +44,18 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
 
-
-    'rest_framework',
     'django_cleanup.apps.CleanupConfig',  # must be in last
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+
+    ]
 }
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

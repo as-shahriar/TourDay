@@ -13,6 +13,7 @@ urlpatterns = [
     # path('ckeditor/', include('ckeditor_uploader.urls')),
     path('event/', include('event.urls')),
     path('ecommerce/', include('ecommerce.urls')),
+    path('api/', include('api.urls')),
 
 ]
 
