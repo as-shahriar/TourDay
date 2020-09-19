@@ -3,7 +3,7 @@ from django.http import JsonResponse
 import json
 import datetime
 from .models import * 
-from .utils import cookieCart, cartData, guestOrder
+from .utils import cookieCart, cartData
 # Create your views here.
 
 def store(request):
