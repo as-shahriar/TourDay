@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "user_profile",
     "event",
     "ecommerce",
+    
     # Thirdparty Apps
 
     # for blog
