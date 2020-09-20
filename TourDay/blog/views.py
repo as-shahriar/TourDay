@@ -5,6 +5,11 @@ from blog.models import blogPost
 from django.core.paginator import Paginator
 from django.db.models import Q
 from user_profile.models import Profile
+from django.contrib.auth.models import User
+
+from django.core.mail import send_mail
+from utils import async_send_mail
+from TourDay.settings import EMAIL_HOST_USER
 
 
 class division_post_count:
@@ -84,6 +89,17 @@ def addPost(request):
                 post_item.slug = request.user
                 # info.user_id = request.user.id
                 post_item.save()
+                
+                user = User()
+
+                for user in user.email:
+
+                    email = user.email
+
+                    subject = "From TourDay!"
+                    message = f"This is addPost, massege"
+                    async_send_mail(subject, message, EMAIL_HOST_USER, email)
+                
                 return redirect('blog_home')
         else:
             return redirect('edit_profile')
