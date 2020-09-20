@@ -59,7 +59,7 @@
 							{% else %}
 							<li><a href="{% url 'blog_home' %}">Home</a></li>
 							{% endif %}
-							<li><a href="{% url 'portfolio' request.user %}">Profile</a></li>
+							
 
 							{% if user.is_authenticated %}
 								{% if 'addpost' in request.path %}
@@ -67,6 +67,7 @@
 								{% else %}
 								<li><a href="{% url 'addpost' %}">Add Post</a></li>
 								{% endif %}
+								<li><a href="{% url 'portfolio' request.user %}">Profile</a></li>
 								{% if request.path|slice:":11" == '/blog/user/' %}
 								<li class="cat-1"><a href="{% url 'user_post' request.user %}">Posts</a></li>
 								{% else %}
@@ -108,10 +109,10 @@
 					<div class="section-row">
 						<ul class="nav-aside-menu"  >
 							<li><a href="{% url 'blog_home' %}">Home</a></li>
-							<li><a href="{% url 'portfolio' request.user %}">Profile</a></li>
+							
 
 							{% if user.is_authenticated %}
-								
+								<li><a href="{% url 'portfolio' request.user %}">Profile</a></li>
 								<li><a href="{% url 'addpost' %}">Add Post</a></li>
 								<li><a href="{% url 'user_post' request.user %}">Posts</a></li>
 								<li><a href="{% url 'login_page' %}">Logout</a></li>
