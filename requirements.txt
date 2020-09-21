@@ -12,6 +12,7 @@ django-cleanup==5.0.0
 django-crispy-forms==1.9.2
 django-js-asset==1.2.2
 djangorestframework==3.11.1
+django-rest-auth==0.9.5
 html5lib==1.0.1
 idna==2.8
 ipaddr==2.2.0

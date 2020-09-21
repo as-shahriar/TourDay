@@ -11,14 +11,14 @@ def event_directory_path(instance, filename):
 class Event(models.Model):
     host = models.ForeignKey(
         User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100, null=True, blank=True)
-    location = models.CharField(max_length=50, null=True, blank=True)
+    title = models.CharField(max_length=400, null=True, blank=True)
+    location = models.CharField(max_length=200, null=True, blank=True)
     date = models.DateField(auto_now=False, auto_now_add=False)
-    details = models.CharField(max_length=500, null=True, blank=True)
+    details = models.CharField(max_length=6000, null=True, blank=True)
     pay1 = models.CharField(max_length=15, null=True, blank=True)
-    pay1_method = models.CharField(max_length=7, null=True, blank=True)
+    pay1_method = models.CharField(max_length=20, null=True, blank=True)
     pay2 = models.CharField(max_length=15, null=True, blank=True)
-    pay2_method = models.CharField(max_length=7, null=True, blank=True)
+    pay2_method = models.CharField(max_length=20, null=True, blank=True)
     cost = models.PositiveIntegerField(null=True)
     image = models.ImageField(upload_to=event_directory_path,
                               blank=True, default="defaults/event.jpg")
