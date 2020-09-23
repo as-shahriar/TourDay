@@ -59,8 +59,21 @@ Event{%endblock%} {%block css%}<link
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="title" class="col-form-label">Title</label>
-            <input type="text" class="form-control" id="title" />
+            <div class="row">
+              <div class="col-md-9">
+                <label for="title" class="col-form-label">Title</label>
+                <input type="text" class="form-control" id="title" />
+              </div>
+              <div class="col-md-3">
+                <label for="capacity" class="col-form-label">Capacity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="capacity"
+                  min="1"
+                />
+              </div>
+            </div>
           </div>
 
           <div class="form-group">

@@ -46,13 +46,14 @@ body {
   user-select: none;
 }
 .loader {
+  top: 0;
   background-color: var(--background-color);
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   z-index: 1000;
   img {
     width: 10%;
