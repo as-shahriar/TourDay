@@ -33,7 +33,10 @@ Event{%endblock%} {%block css%}<link
     </div>
     {%endif%}
   </div>
-  <p class="event-details">{{event.details }}</p>
+  <p class="event-details">
+    {{event.details }} <br />Capacity: {{event.capacity}} members
+  </p>
+
   <p align="center" class="copy">
     Copy Event Link <i class="material-icons" id="copy-url">content_copy</i>
   </p>
@@ -43,6 +46,7 @@ Event{%endblock%} {%block css%}<link
     People Are Going
   </p>
   <hr />
+
   {%if not request.user.is_authenticated %}
   <p align="center" class="login_signup_link">
     <a href="{% url 'login_page' %}?next=/event/{{event.id}}">Login</a> or
@@ -56,6 +60,10 @@ Event{%endblock%} {%block css%}<link
     {%elif request.user in event.going.all %}
     <h3>
       <span class="badge badge-success px-5 py-2">Payment Confirmed</span>
+    </h3>
+    {%elif capacity %}
+    <h3>
+      <span class="badge badge-danger px-5 py-2">Sorry, Housefull</span>
     </h3>
     {%else%}
     <button
@@ -159,13 +167,27 @@ Event{%endblock%} {%block css%}<link
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="title" class="col-form-label">Title</label>
-          <input
-            type="text"
-            class="form-control"
-            id="title"
-            value="{{event.title}}"
-          />
+          <div class="row">
+            <div class="col-md-9">
+              <label for="title" class="col-form-label">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                value="{{event.title}}"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="capacity" class="col-form-label">Capacity</label>
+              <input
+                type="number"
+                class="form-control"
+                id="capacity"
+                value="{{event.capacity}}"
+                min="1"
+              />
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <div class="row">

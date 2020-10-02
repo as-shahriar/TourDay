@@ -52,12 +52,14 @@ document.getElementById("create-event").addEventListener("click", () => {
   date = document.getElementById("date").value;
   details = document.getElementById("details").value;
   cost = document.getElementById("cost").value;
+  capacity = document.getElementById("capacity").value;
   if (
     title == "" ||
     location_ == "" ||
     date == "" ||
     details == "" ||
-    cost == ""
+    cost == "" ||
+    capacity == ""
   ) {
     $("#error-msg").text("Fill up all fileds.");
     $(".error").show();
@@ -70,6 +72,7 @@ document.getElementById("create-event").addEventListener("click", () => {
   form.append("date", date);
   form.append("details", details);
   form.append("cost", cost);
+  form.append("capacity", capacity);
   form.append("pay1", document.getElementById("pay1").value);
   form.append("pay2", document.getElementById("pay2").value);
   form.append("pay1_method", document.getElementById("pay1_method").value);

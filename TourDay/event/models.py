@@ -19,6 +19,7 @@ class Event(models.Model):
     pay1_method = models.CharField(max_length=20, null=True, blank=True)
     pay2 = models.CharField(max_length=15, null=True, blank=True)
     pay2_method = models.CharField(max_length=20, null=True, blank=True)
+    capacity = models.PositiveIntegerField(null=True)
     cost = models.PositiveIntegerField(null=True)
     image = models.ImageField(upload_to=event_directory_path,
                               blank=True, default="defaults/event.jpg")

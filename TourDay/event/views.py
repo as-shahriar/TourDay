@@ -22,6 +22,7 @@ def dashboard(request):
         event.location = request.POST.get('location')
         event.date = request.POST.get('date')
         event.details = request.POST.get('details')
+        event.capacity = request.POST.get('capacity')
         event.pay1 = request.POST.get('pay1')
         event.pay2 = request.POST.get('pay2')
         event.cost = request.POST.get('cost')
@@ -58,6 +59,7 @@ def edit_event(request, id):
             event.location = request.POST.get('location')
             event.date = request.POST.get('date')
             event.details = request.POST.get('details')
+            event.capacity = request.POST.get('capacity')
             event.pay1 = request.POST.get('pay1')
             event.pay2 = request.POST.get('pay2')
             event.cost = request.POST.get('cost')
@@ -74,11 +76,18 @@ def eventView(request, id):
     event = Event.objects.get(id=id)
     going = Profile.objects.filter(user__in=event.going.all())
     transaction = Transactions.objects.filter(user__in=event.pending.all())
+    capacity = going.count() + transaction.count()
+    print(capacity >= event.capacity)
     nav_img = None
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         nav_img = profile.picture.url
-    return render(request, 'event/event.html', {"event": event, "going": going, "transaction": transaction, "nav_img": nav_img})
+    return render(request, 'event/event.html', {
+        "event": event,
+        "going": going,
+        "transaction": transaction,
+        "nav_img": nav_img,
+        "capacity": capacity >= event.capacity})
 
 
 @login_required
