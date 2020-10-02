@@ -14,7 +14,10 @@ from TourDay.settings import EMAIL_HOST_USER
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .serializers import blogPostSerializer
+from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
+
+from .serializers import blogPostSerializer, blogCreateSerializer
 
 class division_post_count:
     def __init__(self):
@@ -227,72 +230,88 @@ def blog_search(request):
     return render(request, 'blog/blog_search.html', context)
 
 
+
 # Api for blog
-@api_view(['GET'])
+
+@api_view(['GET', ])
 def api_home(request):
+
+    paginator = PageNumberPagination()
+    paginator.page_size = 1
+
     try:
         allpost = blogPost.objects.all().order_by('-id')
-        paginator = Paginator(allpost, 10)  # Show 10 obj per page
-
-        page = request.GET.get('page')
-        post = paginator.get_page(page)
-
+        post = paginator.paginate_queryset(allpost, request)
         serializer = blogPostSerializer(post, many=True)
-        return Response(serializer.data)
+        return paginator.get_paginated_response(serializer.data)
     except:
-        return Response({'status': 400})  # bad request
+        return Response(status=status.HTTP_400_BAD_REQUEST)  # bad request
 
 
-@api_view(['GET'])
+@api_view(['GET',])
 def api_details(request, id):
     try:
         details_obj = blogPost.objects.get(id=id)
         serializer = blogPostSerializer(details_obj, many=False)
         return Response(serializer.data)
     except:
-        return Response({'status': 400})  # bad request
+        return Response(status=status.HTTP_400_BAD_REQUEST)  # bad request
 
 
-@api_view(['GET'])
+@api_view(['GET',])
 def api_user_post(request, slug):
 
+    paginator = PageNumberPagination()
+    paginator.page_size = 1
+
     try:
+
         user_post = blogPost.objects.filter(slug=slug).order_by('-id')
-        paginator = Paginator(user_post, 5)  # Show 10 obj per page
-
-        page = request.GET.get('page')
-        post = paginator.get_page(page)
-
+       
+        post = paginator.paginate_queryset(user_post, request)
         serializer = blogPostSerializer(post, many=True)
-        return Response(serializer.data)
+        return paginator.get_paginated_response(serializer.data)
 
     except:
-        return Response({'status': 400})  # bad request
+        return Response(status=status.HTTP_400_BAD_REQUEST)  # bad request
 
-@api_view(['GET'])
+@api_view(['GET',])
 def api_division_post(request, slug):
 
+    paginator = PageNumberPagination()
+    paginator.page_size = 1
+
     try:
-        post = blogPost.objects.filter(division=slug).order_by('-id')
-        paginator = Paginator(post, 5)  # Show 10 obj per page
-
-        page = request.GET.get('page')
-        div_post = paginator.get_page(page)
-
-        serializer = blogPostSerializer(div_post, many=True)
-        return Response(serializer.data)
+        division_post = blogPost.objects.filter(division=slug).order_by('-id')
+        post = paginator.paginate_queryset(division_post, request)
+        serializer = blogPostSerializer(post, many=True)
+        return paginator.get_paginated_response(serializer.data)
     
     except:
-        return Response({'status' : 400})
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 
-# @api_view(['POST'])
-# # @permission_classes([IsAuthenticated])
-# def api_addpost(request):
-# 	serializer = blogPostSerializer(data=request.data)
+@api_view(['POST',])
+@permission_classes((IsAuthenticated,))
+def api_addpost(request):
+    
+    blog_post = blogPost()
 
-# 	if serializer.is_valid():
-# 		serializer.save()
+    try:
+        if request.method == 'POST':
+            blog_post.blog_user = request.user
+            blog_post.slug = request.user
 
-# 	return Response(serializer.data)
+            serializer = blogCreateSerializer(blog_post, data=request.data)
+
+
+            if serializer.is_valid():
+                serializer.save()
+
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    except:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    

@@ -1,4 +1,3 @@
-
 .post-img-1 {
  
     height: 333px;
@@ -106,8 +105,9 @@
   }
   
   #status {
+  
     width: 100px;
-    height: 100px;
+    height: 80px;
     position: absolute;
     left: 50%;
     /* centers the loading animation horizontally one the screen */
