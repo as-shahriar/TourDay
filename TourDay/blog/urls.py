@@ -1,8 +1,7 @@
 
 from django.urls import path
 from blog.views import (search, 
-    home, addPost, details, user_post, blog_edit, blog_delete, division_post, blog_search, api_home, api_details,
-    api_user_post, api_division_post, api_addpost
+    home, addPost, details, user_post, blog_edit, blog_delete, division_post, blog_search,
     )
 
 from ckeditor_uploader import views as uploader_views
@@ -27,10 +26,5 @@ urlpatterns = [
     path('blog/division/<slug>', division_post, name='division_post'),
 
 
-    # api
-    path('blog/api', api_home, name='api_home'),
-    path('blog/api/details/<int:id>', api_details, name='api_details'),
-    path('blog/api/user/<slug>', api_user_post, name='api_user_post'),
-    path('blog/api/division/<slug>', api_division_post, name='api_division_post'),
-    path('blog/api/addpost', api_addpost, name='api_addpost'),
+    
 ]
