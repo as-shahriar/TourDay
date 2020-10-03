@@ -108,3 +108,31 @@ def api_blogEdit(request, id):
                 data['success'] = "Update Successfully."
                 return Response(data=data)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE',])
+@permission_classes((IsAuthenticated,))
+def api_blogDelete(request, id):
+
+    try:
+        post = blogPost.objects.get(id=id)
+
+    except blogPost.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        if request.user == post.blog_user:
+            operation = post.delete()
+
+            data = {}
+
+            if operation:
+                data['success'] = 'Delete Successfully.'
+            else:
+                data['failure'] = 'Delete Failure'
+            return Response(data=data)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    
