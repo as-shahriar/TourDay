@@ -3,6 +3,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
+from rest_framework import filters
+from django.shortcuts import render
+
 
 from blog.serializers import blogPostSerializer, blogCreateSerializer
 from blog.models import blogPost
@@ -11,7 +14,7 @@ from blog.models import blogPost
 def api_home(request):
 
     paginator = PageNumberPagination()
-    paginator.page_size = 1
+    paginator.page_size = 7
 
     try:
         allpost = blogPost.objects.all().order_by('-id')
@@ -35,7 +38,7 @@ def api_details(request, id):
 def api_user_post(request, slug):
 
     paginator = PageNumberPagination()
-    paginator.page_size = 1
+    paginator.page_size = 7
 
     try:
 
@@ -52,7 +55,7 @@ def api_user_post(request, slug):
 def api_division_post(request, slug):
 
     paginator = PageNumberPagination()
-    paginator.page_size = 1
+    paginator.page_size = 7
 
     try:
         division_post = blogPost.objects.filter(division=slug).order_by('-id')
@@ -134,5 +137,9 @@ def api_blogDelete(request, id):
             return Response(data=data)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+def api_doc(request):
+    return render(request, 'api/BlogDoc.html')
+    
     
     

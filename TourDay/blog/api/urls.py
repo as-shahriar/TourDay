@@ -1,8 +1,14 @@
 from django.urls import path
-from .views import (api_home, api_details, api_user_post, api_division_post, api_addpost, api_blogEdit, api_blogDelete)
+from .views import (api_home, api_details, api_user_post, api_division_post, api_addpost, api_blogEdit, 
+    api_blogDelete, api_doc,
+
+)
 
 urlpatterns = [
-    path('home/', api_home, name='home'),
+
+    path('', api_doc, name='Blog_api_doc'),
+
+    path('allpost/', api_home, name='home'),
     path('details/<int:id>', api_details, name='api_details'),
     path('user/<slug>', api_user_post, name='api_user_post'),
     path('division/<slug>', api_division_post, name='api_division_post'),
