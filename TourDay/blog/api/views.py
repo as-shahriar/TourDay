@@ -150,7 +150,7 @@ class SetPagination(PageNumberPagination):
 
 class api_BlogSearch(generics.ListAPIView):
     
-    queryset = blogPost.objects.all()
+    queryset = blogPost.objects.all().order_by('-id')
     pagination_class = SetPagination
     serializer_class = blogPostSerializer
     filter_backends = [filters.SearchFilter]
