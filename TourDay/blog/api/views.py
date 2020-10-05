@@ -4,11 +4,15 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import filters
+from rest_framework import generics
 from django.shortcuts import render
 
 
 from blog.serializers import blogPostSerializer, blogCreateSerializer
 from blog.models import blogPost
+
+def api_doc(request):
+    return render(request, 'api/BlogDoc.html')
 
 @api_view(['GET', ])
 def api_home(request):
@@ -138,8 +142,18 @@ def api_blogDelete(request, id):
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-def api_doc(request):
-    return render(request, 'api/BlogDoc.html')
+
+class SetPagination(PageNumberPagination):
+    page_size = 2
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
+class api_BlogSearch(generics.ListAPIView):
     
+    queryset = blogPost.objects.all()
+    pagination_class = SetPagination
+    serializer_class = blogPostSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'description', 'division'] 
     
     
