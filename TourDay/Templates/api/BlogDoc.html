@@ -24,14 +24,14 @@
 
     <meta name="og:title" content="TourDay" />
     <meta name="og:url" content="https://tourday.team" />
-    <meta name="og:image" content="{% static 'image/logo.png'%}" />
+    <meta name="og:image" content="{% static 'image/tourday-og.png'%}" />
     <meta
       name="og:description"
       content="A platform where people can showcase their tours, share information, experiences & know more about tourist places in Bangladesh."
     />
     <link
       rel="shortcut icon"
-      href="{% static 'image/logo.png'%}"
+      href="{% static 'image/tourday-fav.png'%}"
       type="image/x-icon"
     />
 
@@ -51,11 +51,15 @@
         <img
           width="300"
           class="img-fluid"
-          src="{% static 'image/logo.png'%}"
+          src="{% static 'image/tourday-nav.png'%}"
           alt="TourDay"
         />
         <p class="mb-0">API Documentation for Blog</p>
       </blockquote>
+       <hr />
+      <div class="d-flex justify-content-center">
+        <a href="{%url 'api_doc'%}" class="text-success">Main API Doc</a>
+      </div>
       <hr />
 
       <div class="my-2 mt-4">
@@ -330,5 +334,8 @@
 
       
     </div>
+    <footer class="px-2 py-3 d-flex justify-content-center">
+      TourDay &copy; 2020
+    </footer>
   </body>
 </html>
