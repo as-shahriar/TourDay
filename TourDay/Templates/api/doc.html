@@ -213,9 +213,172 @@
           </code>
         </blockquote>
       </div>
+
+      <hr />
+      <div class="my-2 mt-4">
+        <div class="d-flex">
+          <h5 class="mb-0 mr-2">Write Post</h5>
+          <kbd>POST</kbd>
+          <p class="mb-0 ml-2 text-success">
+            <i>"https://tourday.team/api/post/"</i>
+          </p>
+        </div>
+        <p>
+          Use Location number instead of full location name.
+          <a href="" data-toggle="modal" data-target="#location_keys"
+            >See location key & Value</a
+          >
+        </p>
+
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            {<br />
+            <span class="ml-4">"post": "post text here",</span><br />
+            <span class="ml-4">"location": "1",</span><br />
+            <span class="ml-4">"date": "yyyy-mm-dd",</span><br />
+            <span class="ml-4">"image": image.jpg</span><br />
+            }<br />
+          </code>
+        </blockquote>
+      </div>
+
+      <hr />
+      <div class="my-2 mt-4">
+        <div class="d-flex">
+          <h5 class="mb-0 mr-2">Delete Post</h5>
+          <kbd>POST</kbd>
+          <p class="mb-0 ml-2 text-success">
+            <i>"https://tourday.team/api/post_delete/"</i>
+          </p>
+        </div>
+
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            {<br />
+            <span class="ml-4">"id": post_id,</span><br />
+            }<br />
+          </code>
+        </blockquote>
+      </div>
     </div>
     <footer class="px-2 py-3 d-flex justify-content-center">
       TourDay &copy; 2020
     </footer>
+
+    <!-- Location key modal -->
+
+    <div
+      class="modal fade"
+      id="location_keys"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Location Key Value
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <code class="ml-4">
+              {<br />
+              <span class="ml-5">'Panchagarh' : 1,</span><br />
+              <span class="ml-5">'Thakurgaon' : 2,</span><br />
+              <span class="ml-5">'Dinajpur' : 4,</span><br />
+              <span class="ml-5">'Nilphamari' : 0,</span><br />
+              <span class="ml-5">'Lalmonirhat' : 3,</span><br />
+              <span class="ml-5">'Kurigram' : 6,</span><br />
+              <span class="ml-5">'Rangpur' : 5,</span><br />
+              <span class="ml-5">'Gaibandha' : 7,</span><br />
+              <span class="ml-5">'Joypurhat' : 16,</span><br />
+              <span class="ml-5">'Bogra' : 11,</span><br />
+              <span class="ml-5">'Naogaon' : 15,</span><br />
+              <span class="ml-5">'Natore' : 12,</span><br />
+              <span class="ml-5">'Chapainawabganj' : 10,</span><br />
+              <span class="ml-5">'Pabna' : 9,</span><br />
+              <span class="ml-5">'Rajshahi' : 13,</span><br />
+              <span class="ml-5">'Sirajganj' : 14,</span><br />
+              <span class="ml-5">'Jamalpur' : 66,</span><br />
+              <span class="ml-5">'Mymensingh' : 67,</span><br />
+              <span class="ml-5">'Netrokona ' : 68,</span><br />
+              <span class="ml-5">'Sherpur' : 66a,</span><br />
+              <span class="ml-5">'Habiganj' : 64,</span><br />
+              <span class="ml-5">'Moulvibazar' : 65,</span><br />
+              <span class="ml-5">'Sunamganj' : 62,</span><br />
+              <span class="ml-5">'Sylhet' : 63,</span><br />
+              <span class="ml-5">'Dhaka' : 73,</span><br />
+              <span class="ml-5">'Faridpur' : 70,</span><br />
+              <span class="ml-5">'Gazipur' : 76,</span><br />
+              <span class="ml-5">'Gopalganj' : 71,</span><br />
+              <span class="ml-5">'Kishoreganj' : 83,</span><br />
+              <span class="ml-5">'Madaripur' : 75,</span><br />
+              <span class="ml-5">'Manikganj' : 72,</span><br />
+              <span class="ml-5">'Munshiganj' : 79,</span><br />
+              <span class="ml-5">'Narayanganj' : 78,</span><br />
+              <span class="ml-5">'Narsingdi' : 77,</span><br />
+              <span class="ml-5">'Rajbari' : 69,</span><br />
+              <span class="ml-5">'Shariatpur' : 74,</span><br />
+              <span class="ml-5">'Tangail' : 84,</span><br />
+              <span class="ml-5">'Jessore' : 19,</span><br />
+              <span class="ml-5">'Jhenaidah' : 17,</span><br />
+              <span class="ml-5">'Khulna' : 22,</span><br />
+              <span class="ml-5">'Kushtia' : 23,</span><br />
+              <span class="ml-5">'Magura' : 18,</span><br />
+              <span class="ml-5">'Meherpur' : 24,</span><br />
+              <span class="ml-5">'Narail' : 20,</span><br />
+              <span class="ml-5">'Satkhira' : 21,</span><br />
+              <span class="ml-5">'Bagerhat' : 26,</span><br />
+              <span class="ml-5">'Chuadanga' : 25,</span><br />
+              <span class="ml-5">'Barguna' : 32,</span><br />
+              <span class="ml-5">'Barisal' : 31,</span><br />
+              <span class="ml-5">'Bhola' : 37,</span><br />
+              <span class="ml-5">'Jhalokati' : 30,</span><br />
+              <span class="ml-5">'Patuakhali' : 33,</span><br />
+              <span class="ml-5">'Pirojpur' : 29,</span><br />
+              <span class="ml-5">'Chattogram' : 54,</span><br />
+              <span class="ml-5">'Bandarban' : 56,</span><br />
+              <span class="ml-5">'Brahmanbaria' : 41,</span><br />
+              <span class="ml-5">'Chandpur' : 44,</span><br />
+              <span class="ml-5">'Comilla' : 43,</span><br />
+              <span class="ml-5">'Cox's Bazar' : 59,</span><br />
+              <span class="ml-5">'Feni' : 51,</span><br />
+              <span class="ml-5">'Khagrachhari' : 55,</span><br />
+              <span class="ml-5">'Lakshmipur' : 45,</span><br />
+              <span class="ml-5">'Noakhali' : 46,</span><br />
+              <span class="ml-5">'Rangamati' : 57</span><br />
+
+              }<br />
+            </code>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Location key modal -->
   </body>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
 </html>
