@@ -41,6 +41,7 @@ class ProfileUpdateSerializer(serializers.Serializer):
     password = serializers.CharField()
     bio = serializers.CharField()
     city = serializers.CharField()
+    picture = serializers.ImageField()
 
     def validate(self, data):
         email = self.initial_data.get('email')

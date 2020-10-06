@@ -40,6 +40,7 @@ class ProfileView(APIView):
         city = serializer.data.get('city')
         fb = serializer.data.get('fb')
         insta = serializer.data.get('insta')
+        picture = serializer.data.get('picture')
         profile = Profile.objects.get(user=request.user)
 
         if name != None:
@@ -55,6 +56,10 @@ class ProfileView(APIView):
             profile.fb = fb
         if insta != None:
             profile.insta = insta
+
+        if picture != None:
+            print(picture)
+            profile.picture = picture
 
         if password != None:
             request.user.set_password(password)
