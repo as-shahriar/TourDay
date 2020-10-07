@@ -20,7 +20,7 @@
 
     <meta name="og:title" content="TourDay" />
     <meta name="og:url" content="https://tourday.team" />
-    <meta name="og:image" content="{% static 'image/logo.png'%}" />
+    <meta name="og:image" content="{% static 'image/tourday-og.png'%}" />
     <meta
       name="og:description"
       content="A platform where people can showcase their tours, share information, experiences & know more about tourist places in our Bangladesh."
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="{% static 'css/base.css'%}" />
     <link
       rel="shortcut icon"
-      href="{% static 'image/logo.png'%}"
+      href="{% static 'image/tourday-fav.png'%}"
       type="image/x-icon"
     />
   </head>
@@ -67,7 +67,7 @@
         {%endif%}
       </ul>
     </nav>
-    
+
     <div class="menu-mobile">
       <ul>
         {% if user.is_authenticated %}
@@ -100,7 +100,7 @@
 
     <div class="logo">
       <a href="{% url 'search_page'%}">
-        <img src="{% static 'image/logo.png'%}" alt="logo"
+        <img src="{% static 'image/tourday-nav.png'%}" alt="logo"
       /></a>
     </div>
 

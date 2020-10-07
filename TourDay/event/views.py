@@ -77,7 +77,6 @@ def eventView(request, id):
     going = Profile.objects.filter(user__in=event.going.all())
     transaction = Transactions.objects.filter(user__in=event.pending.all())
     capacity = going.count() + transaction.count()
-    print(capacity >= event.capacity)
     nav_img = None
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)

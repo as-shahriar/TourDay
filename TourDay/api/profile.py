@@ -3,9 +3,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .auth_serializer import ProfileSerializer, ProfileUpdateSerializer
+from .serializer import ProfileSerializer, ProfileUpdateSerializer, PostSerializer
 from rest_framework.permissions import IsAuthenticated
-from user_profile.models import Profile
+from user_profile.models import Profile, Post
 from rest_framework.parsers import FormParser, MultiPartParser
 
 
@@ -40,6 +40,7 @@ class ProfileView(APIView):
         city = serializer.data.get('city')
         fb = serializer.data.get('fb')
         insta = serializer.data.get('insta')
+        picture = serializer.data.get('picture')
         profile = Profile.objects.get(user=request.user)
 
         if name != None:
@@ -56,6 +57,10 @@ class ProfileView(APIView):
         if insta != None:
             profile.insta = insta
 
+        if picture != None:
+            print(picture)
+            profile.picture = picture
+
         if password != None:
             request.user.set_password(password)
 
@@ -65,3 +70,30 @@ class ProfileView(APIView):
         return Response({
 
         }, status=status.HTTP_200_OK)
+
+
+class PostWrite(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = PostSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=request.user)
+        return Response({
+            'post_id': serializer.data.get('id')
+        }, status=status.HTTP_200_OK)
+
+
+class PostDelete(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        id = request.data.get('id')
+
+        try:
+            post = Post.objects.get(id=id)
+            if post.user == request.user:
+                post.delete()
+            return Response({}, status=status.HTTP_200_OK)
+        except:
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
