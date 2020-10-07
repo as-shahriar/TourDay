@@ -153,30 +153,20 @@ def add_info(request, param):
 
 @login_required
 def portfolio(request, username):
-    try:
-        user = User.objects.get(username=username)
-        profile = Profile.objects.get(user=user)
-        try:
-            nav_img = Profile.objects.get(user=request.user).picture.url
-        except:
-            nav_img = None
-        return render(request, 'profile/portfolio.html', {
-            'profile': profile,
-            'districts': districts,
-            "nav_img": nav_img,
-            'is_profile': True,
-            'user_obj': user
-        })
-    except:
-        try:
-            nav_img = Profile.objects.get(user=request.user).picture.url
-        except:
-            nav_img = None
 
-        return render(request, 'profile/portfolio.html', {
-            "nav_img": nav_img,
-            'is_profile': False
-        })
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user=user)
+    try:
+        nav_img = Profile.objects.get(user=request.user).picture.url
+    except:
+        nav_img = None
+    return render(request, 'profile/portfolio.html', {
+        'profile': profile,
+        'districts': districts,
+        "nav_img": nav_img,
+        'is_profile': True,
+        'user_obj': user
+    })
 
 
 class PostList(APIView, LimitOffsetPagination):

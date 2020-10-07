@@ -73,7 +73,7 @@ def edit_event(request, id):
 
 
 def eventView(request, id):
-    event = Event.objects.get(id=id)
+    event = get_object_or_404(Event, id=id)
     going = Profile.objects.filter(user__in=event.going.all())
     transaction = Transactions.objects.filter(user__in=event.pending.all())
     capacity = going.count() + transaction.count()
