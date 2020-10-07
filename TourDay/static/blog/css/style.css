@@ -90,7 +90,11 @@
 
 .text-justify {
     text-align: justify;
-  }
+}
+
+.loader__class {
+    height: 14rem; 
+}
 
 #preloader {
     position: fixed;

@@ -35,7 +35,7 @@
 
 		<div id="preloader">
 			<div id="status">
-					<img src="{% static 'image/loader.gif'%}" alt="">
+					<img src="{% static 'image/loader.gif'%}" alt="loder" class='loader__class'>
 					&nbsp;</div>
 		  </div>
 		  
@@ -54,7 +54,7 @@
 
 						<!-- nav -->
 						<ul class="nav-menu nav navbar-nav">
-							{% if request.path == '/blog/home' %}
+							{% if request.path == '/blog/' %}
 							<li class="cat-1"><a href="{% url 'blog_home' %}">Home</a></li>
 							{% else %}
 							<li><a href="{% url 'blog_home' %}">Home</a></li>
