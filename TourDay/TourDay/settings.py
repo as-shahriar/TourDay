@@ -12,7 +12,7 @@ SECRET_KEY = "w#d#t1y6r9q$+xfq)x#omv9m@nehjq7b5^j7n6#+7ljln(j0eb"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#DEBUG = False
+# DEBUG = False
 
 ALLOWED_HOSTS = ["*", "52.140.64.35", "tourday.team", "www.tourday.team"]
 

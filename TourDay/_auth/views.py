@@ -1,3 +1,4 @@
+from django.views.defaults import page_not_found
 from django.shortcuts import render, redirect, HttpResponse
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
@@ -169,3 +170,7 @@ def checkemail(request):
             return JsonResponse({'status': 200})  # email  exists
         except:
             return JsonResponse({'status': 404})  # email not exists
+
+
+def error_404_view(request, exception):
+    return page_not_found(request, exception, template_name="404.html")
