@@ -46,6 +46,68 @@
     <title>TourDay | API Doc</title>
   </head>
   <body>
+    <style>
+      .dropdown-item:active {
+        background-color: #eaecee;
+        color: black;
+      }
+      .dropdown-menu {
+        box-shadow: 1px 1px 3px #00000021 !important;
+      }
+      .white-bg {
+        background-color: #fff;
+        box-shadow: 1px 1px 3px #00000021 !important;
+      }
+      .white-bg:focus {
+        box-shadow: 1px 1px 3px #00000021 !important;
+      }
+      .my-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+      }
+      .dropdown-menu a {
+        text-transform: uppercase;
+      }
+      h5 {
+        text-transform: uppercase;
+      }
+    </style>
+    <div class="btn-group dropleft m-3 my-menu">
+      <button
+        type="button"
+        class="btn btn-white dropdown-toggle white-bg"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        MENU
+      </button>
+      <div class="dropdown-menu">
+        <!-- Dropdown menu links -->
+        <a href="#login" class="dropdown-item" type="button">Login</a>
+        <a href="#signup" class="dropdown-item" type="button">Sign up</a>
+        <a href="#profile" class="dropdown-item" type="button"
+          >Get Profile Info</a
+        >
+        <a href="#update-profile" class="dropdown-item" type="button"
+          >Update Profile Info</a
+        >
+        <a href="#get_post" class="dropdown-item" type="button"
+          >Get User Posts</a
+        >
+        <a href="#other-details" class="dropdown-item" type="button"
+          >Other User Details</a
+        >
+        <a href="#create-post" class="dropdown-item" type="button"
+          >Create Post</a
+        >
+        <a href="#delete-post" class="dropdown-item" type="button"
+          >Delete Post</a
+        >
+        <a href="#like-post" class="dropdown-item" type="button">Like Post</a>
+      </div>
+    </div>
     <div class="container mt-3">
       <blockquote class="blockquote text-center">
         <a href="{%url 'search_page'%}">
@@ -62,253 +124,256 @@
         <a href="{%url 'Blog_api_doc'%}" class="text-success">Blog API Doc</a>
       </div>
       <hr />
-      <div class="my-2 mt-4">
-        <div class="d-flex">
-          <h5 class="mb-0 mr-2">Login</h5>
-          <kbd>POST</kbd>
-          <p class="mb-0 ml-2 text-success">
-            <i>"https://tourday.team/api/auth/login/"</i>
+
+      <div>
+        <div class="my-2 pt-4" id="login">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Login</h5>
+            <kbd>POST</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://tourday.team/api/auth/login/"</i>
+            </p>
+          </div>
+          <p>
+            Send either username or email address with password. If the
+            credentials are valid then the response will contain a key. use that
+            key to acces all data.
           </p>
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"username": "asif",</span><br />
+              <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
+              <span class="ml-4">"password": "******"</span> <br />}
+            </code>
+          </blockquote>
         </div>
-        <p>
-          Send either username or email address with password. If the
-          credentials are valid then the response will contain a key. use that
-          key to acces all data.
-        </p>
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            {<br />
-            <span class="ml-4">"username": "asif",</span><br />
-            <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
-            <span class="ml-4">"password": "******"</span> <br />}
-          </code>
-        </blockquote>
-      </div>
-      <hr />
-      <div class="my-2 mt-4">
-        <div class="d-flex">
-          <h5 class="mb-0 mr-2">Signup</h5>
-          <kbd>POST</kbd>
-          <p class="mb-0 ml-2 text-success">
-            <i>"https://tourday.team/api/auth/signup/"</i>
+        <hr />
+        <div class="my-2 pt-4" id="signup">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Sign up</h5>
+            <kbd>POST</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://tourday.team/api/auth/signup/"</i>
+            </p>
+          </div>
+          <p>
+            If the credentials are valid then the response will contain a key.
+            use that key to acces all data.
           </p>
-        </div>
-        <p>
-          If the credentials are valid then the response will contain a key. use
-          that key to acces all data.
-        </p>
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            {<br />
-            <span class="ml-4">"username": "asif",</span><br />
-            <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
-            <span class="ml-4">"password": "******"</span> <br />}
-          </code>
-        </blockquote>
-      </div>
-
-      <hr />
-      <div class="my-2 mt-4">
-        <div class="d-flex">
-          <h5 class="mb-0 mr-2">Get Profile Info</h5>
-          <kbd>GET</kbd>
-          <p class="mb-0 ml-2 text-success">
-            <i>"https://tourday.team/api/profile/"</i>
-          </p>
-        </div>
-        <p>Token is required. Add token with request header.</p>
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            Request: <br />{<br />
-
-            <span class="ml-4"
-              >"Authorization": "Token
-              93bc86220b144548e5bb507851b6ef7c2a5e1a14",</span
-            ><br />
-            }
-          </code>
-        </blockquote>
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            Response: <br />{<br />
-            <span class="ml-4">"username": "asif",</span><br />
-            <span class="ml-4">"profile": {</span><br />
-            <span class="ml-4">"name": "Asif Shahriar",</span><br />
-            <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
-            <span class="ml-4">"fb": "asif.8617",</span><br />
-            <span class="ml-4">"insta": "_asif_shahriar",</span><br />
-            <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
-            <span class="ml-4">"bio": "Full Stack web developer"</span><br />
-            <span class="ml-4">"picture": "/media/user/pic.jpg"</span><br />
-            <span class="ml-4">},</span><br />
-            <span class="ml-4">"is_completed": true</span> <br />}
-          </code>
-        </blockquote>
-      </div>
-
-      <hr />
-      <div class="my-2 mt-4">
-        <div class="d-flex">
-          <h5 class="mb-0 mr-2">Update Profile Info</h5>
-          <kbd>POST</kbd>
-          <p class="mb-0 ml-2 text-success">
-            <i>"https://tourday.team/api/profile/"</i>
-          </p>
-        </div>
-        <p>
-          Token is required. Add token with request header. Send only specific
-          filed to update it. <br />
-          Ex: If you want to update only name filed, just send name in the
-          request. Keep other field blank.
-        </p>
-
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            {<br />
-            <span class="ml-4">"name": "Asif Shahriar",</span><br />
-            <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
-            <span class="ml-4">"fb": "asif.8617",</span><br />
-            <span class="ml-4">"insta": "_asif_shahriar",</span><br />
-            <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
-            <span class="ml-4">"bio": "Full Stack web developer",</span><br />
-            <span class="ml-4">"picture": picture.jpg</span><br />
-            }<br />
-          </code>
-        </blockquote>
-      </div>
-
-      <hr />
-      <div class="my-2 mt-4">
-        <div class="d-flex">
-          <h5 class="mb-0 mr-2">Get User Posts</h5>
-          <kbd>GET</kbd>
-          <p class="mb-0 ml-2 text-success">
-            <i>"https://tourday.team/api/get_posts/username"</i>
-          </p>
-        </div>
-        <p>
-          Send username with the url and get the response containing all posts.
-          If that user has more than 10 posts, you will get next page url in
-          "next" in the response.
-        </p>
-
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            {<br />
-            <span class="ml-4">"count": "post count",</span><br />
-            <span class="ml-4">"next": "next page url",</span><br />
-            <span class="ml-4">"previous": "previous page url",</span><br />
-            <span class="ml-4">"results": </span><br /><spna class="ml-4"
-              >{</spna
-            ><br />
-            <span class="ml-5">"id": 1,</span><br />
-            <span class="ml-5">"post": "post here"</span><br />
-            <span class="ml-5">"image": "/media/user/pic.jpg",</span><br />
-            <span class="ml-5">"date": "2020-09-16",</span><br />
-            <span class="ml-5">"location": "Dhaka",</span><br />
-            <span class="ml-5">"user": 1,</span><br />
-            <span class="ml-5">"liikes": [1,2,3]</span><br />
-            <span class="ml-4">}</span><br />
-            }<br />
-          </code>
-        </blockquote>
-      </div>
-      <hr />
-      <div class="my-2 mt-4">
-        <div class="d-flex">
-          <h5 class="mb-0 mr-2">Other User's Details</h5>
-          <kbd>GET</kbd>
-          <p class="mb-0 ml-2 text-success">
-            <i>"https://tourday.team/api/user/username"</i>
-          </p>
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"username": "asif",</span><br />
+              <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
+              <span class="ml-4">"password": "******"</span> <br />}
+            </code>
+          </blockquote>
         </div>
 
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            {<br />
-            <span class="ml-4">"name": "Asif Shahriar",</span><br />
-            <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
-            <span class="ml-4">"fb": "asif.8617",</span><br />
-            <span class="ml-4">"insta": "_asif_shahriar",</span><br />
-            <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
-            <span class="ml-4">"bio": "Full Stack web developer",</span><br />
-            <span class="ml-4">"picture": "picture.jpg"</span><br />
-            }<br />
-          </code>
-        </blockquote>
-      </div>
+        <hr />
+        <div class="my-2 pt-4" id="profile">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Get Profile Info</h5>
+            <kbd>GET</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://tourday.team/api/profile/"</i>
+            </p>
+          </div>
+          <p>Token is required. Add token with request header.</p>
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              Request: <br />{<br />
 
-      <hr />
-      <div class="my-2 mt-4">
-        <div class="d-flex">
-          <h5 class="mb-0 mr-2">Write Post</h5>
-          <kbd>POST</kbd>
-          <p class="mb-0 ml-2 text-success">
-            <i>"https://tourday.team/api/post/"</i>
-          </p>
-        </div>
-        <p>
-          Use Location number instead of full location name.
-          <a href="" data-toggle="modal" data-target="#location_keys"
-            >See location key & Value</a
-          >
-        </p>
-
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            {<br />
-            <span class="ml-4">"post": "post text here",</span><br />
-            <span class="ml-4">"location": 1,</span><br />
-            <span class="ml-4">"date": "yyyy-mm-dd",</span><br />
-            <span class="ml-4">"image": image.jpg</span><br />
-            }<br />
-          </code>
-        </blockquote>
-      </div>
-
-      <hr />
-      <div class="my-2 mt-4">
-        <div class="d-flex">
-          <h5 class="mb-0 mr-2">Delete Post</h5>
-          <kbd>POST</kbd>
-          <p class="mb-0 ml-2 text-success">
-            <i>"https://tourday.team/api/post_delete/"</i>
-          </p>
+              <span class="ml-4"
+                >"Authorization": "Token
+                93bc86220b144548e5bb507851b6ef7c2a5e1a14",</span
+              ><br />
+              }
+            </code>
+          </blockquote>
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              Response: <br />{<br />
+              <span class="ml-4">"username": "asif",</span><br />
+              <span class="ml-4">"profile": {</span><br />
+              <span class="ml-4">"name": "Asif Shahriar",</span><br />
+              <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+              <span class="ml-4">"fb": "asif.8617",</span><br />
+              <span class="ml-4">"insta": "_asif_shahriar",</span><br />
+              <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
+              <span class="ml-4">"bio": "Full Stack web developer"</span><br />
+              <span class="ml-4">"picture": "/media/user/pic.jpg"</span><br />
+              <span class="ml-4">},</span><br />
+              <span class="ml-4">"is_completed": true</span> <br />}
+            </code>
+          </blockquote>
         </div>
 
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            {<br />
-            <span class="ml-4">"id": post_id,</span><br />
-            }<br />
-          </code>
-        </blockquote>
-      </div>
-
-      <hr />
-      <div class="my-2 mt-4">
-        <div class="d-flex">
-          <h5 class="mb-0 mr-2">Like Post</h5>
-          <kbd>POST</kbd>
-          <p class="mb-0 ml-2 text-success">
-            <i>"https://tourday.team/api/post/like/"</i>
+        <hr />
+        <div class="my-2 pt-4" id="update-profile">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Update Profile Info</h5>
+            <kbd>POST</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://tourday.team/api/profile/"</i>
+            </p>
+          </div>
+          <p>
+            Token is required. Add token with request header. Send only specific
+            filed to update it. <br />
+            Ex: If you want to update only name filed, just send name in the
+            request. Keep other field blank.
           </p>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"name": "Asif Shahriar",</span><br />
+              <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+              <span class="ml-4">"fb": "asif.8617",</span><br />
+              <span class="ml-4">"insta": "_asif_shahriar",</span><br />
+              <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
+              <span class="ml-4">"bio": "Full Stack web developer",</span><br />
+              <span class="ml-4">"picture": picture.jpg</span><br />
+              }<br />
+            </code>
+          </blockquote>
         </div>
 
-        <blockquote class="blockquote ml-5 mt-2">
-          <code>
-            {<br />
-            <span class="ml-4">"post_id": post_id,</span><br />
-            }<br />
-          </code>
-          <br />
-          Returns: <br />
-          <code>
-            {<br />
-            <span class="ml-4">"like_count": 15,</span><br />
-            }<br />
-          </code>
-        </blockquote>
+        <hr />
+        <div class="my-2 pt-4" id="get_post">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Get User Posts</h5>
+            <kbd>GET</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://tourday.team/api/get_posts/username"</i>
+            </p>
+          </div>
+          <p>
+            Send username with the url and get the response containing all
+            posts. If that user has more than 10 posts, you will get next page
+            url in "next" in the response.
+          </p>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"count": "post count",</span><br />
+              <span class="ml-4">"next": "next page url",</span><br />
+              <span class="ml-4">"previous": "previous page url",</span><br />
+              <span class="ml-4">"results": </span><br /><spna class="ml-4"
+                >{</spna
+              ><br />
+              <span class="ml-5">"id": 1,</span><br />
+              <span class="ml-5">"post": "post here"</span><br />
+              <span class="ml-5">"image": "/media/user/pic.jpg",</span><br />
+              <span class="ml-5">"date": "2020-09-16",</span><br />
+              <span class="ml-5">"location": "Dhaka",</span><br />
+              <span class="ml-5">"user": 1,</span><br />
+              <span class="ml-5">"liikes": [1,2,3]</span><br />
+              <span class="ml-4">}</span><br />
+              }<br />
+            </code>
+          </blockquote>
+        </div>
+        <hr />
+        <div class="my-2 pt-4" id="other-details">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Other User Details</h5>
+            <kbd>GET</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://tourday.team/api/user/username"</i>
+            </p>
+          </div>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"name": "Asif Shahriar",</span><br />
+              <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+              <span class="ml-4">"fb": "asif.8617",</span><br />
+              <span class="ml-4">"insta": "_asif_shahriar",</span><br />
+              <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
+              <span class="ml-4">"bio": "Full Stack web developer",</span><br />
+              <span class="ml-4">"picture": "picture.jpg"</span><br />
+              }<br />
+            </code>
+          </blockquote>
+        </div>
+
+        <hr />
+        <div class="my-2 pt-4" id="create-post">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Create Post</h5>
+            <kbd>POST</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://tourday.team/api/post/"</i>
+            </p>
+          </div>
+          <p>
+            Use Location number instead of full location name.
+            <a href="" data-toggle="modal" data-target="#location_keys"
+              >See location key & Value</a
+            >
+          </p>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"post": "post text here",</span><br />
+              <span class="ml-4">"location": 1,</span><br />
+              <span class="ml-4">"date": "yyyy-mm-dd",</span><br />
+              <span class="ml-4">"image": image.jpg</span><br />
+              }<br />
+            </code>
+          </blockquote>
+        </div>
+
+        <hr />
+        <div class="my-2 pt-4" id="delete-post">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Delete Post</h5>
+            <kbd>POST</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://tourday.team/api/post_delete/"</i>
+            </p>
+          </div>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"id": post_id,</span><br />
+              }<br />
+            </code>
+          </blockquote>
+        </div>
+
+        <hr />
+        <div class="my-2 pt-4" id="like-post">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Like Post</h5>
+            <kbd>POST</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://tourday.team/api/post/like/"</i>
+            </p>
+          </div>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"post_id": post_id,</span><br />
+              }<br />
+            </code>
+            <br />
+            Returns: <br />
+            <code>
+              {<br />
+              <span class="ml-4">"like_count": 15,</span><br />
+              }<br />
+            </code>
+          </blockquote>
+        </div>
       </div>
     </div>
     <footer class="px-2 py-3 d-flex justify-content-center">
