@@ -97,3 +97,33 @@ class PostDelete(APIView):
             return Response({}, status=status.HTTP_200_OK)
         except:
             return Response({}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserDetails(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        username = kwargs.get('username')
+        try:
+            profile = Profile.objects.get(user__username=username)
+            data = ProfileSerializer(profile).data
+            return Response({'profile': data}, status=status.HTTP_200_OK)
+        except:
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LikePost(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        post_id = request.data.get('post_id')
+        try:
+            post = Post.objects.get(id=post_id)
+            if post.likes.all().filter(id=request.user.id).exists():  # user already liked
+                post.likes.remove(request.user)
+            else:
+                post.likes.add(request.user)
+            post.save()
+            return Response({'like_count': post.likes.count()}, status=status.HTTP_200_OK)
+        except:
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)

@@ -11,6 +11,8 @@ urlpatterns = [
     path('get_posts/<str:username>', PostList.as_view()),
     path('post/', profile.PostWrite.as_view()),
     path('post_delete/', profile.PostDelete.as_view()),
+    path('user/<str:username>', profile.UserDetails.as_view()),
+    path('post/like/', profile.LikePost.as_view()),
 
 
 

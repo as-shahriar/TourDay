@@ -213,6 +213,30 @@
           </code>
         </blockquote>
       </div>
+      <hr />
+      <div class="my-2 mt-4">
+        <div class="d-flex">
+          <h5 class="mb-0 mr-2">Other User's Details</h5>
+          <kbd>GET</kbd>
+          <p class="mb-0 ml-2 text-success">
+            <i>"https://tourday.team/api/user/username"</i>
+          </p>
+        </div>
+
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            {<br />
+            <span class="ml-4">"name": "Asif Shahriar",</span><br />
+            <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+            <span class="ml-4">"fb": "asif.8617",</span><br />
+            <span class="ml-4">"insta": "_asif_shahriar",</span><br />
+            <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
+            <span class="ml-4">"bio": "Full Stack web developer",</span><br />
+            <span class="ml-4">"picture": "picture.jpg"</span><br />
+            }<br />
+          </code>
+        </blockquote>
+      </div>
 
       <hr />
       <div class="my-2 mt-4">
@@ -256,6 +280,32 @@
           <code>
             {<br />
             <span class="ml-4">"id": post_id,</span><br />
+            }<br />
+          </code>
+        </blockquote>
+      </div>
+
+      <hr />
+      <div class="my-2 mt-4">
+        <div class="d-flex">
+          <h5 class="mb-0 mr-2">Like Post</h5>
+          <kbd>POST</kbd>
+          <p class="mb-0 ml-2 text-success">
+            <i>"https://tourday.team/api/post/like/"</i>
+          </p>
+        </div>
+
+        <blockquote class="blockquote ml-5 mt-2">
+          <code>
+            {<br />
+            <span class="ml-4">"post_id": post_id,</span><br />
+            }<br />
+          </code>
+          <br />
+          Returns: <br />
+          <code>
+            {<br />
+            <span class="ml-4">"like_count": 15,</span><br />
             }<br />
           </code>
         </blockquote>
