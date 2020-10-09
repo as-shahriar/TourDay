@@ -81,5 +81,5 @@ function clear_loader_progress(interval){
   
   setTimeout(()=>{
     clearInterval(interval);
-  document.getElementById("upper_loader").style.display = "none";},700);
+  document.getElementById("upper_loader").style.display = "none";},1000);
 }
