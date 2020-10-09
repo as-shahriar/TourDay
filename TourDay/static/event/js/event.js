@@ -87,6 +87,9 @@ if (edit_btn != null) {
     form.append("pay1_method", document.getElementById("pay1_method").value);
     form.append("pay2_method", document.getElementById("pay2_method").value);
     form.append("image", select_picture.files[0]);
+
+    
+  interval = loader_progress();
     fetch(`/event/edit_events/${id}`, {
       method: "POST",
       body: form,
@@ -94,8 +97,10 @@ if (edit_btn != null) {
       .then((res) => res.json())
       .then((data) => {
         if (data.status == 200) {
+          
           location.href = `/event/${data.id}`;
         }
+        clear_loader_progress(interval);
       });
   });
 }
@@ -139,6 +144,8 @@ document.querySelectorAll(".cancel-btn").forEach((e) => {
     form = new FormData();
     form.append("is_accepted", "0");
     form.append("user_id", user_id);
+    
+  interval = loader_progress();
     fetch(`/event/action/${id}`, {
       method: "POST",
       body: form,
@@ -148,6 +155,7 @@ document.querySelectorAll(".cancel-btn").forEach((e) => {
         if (data.status == 200) {
           hide_pending(user_id);
         }
+        clear_loader_progress(interval);
       });
   });
 });
@@ -198,7 +206,7 @@ if (join_send_btn != null) {
     form = new FormData();
     form.append("method", method);
     form.append("tr", tr);
-
+    interval = loader_progress();
     fetch(`/event/pay/${id}`, { method: "POST", body: form })
       .then((res) => res.json())
       .then((data) => {
@@ -214,6 +222,7 @@ if (join_send_btn != null) {
           counter.textContent = parseInt(counter.textContent) + 1;
           document.getElementById("close-modal").click();
         }
+        clear_loader_progress(interval);
       });
   });
 }

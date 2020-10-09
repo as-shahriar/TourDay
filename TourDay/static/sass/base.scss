@@ -412,6 +412,23 @@ section {
   }
 }
 
+#upper_loader {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background: var(--primary-dark-color);
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  z-index: 9999;
+  box-shadow: 0px 1px 3px #0000006b;
+}
+
 @media (max-width: 800px) {
   .error {
     width: 100%;

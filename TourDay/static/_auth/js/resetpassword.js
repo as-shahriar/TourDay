@@ -45,6 +45,8 @@ $("#save").click(function (e) {
     password2.removeClass("input-error");
   }
 
+  
+  interval = loader_progress();
   $.ajax({
     url: "/reset-password/" + username.val(),
     type: "POST",
@@ -68,5 +70,8 @@ $("#save").click(function (e) {
     error: function (result) {
       console.log("Network Error");
     },
+    complete: function(result){
+      clear_loader_progress(interval);
+    }
   });
 });

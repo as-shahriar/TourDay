@@ -59,7 +59,8 @@ document.getElementById("create-event").addEventListener("click", () => {
     date == "" ||
     details == "" ||
     cost == "" ||
-    capacity == ""
+    capacity == "" ||
+    document.getElementById("pay1").value == ""
   ) {
     $("#error-msg").text("Fill up all fileds.");
     $(".error").show();
@@ -77,7 +78,7 @@ document.getElementById("create-event").addEventListener("click", () => {
   form.append("pay2", document.getElementById("pay2").value);
   form.append("pay1_method", document.getElementById("pay1_method").value);
   form.append("pay2_method", document.getElementById("pay2_method").value);
-
+  interval = loader_progress();
   fetch("/event/dashboard/", {
     method: "POST",
     body: form,
@@ -87,6 +88,7 @@ document.getElementById("create-event").addEventListener("click", () => {
       if (data.status == 200) {
         location.href = `/event/${data.id}`;
       }
+      clear_loader_progress(interval);
     });
 });
 

@@ -62,3 +62,24 @@ function getCookie(name) {
 function hide_error() {
   timeout = setTimeout(() => $(".error").hide(), 5000);
 }
+
+
+function loader_progress(){
+  loader_length = 0;
+  document.getElementById("upper_loader").style.display = "block";
+  return setInterval(()=>{
+    document.getElementById("upper_loader").style.width = `${loader_length}%`;
+    if(loader_length<80)
+      loader_length += 0.9;
+    else if (loader_length<85)
+    loader_length += 0.1;
+    else if (loader_length>92 && loader_length<101)
+    loader_length += 0.07;
+    
+  },1);
+}
+
+function clear_loader_progress(interval){
+  clearInterval(interval);
+  document.getElementById("upper_loader").style.display = "none";
+}

@@ -105,7 +105,7 @@ def action(request, id):
         tr = Transactions.objects.filter(
             Q(user=user), Q(event=event)
         )
-        print(tr)
+
         if is_accepted == "1":
             event.going.add(user)
             event.pending.remove(user)
