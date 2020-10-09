@@ -87,7 +87,6 @@ if (edit_btn != null) {
     form.append("pay1_method", document.getElementById("pay1_method").value);
     form.append("pay2_method", document.getElementById("pay2_method").value);
     form.append("image", select_picture.files[0]);
-
     fetch(`/event/edit_events/${id}`, {
       method: "POST",
       body: form,

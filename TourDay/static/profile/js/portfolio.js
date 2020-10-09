@@ -50,7 +50,6 @@ if (select_picture != null) {
       .then((res) => res.json())
       .then((data) => {
         if (data.status == 201) {
-          console.log(data.image);
           add_post(
             false,
             data.id,

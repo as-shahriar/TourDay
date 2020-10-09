@@ -9,8 +9,6 @@ from _auth.models import ResetCode
 from django.core.validators import validate_email
 import re
 
-# delete this
-from django.core.mail import send_mail
 from utils import async_send_mail
 from TourDay.settings import EMAIL_HOST_USER
 from django.db.models import Q
