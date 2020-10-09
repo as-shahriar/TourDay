@@ -100,9 +100,10 @@ a:hover {
 }
 
 .ads {
+  min-width: 20rem;
   grid-area: ads;
-  min-width: 10rem;
   text-align: center;
+  position: relative;
 }
 
 .logo {
@@ -123,6 +124,7 @@ a:hover {
   max-height: 99.8vh;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  position: fixed;
 
   &::-webkit-scrollbar {
     display: none;
@@ -153,6 +155,7 @@ a:hover {
   .card_ad {
     max-height: auto;
     overflow: visible;
+    position: relative;
   }
 }
 
