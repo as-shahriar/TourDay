@@ -72,11 +72,11 @@
 }
 
 .text-justify {
-    text-align: justify;
+  text-align: justify;
 }
 
 .loader__class {
-    height: 14rem; 
+  height: 14rem;
 }
 
 #preloader {
