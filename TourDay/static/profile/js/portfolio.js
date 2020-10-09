@@ -279,6 +279,7 @@ function like_event(id) {
       if (data.status != 200) {
         console.log("Like error.");
       }
+      
       clear_loader_progress(interval);
     });
 }
