@@ -145,7 +145,19 @@
       </div>
       <div class="content">{% block content %} {% endblock %}</div>
       <div class="ads">
-        <div class="card_ad">Adds herer</div>
+        <div class="card_ad">
+{%for i in "123456789"%}
+<a href="#" class="card-a">
+          <div class="card my-2" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'image/tourday-og.png'%}" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">Sample Ads</p>
+            </div>
+          </div>
+        </a>
+{%endfor%}
+
+        </div>
       </div>
     </div>
 

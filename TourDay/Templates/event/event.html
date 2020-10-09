@@ -79,7 +79,7 @@ Event{%endblock%} {%block css%}<link
   {%endif%}
   <div class="section-root">
     <div class="card bg-white mb-3 my-card">
-      <div class="card-header">
+      <div class="card-header mycard-header">
         <div>
           <span>Going </span><i class="material-icons">flight_takeoff</i>
         </div>
@@ -88,7 +88,7 @@ Event{%endblock%} {%block css%}<link
           <span id="going-count">{{event.going.all.count}}</span>
         </div>
       </div>
-      <div class="card-body" id="going-list">
+      <div class="card-body mycard-body" id="going-list">
         {%for u in going %}
         <a href="/u/{{u.user.username}}" target="_blank">
           <div class="travelers">
@@ -103,7 +103,7 @@ Event{%endblock%} {%block css%}<link
   </div>
   <div class="transtaction mb-4">
     <div class="card bg-white mb-3 my-card">
-      <div class="card-header">
+      <div class="card-header mycard-header">
         <div>
           <span>Pending Payments</span><i class="material-icons">data_usage</i>
         </div>
@@ -113,7 +113,7 @@ Event{%endblock%} {%block css%}<link
         </div>
       </div>
       {%if request.user == event.host%}
-      <div class="card-body">
+      <div class="card-body mycard-body">
         {%for u in transaction %}
 
         <div class="travelers" id="pending-{{u.user.id}}">

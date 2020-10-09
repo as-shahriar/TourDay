@@ -19,7 +19,7 @@ Profile{%endblock%} {%block css%}
     <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
     <div class="info">
       <div style="display: flex; align-items: center">
-        <h3 id="name">{{profile.name}}</h3>
+        <h3 id="name">  {%if profile.name%}{{profile.name}}{%else%}Edit Profile{%endif%}</h3>
         {% if request.user == user_obj %}
         <a href="{% url 'edit_profile' %}" id="edit-link"
           ><i class="material-icons">edit</i></a
@@ -27,9 +27,11 @@ Profile{%endblock%} {%block css%}
       </div>
 
       <p>
-        {{profile.bio}}
+        {%if profile.bio%}{{profile.bio}}{%endif%}
+        
         <br />
-        {{profile.city}}
+        {%if profile.city%}{{profile.city}}{%endif%}
+        
       </p>
     </div>
   </div>
