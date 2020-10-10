@@ -44,6 +44,7 @@ Profile{%endblock%} {%block css%}
     </div>
   </div>
   <div class="right-div">
+    {%if request.user.is_authenticated%}
     <div>
       <img
         class="profile-icon"
@@ -92,6 +93,7 @@ Profile{%endblock%} {%block css%}
           title="{{profile.email}}"
       /></a>
     </div>
+    {%endif%}
   </div>
 </div>
 
@@ -141,13 +143,23 @@ Profile{%endblock%} {%block css%}
   </div>
 </div>
 {%endif%}
+
+{%if request.user.is_authenticated%}
 <div class="posts">
   <div id="post-section"></div>
   <div id="post-loder">
     <img src="{%static 'icon/loader.gif'%}" alt="Loading" />
   </div>
 </div>
-
+{%else%}
+<hr>
+<p align="center" class="login_signup_link">
+  <a href="{% url 'login_page' %}?next=/u/{{user_obj.username}}">Login</a> or
+  <a href="{% url 'signup_page' %}?next=/u/{{user_obj.username}}">Sign up</a> to
+  view this profile.
+</p>
+<hr>
+{%endif%}
 {% comment %} image Modal {% endcomment %}
 <div
   class="modal modal-image"

@@ -132,7 +132,9 @@
           {%endif%}
           <a href="{% url 'search_page'%}"><li><i class="material-icons">search</span></i><span>Search</span></li></a>
           <a href="{% url 'blog_home'%}"><li><i class="material-icons">article</i><span>Blog</span></li></a>
+          {% if user.is_authenticated %}
           <a href="{% url 'event_dashboard'%}"><li><i class="material-icons">explore</i><span>Event</span></li></a>
+          {%endif%}
           <a href="#"><li><i class="material-icons">add_shopping_cart</i><span>E-commerce</span></li></a>
           {% if user.is_authenticated %}
           

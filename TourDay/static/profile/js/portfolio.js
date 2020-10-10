@@ -221,8 +221,9 @@ function add_post(
   div_head.appendChild(div_date);
   div_post.appendChild(div_head);
   div_post.appendChild(div_body);
+  if(post_section!=null){
   if (direction) post_section.appendChild(div_post);
-  else post_section.prepend(div_post);
+  else post_section.prepend(div_post);}
 }
 
 let next;
@@ -232,6 +233,7 @@ function get_post(url) {
     .then((res) => res.json())
     .then((data) => {
       next = data.next;
+      if (post_loader !=null)
       post_loader.style.display = "none";
       data.results.forEach((post) => {
         add_post(
@@ -253,6 +255,7 @@ function get_post(url) {
 if (next != null) {
   $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+      if (post_loader !=null)
       post_loader.style.display = "flex";
       get_post(next);
     }

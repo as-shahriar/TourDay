@@ -151,7 +151,6 @@ def add_info(request, param):
             return JsonResponse({}, status=404)
 
 
-@login_required
 def portfolio(request, username):
 
     user = get_object_or_404(User, username=username)
