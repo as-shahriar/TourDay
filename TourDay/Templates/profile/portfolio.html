@@ -1228,9 +1228,10 @@ Profile{%endblock%} {%block css%}
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
   crossorigin="anonymous"
 ></script>
+{% if user.is_authenticated %}
 <script src="{%static 'profile/js-min/map.js'%}"></script>
 <script src="{% static 'profile/js-min/portfolio.js'%}"></script>
-
+{%endif%}
 <script>
   $(document).ready(function () {
     function alignModal() {
