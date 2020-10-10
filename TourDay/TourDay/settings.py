@@ -19,6 +19,9 @@ if not DEBUG:
 
 ALLOWED_HOSTS = ["*", "52.140.64.35", "tourday.team", "www.tourday.team"]
 
+# handel large file to upload
+FILE_UPLOAD_MAX_MEMORY_SIZE = 2000000  # 20M
+FILE_UPLOAD_PERMISSIONS = 0o640
 
 # Application definition
 
