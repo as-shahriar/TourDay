@@ -1,4 +1,10 @@
-{%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
+{%extends 'layout.html'%} {% load static %}
+{%block og-details %}
+<meta name="og:title" content="TourDay" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{% static 'image/tourday-og.png'%}" />
+{%endblock%}
+{%block title%}TourDay |
 Event{%endblock%} {%block css%}<link
   rel="stylesheet"
   href="{% static 'event/css/dashboard.css'%}"

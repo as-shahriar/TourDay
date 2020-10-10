@@ -1,7 +1,13 @@
-{% extends 'layout.html' %}{% load static %} {%block css%}<link
+{% extends 'layout.html' %}{% load static %}
+{%block og-details %}
+<meta name="og:title" content="TourDay" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{% static 'image/tourday-og.png'%}" />
+{%endblock%}
+{%block css%}<link
   rel="stylesheet"
   href="{% static 'blog/css/search.min.css'%}"
-/>{%endblock%} {% block title %}TourDay{%endblock%} {% block search %}
+/>{%endblock%} {% block title %}TourDay | A Platform for Bangladeshi Tourists{%endblock%} {% block search %}
 <style>
   .left-menu,
   .ads {

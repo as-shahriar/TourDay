@@ -1,4 +1,12 @@
-{%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
+{%extends 'layout.html'%} {% load static %}
+
+{%block og-details %}
+<meta name="og:title" content="{%if profile.name%}{{profile.name}}{%else%}TourDay{%endif%}" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{% if not 'user.png' in profile.picture.url %}{{profile.picture.url}}{%else%}{% static 'image/tourday-og.png'%}{%endif%}" />
+{%endblock%}
+
+{%block title%}TourDay |
 Profile{%endblock%} {%block css%}
 
 <link rel="stylesheet" href="{% static 'profile/css/portfolio.css'%}" />
