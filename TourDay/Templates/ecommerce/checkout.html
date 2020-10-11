@@ -2,6 +2,8 @@
 
 {% load static %}
 {% block content %}
+
+
      <div class="row">
 		<div class="col-lg-6">
 			<div class="box-element" id="form-wrapper">
@@ -15,10 +17,10 @@
 							<input required class="form-control" type="email" name="email" placeholder="Email..">
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text" name="phone" placeholder="PhoneNo">
+							<input required class="form-control" type="text" name="phone" placeholder="Phone No..">
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text" name="al_phone" placeholder="Alternative PhoneNo">
+							<input required class="form-control" type="text" name="al_phone" placeholder="Alternative Phone No..">
 						</div>
 					</div>
 					
@@ -49,25 +51,31 @@
 						<p>Shipping Method:</p>
 						<hr>
 						<div class="custom-control custom-radio custom-control-inline">
-							<input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+							<input type="radio" id="customRadioInline1" name="colorCheckbox" value="cashOndelivery" class="custom-control-input">
 							<label class="custom-control-label" for="customRadioInline1">Cash on delivery</label>
 						  </div>
 						  <div class="custom-control custom-radio custom-control-inline">
-							<input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+							<input type="radio" id="customRadioInline2" name="colorCheckbox" value="payment" class="custom-control-input">
 							<label class="custom-control-label" for="customRadioInline2">Payment</label>
 						  </div>
+
 						  <br><br>
-						  <div class="form-group">
-							<select class="form-control">
-							  <option>bKash</option>
-							  <option>DBBL</option>
-							</select>
-						  </div>
-						  <div class="form-field">
-							<input required class="form-control" type="text" name="name" placeholder="Phone no">
-						</div>
-						<div class="form-field">
-							<input required class="form-control" type="text" name="email" placeholder="TxdId">
+						  <div class="form-payment" style="display: none;">
+							
+								<p>Send Money: <b> ৳{{order.get_cart_total}}</b> bKash: 017XX-XXXXXX or Rocket: 017XX-XXXXXX-X</p>
+			
+							<div class="form-group">
+								<select class="form-control">
+								<option>bKash</option>
+								<option>Rocket</option>
+								</select>
+							</div>
+							<div class="form-field">
+								<input required class="form-control" type="text" name="name" placeholder="Phone No">
+							</div>
+							<div class="form-field">
+								<input required class="form-control" type="text" name="email" placeholder="TrxID">
+							</div>
 						</div>
 					</div>
 					<hr>
@@ -100,14 +108,5 @@
 		</div>
 	</div>
 
-	<script>
-		$(document).ready(function() {
-		$('.form-switch').on('change', function() {
-		$('.form').removeClass('active');
-		var formToShow = '.form-' + $(this).data('id');
-		$(formToShow).addClass('active');
-		});
-		});
-	</script>
 
 {% endblock content %}

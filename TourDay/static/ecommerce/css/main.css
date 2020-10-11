@@ -103,9 +103,3 @@ h1,h2,h3,h4,h5,h6{
 	display: none!important;
 }
 
-.radio_check {
-	display: none;
-  }
-  .radio_check.active {
-	display: block
-  }

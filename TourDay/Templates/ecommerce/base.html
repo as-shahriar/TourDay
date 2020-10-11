@@ -106,5 +106,26 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	
 	<script type="text/javascript" src="{% static 'ecommerce/js/cart.js' %}"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+		  $('input[name=colorCheckbox]:radio').change(function(e) {
+			let value = e.target.value.trim()
+		
+			$('[class^="form-payment"]').css('display', 'none');
+		
+			switch (value) {
+			  case 'payment':
+				$('.form-payment').show()
+				break;
+			  case 'cashOndelivery':
+				$('.form-payment').hide()
+				break;
+			  default:
+				break;
+			}
+		  })
+		})
+		</script>
 </body>
 </html>
