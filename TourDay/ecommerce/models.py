@@ -80,7 +80,7 @@ class ShippingAddress(models.Model):
     customer = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     PhoneNo = models.CharField(max_length=50, null=False, blank=True)
-    address = models.(max_length=200, null=False)
+    address = models.CharField(max_length=200, null=False)
     city = models.CharField(max_length=200, null=False)
     state = models.CharField(max_length=200, null=False)
     zipcode = models.CharField(max_length=200, null=False)

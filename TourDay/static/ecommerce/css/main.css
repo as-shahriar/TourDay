@@ -63,6 +63,11 @@ h1,h2,h3,h4,h5,h6{
 	display: inline-block;
 	padding: 5px;
 }
+.form-group {
+	width:500px;
+	display: inline-block;
+	padding: 5px;
+}
 
 .cart-row{
 	display: flex;
@@ -97,3 +102,10 @@ h1,h2,h3,h4,h5,h6{
 .hidden{
 	display: none!important;
 }
+
+.radio_check {
+	display: none;
+  }
+  .radio_check.active {
+	display: block
+  }
