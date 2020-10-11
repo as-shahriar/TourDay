@@ -5,7 +5,7 @@ preview_close = document.getElementById("preview-close");
 pic_preview = document.getElementById("pic_preview");
 
 post_loader = document.getElementById("post-loder");
-
+see_more = document.querySelector("#see-more");
 if (select_picture != null) {
   select_picture.addEventListener("change", () => {
     const file = select_picture.files[0];
@@ -233,8 +233,14 @@ function get_post(url) {
     .then((res) => res.json())
     .then((data) => {
       next = data.next;
+      if (data.next) see_more.style.display = "block";
+      else {
+        see_more.style.display = "none";
+        document.querySelector("#hr-hide-with-see-more").style.display = "none";
+    }
       if (post_loader !=null)
       post_loader.style.display = "none";
+      
       data.results.forEach((post) => {
         add_post(
           true,
@@ -252,15 +258,24 @@ function get_post(url) {
     });
 }
 
-if (next != null) {
-  $(window).scroll(function () {
-    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-      if (post_loader !=null)
-      post_loader.style.display = "flex";
-      get_post(next);
-    }
-  });
+see_more.addEventListener("click",()=>{
+  if(next){
+    if (post_loader !=null)
+  post_loader.style.display = "flex";
+  get_post(next);
 }
+});
+
+  $(window).scroll(function () {
+    if($(window).width()>783){
+    if ($(window).scrollTop() + $(window).height() >= $(document).height()-1) {
+      if(next){
+      get_post(next);
+      if (post_loader !=null)
+      post_loader.style.display = "flex";}
+    }}
+  });
+
 
 $(document).ready(() => {
   username = document.getElementById("my-username").value;

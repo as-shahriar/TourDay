@@ -225,6 +225,7 @@ def add_post(request):
         post.location = location
         post.image = image
         post.save()
+
         return JsonResponse({
             "id": post.id,
             "image": post.image.url,

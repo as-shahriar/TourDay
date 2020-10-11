@@ -132,6 +132,12 @@ input[type="date"]:focus {
 .card-header {
   text-align: center;
 }
+
+#see-more-div,
+.mobile-hr {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .head {
     i {
@@ -145,5 +151,16 @@ input[type="date"]:focus {
   }
   .root {
     padding: 1rem;
+  }
+  #see-more {
+    cursor: pointer;
+    padding: 0.1rem;
+  }
+  #see-more-div {
+    display: flex;
+    justify-content: center;
+  }
+  .mobile-hr {
+    display: block;
   }
 }

@@ -1,7 +1,7 @@
 {%extends 'layout.html'%} {% load static %}
 
 {%block og-details %}
-<meta name="og:title" content="{%if profile.name%}{{profile.name}}{%else%}TourDay{%endif%}" />
+<meta name="og:title" content="{%if profile.name%}{{profile.name}} | TourDay{%else%}TourDay{%endif%}" />
 <meta name="og:url" content="https://tourday.team" />
 <meta name="og:image" content="{% if not 'user.png' in profile.picture.url %}{{profile.picture.url}}{%else%}{% static 'image/tourday-og.png'%}{%endif%}" />
 {%endblock%}
@@ -26,7 +26,7 @@ Profile{%endblock%} {%block css%}
   <div class="left-div">
     <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
     <div class="info">
-      <div style="display: flex; align-items: center">
+      <div style="display: flex; align-items: center;justify-content:center;">
         <h3 id="name">  {%if profile.name%}{{profile.name}}{%else%}Edit Profile{%endif%}</h3>
         {% if request.user == user_obj %}
         <a href="{% url 'edit_profile' %}" id="edit-link"
@@ -150,6 +150,10 @@ Profile{%endblock%} {%block css%}
   <div id="post-loder">
     <img src="{%static 'icon/loader.gif'%}" alt="Loading" />
   </div>
+  <div class="mobile-hr" id="hr-hide-with-see-more"><hr></div>
+  <div id="see-more-div"><span id="see-more">See More</span></div>
+  <div class="mobile-hr"><hr></div>
+  
 </div>
 {%else%}
 <hr>

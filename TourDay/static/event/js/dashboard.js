@@ -6,6 +6,7 @@ Date.prototype.toDateInputValue = function () {
 document.getElementById("date").value = new Date().toDateInputValue();
 
 post_loader = document.getElementById("post-loder");
+see_more = document.querySelector("#see-more");
 
 function card(date, title, text, id) {
   div1 = document.createElement("div");
@@ -100,6 +101,11 @@ function get_events(url) {
     .then((res) => res.json())
     .then((data) => {
       next = data.next;
+      if (data.next) see_more.style.display = "block";
+      else {
+        see_more.style.display = "none";
+        document.querySelector("#hr-hide-with-see-more").style.display = "none";
+    }
       post_loader.style.display = "none";
       data.results.forEach((e) => {
         card(e.date, e.title, e.details, e.id);
@@ -107,13 +113,26 @@ function get_events(url) {
     });
 }
 
-$(window).scroll(function () {
-  if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-    if (next != null) {
-      post_loader.style.display = "flex";
-      get_events(next);
-    }
-  }
+see_more.addEventListener("click",()=>{
+  if(next){
+    if (post_loader !=null)
+  post_loader.style.display = "flex";
+  get_events(next);
+}
 });
+
+
+$(window).scroll(function () {
+  if($(window).width()>783){
+  if ($(window).scrollTop() + $(window).height() >= $(document).height()-1) {
+    if(next){
+      get_events(next);
+    if (post_loader !=null)
+    post_loader.style.display = "flex";}
+  }}
+});
+
+
+
 username = document.getElementById("my-username").value;
 get_events(`/event/get_events/${username}?format=json`);
