@@ -18,6 +18,7 @@ env/
 */media/event
 */media/profile_pics
 */media/uploads
+*/media/ecom_pics
 
 # django migrations 
 **/migrations/**
