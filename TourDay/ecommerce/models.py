@@ -33,7 +33,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    date_ordered = models.DateTimeField(auto_now_add=True)
+    date_ordered = models.DateField(default=datetime.date.today)
     complete = models.BooleanField(default=False)
 
     total_money = models.IntegerField(default=0, null=True, blank=True)
@@ -42,7 +42,7 @@ class Order(models.Model):
     order_id = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return str(self.customer)
+        return self.order_id
 		
     @property
     def shipping(self):
@@ -69,7 +69,7 @@ class OrderItem(models.Model):
 	product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
 	quantity = models.IntegerField(default=0, null=True, blank=True)
-	date_added = models.DateTimeField(auto_now_add=True)
+	date_added = models.DateField(default=datetime.date.today)
 
 	@property
 	def get_total(self):
@@ -77,15 +77,28 @@ class OrderItem(models.Model):
 		return total
 
 class ShippingAddress(models.Model):
-    customer = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     PhoneNo = models.CharField(max_length=50, null=False, blank=True)
-    address = models.CharField(max_length=200, null=False)
-    city = models.CharField(max_length=200, null=False)
-    state = models.CharField(max_length=200, null=False)
-    zipcode = models.CharField(max_length=200, null=False)
-    date_added = models.DateTimeField(auto_now_add=True)
+    allPhoneNo = models.CharField(max_length=50, null=False, blank=True)
+    address = models.CharField(max_length=200, null=False, blank=True)
+    city = models.CharField(max_length=200, null=False, blank=True)
+    state = models.CharField(max_length=200, null=False, blank=True)
+    zipcode = models.CharField(max_length=200, null=False, blank=True)
+    date_added = models.DateField(default=datetime.date.today)
 
     def __str__(self):
         return self.address
 
+class payment(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    
+    method = models.CharField(max_length=50,null=True, blank=True)
+    
+    payment_method = models.CharField(max_length=50,null=True, blank=True)
+    PhoneNo = models.CharField(max_length=50, null=False, blank=True)
+    trxId = models.CharField(max_length=50, null=False, blank=True)
+
+    def __str__(self):
+        return str(self.customer)
