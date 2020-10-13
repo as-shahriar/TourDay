@@ -10,6 +10,9 @@
 				<form id="form" method="POST">
 					{% csrf_token %}
 					<div id="user-info">
+					
+						<p>Personal Information:</p>
+						<hr>
 						<div class="form-field">
 							<input required class="form-control" type="text" value="{{profile.name}}" disabled>
 						</div>
@@ -66,7 +69,7 @@
 			
 							<div class="form-group">
 								<select class="form-control" name="payment_mtd">
-									<option value="checked" >No Selected</option>
+									<option value="checked" >Payment type</option>
 									<option value="bKash">bKash</option>
 									<option value="Rocket">Rocket</option>
 								</select>

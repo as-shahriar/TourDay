@@ -17,7 +17,7 @@
 							{% if order.shipping == True %}
 							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
 							{% else %}
-							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'cart' %}">Checkout</a>
+							<button disabled style="float:right; margin:5px; cursor: default;" class="btn btn-success">Checkout</button>
 							{% endif %}
 						</th>
 					</tr>

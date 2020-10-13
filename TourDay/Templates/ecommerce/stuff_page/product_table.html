@@ -1,0 +1,72 @@
+{% include 'ecommerce/stuff_page/base.html' %}
+
+{% block base %}
+<div class="container mt-4">
+    <div class="row">
+      
+        <div class="col-md-10"></div>
+        <div class="col-md-2">
+            <a href="#"><button type="submit" class="btn btn-success">Add Product</button></a>
+            
+        </div>
+    </div>
+    <br>    
+    <div class="box-element">
+    <form method="POST">
+      {% csrf_token %}
+        <input class="form-control mt-2" name="search" type="text" placeholder=" Type something to search...ex. student id">
+         
+          <button type="submit" name="btn-search" class="btn btn-info mt-2">Search</button>
+        
+      </form>
+    </div>
+    <br>
+    <div class="box-element">
+        <legend class="container-fluid border-bottom mb-3 mt-1">Product list. </legend>
+        <div class="cart-row">
+            <div style="flex:2"></div>
+            <div style="flex:2"><strong>Name</strong></div>
+            <div style="flex:1"><strong>Price</strong></div>
+            <div style="flex:0.3"></div>
+            <div style="flex:0.5"></div>
+        </div>
+
+                {% for product in  product %}
+				<div class="cart-row">
+					<div style="flex:2"><img style="height: 56px;" class="row-image" src="{{product.imageURL}}"></div>
+					<div style="flex:2"><p>{{product.name}}</p></div>
+					<div style="flex:1"><p>৳{{product.price}}</p></div>
+					<div style="flex:0.3">
+						<button class="btn btn-info btn-sm">Edit</button>	
+					</div>
+                    <div style="flex:0.5">
+                        <button class="btn btn-danger btn-sm">Delete </button>
+                    </div>
+				</div>
+				{% endfor %}
+
+        <div class="row md-4 mt-2">
+            <!-- <div class="col-4">
+                {% if result.has_previous %}
+                <a href="?page={{ objects.previous_page_number }}" class="btn btn-info px-3 ">Page
+                    {{ result.previous_page_number }}</a>{%endif%}
+            </div> -->
+
+
+            <div class="col-4">
+
+            </div>
+
+
+            <!-- <div class="col-4">
+                {% if result.has_next %}
+                <a href="?page={{ result.next_page_number }}" class="btn btn-info px-4 float-right">Page
+                    {{ result.next_page_number }}</a>{%endif%}
+
+            </div> -->
+    </div>
+
+</div>
+
+
+{% endblock %}

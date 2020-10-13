@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'ecommerce/css/main.css' %}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .bg-company {
+          background-color: #0D827D;
+        }
+        
+
+      </style>
+
+</head>
+<body>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-sm bg-company navbar-dark fixed-top">
+          <div class="container">
+            <a class="navbar-brand mr-4" href="#">Result Section</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav mr-auto">
+                <!-- <a class="nav-item nav-link" href="#">Home</a> -->
+              
+              </div>
+              <!-- Navbar Right Side -->
+              <div class="navbar-nav">
+                
+                  
+                  <a class="nav-item nav-link" href="#">Profile</a>
+                  <a class="nav-item nav-link" href="#">Logout</a>
+                
+                  
+               
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div style="margin-top: 5em;" >
+    
+        {% block base %}
+        {% endblock %}
+
+    </div>
+    
+</body>
+
+
+
+
+</html>

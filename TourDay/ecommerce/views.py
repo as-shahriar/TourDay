@@ -112,3 +112,26 @@ def checkout(request):
     
     }
     return render(request, 'ecommerce/checkout.html', context)
+
+def edit(request):
+    return render(request, 'ecommerce/stuff_page/main.html')
+
+def table(request):
+
+    product = Product.objects.all()
+
+    context = {
+        'product' : product,
+    }
+
+    return render(request, 'ecommerce/stuff_page/product_table.html', context)
+
+def order_table(request):
+
+    order = Order.objects.all()
+
+    context = {
+        'order' : order,
+    }
+
+    return render(request, 'ecommerce/stuff_page/order_table.html', context)
