@@ -11,10 +11,10 @@
 					{% csrf_token %}
 					<div id="user-info">
 						<div class="form-field">
-							<input required class="form-control" type="text" name="name" placeholder="Name..">
+							<input required class="form-control" type="text" value="{{profile.name}}" disabled>
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="email" name="email" placeholder="Email..">
+							<input required class="form-control" type="email" value="{{profile.email}}" disabled>
 						</div>
 						<div class="form-field">
 							<input required class="form-control" type="text" name="phone" placeholder="Phone No..">
@@ -32,18 +32,18 @@
 							<input class="form-control" type="text" name="address" placeholder="Bangladesh" disabled>
 						</div>
 						<div class="form-field">
-							<input class="form-control" type="text" name="city" placeholder="City..">
+							<input required class="form-control" type="text" name="city" placeholder="City..">
 						</div>
 						<div class="form-field">
-							<input class="form-control" type="text" name="state" placeholder="State..">
+							<input required class="form-control" type="text" name="state" placeholder="State..">
 							
 						</div>
 						<div class="form-field">
-							<input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+							<input required class="form-control" type="text" name="zipcode" placeholder="Zip code..">
 						</div>
 						
 						<div class="form-group">
-							<textarea class="form-control" type="text" name="address" placeholder="Address" rows="3"></textarea>
+							<textarea required class="form-control" type="text" name="address" placeholder="Address" rows="3"></textarea>
 						  </div>
 					</div>
 					<hr>
@@ -51,11 +51,11 @@
 						<p>Shipping Method:</p>
 						<hr>
 						<div class="custom-control custom-radio custom-control-inline">
-							<input type="radio" id="customRadioInline1" name="colorCheckbox" value="cashOndelivery" class="custom-control-input">
+							<input required type="radio" id="customRadioInline1" name="colorCheckbox" value="cashOndelivery" class="custom-control-input">
 							<label class="custom-control-label" for="customRadioInline1">Cash on delivery</label>
 						  </div>
 						  <div class="custom-control custom-radio custom-control-inline">
-							<input type="radio" id="customRadioInline2" name="colorCheckbox" value="payment" class="custom-control-input">
+							<input required type="radio" id="customRadioInline2" name="colorCheckbox" value="payment" class="custom-control-input">
 							<label class="custom-control-label" for="customRadioInline2">Payment</label>
 						  </div>
 
@@ -66,6 +66,7 @@
 			
 							<div class="form-group">
 								<select class="form-control" name="payment_mtd">
+									<option value="checked" >No Selected</option>
 									<option value="bKash">bKash</option>
 									<option value="Rocket">Rocket</option>
 								</select>
@@ -79,7 +80,11 @@
 						</div>
 					</div>
 					<hr>
+					{% if profile.name != None %}
 					<input id="form-button" class="btn btn-success btn-block" type="submit" name="checkout" value="Continue">
+					{% else %}
+					<a href="{% url 'portfolio' request.user %}"><input id="form-button" class="btn btn-success btn-block" value="Continue"></a>
+					{% endif %}
 				</form>
 			</div>
 

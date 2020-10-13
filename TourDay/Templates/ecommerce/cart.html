@@ -14,7 +14,11 @@
 						<th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
 						<th><h5>Total:<strong> ৳{{order.get_cart_total}}</strong></h5></th>
 						<th>
+							{% if order.shipping == True %}
 							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+							{% else %}
+							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'cart' %}">Checkout</a>
+							{% endif %}
 						</th>
 					</tr>
 				</table>

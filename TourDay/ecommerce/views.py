@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 import json
 import datetime
@@ -57,7 +57,8 @@ def checkout(request):
     items = data['items']
 
     print(order)
-
+    profile = get_object_or_404(Profile, user=request.user)
+   
     if request.method == 'POST' and 'checkout' in request.POST:
         
         random_order_id = int(random_with_N_digits(8))
@@ -93,14 +94,21 @@ def checkout(request):
         pay.customer = request.user
         pay.order = order
         pay.method = request.POST.get('colorCheckbox')
-        pay.payment_method = request.POST.get('payment_mtd')
+        if request.POST.get('payment_mtd') == 'checked':
+            pay.payment_method = None
+        else:
+            pay.payment_method = request.POST.get('payment_mtd')
         pay.PhoneNo = request.POST.get('pay_phone_no')
         pay.trxId = request.POST.get('trxid')
         pay.save()
+        
+      
    
     context = {
     'items':items,
     'order':order,
-    'cartItems':cartItems
+    'cartItems':cartItems,
+    'profile' : profile,
+    
     }
     return render(request, 'ecommerce/checkout.html', context)
