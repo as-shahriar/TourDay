@@ -8,8 +8,9 @@ STATUS_CHOICES = (
     ("Pending", "Pending"),
     ("Submitted", "Submitted"),
     ("PaymentError", "PaymentError"),
-    ("Complete", "Complete"),
-    ("Return", "Return"),
+    ("Shipping", "Shipping"),
+    ("Completed", "Completed"),
+    ("Returned", "Returned"),
 )
 
 

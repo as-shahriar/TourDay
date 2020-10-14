@@ -6,6 +6,8 @@
         <a  class="btn btn-info" href="{% url 'all_order' %}">&#x2190; Back</a>
     </div>
 <div class="container mt-4">
+    <form method="POST">
+        {% csrf_token %}
     <div class="box-element">
         <div class="card card-small">
             <div class="card-header border-bottom">
@@ -94,17 +96,23 @@
                                         <input type="text" value="{{order.total_items}}" class="form-control" readonly>
                                         
                                     </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="feFirstName">Status</label>
+                                    
+                                        <div class="form-group col-md-4">
+                                            <label for="feFirstName">Status</label>
+                                            
+                                            
+                                                <select class="form-control" name="payment_mtd">
+                                                    <option value="{{order.status}}">{{order.status}}</option>
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="Submitted">Submitted</option>
+                                                    <option value="Shipping">Shipping</option>
+                                                    <option value="Completed">Completed</option>
+                                                    <option value="PaymentError">PaymentError</option>
+                                                    <option value="Returned">Returned</option>
+                                                </select>
                                         
-                                        
-                                            <select class="form-control" name="payment_mtd">
-                                                <option value="checked" >Pending</option>
-                                                <option value="bKash">Payment Error</option>
-                                                <option value="Rocket">Returned</option>
-                                            </select>
-                                     
-                                    </div>
+                                        </div>
+                                  
                                     
                                  </div>
                                  <div class="form-row">
@@ -217,7 +225,7 @@
                                    
                                  </div>
                                  <div class="form-row mb-0">
-                                    <input id="form-button" class="btn btn-success btn-block" type="submit" name="checkout" value="Submit">
+                                    <input id="form-button" class="btn btn-success btn-block" type="submit" name="order_submit" value="Submit">
                                  </div>
                                  
                                  
@@ -230,7 +238,7 @@
     </div>
 
 
-
+</form>
 </div>
 
 

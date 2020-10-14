@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.http import JsonResponse
 import json
 import datetime
@@ -69,7 +69,11 @@ def checkout(request):
     print(pending_check)
     
     if pending_check:
-        return redirect('store')
+       url = '/ecommerce/'
+       resp_body = '<script>alert("Your already have a pending items!");\
+                    window.location="%s"</script>' % url
+       return HttpResponse(resp_body)
+       
     else:
         if request.method == 'POST' and 'checkout' in request.POST:
             
@@ -130,7 +134,7 @@ def edit(request):
 
 def table(request):
 
-    product = Product.objects.all()
+    product = Product.objects.all().order_by('-id')
 
     context = {
         'product' : product,
@@ -141,7 +145,7 @@ def table(request):
 
 def order_table(request):
 
-    order = Order.objects.all()
+    order = Order.objects.all().order_by('-id')
 
     context = {
         'order' : order,
@@ -152,10 +156,16 @@ def order_table(request):
 def order_details(request, id):
 
     order = Order.objects.get(id=id)
-    order_item = OrderItem.objects.filter(order=order)
+    order_item = OrderItem.objects.filter(order=order).order_by('quantity')
     shipping = ShippingAddress.objects.get(order=order)
     paymt = payment.objects.get(order=order)
     print(order_item)
+
+    if request.method == 'POST' and 'order_submit' in request.POST:
+        order.status = request.POST.get('payment_mtd')
+        order.save()
+        return redirect('all_order')
+
     context = {
         'order' : order,
         'order_item' : order_item,
