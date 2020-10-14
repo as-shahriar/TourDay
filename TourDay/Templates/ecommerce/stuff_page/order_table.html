@@ -16,26 +16,26 @@
     <div class="box-element">
         <legend class="container-fluid border-bottom mb-3 mt-1">Order list. </legend>
         <div class="cart-row">
-            <div style="flex:1"><strong>Customer</strong></div>
+            <div style="flex:1" class="ml-3"><strong>Customer</strong></div>
             <div style="flex:1"><strong>Total Items</strong></div>
             <div style="flex:1"><strong>Total Money</strong></div>
             <div style="flex:1"><strong>Order ID</strong></div>
             <div style="flex:1"><strong>Status</strong></div>
             <div style="flex:1"><strong>Date</strong></div>
-            <div style="flex:0.5"></div>
-            
+            <div style="flex:0.5"></div>   
         </div>
 
                 {% for order in  order %}
 				<div class="cart-row">
-					<div style="flex:1"><p>{{order.customer}}</p></div>
+					<div style="flex:1" class="ml-3"><p>{{order.customer}}</p></div>
 					<div style="flex:1"><p>{{order.total_items}}</p></div>
                     <div style="flex:1"><p>৳{{order.total_money}}</p></div>
                     <div style="flex:1"><p>{{order.order_id}}</p></div>
                     <div style="flex:1"><p>{{order.status}}</p></div>
                     <div style="flex:1"><p>{{order.date_ordered}}</p></div>
-					<div style="flex:0.5">
-						<button class="btn btn-info btn-sm">Details</button>	
+                    <div style="flex:0.5">
+                        <a href="{% url 'order_details' order.pk %}">
+						<button class="btn btn-info btn-sm">Details</button> </a>	
 					</div>
                     
 				</div>

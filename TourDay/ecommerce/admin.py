@@ -10,7 +10,7 @@ class list_Product(admin.ModelAdmin):
     list_display = ('name', 'price')
 
 class list_Order(admin.ModelAdmin):
-    list_display = ('customer', 'total_money', 'total_items', 'status', 'order_id', 'date_ordered')
+    list_display = ('id', 'customer', 'total_money', 'total_items', 'status', 'order_id', 'date_ordered')
 
 
 admin.site.register(Product, list_Product)

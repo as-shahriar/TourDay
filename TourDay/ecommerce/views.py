@@ -8,6 +8,7 @@ from .models import Order, OrderItem, Product
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from random import randint
+from django.db.models import Q
 # Create your views here.
 
 
@@ -58,49 +59,60 @@ def checkout(request):
 
     print(order)
     profile = get_object_or_404(Profile, user=request.user)
-   
-    if request.method == 'POST' and 'checkout' in request.POST:
-        
-        random_order_id = int(random_with_N_digits(8))
+    
+    if profile == None:
+        return redirect(f'/u/request.user')
 
-        ord = Order.objects.create(customer=request.user, total_money=order['get_cart_total'], 
-        total_items=order['get_cart_items'], order_id=random_order_id)
-        ord.save()
+    criterion1 = Q(customer__exact=request.user)
+    criterion2 = Q(status__exact="Pending")
+    pending_check = bool(Order.objects.filter(criterion1 & criterion2))
+    print(pending_check)
+    
+    if pending_check:
+        return redirect('store')
+    else:
+        if request.method == 'POST' and 'checkout' in request.POST:
+            
+            random_order_id = int(random_with_N_digits(8))
 
-        for item in items:
-            product = Product.objects.get(id=item['product']['id'])
-            orders = Order.objects.filter(customer=request.user) 
-            for order in orders:
-                if order.status == 'Pending':
-                    order_item = OrderItem.objects.create(order=order,product=product,quantity=item['quantity'])
-                    order_item.save()
-        
-        shipping = ShippingAddress()
-        
-        order = Order.objects.get(order_id=random_order_id)
+            ord = Order.objects.create(customer=request.user, total_money=order['get_cart_total'], 
+            total_items=order['get_cart_items'], order_id=random_order_id)
+            ord.save()
 
-        shipping.order = order
-        shipping.customer = request.user
-        shipping.PhoneNo = request.POST.get('phone').strip()
-        shipping.allPhoneNo = request.POST.get('al_phone').strip()
-        shipping.address = request.POST.get('address').strip()
-        shipping.city = request.POST.get('city').strip()
-        shipping.state = request.POST.get('state').strip()
-        shipping.zipcode = request.POST.get('zipcode').strip()
-        shipping.save()
+            for item in items:
+                product = Product.objects.get(id=item['product']['id'])
+                orders = Order.objects.filter(customer=request.user) 
+                for order in orders:
+                    if order.status == 'Pending':
+                        order_item = OrderItem.objects.create(order=order,product=product,quantity=item['quantity'])
+                        order_item.save()
+            
+            shipping = ShippingAddress()
+            
+            order = Order.objects.get(order_id=random_order_id)
 
-        pay = payment()
+            shipping.order = order
+            shipping.customer = request.user
+            shipping.PhoneNo = request.POST.get('phone').strip()
+            shipping.allPhoneNo = request.POST.get('al_phone').strip()
+            shipping.address = request.POST.get('address').strip()
+            shipping.city = request.POST.get('city').strip()
+            shipping.state = request.POST.get('state').strip()
+            shipping.zipcode = request.POST.get('zipcode').strip()
+            shipping.save()
 
-        pay.customer = request.user
-        pay.order = order
-        pay.method = request.POST.get('colorCheckbox')
-        if request.POST.get('payment_mtd') == 'checked':
-            pay.payment_method = None
-        else:
-            pay.payment_method = request.POST.get('payment_mtd')
-        pay.PhoneNo = request.POST.get('pay_phone_no')
-        pay.trxId = request.POST.get('trxid')
-        pay.save()
+            pay = payment()
+
+            pay.customer = request.user
+            pay.order = order
+            pay.method = request.POST.get('colorCheckbox')
+            if request.POST.get('payment_mtd') == 'checked':
+                pay.payment_method = None
+            else:
+                pay.payment_method = request.POST.get('payment_mtd')
+            pay.PhoneNo = request.POST.get('pay_phone_no')
+            pay.trxId = request.POST.get('trxid')
+            pay.save()
         
       
    
@@ -126,6 +138,7 @@ def table(request):
 
     return render(request, 'ecommerce/stuff_page/product_table.html', context)
 
+
 def order_table(request):
 
     order = Order.objects.all()
@@ -135,3 +148,19 @@ def order_table(request):
     }
 
     return render(request, 'ecommerce/stuff_page/order_table.html', context)
+
+def order_details(request, id):
+
+    order = Order.objects.get(id=id)
+    order_item = OrderItem.objects.filter(order=order)
+    shipping = ShippingAddress.objects.get(order=order)
+    paymt = payment.objects.get(order=order)
+    print(order_item)
+    context = {
+        'order' : order,
+        'order_item' : order_item,
+        'shipping' : shipping,
+        'paymt' : paymt,
+    }
+    
+    return render(request, 'ecommerce/stuff_page/order_details.html', context)

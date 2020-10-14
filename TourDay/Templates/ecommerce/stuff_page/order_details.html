@@ -1,0 +1,237 @@
+{% include 'ecommerce/stuff_page/base.html' %}
+
+{% block base %}
+    <!-- start Shipping Information -->
+    <div class="container">
+        <a  class="btn btn-info" href="{% url 'all_order' %}">&#x2190; Back</a>
+    </div>
+<div class="container mt-4">
+    <div class="box-element">
+        <div class="card card-small">
+            <div class="card-header border-bottom">
+                <h6 class="m-0">Shipping Information</h6>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item p-3">
+                    <div class="row">
+                        <div class="col">
+                           
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="feFirstName">Name</label>
+                                        <input type="text" value="{{shipping.customer.profile.name}}" class="form-control" readonly>
+                                        
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="feFirstName">Email</label>
+                                        <input type="email" value="{{shipping.customer.email}}" class="form-control" readonly>
+                                    </div>
+                                    
+                                 </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="feFirstName">Phone No</label>
+                                        <input type="text" value="{{shipping.PhoneNo}}" class="form-control" readonly>
+                                        
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="feFirstName">Alternative Phone No</label>
+                                        <input type="text" value="{{shipping.allPhoneNo}}" class="form-control" readonly>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="feFirstName">City</label>
+                                        <input type="text" value="{{shipping.city}}" class="form-control" readonly>
+                                    </div>
+                                    
+                                 </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="feFirstName">State</label>
+                                        <input type="text" value="{{shipping.state}}" class="form-control" readonly>
+                                        
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="feFirstName">Zip Code</label>
+                                        <input type="text" value="{{shipping.zipcode}}" class="form-control" readonly>
+                                    </div>
+                                 </div>
+                                 <div class="form-row w-101">
+                                    <div class="form-group col-md-12">
+                                        
+                                        <label for="feFirstName">Address</label>
+                                            <textarea class="form-control" type="text" rows="3" readonly>{{shipping.address}}
+                                            </textarea>
+                                    </div>
+                                 </div>
+                                
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div> 
+    <!-- end of Shipping Information -->
+
+    <!-- start of order Information -->
+    <div class="box-element mt-3">
+        <div class="card card-small">
+            <div class="card-header border-bottom">
+                <h6 class="m-0">Order Information</h6>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item p-3">
+                    <div class="row">
+                        <div class="col">
+                           
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="feFirstName">Total Money</label>
+                                        <input type="text" value="৳{{order.total_money}}" class="form-control" readonly>
+                                        
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="feFirstName">Total Items</label>
+                                        <input type="text" value="{{order.total_items}}" class="form-control" readonly>
+                                        
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="feFirstName">Status</label>
+                                        
+                                        
+                                            <select class="form-control" name="payment_mtd">
+                                                <option value="checked" >Pending</option>
+                                                <option value="bKash">Payment Error</option>
+                                                <option value="Rocket">Returned</option>
+                                            </select>
+                                     
+                                    </div>
+                                    
+                                 </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="feFirstName">Order ID</label>
+                                        <input type="text" value="{{order.order_id}}" class="form-control" readonly>
+                                        
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="feFirstName">Order Date</label>
+                                        <input type="text" value="{{order.date_ordered}}" class="form-control" readonly>
+                                    </div>
+                                   
+                                    
+                                 </div>
+                                 
+                                 
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- end of order Information -->
+
+        <!-- start of product Information -->
+    <div class="box-element mt-3">
+        <div class="card card-small">
+            <div class="card-header border-bottom">
+                <h6 class="m-0">Product Information</h6>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item p-3">
+                    <div class="row">
+                        <div class="col">
+                            
+                            <div class="cart-row">
+                                <div style="flex:1.5"></div>
+                                <div style="flex:2"><strong>Name</strong></div>
+                                <div style="flex:1"><strong>Price</strong></div>
+                                <div style="flex:1"><strong>Quantity</strong></div>
+                                
+                            </div>
+                    
+                            {% for order_item in order_item %}
+                                    <div class="cart-row">
+                                        <div style="flex:1.5"><img style="height: 56px;" class="row-image" src="{{order_item.product.imageURL}}"></div>
+                                        <div style="flex:2"><p>{{order_item.product.name}}</p></div>
+                                        <div style="flex:1"><p>৳{{order_item.product.price}}</p></div>
+                                        <div style="flex:1"><p>{{order_item.quantity}}</p></div>
+                                       
+                                    </div>
+                                   
+                           {% endfor %}      
+                                 
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+    <!-- end of product Information -->
+
+    <div class="box-element mt-3 mb-3">
+
+        <div class="card card-small">
+            <div class="card-header border-bottom">
+                <h6 class="m-0">Payment Information</h6>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item p-3">
+                    <div class="row">
+                        <div class="col">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="feFirstName">Method</label>
+                                        <input type="text" 
+                                        {% if paymt.method == 'cashOndelivery' %} value="Cash On Delivery"
+                                        {% else %} value="Online Payment"
+                                        {% endif %} class="form-control" readonly>
+                                        
+                                    </div>
+                                    
+                                    
+                                 </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="feFirstName">Payment Method</label>
+                                        <input type="text"
+                                        {% if paymt.payment_method is not None %} value="{{paymt.payment_method}}" 
+                                        {% else %} value="" {% endif %}
+                                        class="form-control" readonly>
+                                        
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="feFirstName">Phone No</label>
+                                        <input type="text"
+                                        {% if paymt.PhoneNo is not None %} value="{{paymt.PhoneNo}}" 
+                                        {% else %} value="" {% endif %}
+                                        class="form-control" readonly>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="feFirstName">TrxID</label>
+                                        <input type="text"
+                                        {% if paymt.trxId is not None %} value="{{paymt.trxId}}" 
+                                        {% else %} value="" {% endif %}
+                                        class="form-control" readonly>
+                                    </div>
+                                   
+                                 </div>
+                                 <div class="form-row mb-0">
+                                    <input id="form-button" class="btn btn-success btn-block" type="submit" name="checkout" value="Submit">
+                                 </div>
+                                 
+                                 
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}
