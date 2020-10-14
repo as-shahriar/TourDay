@@ -23,6 +23,10 @@ h2 {
   display: grid;
   grid-template-areas: "picture-box info-box info-box info-box";
 }
+#delete-ac {
+  color: #960707;
+  cursor: pointer;
+}
 
 .picture-box {
   grid-area: picture-box;

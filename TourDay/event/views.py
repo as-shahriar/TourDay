@@ -33,21 +33,6 @@ def dashboard(request):
         event.pay2_method = request.POST.get('pay2_method')
         event.save()
 
-        # for i in range(50):
-        #     event = Event()
-        #     event.host = request.user
-        #     event.title = request.POST.get('title')+str(i)
-        #     event.location = request.POST.get('location')
-        #     event.date = request.POST.get('date')
-        #     event.details = request.POST.get('details')
-        #     event.capacity = request.POST.get('capacity')
-        #     event.pay1 = request.POST.get('pay1')
-        #     event.pay2 = request.POST.get('pay2')
-        #     event.cost = request.POST.get('cost')
-        #     event.pay1_method = request.POST.get('pay1_method')
-        #     event.pay2_method = request.POST.get('pay2_method')
-        #     event.save()
-
         return JsonResponse({'status': 200, "id": event.id})
     profile = Profile.objects.get(user=request.user)
     events = Event.objects.filter(going__in=[request.user])

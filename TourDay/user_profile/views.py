@@ -250,6 +250,18 @@ def delete_post(request):
     return JsonResponse({"Error": "Only Post Request is Accepteble"})
 
 
+@csrf_exempt
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        try:
+            user = User.objects.get(id=request.user.id)
+            user.delete()
+            return JsonResponse({"status": 200})
+        except:
+            return JsonResponse({"status": 403})
+
+
 def get_map_data(request, username):
     user = get_object_or_404(User, username=username)
     posts = Post.objects.filter(user=user)

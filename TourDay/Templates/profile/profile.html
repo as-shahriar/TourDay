@@ -11,8 +11,11 @@ Profile{%endblock%} {%block css%}<link
 />
 <link rel="stylesheet" href="{% static 'css/croppie.css' %}" />
 {%endblock%} {% block content %}
+<div class="d-flex justify-content-between">
+  <h2 id="page-title" class="mt-4" style="margin-left: 1.5rem">Edit Profile</h2>
+  <span id="delete-ac" class="mt-4" >Delete Account</span>
+</div>
 
-<h2 id="page-title" class="mt-4" style="margin-left: 1.5rem">Edit Profile</h2>
 <hr />
 
 <div class="profile">
