@@ -103,3 +103,8 @@ h1,h2,h3,h4,h5,h6{
 	display: none!important;
 }
 
+body {
+    /* overflow: hidden; */
+    font-family: 'Poppins', Arial, sans-serif !important;
+	font-size: 15px;
+}

@@ -174,3 +174,12 @@ def order_details(request, id):
     }
     
     return render(request, 'ecommerce/stuff_page/order_details.html', context)
+
+
+def user_order(request):
+
+    context = {
+
+    }
+
+    return render(request, 'ecommerce/user_order.html', context)
