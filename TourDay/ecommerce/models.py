@@ -6,11 +6,13 @@ import datetime
 
 STATUS_CHOICES = (
     ("Pending", "Pending"),
-    ("Submitted", "Submitted"),
-    ("PaymentError", "PaymentError"),
+    ("Approved", "Approved"),
     ("Shipping", "Shipping"),
+    ("Shipped", "Shipped"),
     ("Completed", "Completed"),
+    ("Cancelled", "Cancelled"),
     ("Returned", "Returned"),
+    ("PaymentError", "PaymentError"),
 )
 
 

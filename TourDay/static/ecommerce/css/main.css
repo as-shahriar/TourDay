@@ -104,7 +104,35 @@ h1,h2,h3,h4,h5,h6{
 }
 
 body {
-    /* overflow: hidden; */
+    
     font-family: 'Poppins', Arial, sans-serif !important;
 	font-size: 15px;
 }
+
+.userpost__sidebar {
+
+	list-style: none;
+	background:#fff;
+	margin-bottom: 0px !important;
+	border-radius:3px;
+	padding:20px;
+	padding:0;
+}
+
+ .userpost__sidebar li a {
+	margin-left: 0px;
+	padding:15px 20px;
+	
+	display:block;
+	font-size:115%;
+	border-bottom:1px dotted #cdcdcd;
+	text-decoration: none;
+ }
+ .userpost__sidebar li:last-child a {
+	border-bottom:1px transparent;
+ }
+
+ .userpost__sidebar li a:hover {
+	color: white;
+	background-color: #17a2b8;
+ }

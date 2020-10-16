@@ -178,8 +178,11 @@ def order_details(request, id):
 
 def user_order(request):
 
-    context = {
+    data = cartData(request)
+    cartItems = data['cartItems']
 
+    context = {
+        'cartItems' : cartItems,
     }
 
     return render(request, 'ecommerce/user_order.html', context)

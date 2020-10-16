@@ -1,5 +1,5 @@
 {% extends 'ecommerce/base.html' %}
-
+{% load static %}
 {% block content %}
 
 <div class="row">
@@ -11,9 +11,18 @@
                
                <div class="ml-3">
                 <p>Hello,</p>
-                <h4>Partha Kumar Bagchi</h4>
+                <h5>Partha Kumar Bagchi</h5>
                </div>
  
+        </div>
+        <div class="box-element mt-3">
+            
+            <ul class="userpost__sidebar" >
+                <li><a href="#">Home</a></li>
+                <li><a href="#">My Account</a></li>
+                <li><a href="#">My Order</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
         </div>
            
         
@@ -21,8 +30,48 @@
     <div class="col-md-0.5"></div>
     <div class="col-md-8">
         <div class="box-element">
-            This is a man
+            <h4>My Orders</h4>
+            <h6>Your Total order: 6</h6>
+            <hr>
+            <div class="d-flex">
+                <h6 class="mt-3">Order id: </h6>
+                <div class="col-5" >
+                    <input type="text" name="id" class="form-control mt-2" placeholder="Order Id">
+                </div>
+                <div class="col-2 mt-2" >
+                    <input type="submit" class="btn btn-warning" value="Submit">
+                </div>
+            </div>
+            <br>
         </div>
+
+        <div class="box-element mt-3">
+            
+            <div class="d-flex">
+                
+                <h6 class="mt-2 ml-2">Your Order ID:</h6> <h6 class="mt-2 ml-2" style="color: #33c24d;"> 6337837</h6>
+                <h6 class="mt-2 ml-2">(৳574)</h6>
+                <span class="text-uppercase border border-success text-success p-2 ml-3"> Completed</span>
+            </div>
+            <hr>
+
+            <div class="cart-row">
+                <div style="flex:2"></div>
+                <div style="flex:2"><strong>Item</strong></div>
+                <div style="flex:1"><strong>Price</strong></div>
+                <div style="flex:1"><strong>Quantity</strong></div>
+                
+            </div>
+            <div class="cart-row">
+                <div style="flex:2"><img style="height: 56px;" class="row-image" src="https://picsum.photos/200/300"></div>
+                <div style="flex:2"><p>Head Phone</p></div>
+                <div style="flex:1"><p>৳574</p></div>
+                <div style="flex:1"><p>1</p></div>
+               
+            </div>
+
+        </div>
+
     </div>
 </div>
 
