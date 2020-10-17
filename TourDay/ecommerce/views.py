@@ -184,14 +184,24 @@ def order_details(request, id):
 @login_required
 def user_order(request):
 
+    check_search = False
+
     data = cartData(request)
     cartItems = data['cartItems']
 
     order_count = Order.objects.filter(customer=request.user).count()
 
     order = Order.objects.filter(customer=request.user).order_by('-id')
-
     order_item = OrderItem.objects.filter(order__customer=request.user).order_by('-id')
+
+    if request.method == 'POST' and 'user_order_btn' in request.POST:
+        q = request.POST.get('user_order_search').strip()
+
+        criterion1 = Q(customer__exact=request.user)
+        criterion2 = Q(order_id=q)
+
+        order = Order.objects.filter(criterion1 & criterion2)
+        check_search = True
   
     
 
@@ -199,6 +209,7 @@ def user_order(request):
         'order' : order,
         'order_item' : order_item,
         'order_count' : order_count,
+        'check_search' : check_search,
 
         'cartItems' : cartItems,
     }

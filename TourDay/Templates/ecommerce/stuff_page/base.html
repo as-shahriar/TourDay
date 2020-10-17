@@ -25,11 +25,12 @@
 
     <header class="site-header">
         <nav class="navbar navbar-expand-sm bg-company navbar-dark fixed-top">
+          <a class="navbar-brand" href="#">
+            <img src="{% static 'image/logo.png'%}" height="30" class="d-inline-block align-top"
+              alt="mdb logo">
+            </a>
           <div class="container">
-            <a class="navbar-brand mr-4" href="#">Result Section</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
+   
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
                 <!-- <a class="nav-item nav-link" href="#">Home</a> -->
@@ -39,8 +40,8 @@
               <div class="navbar-nav">
                 
                   
-                  <a class="nav-item nav-link" href="#">Profile</a>
-                  <a class="nav-item nav-link" href="#">Logout</a>
+                  <a class="nav-item nav-link" href="#">Home</a>
+                  <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                 
                   
                
