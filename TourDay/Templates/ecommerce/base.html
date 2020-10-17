@@ -111,7 +111,7 @@
 					<a class="dropdown-item" href="{% url 'store' %}">Home</a>
 					{% if request.user.is_staff %}
 					<a class="dropdown-item" href="{% url 'user_order' %}">My Orders</a>
-					<a class="dropdown-item" href="{% url 'edit' %}">Saff Account</a>
+					<a class="dropdown-item" href="{% url 'staff_pages' %}">Saff Account</a>
 					<hr>
 					<a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
 					{% else %}
@@ -124,7 +124,7 @@
 						{% else %}
 						<a class="dropdown-item" href="{% url 'login_page' %}">Login</a>
 						<hr>
-						<a class="dropdown-item" href="{% url 'edit' %}">Saff Login</a>
+						<a class="dropdown-item" href="{% url 'staff_pages' %}">Saff Login</a>
 						
 					{% endif%}
 				  {% endif %}

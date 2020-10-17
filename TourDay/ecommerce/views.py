@@ -32,6 +32,12 @@ def store(request):
     items = data['items']
 
     products = Product.objects.all()
+    paginator = Paginator(products, 5)  # Show 5 obj per page
+
+    page = request.GET.get('page')
+    products = paginator.get_page(page)
+
+
     context = {
         'products':products, 
         'cartItems':cartItems,
@@ -61,8 +67,10 @@ def checkout(request):
     order = data['order']
     items = data['items']
 
-    print(order)
     profile = get_object_or_404(Profile, user=request.user)
+
+    if order['get_cart_total'] == 0 or order['get_cart_items'] == 0:
+        return redirect('cart')
     
     if profile == None:
         return redirect(f'/u/request.user')
@@ -70,7 +78,6 @@ def checkout(request):
     criterion1 = Q(customer__exact=request.user)
     criterion2 = Q(status__exact="Pending")
     pending_check = bool(Order.objects.filter(criterion1 & criterion2))
-    print(pending_check)
     
     if pending_check:
        url = '/ecommerce/'
@@ -134,7 +141,8 @@ def checkout(request):
     return render(request, 'ecommerce/checkout.html', context)
 
 @staff_member_required
-def edit(request):
+def staff_pages(request):
+
     return render(request, 'ecommerce/stuff_page/main.html')
 
 def table(request):
