@@ -4,28 +4,46 @@
 {% block base %}
 
 
-<main role="main" class="container-fluid" style="margin-top: 5em;">
+<main role="main" class="container" style="margin-top: 5em;">
     
     <div class="row">
-      <div class="col-md-3">
-        <div class="content-section">
-          <h3>Our Sidebar</h3>
-          <p class='text-muted'>You can put any information here you'd like.
-            <ul class="list-group">
+      <div class="col-md-4">
+        <div class="box-element d-flex mt-2">
+            <div>
+                <img class="img-fluid rounded-circle" src="{{user.profile.picture.url}}" alt="" width="70px">
+            </div>
+           
+           <div class="ml-3">
+            <p>Hello,</p>
+            <h5>{{user.profile.name}}</h5>
+           </div>
 
-              <li class="list-group-item list-group-item-light"> <a href="#">Add Product</a> </li>
-              <li class="list-group-item list-group-item-light"><a href="#">Order items</a></li>
-    
-            </ul>
-          </p>
-        </div>
+    </div>
+            <div class="box-element mt-3">
+            
+                <ul class="userpost__sidebar" >
+   
+                    <li><a href="{% url 'all_product' %}">Check Product</a></li>
+                    <li><a href="{% url 'all_order' %}">Check Order</a></li>
+                </ul>
+                
+            </div>
+            <div class="box-element mt-3">
+            
+                <ul class="userpost__sidebar">
+                    <li><a href="{% url 'store' %}">Home</a></li>
+                    <li><a href="{% url 'portfolio' request.user %}">My Account</a></li>
+                    <li><a href="{% url 'user_order' %}">My Order</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+                
+            </div>
       </div>
-      <div class="col-md-1" >
-
-      </div>
+      
 
       <div class="col-md-8">
-        <div class="card card-small mb-4">
+        <div class="box-element mt-2"> 
+        <div class="card card-small">
             <div class="card-header border-bottom">
                 <h6 class="m-0">Account Details</h6>
             </div>
@@ -33,90 +51,55 @@
                 <li class="list-group-item p-3">
                     <div class="row">
                         <div class="col">
-                            <form method="POST"> 
-                                {% csrf_token %} 
                                 <div class="form-row">
-                                  <div class="form-group col-md-12">
-                                    <label for="feFirstName">Username<span style="color:#cf000f">
-                                            *</span></label>
-                                    <input type="text" class="form-control" required  value="#" name='' placeholder="Username" readonly> </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="feFirstName">Username</label>
+                                    <input type="text" class="form-control" required  value="{{user.username}}" readonly> 
+                                </div>
                                     <div class="form-group col-md-6">
-                                        <label for="feFirstName">First Name<span style="color:#cf000f">
-                                                *</span></label>
-                                        <input type="text" class="form-control" required name='first_name' placeholder="First Name"> </div>
+                                        <label for="feFirstName">Name</label>
+                                        <input type="text" class="form-control" value="{{user.profile.name}}" readonly></div>
                                     <div class=" form-group col-md-6">
-                                        <label for="feLastName">Last Name<span style="color:#cf000f">
-                                                *</span></label>
-                                        <input type="text" class="form-control" required name='last_name'  
-                                            placeholder="Last Name"> </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="feEmailAddress">Email<span style="color:#cf000f">
-                                                *</span></label>
-                                        <input type="email" class="form-control" required name='email'  
-                                            placeholder="Email"> </div>
-                                    <div class="form-group col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="fePassword">Password</label>
-                                            </div>
-                                            <div class="form-check col-md-6 px-5 pb-2">
-                                                <input class="form-check-input " type="checkbox"
-                                                    name='passcheck' onclick="show_or_hide_password()"
-                                                    id="check">
-                                                <label class="form-check-label " for="defaultCheck1">
-                                                    <small>Change Password</small>
-                                                </label>
-                                            </div>
+                                        <label for="feLastName">Email</label>
+                                        <input type="text" class="form-control" value="{{user.profile.email}}" readonly> </div>
+                                        <div class=" form-group col-md-6"><label for="feLastName">City</label>
+                                            {% if user.profile.city is None %}
+                                            <input type="text" class="form-control" value="" readonly> </div>
+                                            {% else %}
+                                        <input type="text" class="form-control" value="{{user.profile.city}}" readonly> </div>
+                                        {% endif %}
+                                        <div class="form-group col-md-12">
+                                        
+                                            <label for="feFirstName">Bio</label>
+                                            {% if user.profile.city is None %}
+                                            <textarea class="form-control" type="text" rows="3" readonly></textarea>
+                                            {% else %}
+                                                <textarea class="form-control" type="text" rows="3" readonly>{{user.profile.bio}}
+                                                </textarea>
+                                                {% endif %}
                                         </div>
-                                        <input type="password" class="form-control" name='password' id="password"
-                                            placeholder="Password">
-                                    </div>
                                 </div>
+                                
                              
-            
-                                <button type="submit" name='submit_btn' class="btn btn-success">Update
-                                    Account</button>
-                            </form>
+                                <a href="{% url 'edit_profile' %}">
+                                    <button type="submit" name='submit_btn' class="btn btn-success">Update
+                                        Account</button>
+                                </a>
+                                
+
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
+
+        </div>
+
     </div>
     
 </div>
 <!-- End Default Light Table -->
 </div>
-
-<div class="alert alert-danger alert-dismissible fade show mb-0" id='hidealert2' role="alert">
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">×</span>
-</button>
-
-</div>
-
-<script type="text/javascript">
-
-    var msg2 = document.getElementById("hidealert2");
-    var checkbox = document.getElementById("check");
-    var passfield = document.getElementById("password");
-    
-    function show_or_hide_password() {
-    if (checkbox.checked == true) {
-        passfield.disabled = false;
-    } else {
-        passfield.value = "";
-        passfield.disabled = true;
-    }
-    }
-    
-    msg2.style.display = "none";
-    passfield.disabled = true;
-    
-    
-</script>
 
 
 

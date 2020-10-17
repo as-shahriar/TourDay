@@ -9,6 +9,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from random import randint
 from django.db.models import Q
+from django.contrib.admin.views.decorators import staff_member_required
+
+
 # Create your views here.
 
 
@@ -129,6 +132,7 @@ def checkout(request):
     }
     return render(request, 'ecommerce/checkout.html', context)
 
+@staff_member_required
 def edit(request):
     return render(request, 'ecommerce/stuff_page/main.html')
 
@@ -143,6 +147,7 @@ def table(request):
     return render(request, 'ecommerce/stuff_page/product_table.html', context)
 
 
+@staff_member_required
 def order_table(request):
 
     order = Order.objects.all().order_by('-id')
@@ -153,6 +158,7 @@ def order_table(request):
 
     return render(request, 'ecommerce/stuff_page/order_table.html', context)
 
+@staff_member_required
 def order_details(request, id):
 
     order = Order.objects.get(id=id)
