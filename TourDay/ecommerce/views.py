@@ -8,6 +8,7 @@ from .models import Order, OrderItem, Product
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from random import randint
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -150,10 +151,24 @@ def table(request):
 @staff_member_required
 def order_table(request):
 
+    order_check_search = False
+
     order = Order.objects.all().order_by('-id')
+    paginator = Paginator(order, 5)  # Show 5 obj per page
+
+    page = request.GET.get('page')
+    order = paginator.get_page(page)
+
+    if request.method == 'POST' and 'order_search_btn' in request.POST:
+        
+        q = request.POST.get('order_search').strip()
+
+        order = Order.objects.filter(order_id__exact=q)
+        order_check_search = True
 
     context = {
         'order' : order,
+        'order_check_search' : order_check_search,
     }
 
     return render(request, 'ecommerce/stuff_page/order_table.html', context)

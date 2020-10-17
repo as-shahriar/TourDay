@@ -6,9 +6,9 @@
     <div class="box-element">
     <form method="POST">
       {% csrf_token %}
-        <input class="form-control mt-2" name="search" type="text" placeholder=" Type something to search...ex. student id">
+        <input class="form-control mt-2" name="order_search" type="text" placeholder="Type order ID..." value="{{request.POST.order_search}}">
          
-          <button type="submit" name="btn-search" class="btn btn-info mt-2">Search</button>
+          <button type="submit" name="order_search_btn" class="btn btn-success mt-2">Search</button>
         
       </form>
     </div>
@@ -25,6 +25,26 @@
             <div style="flex:0.5"></div>   
         </div>
 
+            {% if order_check_search %}
+
+            {% for order in  order %}
+            <div class="cart-row">
+                <div style="flex:1" class="ml-3"><p>{{order.customer}}</p></div>
+                <div style="flex:1"><p>{{order.total_items}}</p></div>
+                <div style="flex:1"><p>৳{{order.total_money}}</p></div>
+                <div style="flex:1"><p>{{order.order_id}}</p></div>
+                <div style="flex:1"><p>{{order.status}}</p></div>
+                <div style="flex:1"><p>{{order.date_ordered}}</p></div>
+                <div style="flex:0.5">
+                    <a href="{% url 'order_details' order.pk %}">
+                    <button class="btn btn-info btn-sm">Details</button> </a>	
+                </div>
+                
+            </div>
+            {% endfor %}
+
+            {% else %}
+
                 {% for order in  order %}
 				<div class="cart-row">
 					<div style="flex:1" class="ml-3"><p>{{order.customer}}</p></div>
@@ -39,14 +59,16 @@
 					</div>
                     
 				</div>
-				{% endfor %}
+                {% endfor %}
+                
+                {% endif %}
 
-        <div class="row md-4 mt-2">
-            <!-- <div class="col-4">
-                {% if result.has_previous %}
-                <a href="?page={{ objects.previous_page_number }}" class="btn btn-info px-3 ">Page
-                    {{ result.previous_page_number }}</a>{%endif%}
-            </div> -->
+        <div class="row md-4 mt-2 mr-1 ml-1">
+            <div class="col-4">
+                {% if order.has_previous %}
+                <a href="?page={{ objects.previous_page_number }}" class="btn btn-secondary btn-sm">Page
+                    {{ order.previous_page_number }}</a>{%endif%}
+            </div>
 
 
             <div class="col-4">
@@ -54,12 +76,12 @@
             </div>
 
 
-            <!-- <div class="col-4">
-                {% if result.has_next %}
-                <a href="?page={{ result.next_page_number }}" class="btn btn-info px-4 float-right">Page
-                    {{ result.next_page_number }}</a>{%endif%}
+            <div class="col-4">
+                {% if order.has_next %}
+                <a href="?page={{ order.next_page_number }}" class="btn btn-secondary btn-sm float-right">Page
+                    {{ order.next_page_number }}</a>{%endif%}
 
-            </div> -->
+            </div>
     </div>
 
 </div>
