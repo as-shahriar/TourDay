@@ -106,12 +106,20 @@
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
 				  aria-haspopup="true" aria-expanded="false">
 				   Profile </a>
+				  
 				<div class="dropdown-menu dropdown-menu-right dropdown-info" >
-				  <a class="dropdown-item" href="#">My account</a>
-				  <a class="dropdown-item" href="#">My Orders</a>
+					<a class="dropdown-item" href="{% url 'store' %}">Home</a>
+					{% if user.is_authenticated %}
+					
+				  <a class="dropdown-item" href="{% url 'portfolio' request.user %}">My account</a>
+				  <a class="dropdown-item" href="{% url 'user_order' %}">My Orders</a>
 				  <hr>
-				  <a class="dropdown-item" href="#">Log out</a>
+				  <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+					{% else %}
+					<a class="dropdown-item" href="{% url 'login_page' %}">Login</a>
+				  {% endif%}
 				</div>
+				
 			  </li>
 
 	     	<a href="{% url 'cart' %}">

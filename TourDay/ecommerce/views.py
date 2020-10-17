@@ -175,13 +175,25 @@ def order_details(request, id):
     
     return render(request, 'ecommerce/stuff_page/order_details.html', context)
 
-
+@login_required
 def user_order(request):
 
     data = cartData(request)
     cartItems = data['cartItems']
 
+    order_count = Order.objects.filter(customer=request.user).count()
+
+    order = Order.objects.filter(customer=request.user).order_by('-id')
+
+    order_item = OrderItem.objects.filter(order__customer=request.user).order_by('-id')
+  
+    
+
     context = {
+        'order' : order,
+        'order_item' : order_item,
+        'order_count' : order_count,
+
         'cartItems' : cartItems,
     }
 

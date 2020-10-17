@@ -6,23 +6,25 @@
     <div class="col-md-3">
         <div class="box-element d-flex">
                 <div>
-                    <img class="img-fluid rounded-circle" src="https://ds.rokomari.store/rokomari110/user/bd34bf0dd1094_106593.jpg" alt="" width="70px">
+                    <img class="img-fluid rounded-circle" src="{{user.profile.picture.url}}" alt="" width="70px">
                 </div>
                
                <div class="ml-3">
                 <p>Hello,</p>
-                <h5>Partha Kumar Bagchi</h5>
+                <h5>{{user.profile.name}}</h5>
                </div>
  
         </div>
         <div class="box-element mt-3">
             
+        
             <ul class="userpost__sidebar" >
-                <li><a href="#">Home</a></li>
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">My Order</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="{% url 'store' %}">Home</a></li>
+                <li><a href="{% url 'portfolio' request.user %}">My Account</a></li>
+                <li><a href="{% url 'user_order' %}">My Order</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
+            
         </div>
            
         
@@ -31,7 +33,7 @@
     <div class="col-md-8">
         <div class="box-element">
             <h4>My Orders</h4>
-            <h6>Your Total order: 6</h6>
+            <h6>Your Total order: {{order_count}}</h6>
             <hr>
             <div class="d-flex">
                 <h6 class="mt-3">Order id: </h6>
@@ -44,34 +46,39 @@
             </div>
             <br>
         </div>
+        {% for order in order %}
+        <div class="box-element mt-3 mb-3">
 
-        <div class="box-element mt-3">
             
             <div class="d-flex">
-                
-                <h6 class="mt-2 ml-2">Your Order ID:</h6> <h6 class="mt-2 ml-2" style="color: #33c24d;"> 6337837</h6>
-                <h6 class="mt-2 ml-2">(৳574)</h6>
-                <span class="text-uppercase border border-success text-success p-2 ml-3"> Completed</span>
+                <h6 class="mt-2 ml-2">Your Order ID:</h6> <h6 class="mt-2 ml-2" style="color: #33c24d;"> {{order.order_id}}</h6>
+                <h6 class="mt-2 ml-2">(৳{{order.total_money}})</h6>
+                <span class="text-uppercase border border-success text-success p-2 ml-3">{{order.status}}</span>
             </div>
             <hr>
-
+             
             <div class="cart-row">
                 <div style="flex:2"></div>
-                <div style="flex:2"><strong>Item</strong></div>
+                <div style="flex:2"><strong>Items</strong></div>
                 <div style="flex:1"><strong>Price</strong></div>
                 <div style="flex:1"><strong>Quantity</strong></div>
                 
             </div>
+           
+            {% for order_item in order_item %}
+            {% if order_item.order.order_id == order.order_id %}
             <div class="cart-row">
-                <div style="flex:2"><img style="height: 56px;" class="row-image" src="https://picsum.photos/200/300"></div>
-                <div style="flex:2"><p>Head Phone</p></div>
-                <div style="flex:1"><p>৳574</p></div>
-                <div style="flex:1"><p>1</p></div>
+                <div style="flex:2"><img class="row-image" src="{{order_item.product.imageURL}}"></div>
+                <div style="flex:2"><p>{{order_item.product.name}}</p></div>
+                <div style="flex:1"><p>৳{{order_item.product.price}}</p></div>
+                <div style="flex:1"><p>{{order_item.quantity}}</p></div>
                
             </div>
-
+            {% endif %}
+            {% endfor %}
+           
         </div>
-
+        {% endfor %}
     </div>
 </div>
 
