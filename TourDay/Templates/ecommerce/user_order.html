@@ -118,6 +118,16 @@
         {% endfor %}
         {% endif %}
 
+        <div class="row mt-3 mb-3">
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                {% if order.has_next %}
+                <a href="?page={{ order.next_page_number }}" class="btn btn-dark btn-sm btn-block">Load More</a>{%endif%}
+    
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+
     </div>
 </div>
 

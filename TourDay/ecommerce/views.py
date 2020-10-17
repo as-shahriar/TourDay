@@ -32,7 +32,7 @@ def store(request):
     items = data['items']
 
     products = Product.objects.all()
-    paginator = Paginator(products, 5)  # Show 5 obj per page
+    paginator = Paginator(products, 6)  # Show 5 obj per page
 
     page = request.GET.get('page')
     products = paginator.get_page(page)
@@ -216,6 +216,10 @@ def user_order(request):
 
     order = Order.objects.filter(customer=request.user).order_by('-id')
     order_item = OrderItem.objects.filter(order__customer=request.user).order_by('-id')
+    
+    paginator = Paginator(order, 4)  # Show 4 obj per page
+    page = request.GET.get('page')
+    order = paginator.get_page(page)
 
     if request.method == 'POST' and 'user_order_btn' in request.POST:
         q = request.POST.get('user_order_search').strip()
