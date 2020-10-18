@@ -187,6 +187,13 @@ def add_product(request):
 
     return render(request, 'ecommerce/stuff_page/add_product.html', context)
 
+def product_delete(request, id):
+
+    product = Product.objects.get(id=id)
+    product.delete()
+    return redirect('all_product')
+
+    return render(request, 'ecommerce/stuff_page/product_table.html',)
 
 def product_edit(request, id):
 

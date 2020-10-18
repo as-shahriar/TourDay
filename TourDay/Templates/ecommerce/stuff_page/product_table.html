@@ -40,11 +40,11 @@
                     <div style="flex:1"><p>{{product.product_type}}</p></div>
                     <div style="flex:0.3">
                        
-                        <a href="{% url 'product_edit' product.pk %}" class="btn btn-secondary btn-sm" role="button" aria-disabled="true">Edit</a>
+                        <a href="{% url 'product_edit' product.pk %}" class="btn btn-secondary btn-sm" role="button">Edit</a>
 
 					</div>
                     <div style="flex:0.5">
-                        <button class="btn btn-danger btn-sm">Delete </button>
+                        <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger btn-sm" role="button" aria-disabled="true">Delete</a>
                     </div>
 				</div>
 				{% endfor %}
