@@ -46,33 +46,7 @@
     <title>TourDay | API Documentation</title>
   </head>
   <body>
-    <style>
-      .dropdown-item:active {
-        background-color: #eaecee;
-        color: black;
-      }
-      .dropdown-menu {
-        box-shadow: 1px 1px 3px #00000021 !important;
-      }
-      .white-bg {
-        background-color: #fff;
-        box-shadow: 1px 1px 3px #00000021 !important;
-      }
-      .white-bg:focus {
-        box-shadow: 1px 1px 3px #00000021 !important;
-      }
-      .my-menu {
-        position: fixed;
-        top: 0;
-        right: 0;
-      }
-      .dropdown-menu a {
-        text-transform: uppercase;
-      }
-      h5 {
-        text-transform: uppercase;
-      }
-    </style>
+
     <div class="btn-group dropleft m-3 my-menu">
       <button
         type="button"
@@ -108,6 +82,7 @@
           >Delete Post</a
         >
         <a href="#like-post" class="dropdown-item" type="button">Like Post</a>
+        <a href="#get_events" class="dropdown-item" type="button">Get events</a>
       </div>
     </div>
     <div class="container mt-3">
@@ -126,12 +101,15 @@
         <a href="{%url 'Blog_api_doc'%}" class="text-success">Blog API Doc</a>
       </div>
       <hr />
-
+      <h3>Authentication</h3>
+      <hr />
       <div>
         <div class="my-2 pt-4" id="login">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Login</h5>
             <kbd>POST</kbd>
+            </div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/auth/login/"</i>
             </p>
@@ -152,9 +130,11 @@
         </div>
         <hr />
         <div class="my-2 pt-4" id="signup">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Sign up</h5>
             <kbd>POST</kbd>
+            </div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/auth/signup/"</i>
             </p>
@@ -177,9 +157,10 @@
 
         <hr />
         <div class="my-2 pt-4" id="forget">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Forget Password</h5>
-            <kbd>POST</kbd>
+            <kbd>POST</kbd></div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/forget_password/"</i>
             </p>
@@ -208,9 +189,10 @@
 
         <hr />
         <div class="my-2 pt-4" id="reset">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Reset Password</h5>
-            <kbd>POST</kbd>
+            <kbd>POST</kbd></div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/reset_password/username/"</i>
             </p>
@@ -235,10 +217,14 @@
 
 
         <hr />
+        <h3>Profile</h3>
+        <hr />
         <div class="my-2 pt-4" id="profile">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Get Profile Info</h5>
             <kbd>GET</kbd>
+            </div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/profile/"</i>
             </p>
@@ -275,9 +261,10 @@
 
         <hr />
         <div class="my-2 pt-4" id="update-profile">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Update Profile Info</h5>
-            <kbd>POST</kbd>
+            <kbd>POST</kbd></div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/profile/"</i>
             </p>
@@ -306,9 +293,10 @@
 
         <hr />
         <div class="my-2 pt-4" id="get_post">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Get User Posts</h5>
-            <kbd>GET</kbd>
+            <kbd>GET</kbd></div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/get_posts/username"</i>
             </p>
@@ -342,9 +330,10 @@
         </div>
         <hr />
         <div class="my-2 pt-4" id="other-details">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Other User Details</h5>
-            <kbd>GET</kbd>
+            <kbd>GET</kbd></div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/user/username"</i>
             </p>
@@ -367,9 +356,10 @@
 
         <hr />
         <div class="my-2 pt-4" id="create-post">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Create Post</h5>
-            <kbd>POST</kbd>
+            <kbd>POST</kbd></div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/post/"</i>
             </p>
@@ -395,9 +385,10 @@
 
         <hr />
         <div class="my-2 pt-4" id="delete-post">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Delete Post</h5>
-            <kbd>POST</kbd>
+            <kbd>POST</kbd></div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/post_delete/"</i>
             </p>
@@ -414,9 +405,10 @@
 
         <hr />
         <div class="my-2 pt-4" id="like-post">
-          <div class="d-flex">
+          <div class="d-flex titles">
+            <div class="d-flex">
             <h5 class="mb-0 mr-2">Like Post</h5>
-            <kbd>POST</kbd>
+            <kbd>POST</kbd></div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/post/like/"</i>
             </p>
@@ -438,6 +430,53 @@
           </blockquote>
         </div>
         
+
+        <hr />
+        <h3>Event</h3>
+        <hr />
+        <div class="my-2 pt-4" id="get_events">
+          <div class="d-flex titles">
+            <div class="d-flex">
+            <h5 class="mb-0 mr-2">Get Events</h5>
+            <kbd>GET</kbd></div>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://www.tourday.team/api/get_events/username"</i>
+            </p>
+          </div>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            
+            Response: <br />
+            <code>
+              {<br />
+              <span class="ml-4">"count": number of events,</span><br />
+              <span class="ml-4">"next": next page url,</span><br />
+              <span class="ml-4">"previous": previous page url,</span><br />
+              <span class="ml-4">"results": [</span><br />
+              <span class="ml-5">{</span><br />
+                <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
+                <span class="ml-5"><a class="ml-4">"location": event location <a href="" data-toggle="modal" data-target="#location_keys" >key</a>,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
+                <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pay1_method": payment method for number 1,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pay2": payment mobile number 2,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pay2_method": payment method for number 2,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"capacity": member capacity of this event,</span></span><br />
+                <span class="ml-5"><span class="ml-4"> "cost": cost to pay,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"image": image url,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"host": host user id</span></span><br />
+                <span class="ml-5"><span class="ml-4">"going": [ going user id ],</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pending": [ pending users id ]</span></span><br />
+             
+                <span class="ml-5">}</span><br />
+              <span class="ml-4">]</span><br />
+              }<br />
+              
+            </code>
+          </blockquote>
+        </div>
 
 
       </div>
@@ -545,6 +584,58 @@
       </div>
     </div>
     <!-- Location key modal -->
+
+
+    <style>
+      .dropdown-item:active {
+        background-color: #eaecee;
+        color: black;
+      }
+      .dropdown-menu {
+        box-shadow: 1px 1px 3px #00000021 !important;
+      }
+      .white-bg {
+        background-color: #fff;
+        box-shadow: 1px 1px 3px #00000021 !important;
+      }
+      .white-bg:focus {
+        box-shadow: 1px 1px 3px #00000021 !important;
+      }
+      .my-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+      }
+      .dropdown-menu a {
+        text-transform: uppercase;
+      }
+      h5 {
+        text-transform: uppercase;
+      }
+      @media (max-width: 800px){
+        .titles{
+            flex-direction: column;
+        }
+        h3{
+          font-size: 1.2rem;
+        }
+        h5{
+          font-size: 1.1rem;
+        }
+        img{
+          width: 50%;
+        }
+        code,p{
+          font-size: .9rem;
+        }
+        .ml-5{
+          margin-left: 2.4rem!important;
+        }
+        .ml-4{
+          margin-left: 1rem!important;
+        }
+      }
+    </style>
   </body>
   <script
     src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
