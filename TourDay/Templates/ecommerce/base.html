@@ -102,9 +102,9 @@
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
 				  aria-haspopup="true" aria-expanded="false">List</a>
 				<div class="dropdown-menu dropdown-menu-right dropdown-info">
-				  <a class="dropdown-item" href="#">Shirt</a>
-				  <a class="dropdown-item" href="#">Pant</a>
-				  <a class="dropdown-item" href="#">Shoes</a>
+					{% for product_type in product_type %}
+				  <a class="dropdown-item" href="#">{{product_type}}</a>
+				  {% endfor %}
 				</div>
 			  </li>
 	 
