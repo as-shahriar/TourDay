@@ -37,10 +37,11 @@
 					<div style="flex:1"><img class="row-image" src="{{product.imageURL}}"></div>
 					<div style="flex:2"><p>{{product.name}}</p></div>
                     <div style="flex:1"><p>৳{{product.price}}</p></div>
-                    <div style="flex:1"><p>Pant</p></div>
+                    <div style="flex:1"><p>{{product.product_type}}</p></div>
                     <div style="flex:0.3">
                        
-						<button class="btn btn-secondary btn-sm">Edit</button>	
+                        <a href="{% url 'product_edit' product.pk %}" class="btn btn-secondary btn-sm" role="button" aria-disabled="true">Edit</a>
+
 					</div>
                     <div style="flex:0.5">
                         <button class="btn btn-danger btn-sm">Delete </button>

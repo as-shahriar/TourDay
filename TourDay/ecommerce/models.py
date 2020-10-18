@@ -24,6 +24,9 @@ class Product(models.Model):
     digital = models.BooleanField(default=False,null=True, blank=True)
     image = models.ImageField(upload_to='ecom_pics', blank=False)
 
+    def save(self):
+        super().save()
+
     def __str__(self):
         return self.name
 
@@ -106,3 +109,9 @@ class payment(models.Model):
 
     def __str__(self):
         return str(self.customer)
+
+class Product_type(models.Model):
+    product_type = models.CharField(max_length=50, null=False, blank=True)
+
+    def __str__(self):
+        return self.product_type

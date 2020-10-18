@@ -12,6 +12,10 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.admin.views.decorators import staff_member_required
 
+import os
+from PIL import Image
+from TourDay.settings import MEDIA_DIR
+
 
 # Create your views here.
 
@@ -161,10 +165,32 @@ def product_table(request):
 
     return render(request, 'ecommerce/stuff_page/product_table.html', context)
 
-def product_edit(request):
+def product_edit(request, id):
+
+    product = Product.objects.get(id=id)
+
+    if request.method == 'POST' and 'product_edit' in request.POST:
+        product.name = request.POST.get('product_name').strip()
+        product.price =  request.POST.get('product_price').strip()
+        product.product_type = request.POST.get('product_type').strip()
+        product.discription = request.POST.get('product_dis').strip()
+
+        if 'product_img' in request.FILES:
+            img_path =  os.path.join(MEDIA_DIR,product.image.name)
+            delete_old_img = True
+            product.image = request.FILES.get('product_img')
+        
+        product.save()
+        return redirect('all_product')
+    
+    try:
+        if delete_old_img:
+            os.remove(img_path)
+    except:
+        pass 
 
     context = {
-        
+        'product' : product,
     }
 
     return render(request, 'ecommerce/stuff_page/product_edit.html', context)
@@ -201,8 +227,7 @@ def order_details(request, id):
     order_item = OrderItem.objects.filter(order=order).order_by('quantity')
     shipping = ShippingAddress.objects.get(order=order)
     paymt = payment.objects.get(order=order)
-    print(order_item)
-
+ 
     if request.method == 'POST' and 'order_submit' in request.POST:
         order.status = request.POST.get('payment_mtd')
         order.save()
