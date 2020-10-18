@@ -15,7 +15,7 @@ urlpatterns = [
     path('user/<str:username>', profile.UserDetails.as_view()),
     path('post/like/', profile.LikePost.as_view()),
     path('forget_password/', forgetPasswordView),
-    path('reset_password/<str:slug>', resetPasswordView),
+    path('reset_password/<str:slug>/', resetPasswordView),
 
 
     path('map/<str:username>', views.map),

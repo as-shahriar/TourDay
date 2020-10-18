@@ -59,7 +59,7 @@ def signupView(request):
                 user.email = email
                 user.save()
                 subject = "Welcome to TourDay!"
-                message = f"Dear {username},\nYour new TourDay account has been created. Welcome to TourDay Community!\nFrom now on, please log in to your account using your email address or your username and your password.\n\nComplete your account at https://somesamapleaccount.com\n\nIf you received this email but didn't register for an TourDay account, something's gone wrong, Reply to this email to de-activate and close this account.\n\nThanks for registering!\nTourDay Team"
+                message = f"Dear {username},\nYour new TourDay account has been created. Welcome to TourDay Community!\nFrom now on, please log in to your account using your email address or your username and your password.\n\nComplete your account at https://tourday.team/profile/\n\nIf you received this email but didn't register for an TourDay account, something's gone wrong, Reply to this email to de-activate and close this account.\n\nThanks for registering!\nTourDay Team"
                 async_send_mail(subject, message, EMAIL_HOST_USER, email)
             except:
                 return JsonResponse({'status': 400})  # bad request
