@@ -168,6 +168,17 @@ def product_table(request):
 def add_product(request):
 
     product_type = Product_type.objects.all().order_by('-id')
+    product = Product()
+
+    if request.method == 'POST' and 'add_product' in request.POST:
+        product.name = request.POST.get('product_name').strip()
+        product.price =  request.POST.get('product_price').strip()
+        product.product_type = request.POST.get('product_type').strip()
+        product.discription = request.POST.get('product_dis').strip()
+        product.image = request.FILES.get('product_img')
+
+        product.save()
+        return redirect('all_product')
 
     context = {
 
