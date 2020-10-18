@@ -145,9 +145,15 @@ def staff_pages(request):
 
     return render(request, 'ecommerce/stuff_page/main.html')
 
-def table(request):
+
+def product_table(request):
 
     product = Product.objects.all().order_by('-id')
+    
+    paginator = Paginator(product, 5)  # Show 5 obj per page
+
+    page = request.GET.get('page')
+    product = paginator.get_page(page)
 
     context = {
         'product' : product,
@@ -155,6 +161,13 @@ def table(request):
 
     return render(request, 'ecommerce/stuff_page/product_table.html', context)
 
+def product_edit(request):
+
+    context = {
+        
+    }
+
+    return render(request, 'ecommerce/stuff_page/product_edit.html', context)
 
 @staff_member_required
 def order_table(request):

@@ -55,7 +55,7 @@
                     <div style="flex:1"><p>{{order.date_ordered}}</p></div>
                     <div style="flex:0.5">
                         <a href="{% url 'order_details' order.pk %}">
-						<button class="btn btn-info btn-sm">Details</button> </a>	
+						<button class="btn btn-secondary btn-sm">Details</button> </a>	
 					</div>
                     
 				</div>
@@ -66,7 +66,7 @@
         <div class="row md-4 mt-2 mr-1 ml-1">
             <div class="col-4">
                 {% if order.has_previous %}
-                <a href="?page={{ objects.previous_page_number }}" class="btn btn-secondary btn-sm">Page
+                <a href="?page={{ objects.previous_page_number }}" class="btn btn-info btn-sm">Page
                     {{ order.previous_page_number }}</a>{%endif%}
             </div>
 
@@ -78,7 +78,7 @@
 
             <div class="col-4">
                 {% if order.has_next %}
-                <a href="?page={{ order.next_page_number }}" class="btn btn-secondary btn-sm float-right">Page
+                <a href="?page={{ order.next_page_number }}" class="btn btn-info btn-sm float-right">Page
                     {{ order.next_page_number }}</a>{%endif%}
 
             </div>

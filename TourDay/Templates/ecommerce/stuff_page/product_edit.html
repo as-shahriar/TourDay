@@ -1,0 +1,26 @@
+{% include 'ecommerce/stuff_page/base.html' %}
+
+{% block base %}
+<div class="container mb-3">
+    <a  class="btn btn-info" href="{% url 'all_order' %}">&#x2190; Back</a>
+</div>
+<div class="container">
+    <div class="row">
+	
+		<div class="col-lg-4">
+			<img class="thumbnail" src="https://picsum.photos/200/300">
+			<div class="box-element product">
+				<h6><strong>Shoes</strong></h6>
+				<hr>
+
+				
+				<h5 style="display: inline-block; float: right"><strong>৳543</strong></h5>
+                <br>
+			</div>
+		</div>
+	
+	
+	</div>
+</div>
+
+{% endblock %}
