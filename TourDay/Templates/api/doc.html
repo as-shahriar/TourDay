@@ -87,6 +87,8 @@
         <!-- Dropdown menu links -->
         <a href="#login" class="dropdown-item" type="button">Login</a>
         <a href="#signup" class="dropdown-item" type="button">Sign up</a>
+        <a href="#forget" class="dropdown-item" type="button">Forget Password</a>
+        <a href="#reset" class="dropdown-item" type="button">Reset Password</a>
         <a href="#profile" class="dropdown-item" type="button"
           >Get Profile Info</a
         >
@@ -170,6 +172,67 @@
             </code>
           </blockquote>
         </div>
+
+
+
+        <hr />
+        <div class="my-2 pt-4" id="forget">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Forget Password</h5>
+            <kbd>POST</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://www.tourday.team/api/forget_password/"</i>
+            </p>
+          </div>
+          <p>
+            Use username or email address in <b>username_email</b> field. Use slug from response in reset_password url.
+           
+          </p>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"username_email": asif.qubit@gmail.com</span><br />
+              }<br />
+            </code>
+            <br />
+            Response: <br />
+            <code>
+              {<br />
+              <span class="ml-4">"status": 200,</span><br />
+              <span class="ml-4">"slug": "asif"</span><br />
+              }<br />
+            </code>
+          </blockquote>
+        </div>
+
+        <hr />
+        <div class="my-2 pt-4" id="reset">
+          <div class="d-flex">
+            <h5 class="mb-0 mr-2">Reset Password</h5>
+            <kbd>POST</kbd>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://www.tourday.team/api/reset_password/username/"</i>
+            </p>
+          </div>
+          <p>
+            Use code that sent to your email account. Use slug from <b>forget_password</b> response in reset_password url instead of username. Password must be greater than 7 characters.
+           
+          </p>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"code": TKPHHKGC,</span><br />
+              <span class="ml-4">"password1": ********,</span><br />
+              <span class="ml-4">"password2": ********</span><br />
+              }<br />
+            </code>
+            <br />
+          
+          </blockquote>
+        </div>
+
 
         <hr />
         <div class="my-2 pt-4" id="profile">
@@ -343,7 +406,7 @@
           <blockquote class="blockquote ml-5 mt-2">
             <code>
               {<br />
-              <span class="ml-4">"id": post_id,</span><br />
+              <span class="ml-4">"id": post_id</span><br />
               }<br />
             </code>
           </blockquote>
@@ -362,18 +425,21 @@
           <blockquote class="blockquote ml-5 mt-2">
             <code>
               {<br />
-              <span class="ml-4">"post_id": post_id,</span><br />
+              <span class="ml-4">"post_id": post_id</span><br />
               }<br />
             </code>
             <br />
-            Returns: <br />
+            Response: <br />
             <code>
               {<br />
-              <span class="ml-4">"like_count": 15,</span><br />
+              <span class="ml-4">"like_count": 15</span><br />
               }<br />
             </code>
           </blockquote>
         </div>
+        
+
+
       </div>
     </div>
     <footer class="px-2 py-3 d-flex justify-content-center">

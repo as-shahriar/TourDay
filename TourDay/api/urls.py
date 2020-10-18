@@ -1,5 +1,6 @@
 from django.urls import path, include
 from api import auth, profile, views
+from _auth.views import forgetPasswordView, resetPasswordView
 from user_profile.views import PostList
 from django.views.generic import TemplateView
 
@@ -13,7 +14,8 @@ urlpatterns = [
     path('post_delete/', profile.PostDelete.as_view()),
     path('user/<str:username>', profile.UserDetails.as_view()),
     path('post/like/', profile.LikePost.as_view()),
-
+    path('forget_password/', forgetPasswordView),
+    path('reset_password/<str:slug>', resetPasswordView),
 
 
     path('map/<str:username>', views.map),

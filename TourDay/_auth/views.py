@@ -13,6 +13,7 @@ from utils import async_send_mail
 from TourDay.settings import EMAIL_HOST_USER
 from django.db.models import Q
 from _auth.utils import get_code, get_hash
+from django.views.decorators.csrf import csrf_exempt
 
 
 def loginView(request):
@@ -72,6 +73,7 @@ def signupView(request):
     return render(request, "_auth/signup.html")
 
 
+@csrf_exempt
 def forgetPasswordView(request):
     if request.method == "POST":
         username_email = request.POST.get('username_email')
@@ -88,7 +90,7 @@ def forgetPasswordView(request):
             code_obj.code = get_hash(code)
             code_obj.save()
             subject = "Reset Password | TourDay"
-            message = f"Hi {user.username},\nYou recently requested to reset your password for your TourDay account.\n\nCODE: {code}\n\nGoto https://localhost:8000/reset-password/{user.username} and use this code to reset your password.\n\nIf you didn't request a password reset, please ignore this email.\n\nThanks,\nTourDay Team"
+            message = f"Hi {user.username},\nYou recently requested to reset your password for your TourDay account.\n\nCODE: {code}\n\nGoto https://tourday.team/reset-password/{user.username} and use this code to reset your password.\n\nIf you didn't request a password reset, please ignore this email.\n\nThanks,\nTourDay Team"
             async_send_mail(subject, message, EMAIL_HOST_USER, user.email)
 
             return JsonResponse({
@@ -102,6 +104,7 @@ def forgetPasswordView(request):
     return render(request, "_auth/forget_password.html")
 
 
+@csrf_exempt
 def resetPasswordView(request, slug):
     try:
         user = User.objects.get(username=slug)
@@ -110,12 +113,10 @@ def resetPasswordView(request, slug):
 
     if request.method == "POST":
         code = request.POST.get('code')
-        username = request.POST.get('username')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
         if code != "" and password1 != "" and password1 == password2 and len(password1) > 7:
             try:
-                user = User.objects.get(username=username)
                 code_obj = ResetCode.objects.get(user=user)
                 if get_hash(code) == code_obj.code:
                     user.set_password(password1)
@@ -125,7 +126,7 @@ def resetPasswordView(request, slug):
                     message = f"Hi {user.username},\nSuccess! Your Password has been changed!\n\nIf you didn't changed your password, then your account is at risk. Contact TourDay Team as soon as possible.\n\nThanks,\nTourDay Team"
                     async_send_mail(subject, message,
                                     EMAIL_HOST_USER, user.email)
-                    user = authenticate(username=username, password=password1)
+                    user = authenticate(username=slug, password=password1)
                     if user is not None:
                         login(request, user)
                         # Password changed

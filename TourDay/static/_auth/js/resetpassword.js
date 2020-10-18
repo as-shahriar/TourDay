@@ -52,7 +52,6 @@ $("#save").click(function (e) {
     type: "POST",
     data: {
       code: code.val(),
-      username: username.val(),
       password1: password1.val(),
       password2: password2.val(),
       csrfmiddlewaretoken: getCookie("csrftoken"),
