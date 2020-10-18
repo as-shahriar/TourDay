@@ -1,25 +1,18 @@
 {% include 'ecommerce/stuff_page/base.html' %}
 
 {% block base %}
+
+
+
 <div class="container mb-3">
-    <a  class="btn btn-info" href="{% url 'all_product' %}">&#x2190; Back</a>
-</div>
-<div class="container">
+    
+    
     <div class="row">
-	
-		<div class="col-lg-4">
-			<img class="thumbnail" src="{{product.imageURL}}">
-			<div class="box-element product">
-				<h6><strong>{{product.name}}</strong></h6>
-				<hr>
-
-				
-				<h5 style="display: inline-block; float: right"><strong>৳{{product.price}}</strong></h5>
-                <br>
-			</div>
-        </div>
-
+        <div class="col-lg-2"></div>
         <div class="col-lg-8">
+            <div class="container mb-3 ml-0">
+                <a  class="btn btn-info" href="{% url 'all_product' %}">&#x2190; Back</a>
+            </div>
             <div class="box-element">
                 <div class="card card-small">
                     <form method="POST" class="needs-validation" novalidate enctype="multipart/form-data">{% csrf_token %}
@@ -33,7 +26,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Product Name</label>
-                                                <input type="text" class="form-control" name="product_name" value="{{product.name}}" required>
+                                                <input type="text" class="form-control" name="product_name" required>
   
                                                 <div class="invalid-feedback">Please provide a valid Name.</div>
                                                 
@@ -44,7 +37,7 @@
                                                     <div class="input-group-prepend">
                                                       <div class="input-group-text">৳</div>
                                                     </div>
-                                                    <input type="number" class="form-control" name="product_price" value="{{product.price}}" required>
+                                                    <input type="number" class="form-control" name="product_price" required>
                                                     <div class="invalid-feedback"> Please provide a valid Price.</div>
                                                   </div>
                                             </div>
@@ -56,7 +49,6 @@
                                             <div class="form-group col-md-6">
                                                 <label>Product Type</label>
                                                 <select class="form-control" name="product_type" required>
-                                                    <option value="{{product.product_type}}">{{product.product_type}}</option> 
                                                     {% for type in product_type %}
                                                     <option value="{{type}}">{{type}}</option>
                                                     
@@ -67,9 +59,11 @@
                                             <div class="form-group col-md-6">
                                                 <label>Product Image</label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="product_img" id="customFile" >
+                                                    <input type="file" class="custom-file-input" name="product_img" id="customFile" required>
                                                     <label class="custom-file-label" for="customFile">Choose file</label>
-                                                  </div>
+                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+                                                  
                                             </div>
                                             
                                             
@@ -94,12 +88,9 @@
                 </div>
             </div>
         </div>
-	a
-	
-	</div>
+        <div class="col-lg-2"></div>
+    </div>
+   
 </div>
-
-
-    
 
 {% endblock %}

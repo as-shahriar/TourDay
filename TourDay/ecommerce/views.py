@@ -165,9 +165,23 @@ def product_table(request):
 
     return render(request, 'ecommerce/stuff_page/product_table.html', context)
 
+def add_product(request):
+
+    product_type = Product_type.objects.all().order_by('-id')
+
+    context = {
+
+        'product_type' : product_type,
+    }
+
+    return render(request, 'ecommerce/stuff_page/add_product.html', context)
+
+
 def product_edit(request, id):
 
     product = Product.objects.get(id=id)
+
+    product_type = Product_type.objects.all().order_by('-id')
 
     if request.method == 'POST' and 'product_edit' in request.POST:
         product.name = request.POST.get('product_name').strip()
@@ -191,6 +205,7 @@ def product_edit(request, id):
 
     context = {
         'product' : product,
+        'product_type' : product_type,
     }
 
     return render(request, 'ecommerce/stuff_page/product_edit.html', context)
