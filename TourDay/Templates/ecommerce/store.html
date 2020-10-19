@@ -9,8 +9,11 @@
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
 
+				{% if product.digital %}
+				<button data-action="add" class="btn btn-outline-secondary add-btn update-cart" disabled style="cursor: default;">Add to Cart</button>
+				{% else %}
 				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-				
+				{% endif %}
 				<a class="btn btn-outline-success" href="#">View</a>
 				<h5 style="display: inline-block; float: right"><strong>৳{{product.price}}</strong></h5>
 

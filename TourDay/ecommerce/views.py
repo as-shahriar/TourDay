@@ -53,6 +53,7 @@ def store(request):
     return render(request, 'ecommerce/store.html', context)
 
 def cart(request):
+    
     data = cartData(request)
 
     product_type = Product_type.objects.all().order_by('-id')
@@ -219,6 +220,7 @@ def product_edit(request, id):
         product.price =  request.POST.get('product_price').strip()
         product.product_type = request.POST.get('product_type').strip()
         product.discription = request.POST.get('product_dis').strip()
+        product.digital = request.POST.get('product_status')
 
         if 'product_img' in request.FILES:
             img_path =  os.path.join(MEDIA_DIR,product.image.name)
