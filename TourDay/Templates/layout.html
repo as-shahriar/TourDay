@@ -148,12 +148,12 @@
       <div class="ads">
         <div class="card_ad">
 {%for ad in ads%}
-<a href="#" class="card-a">
+<a href="{% url 'store' %}#{{ad.id}}" class="card-a">
           <div class="card my-2" style="width: 18rem;">
             <img class="card-img-top" src="{{ad.image.url}}" alt="Card image cap">
             <div class="card-body">
               <p class="card-text">{{ad.name}}</p>
-              <p class="card-price">৳{{ad.price}}</p>
+              <p class="card-price">৳ {{ad.price}}</p>
             </div>
           </div>
         </a>
