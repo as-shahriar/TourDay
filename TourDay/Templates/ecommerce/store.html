@@ -1,5 +1,8 @@
 {% extends 'ecommerce/base.html' %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'ecommerce/css/modal.css'%}">
+{%endblock%}
 {% block content %}
 	<div class="row">
 		{% for product in products %}
@@ -29,5 +32,36 @@
 		</div>
 		<div class="col-md-5"></div>
 	</div>
+
+	<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+	Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+	
+		<div class="modal-body">
+		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+		
+		<div class="content">
+			<div class="left">
+				<img src="http://127.0.0.1:8000/media/ecom_pics/2.png" alt="Image">
+			</div>
+			<div class="right">
+				<h6>Title</h6>
+				<p>Description</p>
+				<h6>৳550</h6>
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+	  </div>
+	</div>
+  </div>
 	
 {% endblock content %}

@@ -1,0 +1,41 @@
+.content {
+  display: flex;
+}
+.left {
+}
+
+.right {
+  margin-left: 2rem;
+  padding: 2rem 1rem;
+}
+
+.left img {
+  width: 550px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.modal-dialog {
+  max-width: 54rem;
+}
+
+@media (max-width: 800px) {
+  .content {
+    flex-direction: column;
+  }
+  .left img {
+    width: 99%;
+    height: 300px;
+    object-fit: cover;
+  }
+  .modal-dialog {
+    margin: 0 1rem;
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.5rem;
+  }
+}
