@@ -8,7 +8,7 @@ $("#getcode").click(function (e) {
   } else {
     username.removeClass("input-error");
   }
-
+  interval = loader_progress();
   $.ajax({
     url: "/forget-password/",
     type: "POST",
@@ -29,5 +29,8 @@ $("#getcode").click(function (e) {
     error: function (result) {
       console.log("Network Error");
     },
+    complete: function(result){
+      clear_loader_progress(interval);
+    }
   });
 });

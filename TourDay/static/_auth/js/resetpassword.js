@@ -45,12 +45,13 @@ $("#save").click(function (e) {
     password2.removeClass("input-error");
   }
 
+  
+  interval = loader_progress();
   $.ajax({
     url: "/reset-password/" + username.val(),
     type: "POST",
     data: {
       code: code.val(),
-      username: username.val(),
       password1: password1.val(),
       password2: password2.val(),
       csrfmiddlewaretoken: getCookie("csrftoken"),
@@ -68,5 +69,8 @@ $("#save").click(function (e) {
     error: function (result) {
       console.log("Network Error");
     },
+    complete: function(result){
+      clear_loader_progress(interval);
+    }
   });
 });

@@ -1,7 +1,13 @@
-{% extends 'layout.html' %}{% load static %} {%block css%}<link
+{% extends 'layout.html' %}{% load static %}
+{%block og-details %}
+<meta name="og:title" content="TourDay" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{% static 'image/tourday-og.png'%}" />
+{%endblock%}
+{%block css%}<link
   rel="stylesheet"
-  href="{% static 'blog/css/search.css'%}"
-/>{%endblock%} {% block title %}TourDay | Search{%endblock%} {% block search %}
+  href="{% static 'blog/css/search.min.css'%}"
+/>{%endblock%} {% block title %}TourDay | A Platform for Bangladeshi Tourists{%endblock%} {% block search %}
 <style>
   .left-menu,
   .ads {
@@ -10,7 +16,7 @@
 </style>
 
 <div class="main">
-  <img src="{% static 'image/logo.png'%}" alt="TourDay" class="big-logo" />
+  <img src="{% static 'image/tourday.png'%}" alt="TourDay" class="big-logo" />
 
   <div class="input-box">
     <img src="{% static 'icon/search.png'%}" alt="" class="input-icon" />
@@ -31,7 +37,7 @@
         id="inlineRadio1"
         value="user"
       />
-      <label class="form-check-label" for="inlineRadio1">User</label>
+      <label class="form-check-label cursor-pointer" for="inlineRadio1">User</label>
     </div>
     <div class="form-check form-check-inline">
       <input
@@ -41,7 +47,7 @@
         id="inlineRadio2"
         value="post"
       />
-      <label class="form-check-label" for="inlineRadio2">Post</label>
+      <label class="form-check-label cursor-pointer" for="inlineRadio2">Post</label>
     </div>
     <div class="form-check form-check-inline">
       <input
@@ -51,13 +57,11 @@
         id="inlineRadio3"
         value="product"
       />
-      <label class="form-check-label" for="inlineRadio3">Product</label>
+      <label class="form-check-label cursor-pointer" for="inlineRadio3">Product</label>
     </div>
   </div>
   <button class="my-btn search-btn" type="submit" id="search">Search</button>
 </div>
-
-<footer>TourDay &copy; 2020</footer>
 
 {%endblock%} {%block scripts%}
 <script src="{% static 'blog/js/main.min.js' %}"></script>

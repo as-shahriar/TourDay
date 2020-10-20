@@ -46,13 +46,14 @@ body {
   user-select: none;
 }
 .loader {
+  top: 0;
   background-color: var(--background-color);
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   z-index: 1000;
   img {
     width: 10%;
@@ -403,12 +404,29 @@ section {
   display: block;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 6px;
   z-index: -10;
   img {
-    width: 35%;
+    width: 28%;
     padding: 0.6rem;
   }
+}
+
+#upper_loader {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background: var(--primary-dark-color);
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  z-index: 9999;
+  box-shadow: 0px 1px 3px #0000006b;
 }
 
 @media (max-width: 800px) {
@@ -462,6 +480,7 @@ section {
   nav {
     display: none;
   }
+
   .menu-mobile {
     position: fixed;
     top: 35px;

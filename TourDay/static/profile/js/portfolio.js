@@ -5,7 +5,7 @@ preview_close = document.getElementById("preview-close");
 pic_preview = document.getElementById("pic_preview");
 
 post_loader = document.getElementById("post-loder");
-
+see_more = document.querySelector("#see-more");
 if (select_picture != null) {
   select_picture.addEventListener("change", () => {
     const file = select_picture.files[0];
@@ -37,12 +37,14 @@ if (select_picture != null) {
       hide_error();
       return;
     }
+
     form = new FormData();
     form.append("post", post.value);
     form.append("date", date.value);
     form.append("location", location_.value);
     form.append("image", file);
 
+    interval = loader_progress();
     fetch("/add_post/", {
       method: "POST",
       body: form,
@@ -67,6 +69,7 @@ if (select_picture != null) {
         } else {
           console.log("uploading error");
         }
+        clear_loader_progress(interval);
       });
   });
 }
@@ -218,8 +221,9 @@ function add_post(
   div_head.appendChild(div_date);
   div_post.appendChild(div_head);
   div_post.appendChild(div_body);
+  if(post_section!=null){
   if (direction) post_section.appendChild(div_post);
-  else post_section.prepend(div_post);
+  else post_section.prepend(div_post);}
 }
 
 let next;
@@ -229,7 +233,14 @@ function get_post(url) {
     .then((res) => res.json())
     .then((data) => {
       next = data.next;
+      if (data.next) see_more.style.display = "block";
+      else {
+        see_more.style.display = "none";
+        document.querySelector("#hr-hide-with-see-more").style.display = "none";
+    }
+      if (post_loader !=null)
       post_loader.style.display = "none";
+      
       data.results.forEach((post) => {
         add_post(
           true,
@@ -247,14 +258,24 @@ function get_post(url) {
     });
 }
 
-if (next != null) {
-  $(window).scroll(function () {
-    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-      post_loader.style.display = "flex";
-      get_post(next);
-    }
-  });
+see_more.addEventListener("click",()=>{
+  if(next){
+    if (post_loader !=null)
+  post_loader.style.display = "flex";
+  get_post(next);
 }
+});
+
+  $(window).scroll(function () {
+    if($(window).width()>783){
+    if ($(window).scrollTop() + $(window).height() >= $(document).height()-1) {
+      if(next){
+      get_post(next);
+      if (post_loader !=null)
+      post_loader.style.display = "flex";}
+    }}
+  });
+
 
 $(document).ready(() => {
   username = document.getElementById("my-username").value;
@@ -266,7 +287,7 @@ $(document).ready(() => {
 function like_event(id) {
   form = new FormData();
   form.append("id", id);
-
+  interval = loader_progress();
   fetch("/like/", {
     method: "POST",
     body: form,
@@ -276,6 +297,8 @@ function like_event(id) {
       if (data.status != 200) {
         console.log("Like error.");
       }
+      
+      clear_loader_progress(interval);
     });
 }
 
@@ -292,7 +315,7 @@ function set_current_date() {
 function delete_post(id) {
   form = new FormData();
   form.append("id", id);
-
+  interval = loader_progress();
   fetch("/delete_post/", {
     method: "POST",
     body: form,
@@ -302,7 +325,7 @@ function delete_post(id) {
       if (data.status == 200) {
         elem = document.getElementById(`post-div-${id}`);
         elem.parentNode.removeChild(elem);
-        //  Todo: Update map when post deleted
+        clear_loader_progress(interval);
       }
     });
 }

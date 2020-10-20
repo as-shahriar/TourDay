@@ -10,6 +10,9 @@ from rest_framework.response import Response
 from user_profile.models import Profile
 from _auth.models import User
 from django.contrib.auth.decorators import login_required
+from utils import async_send_mail
+from TourDay.settings import EMAIL_HOST_USER
+from django.db.models import Q
 
 
 @login_required
@@ -22,12 +25,14 @@ def dashboard(request):
         event.location = request.POST.get('location')
         event.date = request.POST.get('date')
         event.details = request.POST.get('details')
+        event.capacity = request.POST.get('capacity')
         event.pay1 = request.POST.get('pay1')
         event.pay2 = request.POST.get('pay2')
         event.cost = request.POST.get('cost')
         event.pay1_method = request.POST.get('pay1_method')
         event.pay2_method = request.POST.get('pay2_method')
         event.save()
+
         return JsonResponse({'status': 200, "id": event.id})
     profile = Profile.objects.get(user=request.user)
     events = Event.objects.filter(going__in=[request.user])
@@ -58,6 +63,7 @@ def edit_event(request, id):
             event.location = request.POST.get('location')
             event.date = request.POST.get('date')
             event.details = request.POST.get('details')
+            event.capacity = request.POST.get('capacity')
             event.pay1 = request.POST.get('pay1')
             event.pay2 = request.POST.get('pay2')
             event.cost = request.POST.get('cost')
@@ -71,14 +77,23 @@ def edit_event(request, id):
 
 
 def eventView(request, id):
-    event = Event.objects.get(id=id)
+    event = get_object_or_404(Event, id=id)
     going = Profile.objects.filter(user__in=event.going.all())
-    transaction = Transactions.objects.filter(user__in=event.pending.all())
+    transaction = Transactions.objects.filter(
+        Q(user__in=event.pending.all()), Q(status=False), Q(event=event)
+    )
+
+    capacity = going.count() + transaction.count()
     nav_img = None
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         nav_img = profile.picture.url
-    return render(request, 'event/event.html', {"event": event, "going": going, "transaction": transaction, "nav_img": nav_img})
+    return render(request, 'event/event.html', {
+        "event": event,
+        "going": going,
+        "transaction": transaction,
+        "nav_img": nav_img,
+        "capacity": capacity >= event.capacity})
 
 
 @login_required
@@ -88,12 +103,15 @@ def action(request, id):
         event = Event.objects.get(id=id)
         is_accepted = request.POST.get("is_accepted")
         user = User.objects.get(id=request.POST.get("user_id"))
-        tr = Transactions.objects.get(user=user)
+        tr = Transactions.objects.filter(
+            Q(user=user), Q(event=event)
+        )
+
         if is_accepted == "1":
             event.going.add(user)
             event.pending.remove(user)
             tr.status = True
-            tr.save()
+            tr.update()
             profile = Profile.objects.get(user=user)
             context = {
                 'status': 200,
@@ -102,10 +120,18 @@ def action(request, id):
                 "username": user.username,
                 "email": user.email
             }
+            subject = "Payment request accepted!"
+            message = f"Dear {user.username},\nYour payment request for event '{event.title}' in TourDay got accepted. Pack your bags and get ready to explore!\nKeep eye on https://tourday.team/event/{event.id}\nBest Regards\nTourDay Team"
+            async_send_mail(subject, message,
+                            EMAIL_HOST_USER, user.email)
             return JsonResponse(context)
         elif is_accepted == "0":
             event.pending.remove(user)
             tr.delete()
+            subject = "Payment request denied!"
+            message = f"Dear {user.username},\nYour payment request for event '{event.title}' in TourDay got denied. Kindly check your transaction number and try again.\nBest Regards\nTourDay Team"
+            async_send_mail(subject, message,
+                            EMAIL_HOST_USER, user.email)
             return JsonResponse({'status': 200})
 
     return JsonResponse({'status': 400})
@@ -127,6 +153,10 @@ def pay(request, id):
             obj.save()
             event.pending.add(request.user)
             event.save()
+            subject = "New payment request for your event."
+            message = f"Dear {event.host.username},\nYour event '{event.title}' in TourDay gets a new payment request. Kindly review the request on https://tourday.team/event/{event.id}\nBest Regards\nTourDay Team"
+            async_send_mail(subject, message,
+                            EMAIL_HOST_USER, event.host.email)
             return JsonResponse({"status": 200})
         except:
             pass

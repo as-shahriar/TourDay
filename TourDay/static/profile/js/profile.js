@@ -120,6 +120,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return true;
   }
+
+  document.getElementById("delete-ac").addEventListener("click",()=>{
+    var r = confirm("Are you sure to delete this account?");
+    if (r == true) {
+      fetch("/delete_account/",{
+        method:"POST"
+      }).then(res=>res.json()).then(data=>{
+        console.log(data);
+        if (data.status==200){
+          location.href = "/login/";
+        }
+      });
+    } else {
+      return;
+    } 
+  });
 });
 
 $(document).ready(function () {

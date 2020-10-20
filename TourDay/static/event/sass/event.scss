@@ -59,7 +59,8 @@
   padding-bottom: 0.5rem;
   font-size: 1.2rem;
   text-align: left;
-  white-space: pre;
+  white-space: pre-line;
+  user-select: text;
 }
 .copy {
   position: relative;
@@ -99,7 +100,7 @@
   margin: 1rem;
   width: 100%;
 }
-.card-header {
+.mycard-header {
   display: flex;
   justify-content: space-between;
   div {
@@ -112,7 +113,7 @@
   }
 }
 
-.card-body {
+.mycard-body {
   padding: 0;
 }
 

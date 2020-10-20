@@ -16,9 +16,7 @@
   <meta name="url" content="https://tourday.team" />
   <meta name="identifier-URL" content="https://tourday.team" />
 
-  <meta name="og:title" content="TourDay" />
-  <meta name="og:url" content="https://tourday.team" />
-  <meta name="og:image" content="{% static 'image/logo.png'%}" />
+  {%block og-details %}{%endblock%}
   <meta
     name="og:description"
     content="A platform where people can showcase their tours, share information, experiences & know more about tourist places in Bangladesh."
@@ -37,7 +35,7 @@
     />
     <link
       rel="shortcut icon"
-      href="{% static 'image/logo.png'%}"
+      href="{% static 'image/tourday-fav.png'%}"
       type="image/x-icon"
     />
     <link rel="stylesheet" href="{% static 'css/layout.css'%}" />
@@ -48,6 +46,7 @@
     <div class="loader">
       <img src="{% static 'image/loader.gif'%}" alt="Loading" />
     </div>
+    <div id="upper_loader" style="display: none;"></div>
     <nav id="nav">
       <ul class="menu">
         {% if request.user.is_authenticated %}
@@ -103,7 +102,7 @@
     </div>
     <div class="logo">
       <a href="{% url 'search_page'%}">
-        <img src="{% static 'image/logo.png'%}" alt="logo"
+        <img src="{% static 'image/tourday-nav.png'%}" alt="logo"
       /></a>
     </div>
 
@@ -133,7 +132,9 @@
           {%endif%}
           <a href="{% url 'search_page'%}"><li><i class="material-icons">search</span></i><span>Search</span></li></a>
           <a href="{% url 'blog_home'%}"><li><i class="material-icons">article</i><span>Blog</span></li></a>
+          {% if user.is_authenticated %}
           <a href="{% url 'event_dashboard'%}"><li><i class="material-icons">explore</i><span>Event</span></li></a>
+          {%endif%}
           <a href="#"><li><i class="material-icons">add_shopping_cart</i><span>E-commerce</span></li></a>
           {% if user.is_authenticated %}
           
@@ -145,7 +146,19 @@
       </div>
       <div class="content">{% block content %} {% endblock %}</div>
       <div class="ads">
-        <div class="card_ad">Adds herer</div>
+        <div class="card_ad">
+{%for i in "123456789"%}
+<a href="#" class="card-a">
+          <div class="card my-2" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'image/tourday-og.png'%}" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">Sample Ads</p>
+            </div>
+          </div>
+        </a>
+{%endfor%}
+
+        </div>
       </div>
     </div>
 

@@ -1,89 +1,78 @@
+import string
+import random
 import threading
 from django.core.mail import send_mail
 from time import sleep
 
 districts = {
 
-        # Rangpur
-        "Panchagarh": "1",
-        "Thakurgaon": "2",
-        "Dinajpur": "4",
-        "Nilphamari": "0",
-        "Lalmonirhat": "3",
-        "Kurigram": "6",
-        "Rangpur": "5",
-        "Gaibandha": "7",
+"Bagerhat" : "26",
+"Bandarban" : "56",
+"Barguna" : "32",
+"Barisal" : "31",
+"Bhola" : "37",
+"Bogra" : "11",
+"Brahmanbaria" : "41",
+"Chandpur" : "44",
+"Chapainawabganj" : "10",
+"Chattogram" : "54",
+"Chuadanga" : "25",
+"Comilla" : "43",
+"Cox's Bazar" : "59",
+"Dhaka" : "73",
+"Dinajpur" : "4",
+"Faridpur" : "70",
+"Feni" : "51",
+"Gaibandha" : "7",
+"Gazipur" : "76",
+"Gopalganj" : "71",
+"Habiganj" : "64",
+"Jamalpur" : "66",
+"Jessore" : "19",
+"Jhalokati" : "30",
+"Jhenaidah" : "17",
+"Joypurhat" : "16",
+"Khagrachhari" : "55",
+"Khulna" : "22",
+"Kishoreganj" : "83",
+"Kurigram" : "6",
+"Kushtia" : "23",
+"Lakshmipur" : "45",
+"Lalmonirhat" : "3",
+"Madaripur" : "75",
+"Magura" : "18",
+"Manikganj" : "72",
+"Meherpur" : "24",
+"Moulvibazar" : "65",
+"Munshiganj" : "79",
+"Mymensingh" : "67",
+"Naogaon" : "15",
+"Narail" : "20",
+"Narayanganj" : "78",
+"Narsingdi" : "77",
+"Natore" : "12",
+"Netrokona " : "68",
+"Nilphamari" : "0",
+"Noakhali" : "46",
+"Pabna" : "9",
+"Panchagarh" : "1",
+"Patuakhali" : "33",
+"Pirojpur" : "29",
+"Rajbari" : "69",
+"Rajshahi" : "13",
+"Rangamati" : "57",
+"Rangpur" : "5",
+"Satkhira" : "21",
+"Shariatpur" : "74",
+"Sherpur" : "66a",
+"Sirajganj" : "14",
+"Sunamganj" : "62",
+"Sylhet" : "63",
+"Tangail" : "84",
+"Thakurgaon" : "2",
 
-        # Rajshahi
-        "Joypurhat": "16",
-        "Bogra": "11",
-        "Naogaon": "15",
-        "Natore": "12",
-        "Chapainawabganj": "10",
-        "Pabna": "9",
-        "Rajshahi": "13",
-        "Sirajganj": "14",
+}
 
-        # Mymensingh
-        "Jamalpur": "66",
-        "Mymensingh": "67",
-        "Netrokona ": "68",
-        "Sherpur": "66a",
-
-        # Sylhet
-        "Habiganj": "64",
-        "Moulvibazar": "65",
-        "Sunamganj": "62",
-        "Sylhet": "63",
-
-        # Dhaka
-        "Dhaka": "73",
-        "Faridpur": "70",
-        "Gazipur": "76",
-        "Gopalganj": "71",
-        "Kishoreganj": "83",
-        "Madaripur": "75",
-        "Manikganj": "72",
-        "Munshiganj": "79",
-        "Narayanganj": "78",
-        "Narsingdi": "77",
-        "Rajbari": "69",
-        "Shariatpur": "74",
-        "Tangail": "84",
-
-        # Khulna
-        "Jessore": "19",
-        "Jhenaidah": "17",
-        "Khulna": "22",
-        "Kushtia": "23",
-        "Magura": "18",
-        "Meherpur": "24",
-        "Narail": "20",
-        "Satkhira": "21",
-        "Bagerhat": "26",
-        "Chuadanga": "25",
-
-        # Barisal
-        "Barguna": "32",
-        "Barisal": "31",
-        "Bhola": "37",
-        "Jhalokati": "30",
-        "Patuakhali": "33",
-        "Pirojpur": "29",
-
-        # Chattogram
-        "Chattogram": "54",
-        "Bandarban": "56",
-        "Brahmanbaria": "41",
-        "Chandpur": "44",
-        "Comilla": "43",
-        "Cox's Bazar": "59",
-        "Feni": "51",
-        "Khagrachhari": "55",
-        "Lakshmipur": "45",
-        "Noakhali": "46",
-        "Rangamati": "57",
-    }
 
 def threading_send_mail(subject, message, EMAIL_HOST_USER, user_email):
     send_mail(subject, message, EMAIL_HOST_USER,
@@ -97,8 +86,12 @@ def async_send_mail(subject, message, EMAIL_HOST_USER, user_email):
     thread.start()
 
 
-
-
 def number_to_location(number):
     """Take number and return location"""
     return list(districts.keys())[list(districts.values()).index(number)]
+
+
+def get_random_string(length):
+    letters = string.ascii_lowercase
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    return result_str

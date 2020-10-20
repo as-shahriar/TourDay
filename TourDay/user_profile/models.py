@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from utils import get_random_string
 
 
 def user_directory_path(instance, filename):
@@ -12,8 +13,9 @@ def user_directory_path(instance, filename):
 
 def post_image_path(instance, filename):
     ext = filename.split('.')[-1]
-    filename = f"{instance.id}.{ext}"
+    filename = f"{instance.user.username}-{get_random_string(10)}.{ext}"
     return f"profile_pics/{instance.user.username}/posts/{filename}"
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

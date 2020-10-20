@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from user_profile.models import Profile
+from user_profile.models import Profile, Post
 from django.core.validators import validate_email
 
 
@@ -41,6 +41,7 @@ class ProfileUpdateSerializer(serializers.Serializer):
     password = serializers.CharField()
     bio = serializers.CharField()
     city = serializers.CharField()
+    picture = serializers.ImageField()
 
     def validate(self, data):
         email = self.initial_data.get('email')
@@ -49,3 +50,9 @@ class ProfileUpdateSerializer(serializers.Serializer):
         except:
             raise serializers.ValidationError('Invalid Email Address')
         return data
+
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        exclude = ['user']

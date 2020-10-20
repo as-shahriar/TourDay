@@ -14,6 +14,7 @@ urlpatterns = [
     path('reset-password/<slug>', resetPasswordView, name="reset_password_page"),
     path('logout/', id_logout, name="logout"),
     path('checkusername', checkusername, name="checkusername"),
-    path('checkemail', checkemail, name="checkemail"),
+    path('checkemail', checkemail, name="checkemail")
+
 
 ]

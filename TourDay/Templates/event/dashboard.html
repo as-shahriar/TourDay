@@ -1,4 +1,10 @@
-{%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
+{%extends 'layout.html'%} {% load static %}
+{%block og-details %}
+<meta name="og:title" content="TourDay" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{% static 'image/tourday-og.png'%}" />
+{%endblock%}
+{%block title%}TourDay |
 Event{%endblock%} {%block css%}<link
   rel="stylesheet"
   href="{% static 'event/css/dashboard.css'%}"
@@ -29,10 +35,13 @@ Event{%endblock%} {%block css%}<link
     >
   </div>
   <hr />
-  <div class="row mt-3" id="root-div"></div>
+  <div class="row my-3" id="root-div"></div>
   <div id="post-loder">
     <img src="{%static 'icon/loader.gif'%}" alt="Loading" />
   </div>
+  <div class="mobile-hr" id="hr-hide-with-see-more"><hr></div>
+  <div id="see-more-div"><span id="see-more">See More</span></div>
+  <div class="mobile-hr"><hr></div>
 </div>
 
 <!-- Modal add event -->
@@ -59,8 +68,21 @@ Event{%endblock%} {%block css%}<link
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="title" class="col-form-label">Title</label>
-            <input type="text" class="form-control" id="title" />
+            <div class="row">
+              <div class="col-md-9">
+                <label for="title" class="col-form-label">Title</label>
+                <input type="text" class="form-control" id="title" />
+              </div>
+              <div class="col-md-3">
+                <label for="capacity" class="col-form-label">Capacity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="capacity"
+                  min="1"
+                />
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
