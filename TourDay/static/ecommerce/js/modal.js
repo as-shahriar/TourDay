@@ -5,8 +5,8 @@ document.querySelectorAll(".open-modal").forEach(e=>{
         fetch(`/api/ecommerce/product/details/${id}`).
         then(res=>res.json()).
         then(data=>{
-            const {discription, image,name,price} = data
-            changeModal(id,name,discription,price,image)
+            const {description, image,name,price} = data
+            changeModal(id,name,description,price,image)
             document.getElementById("modal-triger").click();
         })
     })
