@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from utils import async_send_mail
 from TourDay.settings import EMAIL_HOST_USER
 from django.db.models import Q
+from ecommerce.ads_engine import get_ads
 
 
 @login_required
@@ -36,7 +37,12 @@ def dashboard(request):
         return JsonResponse({'status': 200, "id": event.id})
     profile = Profile.objects.get(user=request.user)
     events = Event.objects.filter(going__in=[request.user])
-    return render(request, 'event/dashboard.html', {"going_events": events, "nav_img": profile.picture.url})
+    context = {
+        "ads": get_ads(),
+        "going_events": events,
+        "nav_img": profile.picture.url
+    }
+    return render(request, 'event/dashboard.html', context)
 
 
 class EventList(APIView, LimitOffsetPagination):
@@ -93,7 +99,9 @@ def eventView(request, id):
         "going": going,
         "transaction": transaction,
         "nav_img": nav_img,
-        "capacity": capacity >= event.capacity})
+        "capacity": capacity >= event.capacity,
+        "ads": get_ads()
+    })
 
 
 @login_required
@@ -170,19 +178,3 @@ def delete_event(request, id):
         event.delete()
         return JsonResponse({"status": 200})
     return JsonResponse({"status": 400})
-
-
-def create_event(n, request):
-    for i in range(n):
-        event = Event()
-        event.host = request.user
-        event.title = str(n)
-        event.location = "xyz"
-        event.date = "1990-02-02"
-        event.details = "xyz"
-        event.pay1 = 12
-        event.pay2 = 12
-        event.cost = 12
-        event.pay1_method = "xyz"
-        event.pay2_method = "xyz"
-        event.save()
