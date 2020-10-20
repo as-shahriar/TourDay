@@ -67,7 +67,7 @@
         {%endif%}
         <li><a href="{% url 'search_page'%}">Search</a></li>
         <li><a href="{% url 'blog_home'%}">Blog</a></li>
-        <li><a href="#">E-commerce</a></li>
+        <li><a href="{%url 'store' %}">Shop</a></li>
         {% if not user.is_authenticated %}
         <li><a href="{% url 'login_page'%}">Login</a></li>
         <li><a href="{% url 'signup_page'%}">Sign up</a></li>
@@ -91,7 +91,7 @@
         
        
 
-        <li><a href="#">E-commerce</a></li>
+        <li><a href="{%url 'store' %}">Shop</a></li>
         {% if not user.is_authenticated %}
         <li><a href="{% url 'login_page'%}">Login</a></li>
         <li><a href="{% url 'signup_page'%}">Sign up</a></li>
@@ -135,7 +135,7 @@
           {% if user.is_authenticated %}
           <a href="{% url 'event_dashboard'%}"><li><i class="material-icons">explore</i><span>Event</span></li></a>
           {%endif%}
-          <a href="#"><li><i class="material-icons">add_shopping_cart</i><span>E-commerce</span></li></a>
+          <a href="{%url 'store' %}"><li><i class="material-icons">add_shopping_cart</i><span>Shop</span></li></a>
           {% if user.is_authenticated %}
           
           <a href="{% url 'logout'%}"

@@ -59,7 +59,7 @@
         {%endif%}
         <li><a href="{% url 'search_page'%}">Search</a></li>
         <li><a href="{% url 'blog_home'%}">Blog</a></li>
-        <li><a href="#">E-commerce</a></li>
+        <li><a href="{%url 'store' %}">Shop</a></li>
         {% if not user.is_authenticated %}
         <li><a href="{% url 'login_page'%}">Login</a></li>
         <li><a href="{% url 'signup_page'%}">Sign up</a></li>
@@ -78,7 +78,7 @@
         {%endif%}
         <li><a href="{% url 'search_page'%}">Search</a></li>
         <li><a href="{% url 'blog_home'%}">Blog</a></li>
-        <li><a href="#">E-commerce</a></li>
+        <li><a href="{%url 'store' %}">Shop</a></li>
         {% if not user.is_authenticated %}
         <li><a href="{% url 'login_page'%}">Login</a></li>
         <li><a href="{% url 'signup_page'%}">Sign up</a></li>
