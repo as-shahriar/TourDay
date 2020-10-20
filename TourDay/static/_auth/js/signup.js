@@ -107,6 +107,7 @@ $("#signup").click(function (e) {
     password.removeClass("input-error");
   }
 
+  interval = loader_progress();
   $.ajax({
     url: "/signup/",
     type: "POST",
@@ -129,5 +130,8 @@ $("#signup").click(function (e) {
     error: function (result) {
       console.log("Network Error");
     },
+    complete: function(result){
+      clear_loader_progress(interval);
+    }
   });
 });

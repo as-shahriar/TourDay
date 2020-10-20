@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def map(request, username):
+    return render(request, 'api/map.html', {'username': username})

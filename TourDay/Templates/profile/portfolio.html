@@ -1,4 +1,12 @@
-{%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
+{%extends 'layout.html'%} {% load static %}
+
+{%block og-details %}
+<meta name="og:title" content="{%if profile.name%}{{profile.name}} | TourDay{%else%}TourDay{%endif%}" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{% if not 'user.png' in profile.picture.url %}{{profile.picture.url}}{%else%}{% static 'image/tourday-og.png'%}{%endif%}" />
+{%endblock%}
+
+{%block title%}TourDay |
 Profile{%endblock%} {%block css%}
 
 <link rel="stylesheet" href="{% static 'profile/css/portfolio.css'%}" />
@@ -18,8 +26,8 @@ Profile{%endblock%} {%block css%}
   <div class="left-div">
     <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
     <div class="info">
-      <div style="display: flex; align-items: center">
-        <h3 id="name">{{profile.name}}</h3>
+      <div style="display: flex; align-items: center;justify-content:center;">
+        <h3 id="name">  {%if profile.name%}{{profile.name}}{%else%}Edit Profile{%endif%}</h3>
         {% if request.user == user_obj %}
         <a href="{% url 'edit_profile' %}" id="edit-link"
           ><i class="material-icons">edit</i></a
@@ -27,13 +35,16 @@ Profile{%endblock%} {%block css%}
       </div>
 
       <p>
-        {{profile.bio}}
+        {%if profile.bio%}{{profile.bio}}{%endif%}
+        
         <br />
-        {{profile.city}}
+        {%if profile.city%}{{profile.city}}{%endif%}
+        
       </p>
     </div>
   </div>
   <div class="right-div">
+    {%if request.user.is_authenticated%}
     <div>
       <img
         class="profile-icon"
@@ -82,6 +93,7 @@ Profile{%endblock%} {%block css%}
           title="{{profile.email}}"
       /></a>
     </div>
+    {%endif%}
   </div>
 </div>
 
@@ -131,13 +143,27 @@ Profile{%endblock%} {%block css%}
   </div>
 </div>
 {%endif%}
+
+{%if request.user.is_authenticated%}
 <div class="posts">
   <div id="post-section"></div>
   <div id="post-loder">
     <img src="{%static 'icon/loader.gif'%}" alt="Loading" />
   </div>
+  <div class="mobile-hr" id="hr-hide-with-see-more"><hr></div>
+  <div id="see-more-div"><span id="see-more">See More</span></div>
+  <div class="mobile-hr"><hr></div>
+  
 </div>
-
+{%else%}
+<hr>
+<p align="center" class="login_signup_link">
+  <a href="{% url 'login_page' %}?next=/u/{{user_obj.username}}">Login</a> or
+  <a href="{% url 'signup_page' %}?next=/u/{{user_obj.username}}">Sign up</a> to
+  view this profile.
+</p>
+<hr>
+{%endif%}
 {% comment %} image Modal {% endcomment %}
 <div
   class="modal modal-image"
@@ -1206,9 +1232,10 @@ Profile{%endblock%} {%block css%}
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
   crossorigin="anonymous"
 ></script>
+{% if user.is_authenticated %}
 <script src="{%static 'profile/js-min/map.js'%}"></script>
 <script src="{% static 'profile/js-min/portfolio.js'%}"></script>
-
+{%endif%}
 <script>
   $(document).ready(function () {
     function alignModal() {

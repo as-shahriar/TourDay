@@ -15,6 +15,8 @@ $("#login").click(function (e) {
   } else {
     password.removeClass("input-error");
   }
+  interval = loader_progress();
+  
   $.ajax({
     url: "/login/",
     type: "POST",
@@ -35,6 +37,9 @@ $("#login").click(function (e) {
     error: function (result) {
       console.log("Network Error");
     },
+    complete: function(result){
+      clear_loader_progress(interval);
+    }
   });
 });
 

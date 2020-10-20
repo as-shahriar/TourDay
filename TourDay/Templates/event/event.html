@@ -1,5 +1,12 @@
-{%extends 'layout.html'%} {% load static %}{%block title%}TourDay |
-Event{%endblock%} {%block css%}<link
+{%extends 'layout.html'%} {% load static %}
+
+{%block og-details %}
+<meta name="og:title" content="{{event.title}}" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{% if not 'event.jpg' in event.image.url %}{{event.image.url}}{%else%}{% static 'image/tourday-og.png'%}{%endif%}" />
+{%endblock%}
+
+{%block title%}TourDay | {{event.title}}{%endblock%} {%block css%}<link
   rel="stylesheet"
   href="{% static 'event/css/dashboard.css'%}"
 /><link
@@ -33,7 +40,10 @@ Event{%endblock%} {%block css%}<link
     </div>
     {%endif%}
   </div>
-  <p class="event-details">{{event.details }}</p>
+  <p class="event-details">
+    {{event.details }} <br />Capacity: {{event.capacity}} members
+  </p>
+
   <p align="center" class="copy">
     Copy Event Link <i class="material-icons" id="copy-url">content_copy</i>
   </p>
@@ -43,6 +53,7 @@ Event{%endblock%} {%block css%}<link
     People Are Going
   </p>
   <hr />
+
   {%if not request.user.is_authenticated %}
   <p align="center" class="login_signup_link">
     <a href="{% url 'login_page' %}?next=/event/{{event.id}}">Login</a> or
@@ -56,6 +67,10 @@ Event{%endblock%} {%block css%}<link
     {%elif request.user in event.going.all %}
     <h3>
       <span class="badge badge-success px-5 py-2">Payment Confirmed</span>
+    </h3>
+    {%elif capacity %}
+    <h3>
+      <span class="badge badge-danger px-5 py-2">Sorry, Housefull</span>
     </h3>
     {%else%}
     <button
@@ -71,7 +86,7 @@ Event{%endblock%} {%block css%}<link
   {%endif%}
   <div class="section-root">
     <div class="card bg-white mb-3 my-card">
-      <div class="card-header">
+      <div class="card-header mycard-header">
         <div>
           <span>Going </span><i class="material-icons">flight_takeoff</i>
         </div>
@@ -80,7 +95,7 @@ Event{%endblock%} {%block css%}<link
           <span id="going-count">{{event.going.all.count}}</span>
         </div>
       </div>
-      <div class="card-body" id="going-list">
+      <div class="card-body mycard-body" id="going-list">
         {%for u in going %}
         <a href="/u/{{u.user.username}}" target="_blank">
           <div class="travelers">
@@ -95,7 +110,7 @@ Event{%endblock%} {%block css%}<link
   </div>
   <div class="transtaction mb-4">
     <div class="card bg-white mb-3 my-card">
-      <div class="card-header">
+      <div class="card-header mycard-header">
         <div>
           <span>Pending Payments</span><i class="material-icons">data_usage</i>
         </div>
@@ -105,7 +120,7 @@ Event{%endblock%} {%block css%}<link
         </div>
       </div>
       {%if request.user == event.host%}
-      <div class="card-body">
+      <div class="card-body mycard-body">
         {%for u in transaction %}
 
         <div class="travelers" id="pending-{{u.user.id}}">
@@ -159,13 +174,27 @@ Event{%endblock%} {%block css%}<link
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="title" class="col-form-label">Title</label>
-          <input
-            type="text"
-            class="form-control"
-            id="title"
-            value="{{event.title}}"
-          />
+          <div class="row">
+            <div class="col-md-9">
+              <label for="title" class="col-form-label">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                value="{{event.title}}"
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="capacity" class="col-form-label">Capacity</label>
+              <input
+                type="number"
+                class="form-control"
+                id="capacity"
+                value="{{event.capacity}}"
+                min="1"
+              />
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <div class="row">
@@ -206,10 +235,11 @@ Event{%endblock%} {%block css%}<link
             <div class="col-md-6">
               <label for="location" class="col-form-label">Payment Method</label
               ><select class="form-control" id="pay1_method">
-                <option selected="selected">{{event.pay1_method}}</option>
-                <option>Bkash</option>
-                <option>Rocket</option>
-                <option>Nagad</option>
+                {%if event.pay1%}
+                <option selected="selected">{{event.pay1_method}}</option>{%endif%}
+                <option value="Bkash">Bkash</option>
+                <option value="Rocket">Rocket</option>
+                <option value="Nagad">Nagad</option>
               </select>
             </div>
 
@@ -218,7 +248,8 @@ Event{%endblock%} {%block css%}<link
               <input
                 type="text"
                 class="form-control"
-                value="{{event.pay1}}"
+                
+                value="{%if event.pay1%}{{event.pay1}}{%endif%}"
                 id="pay1"
                 placeholder="01xxxxxxxxx"
               />
@@ -230,12 +261,14 @@ Event{%endblock%} {%block css%}<link
             <div class="col-md-6">
               <label for="location" class="col-form-label">Payment Method</label
               ><select class="form-control" id="pay2_method">
-                <option selected="selected" value="{{event.pay2}}">
+                {%if event.pay2%}
+                <option selected="selected" value="{{event.pay2_method}}">
                   {{event.pay2_method}}
                 </option>
-                <option>Bkash</option>
-                <option>Rocket</option>
-                <option>Nagad</option>
+                {%endif%}
+                <option value="Bkash">Bkash</option>
+                <option value="Rocket">Rocket</option>
+                <option value="Nagad">Nagad</option>
               </select>
             </div>
 
@@ -244,7 +277,7 @@ Event{%endblock%} {%block css%}<link
               <input
                 type="text"
                 class="form-control"
-                value="{{event.pay2}}"
+                value="{%if event.pay2%}{{event.pay2}}{%endif%}"
                 id="pay2"
                 placeholder="01xxxxxxxxx"
               />
@@ -313,14 +346,18 @@ Event{%endblock%} {%block css%}<link
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        
           <div class="form-group">
             <p class="mb-1">Payment Amount: <b>&#2547; {{event.cost}}</b></p>
 
             <p class="mb-1">Payment Information:</p>
             <p align="center">
-              <b>Bkash - 01719563829</b> <br />
-              <b>Rocket - 01719563829</b>
+              {%if event.pay1 %}
+              <b>{{event.pay1_method}} - {{event.pay1}}</b> <br />
+              {%endif%}
+              {%if event.pay2 %}
+              <b>{{event.pay2_method}} - {{event.pay2}}</b>
+              {%endif%}
             </p>
           </div>
           <div class="form-group">
@@ -352,7 +389,7 @@ Event{%endblock%} {%block css%}<link
               before submit.
             </p>
           </div>
-        </form>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn my-btn accept" id="join-send-btn">

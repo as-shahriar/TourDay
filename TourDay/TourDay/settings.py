@@ -12,10 +12,16 @@ SECRET_KEY = "w#d#t1y6r9q$+xfq)x#omv9m@nehjq7b5^j7n6#+7ljln(j0eb"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#DEBUG = False
+# DEBUG = False
+
+if not DEBUG:
+    PREPEND_WWW = True  # add www to non-www url
 
 ALLOWED_HOSTS = ["*", "52.140.64.35", "tourday.team", "www.tourday.team"]
 
+# handel large file to upload
+FILE_UPLOAD_MAX_MEMORY_SIZE = 2000000  # 20M
+FILE_UPLOAD_PERMISSIONS = 0o640
 
 # Application definition
 

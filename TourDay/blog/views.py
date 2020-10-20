@@ -5,7 +5,19 @@ from blog.models import blogPost
 from django.core.paginator import Paginator
 from django.db.models import Q
 from user_profile.models import Profile
+from django.contrib.auth.models import User
 
+from django.core.mail import send_mail
+from utils import async_send_mail
+from TourDay.settings import EMAIL_HOST_USER
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
+
+from .serializers import blogPostSerializer, blogCreateSerializer
 
 class division_post_count:
     def __init__(self):
@@ -84,6 +96,17 @@ def addPost(request):
                 post_item.slug = request.user
                 # info.user_id = request.user.id
                 post_item.save()
+                
+                user = User()
+
+                for user in user.email:
+
+                    email = user.email
+
+                    subject = "From TourDay!"
+                    message = f"This is addPost, massege"
+                    async_send_mail(subject, message, EMAIL_HOST_USER, email)
+                
                 return redirect('blog_home')
         else:
             return redirect('edit_profile')
@@ -205,3 +228,6 @@ def blog_search(request):
     }
 
     return render(request, 'blog/blog_search.html', context)
+
+
+    

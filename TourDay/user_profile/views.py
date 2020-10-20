@@ -151,32 +151,21 @@ def add_info(request, param):
             return JsonResponse({}, status=404)
 
 
-@login_required
 def portfolio(request, username):
-    try:
-        user = User.objects.get(username=username)
-        profile = Profile.objects.get(user=user)
-        try:
-            nav_img = Profile.objects.get(user=request.user).picture.url
-        except:
-            nav_img = None
-        return render(request, 'profile/portfolio.html', {
-            'profile': profile,
-            'districts': districts,
-            "nav_img": nav_img,
-            'is_profile': True,
-            'user_obj': user
-        })
-    except:
-        try:
-            nav_img = Profile.objects.get(user=request.user).picture.url
-        except:
-            nav_img = None
 
-        return render(request, 'profile/portfolio.html', {
-            "nav_img": nav_img,
-            'is_profile': False
-        })
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user=user)
+    try:
+        nav_img = Profile.objects.get(user=request.user).picture.url
+    except:
+        nav_img = None
+    return render(request, 'profile/portfolio.html', {
+        'profile': profile,
+        'districts': districts,
+        "nav_img": nav_img,
+        'is_profile': True,
+        'user_obj': user
+    })
 
 
 class PostList(APIView, LimitOffsetPagination):
@@ -236,6 +225,7 @@ def add_post(request):
         post.location = location
         post.image = image
         post.save()
+
         return JsonResponse({
             "id": post.id,
             "image": post.image.url,
@@ -258,6 +248,18 @@ def delete_post(request):
         return JsonResponse({"status": 200})
 
     return JsonResponse({"Error": "Only Post Request is Accepteble"})
+
+
+@csrf_exempt
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        try:
+            user = User.objects.get(id=request.user.id)
+            user.delete()
+            return JsonResponse({"status": 200})
+        except:
+            return JsonResponse({"status": 403})
 
 
 def get_map_data(request, username):
