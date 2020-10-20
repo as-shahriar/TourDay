@@ -58,7 +58,8 @@ h1,h2,h3,h4,h5,h6{
 	width: 100px;
 	height: 56px;
 	overflow: hidden; 
-    object-fit: cover;
+	object-fit: contain;
+	background-color: white;
 }
 
 .form-field{
@@ -108,9 +109,11 @@ h1,h2,h3,h4,h5,h6{
 
 body {
     
-    font-family: 'Poppins', Arial, sans-serif !important;
-	font-size: 15px;
+    font-family: 'Poppins','SolaimanLipi', Arial, sans-serif !important;
+	font-size: 15.5px;
+	background-color: rgb(243, 242, 242);
 }
+
 
 .userpost__sidebar {
 
@@ -139,3 +142,10 @@ body {
 	color: white;
 	background-color: #17a2b8;
  }
+
+.thumbnail {
+	object-fit: contain;
+	background-color: white;
+}
+
+

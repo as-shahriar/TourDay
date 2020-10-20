@@ -7,7 +7,7 @@ class list_OrderItem(admin.ModelAdmin):
     list_display = ('product', 'order', 'quantity', 'date_added')
 
 class list_Product(admin.ModelAdmin):
-    list_display = ('name', 'price')
+    list_display = ('id','name', 'price')
 
 class list_Order(admin.ModelAdmin):
     list_display = ('id', 'customer', 'total_money', 'total_items', 'status', 'order_id', 'date_ordered')

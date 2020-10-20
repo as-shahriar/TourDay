@@ -16,6 +16,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
+	<script src="https://use.fontawesome.com/155fafdff7.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="{% static 'ecommerce/css/main.css' %}">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css">
@@ -103,9 +104,9 @@
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
 				  aria-haspopup="true" aria-expanded="false">List</a>
 				<div class="dropdown-menu dropdown-menu-right dropdown-info">
-				  <a class="dropdown-item" href="#">Shirt</a>
-				  <a class="dropdown-item" href="#">Pant</a>
-				  <a class="dropdown-item" href="#">Shoes</a>
+					{% for product_type in product_type %}
+				  <a class="dropdown-item" href="#">{{product_type}}</a>
+				  {% endfor %}
 				</div>
 			  </li>
 	 
@@ -113,10 +114,11 @@
 		
 	    <div class="form-inline my-2 my-lg-0">
 
-			<li class="nav-item dropdown" style="cursor: pointer;list-style: none;color: white;" >
+			<li class="nav-item dropdown" style="cursor: pointer;list-style: none;color: rgb(241, 232, 232);" >
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
 				  aria-haspopup="true" aria-expanded="false">
-				   Profile </a>
+				  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+				    </a>
 				  
 				<div class="dropdown-menu dropdown-menu-right dropdown-info" >
 					<a class="dropdown-item" href="{% url 'store' %}">Home</a>
@@ -186,6 +188,9 @@
 			}
 		  })
 		})
+		
 		</script>
+		
+		
 </body>
 </html>

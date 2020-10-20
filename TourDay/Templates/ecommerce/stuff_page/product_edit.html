@@ -38,7 +38,7 @@
                                                 <div class="invalid-feedback">Please provide a valid Name.</div>
                                                 
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-3">
                                                 <label for="feFirstName">Product Price</label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -46,6 +46,23 @@
                                                     </div>
                                                     <input type="number" class="form-control" name="product_price" value="{{product.price}}" required>
                                                     <div class="invalid-feedback"> Please provide a valid Price.</div>
+                                                  </div>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="feFirstName">Status</label>
+                                                <div class="input-group">
+                                                    <select class="form-control" name="product_status" required>
+                                                        {% if product.digital %}
+                                                        <option value="True">Not available</option>
+                                                        <option value="False">Available</option>
+                                                        {% else %}
+                                                        <option value="False">Available</option>
+                                                        <option value="True">Not available</option>
+                                                        {% endif %}
+                                                    </select>
+
+                                                    
+                                                    <div class="invalid-feedback"> Please provide a valid Status.</div>
                                                   </div>
                                             </div>
                                             

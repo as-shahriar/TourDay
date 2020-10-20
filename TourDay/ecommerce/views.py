@@ -35,21 +35,28 @@ def store(request):
     order = data['order']
     items = data['items']
 
-    products = Product.objects.all()
-    paginator = Paginator(products, 6)  # Show 5 obj per page
+    product_type = Product_type.objects.all().order_by('-id')
+    
+    products = Product.objects.all().order_by('-id')
+    paginator = Paginator(products, 12)  # Show 12 obj per page
 
     page = request.GET.get('page')
     products = paginator.get_page(page)
 
 
     context = {
+
+        'product_type' :  product_type,
         'products':products, 
         'cartItems':cartItems,
     }
     return render(request, 'ecommerce/store.html', context)
 
 def cart(request):
+    
     data = cartData(request)
+
+    product_type = Product_type.objects.all().order_by('-id')
 
     cartItems = data['cartItems']
     order = data['order']
@@ -59,6 +66,7 @@ def cart(request):
         'items':items, 
         'order':order,
         'cartItems':cartItems,
+        'product_type' : product_type,
     }
     return render(request, 'ecommerce/cart.html', context)
 
@@ -66,6 +74,8 @@ def cart(request):
 def checkout(request):
 
     data = cartData(request)
+
+    product_type = Product_type.objects.all().order_by('-id')
 
     cartItems = data['cartItems']
     order = data['order']
@@ -140,6 +150,7 @@ def checkout(request):
     'order':order,
     'cartItems':cartItems,
     'profile' : profile,
+    'product_type' : product_type,
     
     }
     return render(request, 'ecommerce/checkout.html', context)
@@ -149,7 +160,7 @@ def staff_pages(request):
 
     return render(request, 'ecommerce/stuff_page/main.html')
 
-
+@staff_member_required
 def product_table(request):
 
     product = Product.objects.all().order_by('-id')
@@ -165,6 +176,7 @@ def product_table(request):
 
     return render(request, 'ecommerce/stuff_page/product_table.html', context)
 
+@staff_member_required
 def add_product(request):
 
     product_type = Product_type.objects.all().order_by('-id')
@@ -187,6 +199,7 @@ def add_product(request):
 
     return render(request, 'ecommerce/stuff_page/add_product.html', context)
 
+@staff_member_required
 def product_delete(request, id):
 
     product = Product.objects.get(id=id)
@@ -195,6 +208,7 @@ def product_delete(request, id):
 
     return render(request, 'ecommerce/stuff_page/product_table.html',)
 
+@staff_member_required
 def product_edit(request, id):
 
     product = Product.objects.get(id=id)
@@ -206,6 +220,7 @@ def product_edit(request, id):
         product.price =  request.POST.get('product_price').strip()
         product.product_type = request.POST.get('product_type').strip()
         product.discription = request.POST.get('product_dis').strip()
+        product.digital = request.POST.get('product_status')
 
         if 'product_img' in request.FILES:
             img_path =  os.path.join(MEDIA_DIR,product.image.name)
@@ -278,6 +293,8 @@ def order_details(request, id):
 @login_required
 def user_order(request):
 
+    product_type = Product_type.objects.all().order_by('-id')
+
     check_search = False
 
     data = cartData(request)
@@ -286,7 +303,7 @@ def user_order(request):
     order_count = Order.objects.filter(customer=request.user).count()
 
     order = Order.objects.filter(customer=request.user).order_by('-id')
-    order_item = OrderItem.objects.filter(order__customer=request.user).order_by('-id')
+    order_item = OrderItem.objects.filter(order__customer=request.user).order_by('quantity')
     
     paginator = Paginator(order, 4)  # Show 4 obj per page
     page = request.GET.get('page')
@@ -310,6 +327,7 @@ def user_order(request):
         'check_search' : check_search,
 
         'cartItems' : cartItems,
+        'product_type' : product_type,
     }
 
     return render(request, 'ecommerce/user_order.html', context)
