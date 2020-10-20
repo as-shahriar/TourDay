@@ -186,7 +186,7 @@ def add_product(request):
         product.name = request.POST.get('product_name').strip()
         product.price =  request.POST.get('product_price').strip()
         product.product_type = request.POST.get('product_type').strip()
-        product.discription = request.POST.get('product_dis').strip()
+        product.description = request.POST.get('product_dis').strip()
         product.image = request.FILES.get('product_img')
 
         product.save()
@@ -219,7 +219,7 @@ def product_edit(request, id):
         product.name = request.POST.get('product_name').strip()
         product.price =  request.POST.get('product_price').strip()
         product.product_type = request.POST.get('product_type').strip()
-        product.discription = request.POST.get('product_dis').strip()
+        product.description = request.POST.get('product_dis').strip()
         product.digital = request.POST.get('product_status')
 
         if 'product_img' in request.FILES:
