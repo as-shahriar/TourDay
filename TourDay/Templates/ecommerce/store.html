@@ -1,5 +1,8 @@
 {% extends 'ecommerce/base.html' %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'ecommerce/css/modal.css'%}">
+{%endblock%}
 {% block content %}
 	<div class="row">
 		{% for product in products %}
@@ -14,22 +17,9 @@
 				{% else %}
 				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
 				{% endif %}
-				<button class="btn btn-outline-success" type="button" data-target="#backdrop">View</button>
+				<button class="btn btn-outline-success open-modal" data-id="{{product.id}}" type="button" data-target="#backdrop">View</button>
 				<h5 style="display: inline-block; float: right"><strong>৳{{product.price}}</strong></h5>
-			
-				
-			
-			
-			
 			</div>
-
-
-
-
-			
-
-
-
 		</div>
 		{% endfor %}
 	
@@ -44,5 +34,38 @@
 		</div>
 		<div class="col-md-5"></div>
 	</div>
+
+	<!-- Button trigger modal -->
+<button type="button" style="display: none;" id="modal-triger" data-toggle="modal" data-target="#exampleModalCenter">
 	
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+	
+		<div class="modal-body">
+		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+		
+		<div class="content">
+			<div class="left">
+				<img id="modal-img" src="http://127.0.0.1:8000/media/ecom_pics/2.png" alt="Image">
+			</div>
+			<div class="right">
+				<h6 id="modal-title">Title</h6>
+				<p id="modal-description">Description</p>
+				<h6 id="modal-price">৳550</h6>
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+			</div>
+		</div>
+	</div>
+	  </div>
+	</div>
+  </div>
+
+
 {% endblock content %}
+{%block js%}<script src="{% static 'ecommerce/js/modal.js' %}"></script>{%endblock%}
