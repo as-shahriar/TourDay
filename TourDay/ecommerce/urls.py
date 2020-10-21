@@ -1,10 +1,10 @@
 from django.urls import path
 from ecommerce.views import (
-    store,cart,checkout, staff_pages, product_table, order_table, 
+    store, cart, checkout, staff_pages, product_table, order_table,
     order_details, user_order, product_edit, add_product, product_delete)
 
 urlpatterns = [
-    path('', store, name='store' ),
+    path('', store, name='store'),
     path('cart/', cart, name="cart"),
     path('checkout/', checkout, name="checkout"),
     path('staff/', staff_pages, name='staff_pages'),

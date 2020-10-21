@@ -17,12 +17,19 @@ STATUS_CHOICES = (
 
 
 class Product(models.Model):
+<<<<<<< HEAD
     name = models.CharField(max_length=25, blank=True)
     description = models.CharField(max_length=90,null=True, blank=True)
     product_type = models.CharField(max_length=20,null=True, blank=True)
+=======
+    name = models.CharField(max_length=30, blank=True)
+    description = models.CharField(max_length=250, null=True, blank=True)
+    product_type = models.CharField(max_length=20, null=True, blank=True)
+>>>>>>> bd789fb7e85916041356a5469651f3394aca9f44
     price = models.IntegerField()
-    digital = models.BooleanField(default=False,null=True, blank=True)
+    digital = models.BooleanField(default=False, null=True, blank=True)
     image = models.ImageField(upload_to='ecom_pics', blank=False)
+    in_stock = models.BooleanField(default=True, null=True, blank=True)
 
     def save(self):
         super().save()

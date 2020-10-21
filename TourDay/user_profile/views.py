@@ -17,6 +17,7 @@ from .serializers import PostSerializer
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
+from ecommerce.ads_engine import get_ads
 
 
 def users(request):
@@ -31,7 +32,12 @@ def users(request):
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         nav_img = profile.picture.url
-    return render(request, "profile/users.html", {"users": users, "q": q, "nav_img": nav_img})
+    return render(request, "profile/users.html", {
+        "users": users,
+        "q": q,
+        "nav_img": nav_img,
+        "ads": get_ads()
+    })
 
 
 @login_required
@@ -49,6 +55,7 @@ def edit_profile(request):
         "profile": profile,
         "is_complete": is_complete,
         "nav_img": profile.picture.url,
+        "ads": get_ads()
     }
     return render(request, "profile/profile.html", context)
 
@@ -164,7 +171,8 @@ def portfolio(request, username):
         'districts': districts,
         "nav_img": nav_img,
         'is_profile': True,
-        'user_obj': user
+        'user_obj': user,
+        "ads": get_ads()
     })
 
 
