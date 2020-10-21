@@ -99,6 +99,19 @@ class PostDelete(APIView):
             return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
+class UserDetailsByID(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get('id')
+        try:
+            profile = Profile.objects.get(user__id=id)
+            data = ProfileSerializer(profile).data
+            return Response({'profile': data}, status=status.HTTP_200_OK)
+        except:
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+
+
 class UserDetails(APIView):
     permission_classes = [AllowAny]
 
