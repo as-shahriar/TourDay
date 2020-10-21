@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .serializer import ProfileSerializer, ProfileUpdateSerializer, PostSerializer
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from user_profile.models import Profile, Post
 from rest_framework.parsers import FormParser, MultiPartParser
 
@@ -100,7 +100,7 @@ class PostDelete(APIView):
 
 
 class UserDetails(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):
         username = kwargs.get('username')
