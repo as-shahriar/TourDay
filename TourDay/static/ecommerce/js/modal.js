@@ -20,10 +20,13 @@ changeModal = (id,title,description,price,img,product_type,digital)=>{
     if(digital === false) {
         document.getElementById("modal-status").textContent = 'In Stock'
         document.getElementById("modal-status").style.color = "green";
+        document.getElementById("product_details").disabled = false;
     }
     else {
         document.getElementById("modal-status").textContent = 'Out Stock'
         document.getElementById("modal-status").style.color = "red";
+        document.getElementById("product_details").disabled = true;
+        document.getElementById("product_details").style.cursor = "default";
     }
     document.getElementById("modal-description").textContent = description
     
