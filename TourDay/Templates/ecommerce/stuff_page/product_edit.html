@@ -1,5 +1,5 @@
 {% include 'ecommerce/stuff_page/base.html' %}
-
+{% load static %}
 {% block base %}
 <div class="container mb-3">
     <a  class="btn btn-info" href="{% url 'all_product' %}">&#x2190; Back</a>
@@ -22,7 +22,7 @@
         <div class="col-lg-8">
             <div class="box-element">
                 <div class="card card-small">
-                    <form method="POST" class="needs-validation" novalidate enctype="multipart/form-data">{% csrf_token %}
+                    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
                     <div class="card-header border-bottom">
                         <h6 class="m-0">Product Information</h6>
                     </div>
@@ -33,9 +33,8 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Product Name</label>
-                                                <input type="text" class="form-control" name="product_name" value="{{product.name}}" required>
+                                                <input type="text" class="form-control" id="productName" minlength="6" maxlength="20" name="product_name" value="{{product.name}}" required>
   
-                                                <div class="invalid-feedback">Please provide a valid Name.</div>
                                                 
                                             </div>
                                             <div class="form-group col-md-3">
@@ -44,7 +43,7 @@
                                                     <div class="input-group-prepend">
                                                       <div class="input-group-text">৳</div>
                                                     </div>
-                                                    <input type="number" class="form-control" name="product_price" value="{{product.price}}" required>
+                                                    <input type="number" class="form-control" id="productPrice" name="product_price" value="{{product.price}}" required>
                                                     <div class="invalid-feedback"> Please provide a valid Price.</div>
                                                   </div>
                                             </div>
@@ -62,7 +61,7 @@
                                                     </select>
 
                                                     
-                                                    <div class="invalid-feedback"> Please provide a valid Status.</div>
+                                                    
                                                   </div>
                                             </div>
                                             
@@ -79,7 +78,7 @@
                                                     
                                                     {% endfor %}
                                                 </select> 
-                                                <div class="invalid-feedback">Please fill out this field.</div>
+                                               
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Product Image</label>
@@ -95,8 +94,8 @@
                                             <div class="form-group col-md-12">
                                                 
                                                 <label>Description</label>
-                                                    <textarea class="form-control" type="text" rows="3" name="product_dis" required>{{product.description}}</textarea>
-                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                    <textarea class="form-control"  minlength="70" maxlength="120" id="pro_dis" type="text" rows="3" name="product_dis" required>{{product.description}}</textarea>
+                                                  
                                                 </div>
                                          </div>
                                          <div class="form-row mb-0">
@@ -119,3 +118,4 @@
     
 
 {% endblock %}
+{%block js%}<script src="{% static 'ecommerce/js/validate.js' %}"></script>{%endblock%}

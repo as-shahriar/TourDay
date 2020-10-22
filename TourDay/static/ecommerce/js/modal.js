@@ -5,7 +5,6 @@ document.querySelectorAll(".open-modal").forEach(e=>{
         fetch(`/api/ecommerce/product/details/${id}`).
         then(res=>res.json()).
         then(data=>{
-            console.log(data)
             const {description, image,name,price,product_type,digital} = data
             changeModal(id,name,description,price,image,product_type,digital)
             document.getElementById("modal-triger").click();
@@ -19,10 +18,12 @@ changeModal = (id,title,description,price,img,product_type,digital)=>{
     document.getElementById("modal-price").textContent = `৳${price}`
     document.getElementById("modal-product_type").textContent = `Category : ${product_type}`
     if(digital === false) {
-        document.getElementById("modal-status").textContent = 'Availibility : In Stock'
+        document.getElementById("modal-status").textContent = 'In Stock'
+        document.getElementById("modal-status").style.color = "green";
     }
     else {
-        document.getElementById("modal-status").textContent = 'Availibility : Out Stock'
+        document.getElementById("modal-status").textContent = 'Out Stock'
+        document.getElementById("modal-status").style.color = "red";
     }
     document.getElementById("modal-description").textContent = description
     

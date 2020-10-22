@@ -17,7 +17,7 @@ STATUS_CHOICES = (
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=25, blank=True)
+    name = models.CharField(max_length=21, blank=True)
     description = models.CharField(max_length=90,null=True, blank=True)
     product_type = models.CharField(max_length=20,null=True, blank=True)
     price = models.IntegerField()

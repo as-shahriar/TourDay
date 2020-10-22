@@ -1,5 +1,5 @@
 {% include 'ecommerce/stuff_page/base.html' %}
-
+{% load static %}
 {% block base %}
 
 
@@ -15,7 +15,7 @@
             </div>
             <div class="box-element">
                 <div class="card card-small">
-                    <form method="POST" class="needs-validation" novalidate enctype="multipart/form-data">{% csrf_token %}
+                    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
                     <div class="card-header border-bottom">
                         <h6 class="m-0">Product Information</h6>
                     </div>
@@ -26,9 +26,8 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Product Name<span style="color:#cf000f"> *</span></label>
-                                                <input type="text" class="form-control" name="product_name" required>
+                                                <input type="text" id="productName" minlength="6" maxlength="20" class="form-control" name="product_name" required>
   
-                                                <div class="invalid-feedback">Please provide a valid Name.</div>
                                                 
                                             </div>
                                             <div class="form-group col-md-6">
@@ -37,8 +36,7 @@
                                                     <div class="input-group-prepend">
                                                       <div class="input-group-text">৳</div>
                                                     </div>
-                                                    <input type="number" class="form-control" name="product_price" required>
-                                                    <div class="invalid-feedback"> Please provide a valid Price.</div>
+                                                    <input type="number" class="form-control" id="productPrice" name="product_price" required>
                                                   </div>
                                             </div>
                                             
@@ -54,14 +52,13 @@
                                                     
                                                     {% endfor %}
                                                 </select> 
-                                                <div class="invalid-feedback">Please fill out this field.</div>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Product Image<span style="color:#cf000f"> *</span></label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="product_img" id="customFile" required>
+                                                    <input type="file" class="custom-file-input" name="product_img" id="productImage" required>
                                                     <label class="custom-file-label" for="customFile">Choose file</label>
-                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                  
                                                 </div>
                                                   
                                             </div>
@@ -72,12 +69,12 @@
                                             <div class="form-group col-md-12">
                                                 
                                                 <label>Description<span style="color:#cf000f"> *</span></label>
-                                                    <textarea class="form-control" type="text" rows="3" name="product_dis" required>{{product.description}}</textarea>
-                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                    <textarea class="form-control" minlength="70" maxlength="120" type="text" id="pro_dis" rows="3" name="product_dis" required>{{product.description}}</textarea>
+                                                  
                                                 </div>
                                          </div>
                                          <div class="form-row mb-0">
-                                            <input id="form-button" class="btn btn-success btn-block" type="submit" name="add_product" value="Submit">
+                                            <input id="form-button" class="btn btn-success btn-block" type="submit" name="add_product" value="Submit" >
                                          </div>
                                          
                                          
@@ -94,3 +91,5 @@
 </div>
 
 {% endblock %}
+
+{%block js%}<script src="{% static 'ecommerce/js/validate.js' %}"></script>{%endblock%}

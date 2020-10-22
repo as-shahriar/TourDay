@@ -58,10 +58,12 @@
 				<div class="right">
 					<h4 id="modal-title"><strong>Title</strong></h4>
 					<h5 id="modal-price" style="color: #FD8F5F;" ><strong>৳550</strong></h5>
-					<p id="modal-product_type"></p>
-					<p id="modal-status"></p>
+					<p id="modal-product_type">Type</p>
+					<div style="display: flex;">
+						<p class="mr-2">Availibility : <p id="modal-status">Status</p></p>
+					</div>
 					<hr>
-					<p id="modal-description">Description</p>
+					<p id="modal-description" style="text-align: justify;">Description</p>
 					
 					
 					<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
