@@ -25,6 +25,7 @@ class ProfileView(APIView):
         data = ProfileSerializer(profile).data
         return Response({
             'username': request.user.username,
+            'id': request.user.id,
             'profile': data,
             'is_completed': is_completed
         }, status=status.HTTP_200_OK)
