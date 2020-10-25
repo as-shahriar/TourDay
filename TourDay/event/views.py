@@ -52,16 +52,25 @@ class EventList(APIView, LimitOffsetPagination):
         serializer = self.serializer_class(instance, many=True)
         return self.get_paginated_response(serializer.data)
 
-@login_required
+
+class AllEventList(APIView, LimitOffsetPagination):
+    permission_classes = [AllowAny]
+    serializer_class = EventSerializer
+
+    def get(self, request, *args, **kwargs): 
+        instance = Event.objects.all().order_by("-date")
+        instance = self.paginate_queryset(instance, request, view=self)
+        serializer = self.serializer_class(instance, many=True)
+        return self.get_paginated_response(serializer.data)
+
+
 def all(request):
     nav_img = None
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         nav_img = profile.picture.url
-    events = Event.objects.all().order_by("-date")
     return render(request,"event/eventlist.html",{
         "nav_img": nav_img,
-        "events" : events
     })
 
 
@@ -188,7 +197,7 @@ def create_event(n, request):
     for i in range(n):
         event = Event()
         event.host = request.user
-        event.title = str(n)
+        event.title = str(i)
         event.location = "xyz"
         event.date = "1990-02-02"
         event.details = "xyz"

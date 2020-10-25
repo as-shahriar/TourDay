@@ -9,7 +9,7 @@
   rel="stylesheet"
   href="{% static 'profile/css/users.css'%}"
 />
-{%endblock%} {% block title %}TourDay | Users{%endblock%} {% block content %}
+{%endblock%} {% block title %}TourDay | All Events{%endblock%} {% block content %}
 <style>
   #nav {
     display: none;
@@ -20,19 +20,13 @@
   <h5 class="pt-4 mb-4">Total Event {{events.count}}</h5>
   <hr />
   <ul class="list-unstyled">
-   {% for event in events %}
-    <a href="/event/{{event.id}}"
-      ><li class="users mb-3">
+      <div id="event-root"></div>
 
-
-        <div class="user-details">
-          <h5>{{event.title}}</h5>
-          <h5>{{event.location}}</h5>
-          <h5>{{event.date}}</h5>
-        </div>
-      </li></a
-    >
-    {%endfor%}
   </ul>
+  <div id="see-more-div" ><span id="see-more">See More</span></div>
 </div>
 {% endblock %}
+
+{%block scripts %}
+<script src="{% static 'event/js/all-event.js'%}"></script>
+{%endblock%}

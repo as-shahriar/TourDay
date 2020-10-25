@@ -82,7 +82,9 @@
           >Delete Post</a
         >
         <a href="#like-post" class="dropdown-item" type="button">Like Post</a>
-        <a href="#get_events" class="dropdown-item" type="button">Get events</a>
+        <a href="#get_events" class="dropdown-item" type="button">Get Own Events</a>
+        <a href="#event-all" class="dropdown-item" type="button">Get All Events</a>
+        <a href="#going_events" class="dropdown-item" type="button">Going Events</a>
       </div>
     </div>
     <div class="container mt-3">
@@ -438,7 +440,7 @@
         <div class="my-2 pt-4" id="get_events">
           <div class="d-flex titles">
             <div class="d-flex">
-            <h5 class="mb-0 mr-2">Get Events</h5>
+            <h5 class="mb-0 mr-2">Get Own Events</h5>
             <kbd>GET</kbd></div>
             <p class="mb-0 ml-2 text-success">
               <i>"https://www.tourday.team/api/get_events/username"</i>
@@ -479,6 +481,95 @@
           </blockquote>
         </div>
 
+        <hr />
+        <div class="my-2 pt-4" id="event-all">
+          <div class="d-flex titles">
+            <div class="d-flex">
+            <h5 class="mb-0 mr-2">Get All Events</h5>
+            <kbd>GET</kbd></div>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://www.tourday.team/api/all-events/"</i>
+            </p>
+          </div>
+<p>Get all event list</p>
+<blockquote class="blockquote ml-5 mt-2">
+            
+  Response: <br />
+  <code>
+    {<br />
+    <span class="ml-4">"count": number of events,</span><br />
+    <span class="ml-4">"next": next page url,</span><br />
+    <span class="ml-4">"previous": previous page url,</span><br />
+    <span class="ml-4">"results": [</span><br />
+    <span class="ml-5">{</span><br />
+      <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
+      <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
+      <span class="ml-5"><a class="ml-4">"location": event location <a href="" data-toggle="modal" data-target="#location_keys" >key</a>,</span></span><br />
+      <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
+      <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
+      <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
+      <span class="ml-5"><span class="ml-4">"pay1_method": payment method for number 1,</span></span><br />
+      <span class="ml-5"><span class="ml-4">"pay2": payment mobile number 2,</span></span><br />
+      <span class="ml-5"><span class="ml-4">"pay2_method": payment method for number 2,</span></span><br />
+      <span class="ml-5"><span class="ml-4">"capacity": member capacity of this event,</span></span><br />
+      <span class="ml-5"><span class="ml-4"> "cost": cost to pay,</span></span><br />
+      <span class="ml-5"><span class="ml-4">"image": image url,</span></span><br />
+      <span class="ml-5"><span class="ml-4">"host": host user id</span></span><br />
+      <span class="ml-5"><span class="ml-4">"going": [ going user id ],</span></span><br />
+      <span class="ml-5"><span class="ml-4">"pending": [ pending users id ]</span></span><br />
+   
+      <span class="ml-5">}</span><br />
+    <span class="ml-4">]</span><br />
+    }<br />
+    
+  </code>
+</blockquote>
+        </div>
+
+        <hr />
+        <div class="my-2 pt-4" id="going_events">
+          <div class="d-flex titles">
+            <div class="d-flex">
+            <h5 class="mb-0 mr-2">Going Events</h5>
+            <kbd>GET</kbd></div>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://www.tourday.team/api/going-events/username"</i>
+            </p>
+          </div>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            
+            Response: <br />
+            <code>
+              {<br />
+              <span class="ml-4">"count": number of going events,</span><br />
+              <span class="ml-4">"next": next page url,</span><br />
+              <span class="ml-4">"previous": previous page url,</span><br />
+              <span class="ml-4">"results": [</span><br />
+              <span class="ml-5">{</span><br />
+                <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
+                <span class="ml-5"><a class="ml-4">"location": event location <a href="" data-toggle="modal" data-target="#location_keys" >key</a>,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
+                <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pay1_method": payment method for number 1,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pay2": payment mobile number 2,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pay2_method": payment method for number 2,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"capacity": member capacity of this event,</span></span><br />
+                <span class="ml-5"><span class="ml-4"> "cost": cost to pay,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"image": image url,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"host": host user id</span></span><br />
+                <span class="ml-5"><span class="ml-4">"going": [ going user id ],</span></span><br />
+                <span class="ml-5"><span class="ml-4">"pending": [ pending users id ]</span></span><br />
+             
+                <span class="ml-5">}</span><br />
+              <span class="ml-4">]</span><br />
+              }<br />
+              
+            </code>
+          </blockquote>
+        </div>
 
       </div>
     </div>

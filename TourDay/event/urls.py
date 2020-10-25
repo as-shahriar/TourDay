@@ -11,5 +11,6 @@ urlpatterns = [
     path("pay/<int:id>", views.pay),
     path("delete/<int:id>", views.delete_event),
     path("all/",views.all,name="all_event"),
+    path("all-events/", views.AllEventList.as_view()),
 
 ]
