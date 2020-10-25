@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}{% load static %}
+
+{%block og-details %}
+<meta name="og:title" content="TourDay" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{% static 'image/tourday-og.png'%}" />
+{%endblock%}
+{%block css%}<link
+  rel="stylesheet"
+  href="{% static 'profile/css/users.css'%}"
+/>
+{%endblock%} {% block title %}TourDay | Users{%endblock%} {% block content %}
+<style>
+  #nav {
+    display: none;
+  }
+</style>
+
+<div class="container my-4 bg">
+  <h5 class="pt-4 mb-4">Total Event {{events.count}}</h5>
+  <hr />
+  <ul class="list-unstyled">
+   {% for event in events %}
+    <a href="/event/{{event.id}}"
+      ><li class="users mb-3">
+
+
+        <div class="user-details">
+          <h5>{{event.title}}</h5>
+          <h5>{{event.location}}</h5>
+          <h5>{{event.date}}</h5>
+        </div>
+      </li></a
+    >
+    {%endfor%}
+  </ul>
+</div>
+{% endblock %}

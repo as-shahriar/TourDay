@@ -52,6 +52,18 @@ class EventList(APIView, LimitOffsetPagination):
         serializer = self.serializer_class(instance, many=True)
         return self.get_paginated_response(serializer.data)
 
+@login_required
+def all(request):
+    nav_img = None
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        nav_img = profile.picture.url
+    events = Event.objects.all().order_by("-date")
+    return render(request,"event/eventlist.html",{
+        "nav_img": nav_img,
+        "events" : events
+    })
+
 
 @login_required
 @csrf_exempt
