@@ -3,7 +3,7 @@ from api import auth, profile, views, event
 from _auth.views import forgetPasswordView, resetPasswordView
 from user_profile.views import PostList
 from django.views.generic import TemplateView
-from event.views import AllEventList
+from event.views import AllEventList,pay
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="api/doc.html"), name="api_doc"),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('get_events/<str:username>', event.EventListApi.as_view()),
     path('all-events/',AllEventList.as_view()),
     path('going-events/<str:username>',event.GoingEventList.as_view()),
+    path("event-pay/<int:id>",pay),
 
 
     path('map/<str:username>', views.map),

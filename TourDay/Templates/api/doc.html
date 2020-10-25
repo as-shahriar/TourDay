@@ -85,6 +85,7 @@
         <a href="#get_events" class="dropdown-item" type="button">Get Own Events</a>
         <a href="#event-all" class="dropdown-item" type="button">Get All Events</a>
         <a href="#going_events" class="dropdown-item" type="button">Going Events</a>
+        <a href="#event_payment" class="dropdown-item" type="button">Event Payment</a>
       </div>
     </div>
     <div class="container mt-3">
@@ -567,6 +568,29 @@
               <span class="ml-4">]</span><br />
               }<br />
               
+            </code>
+          </blockquote>
+        </div>
+
+        <hr />
+        <div class="my-2 pt-4" id="event_payment">
+          <div class="d-flex titles">
+            <div class="d-flex">
+            <h5 class="mb-0 mr-2">Event Payment</h5>
+            <kbd>POST</kbd></div>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://www.tourday.team/api/event-pay/event_id"</i>
+            </p>
+          </div>
+    
+
+          <blockquote class="blockquote ml-5 mt-2">
+            <code>
+              {<br />
+              <span class="ml-4">"method": payment_method,</span><br />
+              <span class="ml-4">"tr": transaction_number,</span><br />
+             
+              }<br />
             </code>
           </blockquote>
         </div>

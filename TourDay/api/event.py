@@ -23,3 +23,4 @@ class GoingEventList(APIView, LimitOffsetPagination):
         instance = self.paginate_queryset(instance, request, view=self)
         serializer = self.serializer_class(instance, many=True)
         return self.get_paginated_response(serializer.data)
+
