@@ -32,6 +32,7 @@ def dashboard(request):
         event.pay1_method = request.POST.get('pay1_method')
         event.pay2_method = request.POST.get('pay2_method')
         event.save()
+        event.going.add(request.user)
 
         return JsonResponse({'status': 200, "id": event.id})
     profile = Profile.objects.get(user=request.user)
@@ -57,7 +58,7 @@ class AllEventList(APIView, LimitOffsetPagination):
     permission_classes = [AllowAny]
     serializer_class = EventSerializer
 
-    def get(self, request, *args, **kwargs): 
+    def get(self, request, *args, **kwargs):
         instance = Event.objects.all().order_by("-date")
         instance = self.paginate_queryset(instance, request, view=self)
         serializer = self.serializer_class(instance, many=True)
@@ -69,7 +70,7 @@ def all(request):
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         nav_img = profile.picture.url
-    return render(request,"event/eventlist.html",{
+    return render(request, "event/eventlist.html", {
         "nav_img": nav_img,
     })
 
@@ -114,7 +115,9 @@ def eventView(request, id):
         "going": going,
         "transaction": transaction,
         "nav_img": nav_img,
-        "capacity": capacity >= event.capacity})
+        "capacity": capacity >= event.capacity,
+        "availabe_capacity": event.capacity-capacity,
+    })
 
 
 @login_required
