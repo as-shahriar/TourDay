@@ -36,8 +36,10 @@ add_event = (id,title,_location,date) =>{
     h5_1 = document.createElement("h5")
     h5_1.textContent = title
     h5_2 = document.createElement("h5")
+    h5_2.setAttribute("class","small-font")
     h5_2.textContent = _location
     h5_3 = document.createElement("h5")
+    h5_3.setAttribute("class","small-font")
     h5_3.textContent = date
 
     div.appendChild(h5_1)
