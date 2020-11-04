@@ -38,6 +38,7 @@ class ProfileUpdateSerializer(serializers.Serializer):
     name = serializers.CharField()
     email = serializers.CharField()
     fb = serializers.CharField()
+    insta = serializers.CharField()
     password = serializers.CharField()
     bio = serializers.CharField()
     city = serializers.CharField()
