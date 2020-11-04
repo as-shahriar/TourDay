@@ -149,3 +149,55 @@ body {
 }
 
 
+/* Payment support */
+
+.payment-options-row {
+	border-top: 1px solid #cdcdcd;
+	border-bottom: 1px solid #cdcdcd;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	
+   
+}
+.justify-content-center {
+    
+    justify-content: center !important;
+}
+.d-flex {
+    
+    display: flex !important;
+}
+.payment-options {
+    padding: 15px 0 0;
+}
+
+.payment-options p {
+    font-size: 115%;
+    display: inline;
+    font-size: 105%;
+    margin-right: 10px;
+    word-spacing: 3px;
+}
+.align-middle {
+    vertical-align: middle !important;
+}
+img.cod {
+    width: 32px;
+    height: 32px ;
+}
+img.bKash {
+    width: 51px;
+    height: 23px;
+}
+img.rocket {
+    width: 51px;
+    height: 26px;
+}
+ img {
+    margin-right: 10px;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+    
+}

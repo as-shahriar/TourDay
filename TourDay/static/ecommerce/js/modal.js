@@ -13,6 +13,7 @@ document.querySelectorAll(".open-modal").forEach(e=>{
 })
 
 changeModal = (id,title,description,price,img,product_type,digital)=>{
+    
     document.getElementById("modal-img").src = img
     document.getElementById("modal-title").textContent = title
     document.getElementById("modal-price").textContent = `৳${price}`
@@ -21,6 +22,7 @@ changeModal = (id,title,description,price,img,product_type,digital)=>{
         document.getElementById("modal-status").textContent = 'In Stock'
         document.getElementById("modal-status").style.color = "green";
         document.getElementById("product_details").disabled = false;
+        document.getElementById("product_details").style.cursor = "pointer";
     }
     else {
         document.getElementById("modal-status").textContent = 'Out Stock'
