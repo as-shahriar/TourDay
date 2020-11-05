@@ -36,14 +36,20 @@
             padding: 2px;
             text-align: left;
         }
-        
+        .row-image{
+            width: 100px;
+            height: 56px;
+            overflow: hidden; 
+            object-fit: contain;
+            background-color: white;
+        }
    </style>
 
 </head>
 <body>
     
     <div>
-        <h4> <b> Your order Confirmed!</b></h4>
+        <h4> <b style="color: green;"> Your order Confirmed!</b></h4>
 
         <p> <strong>Hello, {{order.customer.profile.name}}</strong> <br>
             You order has been confirmed and will be shipped in next two days!
@@ -84,6 +90,7 @@
             </tr>
             {% for item in oder_items %}
             <tr>
+                <td><img class="row-image" src="http://127.0.0.1:8000{{item.product.imageURL}}"></div></td>
                 <td>{{item.product.name}}</td>		
                 <td>{{item.quantity}}</td>
                 <td>BDT. {{item.product.price}}</td>
@@ -131,9 +138,11 @@
                 <th>Amount</th>
             </tr>
 
-            <tr style="margin-left: 175px;">
-                <td style="margin-left: 190px;">Subtotal</td>
-                <td>BDT. {{order.total_money}}</td>
+            <tr style="margin-left: 175px; color: red;">
+               
+                    <td style="margin-left: 190px;"> <strong>Subtotal</strong></td>
+                    <td><strong>BDT. {{order.total_money}}</strong></td>
+                
             </tr>
         </table>
 
