@@ -43,20 +43,13 @@
             object-fit: contain;
            
         }
-        .nav_image {
-           
-            width: 80px;
-            height: 46px;
-            overflow: hidden; 
-            object-fit: contain;  
-        }
-       
+        
    </style>
 
 </head>
 <body>
     
-        <img class="nav_image" style="text-align: center;" src="http://127.0.0.1:8000/static/image/tourday-nav.png" alt="" >
+        <img class="row-image" style="text-align: center;" src="http://127.0.0.1:8000/static/image/tourday-nav.png" alt="" >
     
     <div>
         <h4> <b style="color: green;"> Your order accepted!</b></h4>
@@ -76,9 +69,9 @@
             <tr>
                 <td>{{order.date_ordered}}</td>
                 <td>{{order.order_id}}</td>	
-                {% if  payment.payment_method == "bKash"%}	
+                {% if  payment.payment_method == bKash %}	
                 <td>bKash</td>
-                {% elif payment.payment_method == "Rocket" %}
+                {% elif payment.payment_method == Rocket %}
                 <td>Rocket</td>
                 {% else %}
                 <td>Cash On Delivery</td>
