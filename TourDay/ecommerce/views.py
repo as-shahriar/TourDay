@@ -373,14 +373,22 @@ def render_to_pdf(template_src, context_dict={}):
 
 #Opens up page as PDF
 
+
+
 class ViewPDF(View):
     def get(self, request, *args, **kwargs):
 
-        # order = Order.objects.filter(customer=request.user).order_by('-id')[0]
-        # shipping = ShippingAddress.objects.filter(customer=request.user).order_by('-id')[0]
+        order = Order.objects.filter(customer=request.user).order_by('-id')[0]
+        shipping = ShippingAddress.objects.filter(customer=request.user).order_by('-id')[0]
+        pay = payment.objects.filter(customer=request.user).order_by('-id')[0]
+
+        oder_items = OrderItem.objects.filter(order__order_id=order.order_id)
+
         data = {
-            # 'order' : order,
-            # 'shipping' : shipping,
+            'order' : order,
+            'shipping' : shipping,
+            'payment' : pay,
+            'oder_items' : oder_items,
         }
 
         pdf = render_to_pdf('ecommerce/pdf/pdf_view.html', data)
@@ -389,19 +397,28 @@ class ViewPDF(View):
 
 
 
-# Automaticly downloads to PDF file
+# # Automaticly downloads to PDF file
 class DownloadPDF(View):
     def get(self, request, *args, **kwargs):
 
-        data = {
+        order = Order.objects.filter(customer=request.user).order_by('-id')[0]
+        shipping = ShippingAddress.objects.filter(customer=request.user).order_by('-id')[0]
+        pay = payment.objects.filter(customer=request.user).order_by('-id')[0]
 
+        oder_items = OrderItem.objects.filter(order__order_id=order.order_id)
+
+        data = {
+            'order' : order,
+            'shipping' : shipping,
+            'payment' : pay,
+            'oder_items' : oder_items,
         }
 
         pdf = render_to_pdf('ecommerce/pdf/pdf_view.html', data)
 
         response = HttpResponse(pdf, content_type='application/pdf')
-        filename = 'Invoice_%s.pdf' %("12341231")
-        content = "attachment; filename='%s'" %(filename)
+        filename = "Invoice_%s.pdf" %(order.order_id)
+        content = "attachment; filename=%s" %(filename)
         response['Content-Disposition'] = content
         return response
 

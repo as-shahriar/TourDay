@@ -18,7 +18,8 @@ urlpatterns = [
 
     path('checkout/message/', checkout_message, name='checkout_message'),
 
-    path('pdf_view/', ViewPDF.as_view(), name="pdfview"),
-    path('pdf_download/', DownloadPDF.as_view(), name="pdf_download"),
+    #Receipt Pdf view
+    path('checkout/receipt/', ViewPDF.as_view(), name="pdfview"),
+    path('checkout/receipt/download/', DownloadPDF.as_view(), name="pdf_download"),
 
 ]
