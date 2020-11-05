@@ -17,7 +17,7 @@
         }
 
        h4 {
-           padding-top: 50px;
+           padding-top: 7px;
            font-size: 16px;
        }
        p {
@@ -37,22 +37,32 @@
             text-align: left;
         }
         .row-image{
-            width: 100px;
-            height: 56px;
+            width: 80px;
+            height: 46px;
             overflow: hidden; 
             object-fit: contain;
-            background-color: white;
+           
         }
+        .nav_image {
+           
+            width: 80px;
+            height: 46px;
+            overflow: hidden; 
+            object-fit: contain;  
+        }
+       
    </style>
 
 </head>
 <body>
     
+        <img class="nav_image" style="text-align: center;" src="http://127.0.0.1:8000/static/image/tourday-nav.png" alt="" >
+    
     <div>
-        <h4> <b style="color: green;"> Your order Confirmed!</b></h4>
+        <h4> <b style="color: green;"> Your order accepted!</b></h4>
 
         <p> <strong>Hello, {{order.customer.profile.name}}</strong> <br>
-            You order has been confirmed and will be shipped in next two days!
+            You order has been accepted and will be shipped in next two days!
         </p> 
         <hr>
         
