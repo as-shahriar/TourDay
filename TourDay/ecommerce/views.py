@@ -17,8 +17,14 @@ from PIL import Image
 from TourDay.settings import MEDIA_DIR
 
 
-# Create your views here.
+# generate pdf
+from io import BytesIO
+from django.template.loader import get_template
+from django.views import View
+from xhtml2pdf import pisa
 
+
+# Create your views here.
 
 
 def random_with_N_digits(n):
@@ -104,6 +110,7 @@ def checkout(request):
             
             random_order_id = int(random_with_N_digits(8))
 
+
             ord = Order.objects.create(customer=request.user, total_money=order['get_cart_total'], 
             total_items=order['get_cart_items'], order_id=random_order_id)
             ord.save()
@@ -142,6 +149,8 @@ def checkout(request):
             pay.PhoneNo = request.POST.get('pay_phone_no')
             pay.trxId = request.POST.get('trxid')
             pay.save()
+
+            return redirect('checkout_message')
         
       
    
@@ -331,3 +340,68 @@ def user_order(request):
     }
 
     return render(request, 'ecommerce/user_order.html', context)
+
+
+def checkout_message(request):
+
+    data = cartData(request)
+    cartItems = data['cartItems']
+
+    order = Order.objects.filter(customer=request.user).order_by('-id')[0]
+
+    context = {
+        'cartItems' : cartItems,
+        'order' : order,
+    }
+
+    return render(request, 'ecommerce/order_con.html', context)
+
+
+
+    #Generated pdf
+
+
+def render_to_pdf(template_src, context_dict={}):
+	template = get_template(template_src)
+	html  = template.render(context_dict)
+	result = BytesIO()
+	pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+	if not pdf.err:
+		return HttpResponse(result.getvalue(), content_type='application/pdf')
+	return None
+
+
+#Opens up page as PDF
+
+class ViewPDF(View):
+    def get(self, request, *args, **kwargs):
+
+        # order = Order.objects.filter(customer=request.user).order_by('-id')[0]
+        # shipping = ShippingAddress.objects.filter(customer=request.user).order_by('-id')[0]
+        data = {
+            # 'order' : order,
+            # 'shipping' : shipping,
+        }
+
+        pdf = render_to_pdf('ecommerce/pdf/pdf_view.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+
+
+
+# Automaticly downloads to PDF file
+class DownloadPDF(View):
+    def get(self, request, *args, **kwargs):
+
+        data = {
+
+        }
+
+        pdf = render_to_pdf('ecommerce/pdf/pdf_view.html', data)
+
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = 'Invoice_%s.pdf' %("12341231")
+        content = "attachment; filename='%s'" %(filename)
+        response['Content-Disposition'] = content
+        return response
+
