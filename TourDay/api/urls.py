@@ -1,7 +1,7 @@
 from django.urls import path, include
 from api import auth, profile, views, event
 from _auth.views import forgetPasswordView, resetPasswordView
-from user_profile.views import PostList
+from user_profile.views import PostList,delete_account
 from django.views.generic import TemplateView
 from event.views import AllEventList,pay
 
@@ -13,6 +13,7 @@ urlpatterns = [
     path('auth/signup/', auth.Signup.as_view()),
     path('forget_password/', forgetPasswordView),
     path('reset_password/<str:slug>/', resetPasswordView),
+    path('delete_account/',delete_account),
 
     # Profile
     path('profile/', profile.ProfileView.as_view()),

@@ -63,6 +63,7 @@
         <a href="#signup" class="dropdown-item" type="button">Sign up</a>
         <a href="#forget" class="dropdown-item" type="button">Forget Password</a>
         <a href="#reset" class="dropdown-item" type="button">Reset Password</a>
+        <a href="#delete-account" class="dropdown-item" type="button">Delete Account</a>
         <a href="#profile" class="dropdown-item" type="button"
           >Get Profile Info</a
         >
@@ -217,6 +218,31 @@
           
           </blockquote>
         </div>
+        <hr />
+        <div class="my-2 pt-4" id="delete-account">
+          <div class="d-flex titles">
+            <div class="d-flex">
+            <h5 class="mb-0 mr-2">Delete Account</h5>
+            <kbd>POST</kbd></div>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://www.tourday.team/api/delete_account/"</i>
+            </p>
+          </div>
+          <p>
+           Send a POST request with user token the account will be deleted.
+          </p>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            Response: <br>
+            <code>
+              {<br />
+              <span class="ml-4">"status": 200</span><br />
+              }<br />
+            </code>
+            <br />
+          
+          </blockquote>
+        </div>
 
 
         <hr />
@@ -234,8 +260,9 @@
           </div>
           <p>Token is required. Add token with request header.</p>
           <blockquote class="blockquote ml-5 mt-2">
+            Request: <br />
             <code>
-              Request: <br />{<br />
+              {<br />
 
               <span class="ml-4"
                 >"Authorization": "Token
@@ -245,8 +272,9 @@
             </code>
           </blockquote>
           <blockquote class="blockquote ml-5 mt-2">
+            Response: <br />
             <code>
-              Response: <br />{<br />
+              {<br />
               <span class="ml-4">"username": "asif",</span><br />
               <span class="ml-4">"id": 1,</span><br />
               <span class="ml-4">"profile": {</span><br />
