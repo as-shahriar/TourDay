@@ -32,6 +32,7 @@ urlpatterns = [
     path("event-pay/<int:id>",pay),
     path('create_event/',dashboard),
     path('edit_event/<int:id>',edit_event),
+    path('going_users/<str:id>',event.GoingUser.as_view()),
 
 
     path('map/<str:username>', views.map),
