@@ -42,58 +42,13 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-
+    <script src="https://kit.fontawesome.com/b2b230e3e8.js" crossorigin="anonymous"></script>
     <title>TourDay | API Documentation</title>
   </head>
   <body>
 
-    <div class="btn-group dropleft m-3 my-menu">
-      <button
-        type="button"
-        class="btn btn-white dropdown-toggle white-bg"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        MENU
-      </button>
-      <div class="dropdown-menu">
-        <!-- Dropdown menu links -->
-        <a href="#login" class="dropdown-item" type="button">Login</a>
-        <a href="#signup" class="dropdown-item" type="button">Sign up</a>
-        <a href="#forget" class="dropdown-item" type="button">Forget Password</a>
-        <a href="#reset" class="dropdown-item" type="button">Reset Password</a>
-        <a href="#delete-account" class="dropdown-item" type="button">Delete Account</a>
-        <a href="#profile" class="dropdown-item" type="button"
-          >Get Profile Info</a
-        >
-        <a href="#update-profile" class="dropdown-item" type="button"
-          >Update Profile Info</a
-        >
-        <a href="#get_post" class="dropdown-item" type="button"
-          >Get User Posts</a
-        >
-        <a href="#other-details" class="dropdown-item" type="button"
-          >Other User Details</a
-        >
-        <a href="#create-post" class="dropdown-item" type="button"
-          >Create Post</a
-        >
-        <a href="#delete-post" class="dropdown-item" type="button"
-          >Delete Post</a
-        >
-        <a href="#like-post" class="dropdown-item" type="button">Like Post</a>
-        <a href="#create_event" class="dropdown-item" type="button">Create Event</a>
-        <a href="#edit_event" class="dropdown-item" type="button">Edit Event</a>
-        <a href="#event_going_user" class="dropdown-item" type="button">Event Going Users</a>
-        
-        <a href="#get_events" class="dropdown-item" type="button">Get Own Events</a>
-        <a href="#event-all" class="dropdown-item" type="button">Get All Events</a>
-        <a href="#going_events" class="dropdown-item" type="button">Going Events</a>
-        <a href="#event_payment" class="dropdown-item" type="button">Event Payment</a>
-      </div>
-    </div>
     <div class="container mt-3">
+
       <blockquote class="blockquote text-center">
         <a href="{%url 'search_page'%}">
           <img
@@ -102,639 +57,955 @@
             src="{% static 'image/tourday-nav.png'%}"
             alt="TourDay"
         /></a>
-        <p class="mb-0">API Documentation</p>
+        <p class="mb-5">API Documentation</p>
       </blockquote>
-      <hr />
-      <div class="d-flex justify-content-center">
-        <a href="{%url 'Blog_api_doc'%}" class="text-success">Blog API Doc</a>
-      </div>
-      <hr />
-      <h3>Authentication</h3>
-      <hr />
-      <div>
-        <div class="my-2 pt-4" id="login">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Login</h5>
-            <kbd>POST</kbd>
+<hr>
+
+      <div id="accordion"  aria-multiselectable="true">
+        <div class="card mb-2">
+          <div class="card-header" id="headingOne"  role="button"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <h5 class="mb-0">
+              <div class="card-content"  >
+                <i class="fas fa-chevron-down mr-2"></i>
+                Authentication
+              </div>
+            </h5>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" >
+            <div class="card-body">
+              <div class="my-2 pt-4" id="login">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Login</h5>
+                  <kbd>POST</kbd>
+                  </div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/auth/login/"</i>
+                  </p>
+                </div>
+                <p>
+                  Send either username or email address with password. If the
+                  credentials are valid then the response will contain a key. use that
+                  key to acces all data.
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"username": "asif",</span><br />
+                    <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
+                    <span class="ml-4">"password": "******"</span> <br />}
+                  </code>
+                </blockquote>
+              </div>
+              <hr />
+              <div class="my-2 pt-4" id="signup">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Sign up</h5>
+                  <kbd>POST</kbd>
+                  </div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/auth/signup/"</i>
+                  </p>
+                </div>
+                <p>
+                  If the credentials are valid then the response will contain a key.
+                  use that key to acces all data.
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"username": "asif",</span><br />
+                    <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
+                    <span class="ml-4">"password": "******"</span> <br />}
+                  </code>
+                </blockquote>
+              </div>
+
+              <hr />
+              <div class="my-2 pt-4" id="forget">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Forget Password</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/forget_password/"</i>
+                  </p>
+                </div>
+                <p>
+                  Use username or email address in <b>username_email</b> field. Use slug from response in reset_password url.
+                 
+                </p>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"username_email": asif.qubit@gmail.com</span><br />
+                    }<br />
+                  </code>
+                  <br />
+                  Response: <br />
+                  <code>
+                    {<br />
+                    <span class="ml-4">"status": 200,</span><br />
+                    <span class="ml-4">"slug": "asif"</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="reset">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Reset Password</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/reset_password/username/"</i>
+                  </p>
+                </div>
+                <p>
+                  Use code that sent to your email account. Use slug from <b>forget_password</b> response in reset_password url instead of username. Password must be greater than 7 characters.
+                 
+                </p>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"code": TKPHHKGC,</span><br />
+                    <span class="ml-4">"password1": ********,</span><br />
+                    <span class="ml-4">"password2": ********</span><br />
+                    }<br />
+                  </code>
+                  <br />
+                
+                </blockquote>
+              </div>
+              <hr />
+              <div class="my-2 pt-4" id="delete-account">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Delete Account</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/delete_account/"</i>
+                  </p>
+                </div>
+                <p>
+                 Send a POST request with user token the account will be deleted.
+                </p>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  Response: <br>
+                  <code>
+                    {<br />
+                    <span class="ml-4">"status": 200</span><br />
+                    }<br />
+                  </code>
+                  <br />
+                
+                </blockquote>
+              </div>
+      
             </div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/auth/login/"</i>
-            </p>
           </div>
-          <p>
-            Send either username or email address with password. If the
-            credentials are valid then the response will contain a key. use that
-            key to acces all data.
-          </p>
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"username": "asif",</span><br />
-              <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
-              <span class="ml-4">"password": "******"</span> <br />}
-            </code>
-          </blockquote>
-        </div>
-        <hr />
-        <div class="my-2 pt-4" id="signup">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Sign up</h5>
-            <kbd>POST</kbd>
-            </div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/auth/signup/"</i>
-            </p>
-          </div>
-          <p>
-            If the credentials are valid then the response will contain a key.
-            use that key to acces all data.
-          </p>
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"username": "asif",</span><br />
-              <span class="ml-4">"email": "asif.qubit@mail.com",</span> <br />
-              <span class="ml-4">"password": "******"</span> <br />}
-            </code>
-          </blockquote>
         </div>
 
 
-
-        <hr />
-        <div class="my-2 pt-4" id="forget">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Forget Password</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/forget_password/"</i>
-            </p>
+        <div class="card mb-2">
+          <div class="card-header" id="profile" role="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <h5 class="mb-0">
+              <div class="card-content collapsed" >
+                <i class="fas fa-chevron-down mr-2"></i>
+                Profile
+              </div>
+            </h5>
           </div>
-          <p>
-            Use username or email address in <b>username_email</b> field. Use slug from response in reset_password url.
-           
-          </p>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"username_email": asif.qubit@gmail.com</span><br />
-              }<br />
-            </code>
-            <br />
-            Response: <br />
-            <code>
-              {<br />
-              <span class="ml-4">"status": 200,</span><br />
-              <span class="ml-4">"slug": "asif"</span><br />
-              }<br />
-            </code>
-          </blockquote>
+          <div id="collapseTwo" class="collapse" aria-labelledby="profile" >
+            <div class="card-body">
+              <div class="my-2 pt-4" >
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Get Profile Info</h5>
+                  <kbd>GET</kbd>
+                  </div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/profile/"</i>
+                  </p>
+                </div>
+                <p>Token is required. Add token with request header.</p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  Request: <br />
+                  <code>
+                    {<br />
+      
+                    <span class="ml-4"
+                      >"Authorization": "Token
+                      93bc86220b144548e5bb507851b6ef7c2a5e1a14",</span
+                    ><br />
+                    }
+                  </code>
+                </blockquote>
+                <blockquote class="blockquote ml-5 mt-2">
+                  Response: <br />
+                  <code>
+                    {<br />
+                    <span class="ml-4">"username": "asif",</span><br />
+                    <span class="ml-4">"id": 1,</span><br />
+                    <span class="ml-4">"profile": {</span><br />
+                    <span class="ml-4">"name": "Asif Shahriar",</span><br />
+                    <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+                    <span class="ml-4">"fb": "asif.8617",</span><br />
+                    <span class="ml-4">"insta": "_asif_shahriar",</span><br />
+                    <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
+                    <span class="ml-4">"bio": "Full Stack web developer"</span><br />
+                    <span class="ml-4">"picture": "/media/user/pic.jpg"</span><br />
+                    <span class="ml-4">},</span><br />
+                    <span class="ml-4">"is_completed": true</span> <br />}
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="update-profile">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Update Profile Info</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/profile/"</i>
+                  </p>
+                </div>
+                <p>
+                  Token is required. Add token with request header. Send only specific
+                  filed to update it. <br />
+                  Ex: If you want to update only name filed, just send name in the
+                  request. Keep other field blank.
+                </p>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"name": "Asif Shahriar",</span><br />
+                    <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+                    <span class="ml-4">"fb": "asif.8617",</span><br />
+                    <span class="ml-4">"insta": "_asif_shahriar",</span><br />
+                    <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
+                    <span class="ml-4">"bio": "Full Stack web developer",</span><br />
+                    <span class="ml-4">"picture": picture.jpg</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="get_post">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Get User Posts</h5>
+                  <kbd>GET</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/get_posts/username"</i>
+                  </p>
+                </div>
+                <p>
+                  Send username with the url and get the response containing all
+                  posts. If that user has more than 10 posts, you will get next page
+                  url in "next" in the response.
+                </p>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"count": "post count",</span><br />
+                    <span class="ml-4">"next": "next page url",</span><br />
+                    <span class="ml-4">"previous": "previous page url",</span><br />
+                    <span class="ml-4">"results": </span><br /><spna class="ml-4"
+                      >{</spna
+                    ><br />
+                    <span class="ml-5">"id": 1,</span><br />
+                    <span class="ml-5">"post": "post here"</span><br />
+                    <span class="ml-5">"image": "/media/user/pic.jpg",</span><br />
+                    <span class="ml-5">"date": "2020-09-16",</span><br />
+                    <span class="ml-5">"location": "Dhaka",</span><br />
+                    <span class="ml-5">"user": 1,</span><br />
+                    <span class="ml-5">"liikes": [1,2,3]</span><br />
+                    <span class="ml-4">}</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+              <hr />
+              <div class="my-2 pt-4" id="other-details">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Other User Details</h5>
+                  <kbd>GET</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/user/username_or_id"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"name": "Asif Shahriar",</span><br />
+                    <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+                    <span class="ml-4">"fb": "asif.8617",</span><br />
+                    <span class="ml-4">"insta": "_asif_shahriar",</span><br />
+                    <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
+                    <span class="ml-4">"bio": "Full Stack web developer",</span><br />
+                    <span class="ml-4">"picture": "picture.jpg"</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="create-post">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Create Post</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/post/"</i>
+                  </p>
+                </div>
+                <p>
+                  Use Location number instead of full location name.
+                  <a href="" data-toggle="modal" data-target="#location_keys"
+                    >See location key & Value</a
+                  >
+                </p>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"post": "post text here",</span><br />
+                    <span class="ml-4">"location": 1,</span><br />
+                    <span class="ml-4">"date": "yyyy-mm-dd",</span><br />
+                    <span class="ml-4">"image": image.jpg</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="delete-post">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Delete Post</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/post_delete/"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"id": post_id</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="like-post">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Like Post</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/post/like/"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"post_id": post_id</span><br />
+                    }<br />
+                  </code>
+                  <br />
+                  Response: <br />
+                  <code>
+                    {<br />
+                    <span class="ml-4">"like_count": 15</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div> </div>
+          </div>
         </div>
 
-        <hr />
-        <div class="my-2 pt-4" id="reset">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Reset Password</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/reset_password/username/"</i>
-            </p>
-          </div>
-          <p>
-            Use code that sent to your email account. Use slug from <b>forget_password</b> response in reset_password url instead of username. Password must be greater than 7 characters.
-           
-          </p>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"code": TKPHHKGC,</span><br />
-              <span class="ml-4">"password1": ********,</span><br />
-              <span class="ml-4">"password2": ********</span><br />
-              }<br />
-            </code>
-            <br />
-          
-          </blockquote>
-        </div>
-        <hr />
-        <div class="my-2 pt-4" id="delete-account">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Delete Account</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/delete_account/"</i>
-            </p>
-          </div>
-          <p>
-           Send a POST request with user token the account will be deleted.
-          </p>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            Response: <br>
-            <code>
-              {<br />
-              <span class="ml-4">"status": 200</span><br />
-              }<br />
-            </code>
-            <br />
-          
-          </blockquote>
-        </div>
-
-
-        <hr />
-        <h3>Profile</h3>
-        <hr />
-        <div class="my-2 pt-4" id="profile">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Get Profile Info</h5>
-            <kbd>GET</kbd>
-            </div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/profile/"</i>
-            </p>
-          </div>
-          <p>Token is required. Add token with request header.</p>
-          <blockquote class="blockquote ml-5 mt-2">
-            Request: <br />
-            <code>
-              {<br />
-
-              <span class="ml-4"
-                >"Authorization": "Token
-                93bc86220b144548e5bb507851b6ef7c2a5e1a14",</span
-              ><br />
-              }
-            </code>
-          </blockquote>
-          <blockquote class="blockquote ml-5 mt-2">
-            Response: <br />
-            <code>
-              {<br />
-              <span class="ml-4">"username": "asif",</span><br />
-              <span class="ml-4">"id": 1,</span><br />
-              <span class="ml-4">"profile": {</span><br />
-              <span class="ml-4">"name": "Asif Shahriar",</span><br />
-              <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
-              <span class="ml-4">"fb": "asif.8617",</span><br />
-              <span class="ml-4">"insta": "_asif_shahriar",</span><br />
-              <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
-              <span class="ml-4">"bio": "Full Stack web developer"</span><br />
-              <span class="ml-4">"picture": "/media/user/pic.jpg"</span><br />
-              <span class="ml-4">},</span><br />
-              <span class="ml-4">"is_completed": true</span> <br />}
-            </code>
-          </blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="update-profile">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Update Profile Info</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/profile/"</i>
-            </p>
-          </div>
-          <p>
-            Token is required. Add token with request header. Send only specific
-            filed to update it. <br />
-            Ex: If you want to update only name filed, just send name in the
-            request. Keep other field blank.
-          </p>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"name": "Asif Shahriar",</span><br />
-              <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
-              <span class="ml-4">"fb": "asif.8617",</span><br />
-              <span class="ml-4">"insta": "_asif_shahriar",</span><br />
-              <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
-              <span class="ml-4">"bio": "Full Stack web developer",</span><br />
-              <span class="ml-4">"picture": picture.jpg</span><br />
-              }<br />
-            </code>
-          </blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="get_post">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Get User Posts</h5>
-            <kbd>GET</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/get_posts/username"</i>
-            </p>
-          </div>
-          <p>
-            Send username with the url and get the response containing all
-            posts. If that user has more than 10 posts, you will get next page
-            url in "next" in the response.
-          </p>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"count": "post count",</span><br />
-              <span class="ml-4">"next": "next page url",</span><br />
-              <span class="ml-4">"previous": "previous page url",</span><br />
-              <span class="ml-4">"results": </span><br /><spna class="ml-4"
-                >{</spna
-              ><br />
-              <span class="ml-5">"id": 1,</span><br />
-              <span class="ml-5">"post": "post here"</span><br />
-              <span class="ml-5">"image": "/media/user/pic.jpg",</span><br />
-              <span class="ml-5">"date": "2020-09-16",</span><br />
-              <span class="ml-5">"location": "Dhaka",</span><br />
-              <span class="ml-5">"user": 1,</span><br />
-              <span class="ml-5">"liikes": [1,2,3]</span><br />
-              <span class="ml-4">}</span><br />
-              }<br />
-            </code>
-          </blockquote>
-        </div>
-        <hr />
-        <div class="my-2 pt-4" id="other-details">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Other User Details</h5>
-            <kbd>GET</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/user/username_or_id"</i>
-            </p>
-          </div>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"name": "Asif Shahriar",</span><br />
-              <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
-              <span class="ml-4">"fb": "asif.8617",</span><br />
-              <span class="ml-4">"insta": "_asif_shahriar",</span><br />
-              <span class="ml-4">"city": "Rangpur, Bangladesh",</span><br />
-              <span class="ml-4">"bio": "Full Stack web developer",</span><br />
-              <span class="ml-4">"picture": "picture.jpg"</span><br />
-              }<br />
-            </code>
-          </blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="create-post">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Create Post</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/post/"</i>
-            </p>
-          </div>
-          <p>
-            Use Location number instead of full location name.
-            <a href="" data-toggle="modal" data-target="#location_keys"
-              >See location key & Value</a
-            >
-          </p>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"post": "post text here",</span><br />
-              <span class="ml-4">"location": 1,</span><br />
-              <span class="ml-4">"date": "yyyy-mm-dd",</span><br />
-              <span class="ml-4">"image": image.jpg</span><br />
-              }<br />
-            </code>
-          </blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="delete-post">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Delete Post</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/post_delete/"</i>
-            </p>
-          </div>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"id": post_id</span><br />
-              }<br />
-            </code>
-          </blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="like-post">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Like Post</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/post/like/"</i>
-            </p>
-          </div>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"post_id": post_id</span><br />
-              }<br />
-            </code>
-            <br />
-            Response: <br />
-            <code>
-              {<br />
-              <span class="ml-4">"like_count": 15</span><br />
-              }<br />
-            </code>
-          </blockquote>
-        </div>
         
-
-        <hr />
-        <h3>Event</h3>
-
-       
-        <hr />
-        <div class="my-2 pt-4" id="create_event">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Create Event</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/create_event/"</i>
-            </p>
+        <div class="card mb-2">
+          <div class="card-header" id="event" role="button" data-toggle="collapse" data-target="#eventcollapse" aria-expanded="false" aria-controls="collapseTwo">
+            <h5 class="mb-0">
+              <div class="card-content collapsed" >
+                <i class="fas fa-chevron-down mr-2"></i>
+                Event
+              </div>
+            </h5>
           </div>
+          <div id="eventcollapse" class="collapse" aria-labelledby="event" >
+            <div class="card-body">
+              <div class="my-2 pt-4" id="create_event">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Create Event</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/create_event/"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  
+                  Request: <br />
+                  <code>
+                    {<br />
+                      <span class="ml-5">"title": event title,</span></span><br />
+                      <span class="ml-5">"location": event location,</span></span><br />
+                      <span class="ml-5">"date": "yyyy-mm-dd",</span><br />
+                      <span class="ml-5">"details": event details,</span><br />
+                      <span class="ml-5">"pay1": payment mobile number 1,</span><br />
+                      <span class="ml-5">"pay1_method": payment method for number 1,</span></span><br />
+                      <span class="ml-5">"pay2": payment mobile number 2,</span><br />
+                      <span class="ml-5">"pay2_method": payment method for number 2,</span><br />
+                      <span class="ml-5">"capacity": member capacity of this event,</span><br />
+                      <span class="ml-5">"cost": cost to pay</span><br />
+                      
+                    }<br />
+                    
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="edit_event">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Edit Event</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/edit_event/event_id"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  
+                  Request: <br />
+                  <code>
+                    {<br />
+                      <span class="ml-5">"title": event title,</span></span><br />
+                      <span class="ml-5">"location": event location,</span></span><br />
+                      <span class="ml-5">"date": "yyyy-mm-dd",</span><br />
+                      <span class="ml-5">"details": event details,</span><br />
+                      <span class="ml-5">"pay1": payment mobile number 1,</span><br />
+                      <span class="ml-5">"pay1_method": payment method for number 1,</span></span><br />
+                      <span class="ml-5">"pay2": payment mobile number 2,</span><br />
+                      <span class="ml-5">"pay2_method": payment method for number 2,</span><br />
+                      <span class="ml-5">"capacity": member capacity of this event,</span><br />
+                      <span class="ml-5">"cost": cost to pay,</span><br />
+                      <span class="ml-5">"image": event cover image</span><br />
+                      
+                    }<br />
+                    
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="event_going_user">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Event Going Users</h5>
+                  <kbd>GET</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/going_users/event_id"</i>
+                  </p>
+                </div>
+          
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    [<br />
+                    <span class="ml-4">{</span><br />
+                      <span class="ml-5">"name": "Asif Shahriar",</span><br>
+                      <span class="ml-5">"email": "asif.qubit@gmail.com",</span><br>
+                      <span class="ml-5">"fb": "asif.8617",</span><br>
+                      <span class="ml-5">"insta": "_asif_shahriar",</span><br>
+                      <span class="ml-5">"city": "Rangpur, Bangladesh",</span><br>
+                      <span class="ml-5">"bio": "Full Stack web developer",</span><br>
+                      <span class="ml-5">"picture": "/media/profile_pics/asif/asif.png"</span><br>
+                      <span class="ml-4">},</span><br>
+                      <span class="ml-4">{</span><br />
+                        <span class="ml-5">"name": "Partha Kumar Bagchi",</span><br>
+                        <span class="ml-5">"email": "pkbagchi@gmail.com",</span><br>
+                        <span class="ml-5">"fb": "partha.qubit",</span><br>
+                        <span class="ml-5">"insta": "pkbagchi",</span><br>
+                        <span class="ml-5">"city": "Naogaon, Bangladesh",</span><br>
+                        <span class="ml-5">"bio": "Full Stack web developer",</span><br>
+                        <span class="ml-5">"picture": "/media/profile_pics/pk/pk.png"</span><br>
+                        <span class="ml-4">}</span><br>
+                   
+                    ]<br />
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="get_events">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Get Own Events</h5>
+                  <kbd>GET</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/get_events/username"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  
+                  Response: <br />
+                  <code>
+                    {<br />
+                    <span class="ml-4">"count": number of events,</span><br />
+                    <span class="ml-4">"next": next page url,</span><br />
+                    <span class="ml-4">"previous": previous page url,</span><br />
+                    <span class="ml-4">"results": [</span><br />
+                    <span class="ml-5">{</span><br />
+                      <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"location": event location,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pay1_method": payment method for number 1,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pay2": payment mobile number 2,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pay2_method": payment method for number 2,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"capacity": member capacity of this event,</span></span><br />
+                      <span class="ml-5"><span class="ml-4"> "cost": cost to pay,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"image": image url,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"host": host user id</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"going": [ going user id ],</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pending": [ pending users id ]</span></span><br />
+                   
+                      <span class="ml-5">}</span><br />
+                    <span class="ml-4">]</span><br />
+                    }<br />
+                    
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="event-all">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Get All Events</h5>
+                  <kbd>GET</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/all-events/"</i>
+                  </p>
+                </div>
+      <p>Get all event list</p>
+      <blockquote class="blockquote ml-5 mt-2">
+                  
+        Response: <br />
+        <code>
+          {<br />
+          <span class="ml-4">"count": number of events,</span><br />
+          <span class="ml-4">"next": next page url,</span><br />
+          <span class="ml-4">"previous": previous page url,</span><br />
+          <span class="ml-4">"results": [</span><br />
+          <span class="ml-5">{</span><br />
+            <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
+            <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
+            <span class="ml-5"><a class="ml-4">"location": event location <a href="" data-toggle="modal" data-target="#location_keys" >key</a>,</span></span><br />
+            <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
+            <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
+            <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
+            <span class="ml-5"><span class="ml-4">"pay1_method": payment method for number 1,</span></span><br />
+            <span class="ml-5"><span class="ml-4">"pay2": payment mobile number 2,</span></span><br />
+            <span class="ml-5"><span class="ml-4">"pay2_method": payment method for number 2,</span></span><br />
+            <span class="ml-5"><span class="ml-4">"capacity": member capacity of this event,</span></span><br />
+            <span class="ml-5"><span class="ml-4"> "cost": cost to pay,</span></span><br />
+            <span class="ml-5"><span class="ml-4">"image": image url,</span></span><br />
+            <span class="ml-5"><span class="ml-4">"host": host user id</span></span><br />
+            <span class="ml-5"><span class="ml-4">"going": [ going user id ],</span></span><br />
+            <span class="ml-5"><span class="ml-4">"pending": [ pending users id ]</span></span><br />
+         
+            <span class="ml-5">}</span><br />
+          <span class="ml-4">]</span><br />
+          }<br />
+          
+        </code>
+      </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="going_events">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Going Events</h5>
+                  <kbd>GET</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/going-events/username"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  
+                  Response: <br />
+                  <code>
+                    {<br />
+                    <span class="ml-4">"count": number of going events,</span><br />
+                    <span class="ml-4">"next": next page url,</span><br />
+                    <span class="ml-4">"previous": previous page url,</span><br />
+                    <span class="ml-4">"results": [</span><br />
+                    <span class="ml-5">{</span><br />
+                      <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"location": event location,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pay1_method": payment method for number 1,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pay2": payment mobile number 2,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pay2_method": payment method for number 2,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"capacity": member capacity of this event,</span></span><br />
+                      <span class="ml-5"><span class="ml-4"> "cost": cost to pay,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"image": image url,</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"host": host user id</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"going": [ going user id ],</span></span><br />
+                      <span class="ml-5"><span class="ml-4">"pending": [ pending users id ]</span></span><br />
+                   
+                      <span class="ml-5">}</span><br />
+                    <span class="ml-4">]</span><br />
+                    }<br />
+                    
+                  </code>
+                </blockquote>
+              </div>
+      
+              <hr />
+              <div class="my-2 pt-4" id="event_payment">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Event Payment</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/event-pay/event_id"</i>
+                  </p>
+                </div>
+          
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"method": payment_method,</span><br />
+                    <span class="ml-4">"tr": transaction_number,</span><br />
+                   
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <blockquote class="blockquote ml-5 mt-2">
-            
-            Request: <br />
-            <code>
-              {<br />
-                <span class="ml-5">"title": event title,</span></span><br />
-                <span class="ml-5">"location": event location,</span></span><br />
-                <span class="ml-5">"date": "yyyy-mm-dd",</span><br />
-                <span class="ml-5">"details": event details,</span><br />
-                <span class="ml-5">"pay1": payment mobile number 1,</span><br />
-                <span class="ml-5">"pay1_method": payment method for number 1,</span></span><br />
-                <span class="ml-5">"pay2": payment mobile number 2,</span><br />
-                <span class="ml-5">"pay2_method": payment method for number 2,</span><br />
-                <span class="ml-5">"capacity": member capacity of this event,</span><br />
-                <span class="ml-5">"cost": cost to pay</span><br />
-                
-              }<br />
+
+        <div class="card mb-2">
+          <div class="card-header" id="blog" role="button" data-toggle="collapse" data-target="#blogcollapse" aria-expanded="false" aria-controls="collapseTwo">
+            <h5 class="mb-0">
+              <div class="card-content collapsed" >
+                <i class="fas fa-chevron-down mr-2"></i>
+                Blog
+              </div>
+            </h5>
+          </div>
+          <div id="blogcollapse" class="collapse" aria-labelledby="blog" >
+            <div class="card-body">
+              <div class="my-2 mt-4">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Total Post</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/blog/allpost/"</i>
+                  </p>
+                </div>
+                <p>
+                 Response Total Post in blog.
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"count": "post count",</span><br />
+                    <span class="ml-4">"next": "next page url",</span><br />
+                    <span class="ml-4">"previous": "previous page url",</span><br />
+                    <span class="ml-4">"results": </span><br /><spna class="ml-4"
+                      >{</spna
+                    ><br />
+                    <span class="ml-5">"id": 1,</span><br />
+                    <span class="ml-5">"slug": "author name"</span><br />
+                    <span class="ml-5">"title": "title name",</span><br />
+                    <span class="ml-5">"date": "2020-10-02",</span><br />
+                    <span class="ml-5">"description": "Blog post description",</span><br />
+                    <span class="ml-5">"image": "/media/blog_pics/about-2.jpg",</span><br />
+                    <span class="ml-5">"division":"Rajshahi"</span><br />
+                    <span class="ml-4">}</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+              <hr />
+        
+              <div class="my-2 mt-4">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">User Post</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/blog/user/username"</i>
+                  </p>
+                </div>
+                <p>
+                 Response specific user post.
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"count": "post count",</span><br />
+                    <span class="ml-4">"next": "next page url",</span><br />
+                    <span class="ml-4">"previous": "previous page url",</span><br />
+                    <span class="ml-4">"results": </span><br /><spna class="ml-4"
+                      >{</spna
+                    ><br />
+                    <span class="ml-5">"id": 1,</span><br />
+                    <span class="ml-5">"slug": "author name"</span><br />
+                    <span class="ml-5">"title": "title name",</span><br />
+                    <span class="ml-5">"date": "2020-10-02",</span><br />
+                    <span class="ml-5">"description": "Blog post description",</span><br />
+                    <span class="ml-5">"image": "/media/blog_pics/about-2.jpg",</span><br />
+                    <span class="ml-5">"division":"Rajshahi"</span><br />
+                    <span class="ml-4">}</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
               
-            </code>
-          </blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="edit_event">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Edit Event</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/edit_event/event_id"</i>
-            </p>
+              <hr />
+              <div class="my-2 mt-4">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Division Post</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/blog/division/Division_Name"</i>
+                  </p>
+                </div>
+                <p>
+                  Response specific Division Post.
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"count": "post count",</span><br />
+                    <span class="ml-4">"next": "next page url",</span><br />
+                    <span class="ml-4">"previous": "previous page url",</span><br />
+                    <span class="ml-4">"results": </span><br /><spna class="ml-4"
+                      >{</spna
+                    ><br />
+                    <span class="ml-5">"id": 1,</span><br />
+                    <span class="ml-5">"slug": "author name"</span><br />
+                    <span class="ml-5">"title": "title name",</span><br />
+                    <span class="ml-5">"date": "2020-10-02",</span><br />
+                    <span class="ml-5">"description": "Blog post description",</span><br />
+                    <span class="ml-5">"image": "/media/blog_pics/about-2.jpg",</span><br />
+                    <span class="ml-5">"division":"Rajshahi"</span><br />
+                    <span class="ml-4">}</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+              <hr />
+        
+              <div class="my-2 mt-4">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Post Details</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/blog/details/post_id"</i>
+                  </p>
+                </div>
+                <p>
+                  Details blog post.
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"id": 1,</span><br />
+                    <span class="ml-4">"slug": "Author Name",</span><br />
+                    <span class="ml-4">"email": "asif.qubit@gmail.com",</span><br />
+                    <span class="ml-4">"title": "Post title",</span><br />
+                    <span class="ml-4">"date": "2020-10-02",</span><br />
+                    <span class="ml-4">"description": "Post Description",</span><br />
+                    <span class="ml-4">"image": "/media/blog_pics/about-2.jpg",</span><br />
+                    <span class="ml-4">"division": "Rajshahi",</span><br />
+                    </span>}</span><br />
+                  </code>
+                </blockquote>
+              </div>
+        
+              <hr />
+        
+              <div class="my-2 mt-4">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Search Post</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/blog/query?search=Your_search_here"</i>
+                  </p>
+                </div>
+                <p>
+                  Search blog post. Field = ['title', 'description', 'division'] 
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    Response: <br/>
+                    {<br />
+                      <span class="ml-4">"count": "post count",</span><br />
+                      <span class="ml-4">"next": "next page url",</span><br />
+                      <span class="ml-4">"previous": "previous page url",</span><br />
+                      <span class="ml-4">"results": </span><br /><spna class="ml-4"
+                        >{</spna
+                      ><br />
+                      <span class="ml-5">"id": 1,</span><br />
+                      <span class="ml-5">"slug": "author name"</span><br />
+                      <span class="ml-5">"title": "title name",</span><br />
+                      <span class="ml-5">"date": "2020-10-02",</span><br />
+                      <span class="ml-5">"description": "Blog post description",</span><br />
+                      <span class="ml-5">"image": "https://www.tourday.team/media/blog_pics/book.jpg",</span><br />
+                      <span class="ml-5">"division":"Rajshahi"</span><br />
+                      <span class="ml-4">}</span><br />
+                      }<br />
+                  </code>
+                </blockquote>
+              </div>
+        
+        
+              <hr />
+              <div class="my-2 mt-4">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Add Post</h5>
+                  <kbd>POST</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/blog/addpost/"</i>
+                  </p>
+                </div>
+                <p>
+                  Token is required. Add token with request header. 
+                  
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    Request: <br />{<br />
+        
+                    <span class="ml-4"
+                      >"Authorization": "Token
+                      93bc86220b144548e5bb507851b6ef7c2a5e1a14",</span
+                    ><br />
+                    }
+                  </code>
+                </blockquote>
+        
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    <span class="ml-4">"title": "Blog Post title Here",</span><br />
+                    <span class="ml-4">"description": "description here",</span><br />
+                    <span class="ml-4">"image": "attach your BLOG image",</span><br />
+                    <span class="ml-4">"division": "your division here, Ex. Rajshahi",</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+              <hr />
+              <div class="my-2 mt-4">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Update Post</h5>
+                  <kbd>PUT</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/blog/edit/post_id"</i>
+                  </p>
+                </div>
+                <p>
+                  Token is required, Request Token who create a post. Add token with request header. Send all required
+                  field to update it. <br />
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    Request: <br />{<br />
+        
+                    <span class="ml-4"
+                      >"Authorization": "Token
+                      93bc86220b144548e5bb507851b6ef7c2a5e1a14",</span
+                    ><br />
+                    }
+                  </code>
+                </blockquote>
+        
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                    <span class="ml-4">"title": "Blog Post title Here",</span><br />
+                    <span class="ml-4">"description": "description here",</span><br />
+                    <span class="ml-4">"image": "attach your BLOG image",</span><br />
+                    <span class="ml-4">"division": "your division here, Ex. Rajshahi",</span><br />
+                    }<br />
+                  </code>
+                </blockquote>
+              </div>
+        
+              <hr />
+              <div class="my-2 mt-4">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Delete Post</h5>
+                  <kbd>DELETE</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/blog/delete/post_id"</i>
+                  </p>
+                </div>
+                <p>
+                  Token is required, Request Token who create a post. Add token with request header.<br />
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    Request: <br />{<br />
+        
+                    <span class="ml-4"
+                      >"Authorization": "Token
+                      93bc86220b144548e5bb507851b6ef7c2a5e1a14",</span
+                    ><br />
+                    }
+                  </code>
+                </blockquote>
+        
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    Response: <br/>
+                    "Delete Successfully."
+                  </code>
+                </blockquote>
+              </div>
+        
+            </div>
           </div>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            
-            Request: <br />
-            <code>
-              {<br />
-                <span class="ml-5">"title": event title,</span></span><br />
-                <span class="ml-5">"location": event location,</span></span><br />
-                <span class="ml-5">"date": "yyyy-mm-dd",</span><br />
-                <span class="ml-5">"details": event details,</span><br />
-                <span class="ml-5">"pay1": payment mobile number 1,</span><br />
-                <span class="ml-5">"pay1_method": payment method for number 1,</span></span><br />
-                <span class="ml-5">"pay2": payment mobile number 2,</span><br />
-                <span class="ml-5">"pay2_method": payment method for number 2,</span><br />
-                <span class="ml-5">"capacity": member capacity of this event,</span><br />
-                <span class="ml-5">"cost": cost to pay,</span><br />
-                <span class="ml-5">"image": event cover image</span><br />
-                
-              }<br />
-              
-            </code>
-          </blockquote>
         </div>
 
-        <hr />
-        <div class="my-2 pt-4" id="event_going_user">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Event Going Users</h5>
-            <kbd>GET</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/going_users/event_id"</i>
-            </p>
-          </div>
-    
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              [<br />
-              <span class="ml-4">{</span><br />
-                <span class="ml-5">"name": "Asif Shahriar",</span><br>
-                <span class="ml-5">"email": "asif.qubit@gmail.com",</span><br>
-                <span class="ml-5">"fb": "asif.8617",</span><br>
-                <span class="ml-5">"insta": "_asif_shahriar",</span><br>
-                <span class="ml-5">"city": "Rangpur, Bangladesh",</span><br>
-                <span class="ml-5">"bio": "Full Stack web developer",</span><br>
-                <span class="ml-5">"picture": "/media/profile_pics/asif/asif.png"</span><br>
-                <span class="ml-4">},</span><br>
-                <span class="ml-4">{</span><br />
-                  <span class="ml-5">"name": "Partha Kumar Bagchi",</span><br>
-                  <span class="ml-5">"email": "pkbagchi@gmail.com",</span><br>
-                  <span class="ml-5">"fb": "partha.qubit",</span><br>
-                  <span class="ml-5">"insta": "pkbagchi",</span><br>
-                  <span class="ml-5">"city": "Naogaon, Bangladesh",</span><br>
-                  <span class="ml-5">"bio": "Full Stack web developer",</span><br>
-                  <span class="ml-5">"picture": "/media/profile_pics/pk/pk.png"</span><br>
-                  <span class="ml-4">}</span><br>
-             
-              ]<br />
-            </code>
-          </blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="get_events">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Get Own Events</h5>
-            <kbd>GET</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/get_events/username"</i>
-            </p>
-          </div>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            
-            Response: <br />
-            <code>
-              {<br />
-              <span class="ml-4">"count": number of events,</span><br />
-              <span class="ml-4">"next": next page url,</span><br />
-              <span class="ml-4">"previous": previous page url,</span><br />
-              <span class="ml-4">"results": [</span><br />
-              <span class="ml-5">{</span><br />
-                <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"location": event location,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
-                <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pay1_method": payment method for number 1,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pay2": payment mobile number 2,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pay2_method": payment method for number 2,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"capacity": member capacity of this event,</span></span><br />
-                <span class="ml-5"><span class="ml-4"> "cost": cost to pay,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"image": image url,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"host": host user id</span></span><br />
-                <span class="ml-5"><span class="ml-4">"going": [ going user id ],</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pending": [ pending users id ]</span></span><br />
-             
-                <span class="ml-5">}</span><br />
-              <span class="ml-4">]</span><br />
-              }<br />
-              
-            </code>
-          </blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="event-all">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Get All Events</h5>
-            <kbd>GET</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/all-events/"</i>
-            </p>
-          </div>
-<p>Get all event list</p>
-<blockquote class="blockquote ml-5 mt-2">
-            
-  Response: <br />
-  <code>
-    {<br />
-    <span class="ml-4">"count": number of events,</span><br />
-    <span class="ml-4">"next": next page url,</span><br />
-    <span class="ml-4">"previous": previous page url,</span><br />
-    <span class="ml-4">"results": [</span><br />
-    <span class="ml-5">{</span><br />
-      <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
-      <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
-      <span class="ml-5"><a class="ml-4">"location": event location <a href="" data-toggle="modal" data-target="#location_keys" >key</a>,</span></span><br />
-      <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
-      <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
-      <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
-      <span class="ml-5"><span class="ml-4">"pay1_method": payment method for number 1,</span></span><br />
-      <span class="ml-5"><span class="ml-4">"pay2": payment mobile number 2,</span></span><br />
-      <span class="ml-5"><span class="ml-4">"pay2_method": payment method for number 2,</span></span><br />
-      <span class="ml-5"><span class="ml-4">"capacity": member capacity of this event,</span></span><br />
-      <span class="ml-5"><span class="ml-4"> "cost": cost to pay,</span></span><br />
-      <span class="ml-5"><span class="ml-4">"image": image url,</span></span><br />
-      <span class="ml-5"><span class="ml-4">"host": host user id</span></span><br />
-      <span class="ml-5"><span class="ml-4">"going": [ going user id ],</span></span><br />
-      <span class="ml-5"><span class="ml-4">"pending": [ pending users id ]</span></span><br />
-   
-      <span class="ml-5">}</span><br />
-    <span class="ml-4">]</span><br />
-    }<br />
-    
-  </code>
-</blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="going_events">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Going Events</h5>
-            <kbd>GET</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/going-events/username"</i>
-            </p>
-          </div>
-
-          <blockquote class="blockquote ml-5 mt-2">
-            
-            Response: <br />
-            <code>
-              {<br />
-              <span class="ml-4">"count": number of going events,</span><br />
-              <span class="ml-4">"next": next page url,</span><br />
-              <span class="ml-4">"previous": previous page url,</span><br />
-              <span class="ml-4">"results": [</span><br />
-              <span class="ml-5">{</span><br />
-                <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"location": event location,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
-                <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pay1_method": payment method for number 1,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pay2": payment mobile number 2,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pay2_method": payment method for number 2,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"capacity": member capacity of this event,</span></span><br />
-                <span class="ml-5"><span class="ml-4"> "cost": cost to pay,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"image": image url,</span></span><br />
-                <span class="ml-5"><span class="ml-4">"host": host user id</span></span><br />
-                <span class="ml-5"><span class="ml-4">"going": [ going user id ],</span></span><br />
-                <span class="ml-5"><span class="ml-4">"pending": [ pending users id ]</span></span><br />
-             
-                <span class="ml-5">}</span><br />
-              <span class="ml-4">]</span><br />
-              }<br />
-              
-            </code>
-          </blockquote>
-        </div>
-
-        <hr />
-        <div class="my-2 pt-4" id="event_payment">
-          <div class="d-flex titles">
-            <div class="d-flex">
-            <h5 class="mb-0 mr-2">Event Payment</h5>
-            <kbd>POST</kbd></div>
-            <p class="mb-0 ml-2 text-success">
-              <i>"https://www.tourday.team/api/event-pay/event_id"</i>
-            </p>
-          </div>
-    
-
-          <blockquote class="blockquote ml-5 mt-2">
-            <code>
-              {<br />
-              <span class="ml-4">"method": payment_method,</span><br />
-              <span class="ml-4">"tr": transaction_number,</span><br />
-             
-              }<br />
-            </code>
-          </blockquote>
-        </div>
-
+      </div>
+      <div>
       </div>
     </div>
     <footer class="px-2 py-3 d-flex justify-content-center">
@@ -843,6 +1114,12 @@
 
 
     <style>
+      .container{
+        min-height: calc(100vh - 56px);
+      }
+      .card-header{
+          cursor: pointer;
+      }
       .dropdown-item:active {
         background-color: #eaecee;
         color: black;
@@ -891,6 +1168,7 @@
           margin-left: 1rem!important;
         }
       }
+
     </style>
   </body>
   <script
