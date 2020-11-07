@@ -47,9 +47,9 @@
   </head>
   <body>
 
-    <div class="container mt-3">
+    <div class="container mt-5">
 
-      <blockquote class="blockquote text-center">
+      <blockquote class="blockquote text-center ">
         <a href="{%url 'search_page'%}">
           <img
             width="300"
@@ -66,8 +66,8 @@
           <div class="card-header" id="headingOne"  role="button"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
             <h5 class="mb-0">
               <div class="card-content"  >
-                <i class="fas fa-chevron-down mr-2"></i>
-                Authentication
+                
+                <span class="header-text"><i class="fas fa-chevron-down mr-2"></i>Authentication</span>
               </div>
             </h5>
           </div>
@@ -217,8 +217,9 @@
           <div class="card-header" id="profile" role="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             <h5 class="mb-0">
               <div class="card-content collapsed" >
+                <span class="header-text">
                 <i class="fas fa-chevron-down mr-2"></i>
-                Profile
+                Profile</span>
               </div>
             </h5>
           </div>
@@ -445,8 +446,9 @@
           <div class="card-header" id="event" role="button" data-toggle="collapse" data-target="#eventcollapse" aria-expanded="false" aria-controls="collapseTwo">
             <h5 class="mb-0">
               <div class="card-content collapsed" >
+                <span class="header-text">
                 <i class="fas fa-chevron-down mr-2"></i>
-                Event
+                Event</span>
               </div>
             </h5>
           </div>
@@ -723,8 +725,9 @@
           <div class="card-header" id="blog" role="button" data-toggle="collapse" data-target="#blogcollapse" aria-expanded="false" aria-controls="collapseTwo">
             <h5 class="mb-0">
               <div class="card-content collapsed" >
+                <span class="header-text">
                 <i class="fas fa-chevron-down mr-2"></i>
-                Blog
+                Blog</span>
               </div>
             </h5>
           </div>
@@ -1114,11 +1117,18 @@
 
 
     <style>
+      .header-text{
+        user-select: none;
+      }
       .container{
-        min-height: calc(100vh - 56px);
+        min-height: calc(100vh - 96px);
       }
       .card-header{
           cursor: pointer;
+          background-color: #fff;
+      }
+      .card{
+        box-shadow: 0px 0.3px 2px #00000012;
       }
       .dropdown-item:active {
         background-color: #eaecee;
@@ -1146,6 +1156,7 @@
         text-transform: uppercase;
       }
       @media (max-width: 800px){
+       
         .titles{
             flex-direction: column;
         }
