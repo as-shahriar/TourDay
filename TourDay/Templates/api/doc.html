@@ -83,6 +83,8 @@
           >Delete Post</a
         >
         <a href="#like-post" class="dropdown-item" type="button">Like Post</a>
+        <a href="#create_event" class="dropdown-item" type="button">Create Event</a>
+        <a href="#edit_event" class="dropdown-item" type="button">Edit Event</a>
         <a href="#get_events" class="dropdown-item" type="button">Get Own Events</a>
         <a href="#event-all" class="dropdown-item" type="button">Get All Events</a>
         <a href="#going_events" class="dropdown-item" type="button">Going Events</a>
@@ -465,6 +467,75 @@
 
         <hr />
         <h3>Event</h3>
+
+       
+        <hr />
+        <div class="my-2 pt-4" id="create_event">
+          <div class="d-flex titles">
+            <div class="d-flex">
+            <h5 class="mb-0 mr-2">Create Event</h5>
+            <kbd>POST</kbd></div>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://www.tourday.team/api/create_event/"</i>
+            </p>
+          </div>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            
+            Request: <br />
+            <code>
+              {<br />
+                <span class="ml-5">"title": event title,</span></span><br />
+                <span class="ml-5">"location": event location,</span></span><br />
+                <span class="ml-5">"date": "yyyy-mm-dd",</span><br />
+                <span class="ml-5">"details": event details,</span><br />
+                <span class="ml-5">"pay1": payment mobile number 1,</span><br />
+                <span class="ml-5">"pay1_method": payment method for number 1,</span></span><br />
+                <span class="ml-5">"pay2": payment mobile number 2,</span><br />
+                <span class="ml-5">"pay2_method": payment method for number 2,</span><br />
+                <span class="ml-5">"capacity": member capacity of this event,</span><br />
+                <span class="ml-5">"cost": cost to pay</span><br />
+                
+              }<br />
+              
+            </code>
+          </blockquote>
+        </div>
+
+        <hr />
+        <div class="my-2 pt-4" id="edit_event">
+          <div class="d-flex titles">
+            <div class="d-flex">
+            <h5 class="mb-0 mr-2">Edit Event</h5>
+            <kbd>POST</kbd></div>
+            <p class="mb-0 ml-2 text-success">
+              <i>"https://www.tourday.team/api/edit_event/event_id"</i>
+            </p>
+          </div>
+
+          <blockquote class="blockquote ml-5 mt-2">
+            
+            Request: <br />
+            <code>
+              {<br />
+                <span class="ml-5">"title": event title,</span></span><br />
+                <span class="ml-5">"location": event location,</span></span><br />
+                <span class="ml-5">"date": "yyyy-mm-dd",</span><br />
+                <span class="ml-5">"details": event details,</span><br />
+                <span class="ml-5">"pay1": payment mobile number 1,</span><br />
+                <span class="ml-5">"pay1_method": payment method for number 1,</span></span><br />
+                <span class="ml-5">"pay2": payment mobile number 2,</span><br />
+                <span class="ml-5">"pay2_method": payment method for number 2,</span><br />
+                <span class="ml-5">"capacity": member capacity of this event,</span><br />
+                <span class="ml-5">"cost": cost to pay,</span><br />
+                <span class="ml-5">"image": event cover image</span><br />
+                
+              }<br />
+              
+            </code>
+          </blockquote>
+        </div>
+
         <hr />
         <div class="my-2 pt-4" id="get_events">
           <div class="d-flex titles">
@@ -488,7 +559,7 @@
               <span class="ml-5">{</span><br />
                 <span class="ml-5"><span class="ml-4">"id": event id,</span></span><br />
                 <span class="ml-5"><span class="ml-4">"title": event title,</span></span><br />
-                <span class="ml-5"><a class="ml-4">"location": event location <a href="" data-toggle="modal" data-target="#location_keys" >key</a>,</span></span><br />
+                <span class="ml-5"><span class="ml-4">"location": event location,</span></span><br />
                 <span class="ml-5"><span class="ml-4">"date": "yyyy-mm-dd",</span></span><br />
                 <span class="ml-5"><span class="ml-4">"details": event details,</span></span><br />
                 <span class="ml-5"><span class="ml-4">"pay1": payment mobile number 1,</span></span><br />
