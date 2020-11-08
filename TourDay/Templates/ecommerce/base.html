@@ -109,7 +109,7 @@
 				  aria-haspopup="true" aria-expanded="false">List</a>
 				<div class="dropdown-menu dropdown-menu-right dropdown-info">
 					{% for product_type in product_type %}
-				  <a class="dropdown-item" href="#">{{product_type}}</a>
+				  <a class="dropdown-item" href="{% url 'Category_items' product_type %}">{{product_type}}</a>
 				  {% endfor %}
 				</div>
 			  </li>
@@ -159,7 +159,7 @@
 	</nav>
 
      <div class="container">
-            <br>
+           <br>
             {% block content %}
 
 

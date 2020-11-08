@@ -13,6 +13,8 @@ document.querySelectorAll(".open-modal").forEach(e=>{
 })
 
 changeModal = (id,title,description,price,img,product_type,digital)=>{
+
+    document.getElementById("product_details").setAttribute('data-product', id);
     
     document.getElementById("modal-img").src = img
     document.getElementById("modal-title").textContent = title

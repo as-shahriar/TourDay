@@ -20,10 +20,14 @@
 							<input required class="form-control" type="email" value="{{profile.email}}" disabled>
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text" name="phone" placeholder="Phone No..">
+							<input required class="form-control" type="text" name="phone"
+							{% if shipping_check %} value="{{shipping_add.PhoneNo}}" {% endif %}
+							placeholder="Phone No..">
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text" name="al_phone" placeholder="Alternative Phone No..">
+							<input required class="form-control" type="text" name="al_phone" 
+							{% if shipping_check %} value="{{shipping_add.allPhoneNo}}" {% endif %}
+							placeholder="Alternative Phone No..">
 						</div>
 					</div>
 					
@@ -35,18 +39,26 @@
 							<input class="form-control" type="text" placeholder="Bangladesh" disabled>
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text" name="city" placeholder="City..">
+							<input required class="form-control" type="text" name="city"
+							{% if shipping_check %} value="{{shipping_add.city}}" {% endif %}
+							placeholder="City..">
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text" name="state" placeholder="State..">
+							<input required class="form-control" type="text" 
+							{% if shipping_check %} value="{{shipping_add.state}}" {% endif %}
+							name="state" placeholder="State..">
 							
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+							<input required class="form-control" type="text"
+							{% if shipping_check %} value="{{shipping_add.zipcode}}" {% endif %}
+							name="zipcode" placeholder="Zip code..">
 						</div>
 						
 						<div class="form-group">
-							<textarea required class="form-control" type="text" name="address" placeholder="Address" rows="3"></textarea>
+							<textarea required class="form-control" type="text" name="address" 	placeholder="Address" rows="3">
+								{% if shipping_check %}{{shipping_add.address}}{% endif %}
+							</textarea>
 						  </div>
 					</div>
 					<hr>
@@ -69,7 +81,7 @@
 			
 							<div class="form-group">
 								<select class="form-control" name="payment_mtd">
-									<option value="checked" disabled >Payment type</option>
+									<option value="checked" >Payment type</option>
 									<option value="bKash">bKash</option>
 									<option value="Rocket">Rocket</option>
 								</select>

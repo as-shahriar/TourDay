@@ -152,14 +152,22 @@ def checkout(request):
 
             return redirect('checkout_message')
         
-      
-   
+    
+    shipping_check = False
+    shipping_check = ShippingAddress.objects.filter(customer=request.user).order_by('-id').exists()
+    
+    if shipping_check:
+        shipping_add = ShippingAddress.objects.filter(customer=request.user).order_by('-id')[0]
+
     context = {
     'items':items,
     'order':order,
     'cartItems':cartItems,
     'profile' : profile,
     'product_type' : product_type,
+
+    'shipping_check' : shipping_check,
+     'shipping_add' : shipping_add,   
     
     }
     return render(request, 'ecommerce/checkout.html', context)
@@ -342,6 +350,7 @@ def user_order(request):
     return render(request, 'ecommerce/user_order.html', context)
 
 
+@login_required
 def checkout_message(request):
 
     data = cartData(request)
@@ -422,3 +431,31 @@ class DownloadPDF(View):
         response['Content-Disposition'] = content
         return response
 
+
+def Category_items(request, slug):
+
+
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    product_type = Product_type.objects.all().order_by('-id')
+    
+    products = Product.objects.filter(product_type=slug).order_by('-id')
+    paginator = Paginator(products, 12)  # Show 12 obj per page
+
+    page = request.GET.get('page')
+    products = paginator.get_page(page)
+
+
+    context = {
+
+        'product_type' :  product_type,
+        'products':products, 
+        'cartItems':cartItems,
+    }
+
+
+    return render(request, 'ecommerce/category_items.html', context)

@@ -55,7 +55,7 @@
         <h4> <b style="color: green;"> Your order accepted!</b></h4>
 
         <p> <strong>Hello, {{order.customer.profile.name}}</strong> <br>
-            You order has been accepted and will be shipped in next two days!
+            Your order has been accepted and will be shipped in next two days!
         </p> 
         <hr>
         
@@ -63,19 +63,15 @@
             <tr>
                 <th>Order Date</th>
                 <th>Order No</th>		
-                <th>Payment</th>
+                <th>Shiping Method</th>
                 <th>Shiping Address</th>
             </tr>
             <tr>
                 <td>{{order.date_ordered}}</td>
                 <td>{{order.order_id}}</td>	
-                {% if  payment.payment_method == bKash %}	
-                <td>bKash</td>
-                {% elif payment.payment_method == Rocket %}
-                <td>Rocket</td>
-                {% else %}
-                <td>Cash On Delivery</td>
-                {% endif %}
+
+                <td>{{payment.method}}</td>
+
                 <td>{{shipping.address}}, {{shipping.state}}</td>
             </tr>
             
@@ -96,7 +92,7 @@
                 <td><img class="row-image" src="http://127.0.0.1:8000{{item.product.imageURL}}"></div></td>
                 <td>{{item.product.name}}</td>		
                 <td>{{item.quantity}}</td>
-                <td>BDT. {{item.product.price}}</td>
+                <td>BDT. {{item.product.price}}x{{item.quantity}}</td>
             </tr>
             {% endfor %}
             

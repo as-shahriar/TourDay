@@ -1,7 +1,9 @@
 from django.urls import path
 from ecommerce.views import (
     store, cart, checkout, staff_pages, product_table, order_table,
-    order_details, user_order, product_edit, add_product, product_delete, checkout_message, ViewPDF,DownloadPDF)
+    order_details, user_order, product_edit, add_product, product_delete, checkout_message, ViewPDF,DownloadPDF,
+    Category_items,
+    )
 
 urlpatterns = [
     path('', store, name='store'),
@@ -21,5 +23,7 @@ urlpatterns = [
     #Receipt Pdf view
     path('checkout/receipt/', ViewPDF.as_view(), name="pdfview"),
     path('checkout/receipt/download/', DownloadPDF.as_view(), name="pdf_download"),
+
+    path('category/<slug>', Category_items, name="Category_items"),
 
 ]
