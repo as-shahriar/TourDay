@@ -144,7 +144,7 @@ def action(request, id):
                 "username": user.username,
                 "email": user.email
             }
-            subject = "Payment request accepted!"
+            subject = f"Payment request accepted for {event.title}."
             message = f"Dear {user.username},\nYour payment request for event '{event.title}' in TourDay got accepted. Pack your bags and get ready to explore!\nKeep eye on https://tourday.team/event/{event.id}\nBest Regards\nTourDay Team"
             async_send_mail(subject, message,
                             EMAIL_HOST_USER, user.email)
@@ -152,7 +152,7 @@ def action(request, id):
         elif is_accepted == "0":
             event.pending.remove(user)
             tr.delete()
-            subject = "Payment request denied!"
+            subject = f"Payment request denied for {event.title}."
             message = f"Dear {user.username},\nYour payment request for event '{event.title}' in TourDay got denied. Kindly check your transaction number and try again.\nBest Regards\nTourDay Team"
             async_send_mail(subject, message,
                             EMAIL_HOST_USER, user.email)
@@ -182,7 +182,7 @@ def pay(request, id):
             obj.save()
             event.pending.add(request.user)
             event.save()
-            subject = "New payment request for your event."
+            subject = f"New payment request for {event.title}."
             message = f"Dear {event.host.username},\nYour event '{event.title}' in TourDay gets a new payment request. Kindly review the request on https://tourday.team/event/{event.id}\nBest Regards\nTourDay Team"
             async_send_mail(subject, message,
                             EMAIL_HOST_USER, event.host.email)
