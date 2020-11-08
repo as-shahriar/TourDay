@@ -182,7 +182,7 @@ def pay(request, id):
             obj.save()
             event.pending.add(request.user)
             event.save()
-            subject = f"New payment request for {event.title}."
+            subject = f"New payment request for {event.title} | {request.user.username}"
             message = f"Dear {event.host.username},\nYour event '{event.title}' in TourDay gets a new payment request. Kindly review the request on https://tourday.team/event/{event.id}\nBest Regards\nTourDay Team"
             async_send_mail(subject, message,
                             EMAIL_HOST_USER, event.host.email)
