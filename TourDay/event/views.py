@@ -165,14 +165,19 @@ def action(request, id):
 @csrf_exempt
 def pay(request, id):
     if request.method == "POST":
-        method = request.POST.get("method").strip()
-        tr = request.POST.get("tr").strip()
+        method = request.POST.get("method")
+        tr = request.POST.get("tr")
+
         try:
             event = Event.objects.get(id=id)
+            if Transactions.objects.filter(
+                Q(event=event), Q(user=request.user)
+            ).count() != 0:
+                raise ValueError
             obj = Transactions()
             obj.event = event
-            obj.method = method
-            obj.tr = tr
+            obj.method = method.strip()
+            obj.tr = tr.strip()
             obj.user = request.user
             obj.save()
             event.pending.add(request.user)
