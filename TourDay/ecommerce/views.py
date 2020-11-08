@@ -180,6 +180,8 @@ def staff_pages(request):
 @staff_member_required
 def product_table(request):
 
+    product_check_search = False
+
     product = Product.objects.all().order_by('-id')
     
     paginator = Paginator(product, 5)  # Show 5 obj per page
@@ -187,8 +189,16 @@ def product_table(request):
     page = request.GET.get('page')
     product = paginator.get_page(page)
 
+    if request.method == 'POST' and 'btn_product_search' in request.POST:
+        
+        q = request.POST.get('product_search').strip()
+        product = Product.objects.filter(Q(name__icontains=q) | Q(product_type__icontains=q))
+
+        product_check_search = True
+
     context = {
         'product' : product,
+        'product_check_search' : product_check_search,
     }
 
     return render(request, 'ecommerce/stuff_page/product_table.html', context)
@@ -368,8 +378,6 @@ def checkout_message(request):
 
 
     #Generated pdf
-
-
 def render_to_pdf(template_src, context_dict={}):
 	template = get_template(template_src)
 	html  = template.render(context_dict)
@@ -380,10 +388,8 @@ def render_to_pdf(template_src, context_dict={}):
 	return None
 
 
+
 #Opens up page as PDF
-
-
-
 class ViewPDF(View):
     def get(self, request, *args, **kwargs):
 

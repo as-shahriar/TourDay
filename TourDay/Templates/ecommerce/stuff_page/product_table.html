@@ -14,9 +14,9 @@
     <div class="box-element">
     <form method="POST">
       {% csrf_token %}
-        <input class="form-control mt-2" name="search" type="text" placeholder="Type product name or type...">
+        <input class="form-control mt-2" name="product_search" type="text" value="{{request.POST.product_search}}" placeholder="Type product name or type...">
          
-          <button type="submit" name="btn-search" class="btn btn-success mt-2">Search</button>
+          <button type="submit" name="btn_product_search" class="btn btn-success mt-2">Search</button>
         
       </form>
     </div>
@@ -32,6 +32,32 @@
             <div style="flex:0.3"></div>
             <div style="flex:0.5"></div>
         </div>
+
+        {% if product_check_search %}
+
+        {% for product in  product %}
+        <div class="cart-row">
+            <div style="flex:1"><img class="row-image" src="{{product.imageURL}}"></div>
+            <div style="flex:2"><p>{{product.name}}</p></div>
+            <div style="flex:1"><p>৳{{product.price}}</p></div>
+            <div style="flex:1"><p>{{product.product_type}}</p></div>
+            {% if product.digital %}
+            <div style="flex:1"><p>Not available</p></div>
+            {% else %}
+            <div style="flex:1"><p>Available</p></div>
+            {% endif %}
+            <div style="flex:0.3">
+               
+                <a href="{% url 'product_edit' product.pk %}" class="btn btn-secondary btn-sm" role="button">Edit</a>
+
+            </div>
+            <div style="flex:0.5">
+                <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger btn-sm" role="button" aria-disabled="true">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% else %}
 
                 {% for product in  product %}
 				<div class="cart-row">
@@ -53,8 +79,9 @@
                         <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger btn-sm" role="button" aria-disabled="true">Delete</a>
                     </div>
 				</div>
-				{% endfor %}
-
+                {% endfor %}
+                
+                {% endif %}
                 <div class="row md-4 mt-2 mr-1 ml-1">
                     <div class="col-4">
                         {% if product.has_previous %}
