@@ -1,0 +1,97 @@
+{% extends 'ecommerce/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'ecommerce/css/modal.css'%}">
+{%endblock%}
+{% block content %}
+	<div class="row">
+		{% for product in products %}
+	
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+				{% if product.digital %}
+				<button data-action="add" class="btn btn-outline-secondary add-btn update-cart" disabled style="cursor: default;">Add to Cart</button>
+				{% else %}
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				{% endif %}
+				<button class="btn btn-outline-success open-modal" data-id="{{product.id}}" type="button" data-target="#backdrop">View</button>
+				<h5 style="display: inline-block; float: right"><strong>৳{{product.price}}</strong></h5>
+			</div>
+		</div>
+		{% endfor %}
+	
+	</div>
+
+	<div class="row mt-3 mb-3">
+		<div class="col-md-5"></div>
+		<div class="col-md-2">
+			{% if products.has_next %}
+			<a href="?page={{ products.next_page_number }}" class="btn btn-dark btn-sm btn-block">Load More</a>{%endif%}
+
+		</div>
+		<div class="col-md-5"></div>
+	</div>
+
+	<!-- Button trigger modal -->
+<button type="button" style="display: none;" id="modal-triger" data-toggle="modal" data-target="#exampleModalCenter">
+	
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+	
+		<div class="modal-body">
+		    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+		
+		<div class="content">
+				<div class="left">
+
+					<img id="modal-img" class="thumbnail" src="http://127.0.0.1:8000/media/ecom_pics/2.png" alt="Image">
+				</div>
+				
+				<div class="right">
+					<h4 id="modal-title"><strong>Title</strong></h4>
+					<h5 id="modal-price" style="color: #FD8F5F;" ><strong>৳550</strong></h5>
+					<p id="modal-product_type">Type</p>
+					<div style="display: flex;">
+						<p class="mr-1">Availibility : <p id="modal-status">Status</p></p>
+					</div>
+					<hr>
+					<p id="modal-description" style="text-align: justify;">Description</p>
+
+				
+					<button id="product_details" data-product="31" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				
+					
+				</div>
+				
+		</div>
+	</div>
+	  </div>
+	</div>
+  </div>
+
+  <div class="payment-options-row">
+    <div class=" d-flex justify-content-center">
+        <div class="payment-options">
+            <p class="align-middle">We accept payment via </p>
+            <img class="cod" src="{% static 'icon/cod.webp'%}" alt="CashOnDelivery" title="Cash On Delivery">
+            <img class="bKash" src="{% static 'icon/bkash.webp'%}" alt="bKash" title="bKash">
+          
+            <img class="rocket" src="{% static 'icon/rocket.webp'%}" alt="Rocket" title="Rocket">
+           
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+{%block js%}<script src="{% static 'ecommerce/js/modal.js' %}"></script>{%endblock%}

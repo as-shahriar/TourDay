@@ -2,7 +2,7 @@ from django.urls import path
 from ecommerce.views import (
     store, cart, checkout, staff_pages, product_table, order_table,
     order_details, user_order, product_edit, add_product, product_delete, checkout_message, ViewPDF,DownloadPDF,
-    Category_items,
+    Category_items,search_items,
     )
 
 urlpatterns = [
@@ -25,5 +25,5 @@ urlpatterns = [
     path('checkout/receipt/download/', DownloadPDF.as_view(), name="pdf_download"),
 
     path('category/<slug>', Category_items, name="Category_items"),
-
+    path('search/', search_items, name="search_items"),
 ]

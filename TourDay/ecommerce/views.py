@@ -438,8 +438,6 @@ def Category_items(request, slug):
     data = cartData(request)
 
     cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
 
     product_type = Product_type.objects.all().order_by('-id')
     
@@ -459,3 +457,39 @@ def Category_items(request, slug):
 
 
     return render(request, 'ecommerce/category_items.html', context)
+
+
+def search_items(request):
+
+
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+
+    product_type = Product_type.objects.all().order_by('-id')
+    
+    q = request.GET.get('q')
+    if q == None:
+        return redirect("all_product")
+    products = Product.objects.all().filter(
+        Q(name__icontains=q) |
+        Q(description__icontains=q) |
+        Q(product_type__icontains=q))
+
+
+    paginator = Paginator(products, 12)  # Show 12 obj per page
+
+    page = request.GET.get('page')
+    products = paginator.get_page(page)
+
+
+    context = {
+
+        'product_type' :  product_type,
+        'products':products, 
+        'cartItems':cartItems,
+    }
+
+
+    return render(request, 'ecommerce/search_items.html', context)
+
