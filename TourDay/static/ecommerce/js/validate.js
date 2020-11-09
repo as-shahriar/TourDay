@@ -8,6 +8,3 @@ bootstrapValidate('#productName', 'max:20:Please dont enter more than 20 Charact
 
 bootstrapValidate('#productImage', 'required:Please fill out this field!')
 
-
-
-

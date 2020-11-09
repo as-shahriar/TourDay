@@ -20,12 +20,14 @@
 							<input required class="form-control" type="email" value="{{profile.email}}" disabled>
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text" name="phone"
+							<input required class="form-control" type="number" name="phone" minlength="11" maxlength="11"
+							id="checkout_phone"
 							{% if shipping_check %} value="{{shipping_add.PhoneNo}}" {% endif %}
-							placeholder="Phone No..">
+							placeholder="Phone No.." >
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text" name="al_phone" 
+							<input required class="form-control" type="number" name="al_phone" minlength="11" maxlength="11"
+							id="checkout_phone1"
 							{% if shipping_check %} value="{{shipping_add.allPhoneNo}}" {% endif %}
 							placeholder="Alternative Phone No..">
 						</div>
@@ -50,15 +52,13 @@
 							
 						</div>
 						<div class="form-field">
-							<input required class="form-control" type="text"
+							<input required class="form-control" type="number" minlength="4" maxlength="6"
 							{% if shipping_check %} value="{{shipping_add.zipcode}}" {% endif %}
 							name="zipcode" placeholder="Zip code..">
 						</div>
 						
 						<div class="form-group">
-							<textarea required class="form-control" type="text" name="address" 	placeholder="Address" rows="3">
-								{% if shipping_check %}{{shipping_add.address}}{% endif %}
-							</textarea>
+							<textarea required class="form-control" type="text" name="address" 	placeholder="Address" rows="3"></textarea>
 						  </div>
 					</div>
 					<hr>
@@ -80,17 +80,19 @@
 								<p>Send Money: <b> ৳{{order.get_cart_total}}</b> bKash: 017XX-XXXXXX or Rocket: 017XX-XXXXXX-X</p>
 			
 							<div class="form-group">
-								<select class="form-control" name="payment_mtd">
-									<option value="checked" >Payment type</option>
+								<select class="form-control" name="payment_mtd" required="true">
+									<option value="checked" hidden selected="false">Payment Type</option>
 									<option value="bKash">bKash</option>
 									<option value="Rocket">Rocket</option>
 								</select>
 							</div>
 							<div class="form-field">
-								<input class="form-control" type="text" name="pay_phone_no" placeholder="Phone No">
+								<input class="form-control" id="payment_phone" id="checkout_phone"
+								 type="number" name="pay_phone_no" placeholder="Phone No" maxlength="11" maxlength="11">
 							</div>
+
 							<div class="form-field">
-								<input class="form-control" type="text" name="trxid" placeholder="TrxID">
+								<input class="form-control" id="payment_trxid" type="text" name="trxid" placeholder="TrxID">
 							</div>
 						</div>
 					</div>
@@ -130,3 +132,4 @@
 
 
 {% endblock content %}
+
