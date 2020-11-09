@@ -44,7 +44,7 @@ def store(request):
     product_type = Product_type.objects.all().order_by('-id')
     
     products = Product.objects.all().order_by('-id')
-    paginator = Paginator(products, 12)  # Show 12 obj per page
+    paginator = Paginator(products, 15)  # Show 15 obj per page
 
     page = request.GET.get('page')
     products = paginator.get_page(page)
@@ -184,7 +184,7 @@ def product_table(request):
 
     product = Product.objects.all().order_by('-id')
     
-    paginator = Paginator(product, 5)  # Show 5 obj per page
+    paginator = Paginator(product, 25)  # Show 25 obj per page
 
     page = request.GET.get('page')
     product = paginator.get_page(page)
@@ -276,7 +276,7 @@ def order_table(request):
     order_check_search = False
 
     order = Order.objects.all().order_by('-id')
-    paginator = Paginator(order, 5)  # Show 5 obj per page
+    paginator = Paginator(order, 25)  # Show 25 obj per page
 
     page = request.GET.get('page')
     order = paginator.get_page(page)
@@ -448,7 +448,7 @@ def Category_items(request, slug):
     product_type = Product_type.objects.all().order_by('-id')
     
     products = Product.objects.filter(product_type=slug).order_by('-id')
-    paginator = Paginator(products, 12)  # Show 12 obj per page
+    paginator = Paginator(products, 15)  # Show 15 obj per page
 
     page = request.GET.get('page')
     products = paginator.get_page(page)
@@ -483,7 +483,7 @@ def search_items(request):
         Q(product_type__icontains=q))
 
 
-    paginator = Paginator(products, 12)  # Show 12 obj per page
+    paginator = Paginator(products, 15)  # Show 15 obj per page
 
     page = request.GET.get('page')
     products = paginator.get_page(page)
