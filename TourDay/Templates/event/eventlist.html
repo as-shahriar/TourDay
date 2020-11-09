@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}{% load static %}
+
+{%block og-details %}
+<meta name="og:title" content="TourDay" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{% static 'image/tourday-og.png'%}" />
+{%endblock%}
+{%block css%}<link
+  rel="stylesheet"
+  href="{% static 'profile/css/users.css'%}"
+/>
+{%endblock%} {% block title %}TourDay | All Events{%endblock%} {% block content %}
+<style>
+  #nav {
+    display: none;
+  }
+
+  .user-details{
+    flex-direction: column;
+  }
+
+  .small-font{
+    font-size: .95rem;
+    margin-top: 3px;
+  }
+</style>
+
+<div class="container my-4 bg">
+  <h5 class="pt-4 mb-4">All Events</h5>
+  <hr />
+  <ul class="list-unstyled">
+      <div id="event-root"></div>
+
+  </ul>
+  <div id="see-more-div" ><span id="see-more">See More</span></div>
+</div>
+{% endblock %}
+
+{%block scripts %}
+<script src="{% static 'event/js/all-event.js'%}"></script>
+{%endblock%}

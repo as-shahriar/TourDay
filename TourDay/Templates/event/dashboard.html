@@ -33,6 +33,11 @@ Event{%endblock%} {%block css%}<link
         Going <span class="badge badge-secondary">{{going_events.count}}</span>
       </h5></a
     >
+    <a href="{% url 'all_event' %}" 
+    ><h5 align="center" style="font-size: 1rem;">
+      See All Events
+    </h5></a
+  >
   </div>
   <hr />
   <div class="row my-3" id="root-div"></div>

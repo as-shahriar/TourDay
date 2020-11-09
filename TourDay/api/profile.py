@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .serializer import ProfileSerializer, ProfileUpdateSerializer, PostSerializer
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from user_profile.models import Profile, Post
 from rest_framework.parsers import FormParser, MultiPartParser
 
@@ -25,6 +25,7 @@ class ProfileView(APIView):
         data = ProfileSerializer(profile).data
         return Response({
             'username': request.user.username,
+            'id': request.user.id,
             'profile': data,
             'is_completed': is_completed
         }, status=status.HTTP_200_OK)
@@ -99,8 +100,21 @@ class PostDelete(APIView):
             return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
+class UserDetailsByID(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get('id')
+        try:
+            profile = Profile.objects.get(user__id=id)
+            data = ProfileSerializer(profile).data
+            return Response({'profile': data}, status=status.HTTP_200_OK)
+        except:
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+
+
 class UserDetails(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):
         username = kwargs.get('username')

@@ -33,6 +33,7 @@ def dashboard(request):
         event.pay1_method = request.POST.get('pay1_method')
         event.pay2_method = request.POST.get('pay2_method')
         event.save()
+        event.going.add(request.user)
 
         return JsonResponse({'status': 200, "id": event.id})
     profile = Profile.objects.get(user=request.user)
@@ -57,6 +58,27 @@ class EventList(APIView, LimitOffsetPagination):
         instance = self.paginate_queryset(instance, request, view=self)
         serializer = self.serializer_class(instance, many=True)
         return self.get_paginated_response(serializer.data)
+
+
+class AllEventList(APIView, LimitOffsetPagination):
+    permission_classes = [AllowAny]
+    serializer_class = EventSerializer
+
+    def get(self, request, *args, **kwargs):
+        instance = Event.objects.all().order_by("-date")
+        instance = self.paginate_queryset(instance, request, view=self)
+        serializer = self.serializer_class(instance, many=True)
+        return self.get_paginated_response(serializer.data)
+
+
+def all(request):
+    nav_img = None
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        nav_img = profile.picture.url
+    return render(request, "event/eventlist.html", {
+        "nav_img": nav_img,
+    })
 
 
 @login_required
@@ -100,7 +122,9 @@ def eventView(request, id):
         "transaction": transaction,
         "nav_img": nav_img,
         "capacity": capacity >= event.capacity,
-        "ads": get_ads()
+        "ads": get_ads(),
+        "availabe_capacity": event.capacity-capacity,
+
     })
 
 
@@ -128,7 +152,7 @@ def action(request, id):
                 "username": user.username,
                 "email": user.email
             }
-            subject = "Payment request accepted!"
+            subject = f"Payment request accepted for {event.title}."
             message = f"Dear {user.username},\nYour payment request for event '{event.title}' in TourDay got accepted. Pack your bags and get ready to explore!\nKeep eye on https://tourday.team/event/{event.id}\nBest Regards\nTourDay Team"
             async_send_mail(subject, message,
                             EMAIL_HOST_USER, user.email)
@@ -136,7 +160,7 @@ def action(request, id):
         elif is_accepted == "0":
             event.pending.remove(user)
             tr.delete()
-            subject = "Payment request denied!"
+            subject = f"Payment request denied for {event.title}."
             message = f"Dear {user.username},\nYour payment request for event '{event.title}' in TourDay got denied. Kindly check your transaction number and try again.\nBest Regards\nTourDay Team"
             async_send_mail(subject, message,
                             EMAIL_HOST_USER, user.email)
@@ -149,19 +173,24 @@ def action(request, id):
 @csrf_exempt
 def pay(request, id):
     if request.method == "POST":
-        method = request.POST.get("method").strip()
-        tr = request.POST.get("tr").strip()
+        method = request.POST.get("method")
+        tr = request.POST.get("tr")
+
         try:
             event = Event.objects.get(id=id)
+            if Transactions.objects.filter(
+                Q(event=event), Q(user=request.user)
+            ).count() != 0:
+                raise ValueError
             obj = Transactions()
             obj.event = event
-            obj.method = method
-            obj.tr = tr
+            obj.method = method.strip()
+            obj.tr = tr.strip()
             obj.user = request.user
             obj.save()
             event.pending.add(request.user)
             event.save()
-            subject = "New payment request for your event."
+            subject = f"New payment request for {event.title} | {request.user.username}"
             message = f"Dear {event.host.username},\nYour event '{event.title}' in TourDay gets a new payment request. Kindly review the request on https://tourday.team/event/{event.id}\nBest Regards\nTourDay Team"
             async_send_mail(subject, message,
                             EMAIL_HOST_USER, event.host.email)
@@ -178,3 +207,26 @@ def delete_event(request, id):
         event.delete()
         return JsonResponse({"status": 200})
     return JsonResponse({"status": 400})
+
+
+<< << << < HEAD
+== == == =
+
+
+def create_event(n, request):
+    for i in range(n):
+        event = Event()
+        event.host = request.user
+        event.title = str(i)
+        event.location = "xyz"
+        event.date = "1990-02-02"
+        event.details = "xyz"
+        event.pay1 = 12
+        event.pay2 = 12
+        event.cost = 12
+        event.pay1_method = "xyz"
+        event.pay2_method = "xyz"
+        event.save()
+
+
+>>>>>> > master
