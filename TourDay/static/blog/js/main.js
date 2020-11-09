@@ -117,8 +117,10 @@ if (search != null) {
           location.href = `/users/?q=${q.value}`;
         } else if (radios[i].value == "post") {
           location.href = `/blog/search/?q=${q.value}`;
-        } else {
-        }
+        } 
+        else if (radios[i].value == "product") {
+          location.href = `ecommerce/search/?q=${q.value}`;
+        } 
       }
     }
   });

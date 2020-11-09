@@ -209,10 +209,6 @@ def delete_event(request, id):
     return JsonResponse({"status": 400})
 
 
-<< << << < HEAD
-== == == =
-
-
 def create_event(n, request):
     for i in range(n):
         event = Event()
@@ -227,6 +223,3 @@ def create_event(n, request):
         event.pay1_method = "xyz"
         event.pay2_method = "xyz"
         event.save()
-
-
->>>>>> > master
