@@ -366,11 +366,13 @@ def checkout_message(request):
     data = cartData(request)
     cartItems = data['cartItems']
 
+    product_type = Product_type.objects.all().order_by('-id')
     order = Order.objects.filter(customer=request.user).order_by('-id')[0]
 
     context = {
         'cartItems' : cartItems,
         'order' : order,
+        'product_type' : product_type,
     }
 
     return render(request, 'ecommerce/order_con.html', context)
