@@ -2,15 +2,20 @@
 document.querySelectorAll(".open-modal").forEach(e=>{
     e.addEventListener("click",()=>{
         id = e.getAttribute("data-id")
-        fetch(`/api/ecommerce/product/details/${id}`).
-        then(res=>res.json()).
-        then(data=>{
-            const {description, image,name,price,product_type,digital} = data
-            changeModal(id,name,description,price,image,product_type,digital)
-            document.getElementById("modal-triger").click();
-        })
+        get_product_info(id)
     })
 })
+
+
+function get_product_info(id){
+    fetch(`/api/ecommerce/product/details/${id}`).
+    then(res=>res.json()).
+    then(data=>{
+        const {description, image,name,price,product_type,digital} = data
+        changeModal(id,name,description,price,image,product_type,digital)
+        document.getElementById("modal-triger").click();
+    })
+}
 
 changeModal = (id,title,description,price,img,product_type,digital)=>{
 
@@ -34,4 +39,13 @@ changeModal = (id,title,description,price,img,product_type,digital)=>{
     }
     document.getElementById("modal-description").textContent = description
     
+}
+
+
+url = window.location.href;
+re = /#[0-9]+/
+value_in_url = re.exec(url)
+if (value_in_url){
+    id = value_in_url[0].replace(/#/,"")
+    get_product_info(id)
 }
