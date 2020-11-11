@@ -24,8 +24,6 @@ from django.views import View
 from xhtml2pdf import pisa
 
 
-# Create your views here.
-
 
 def random_with_N_digits(n):
     range_start = 10**(n-1)
@@ -153,6 +151,8 @@ def checkout(request):
             return redirect('checkout_message')
         
     
+    shipping_add = ShippingAddress.objects.all()
+
     shipping_check = False
     shipping_check = ShippingAddress.objects.filter(customer=request.user).order_by('-id').exists()
     
@@ -167,7 +167,7 @@ def checkout(request):
     'product_type' : product_type,
 
     'shipping_check' : shipping_check,
-     'shipping_add' : shipping_add,   
+    'shipping_add' : shipping_add,   
     
     }
     return render(request, 'ecommerce/checkout.html', context)
