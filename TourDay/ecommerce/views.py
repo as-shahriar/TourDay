@@ -16,6 +16,9 @@ import os
 from PIL import Image
 from TourDay.settings import MEDIA_DIR
 
+#email
+from utils import async_send_mail
+from TourDay.settings import EMAIL_HOST_USER
 
 # generate pdf
 from io import BytesIO
@@ -147,6 +150,12 @@ def checkout(request):
             pay.PhoneNo = request.POST.get('pay_phone_no')
             pay.trxId = request.POST.get('trxid')
             pay.save()
+
+            #email here
+            email = request.user.email
+            subject = "We've received your order, check to see if everything is OK before confirming"
+            message = f"Dear {profile.name},\nWe have received your order. Order ID {ord.order_id}. You have ordered a total of {ord.total_items} products which cost BDT. {ord.total_money}. \n\nCongratulations on your prudence in ordering products online. With this decision you are saving your precious few hours which would have been spent on street jams, shopping in stores. We know the value of your time. So we will try to deliver the products to you as soon as possible. Our work on your order will start right now. We will approve your order shortly. You will receive a confirmation message via email/phone. We will then provide the courier service to get your parcel ready and sent as soon as possible and at the same time confirm you via email. So check the email inbox to stay updated about your order status.\n\n\nGood luck always.\nTourDay Team" 
+            async_send_mail(subject, message, EMAIL_HOST_USER, email)
 
             return redirect('checkout_message')
         
