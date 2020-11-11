@@ -118,6 +118,7 @@ def checkout(request):
 
             for item in items:
                 product = Product.objects.get(id=item['product']['id'])
+              
                 orders = Order.objects.filter(customer=request.user) 
                 for order in orders:
                     if order.status == 'Pending':
@@ -154,7 +155,7 @@ def checkout(request):
             #email here
             email = request.user.email
             subject = "We've received your order, check to see if everything is OK before confirming"
-            message = f"Dear {profile.name},\nWe have received your order. Order ID {ord.order_id}. You have ordered a total of {ord.total_items} products which cost BDT. {ord.total_money}. \n\nCongratulations on your prudence in ordering products online. With this decision you are saving your precious few hours which would have been spent on street jams, shopping in stores. We know the value of your time. So we will try to deliver the products to you as soon as possible. Our work on your order will start right now. We will approve your order shortly. You will receive a confirmation message via email/phone. We will then provide the courier service to get your parcel ready and sent as soon as possible and at the same time confirm you via email. So check the email inbox to stay updated about your order status.\n\n\nGood luck always.\nTourDay Team" 
+            message = f"Dear {profile.name},\nWe've received your order. Order ID {ord.order_id}. You have ordered a total of {ord.total_items} products which cost BDT. {ord.total_money}. \n\n\nCongratulations on your prudence in ordering products online. With this decision you are saving your precious few hours which would have been spent on street jams, shopping in stores. We know the value of your time. So we will try to deliver the products to you as soon as possible. Our work on your order will start right now. We will approve your order shortly. You will receive a confirmation message via email/phone. We will then provide the courier service to get your parcel ready and sent as soon as possible and at the same time confirm you via email. So check the email inbox to stay updated about your order status.\n\nGood luck always,\nTourDay Team!" 
             async_send_mail(subject, message, EMAIL_HOST_USER, email)
 
             return redirect('checkout_message')
@@ -307,6 +308,8 @@ def order_table(request):
 @staff_member_required
 def order_details(request, id):
 
+    profile = get_object_or_404(Profile, user=request.user)
+
     order = Order.objects.get(id=id)
     order_item = OrderItem.objects.filter(order=order).order_by('quantity')
     shipping = ShippingAddress.objects.get(order=order)
@@ -315,6 +318,20 @@ def order_details(request, id):
     if request.method == 'POST' and 'order_submit' in request.POST:
         order.status = request.POST.get('payment_mtd')
         order.save()
+        
+         #email here
+        email = request.user.email
+        if order.status == "Approved":
+            subject = f"Your order has been approved. Please match again."
+            message = f"Dear {profile.name}, \nYour order has been approved. Your order ID is {order.order_id}.\n\nWe have started working on your order. We will deliver your product very quickly.\nHowever, for some reason, despite our sincere desire and effort, we are not able to deliver the product faster. Because of the weekly closure of product collection locations, it may take some time for us to collect products out of stock. Even then we will try our best to deliver your order as soon as possible.\nWe hope that your ordered products will be delivered to you soon.\n\nGood luck always.\nTourDay Team."
+            async_send_mail(subject, message, EMAIL_HOST_USER, email)
+
+        if order.status == "Shipped":
+
+            subject = f"Your order has been shipped.Take a look at the details"
+            message = f"Dear {profile.name}, \nYour order (ID {order.order_id}) has been prepared by us and sent to the delivery team. Your parcel is ready with utmost importance. Hope to receive your parcel very soon.We hope to receive your parcel in a few days. In case of delay in delivery, please contact tourday.bd@gmail.com via email.\n\nWe hope that your ordered products will be delivered to you soon.\n\nGood luck always.\nTourDay Team."
+            async_send_mail(subject, message, EMAIL_HOST_USER, email)
+        
         return redirect('all_order')
 
     context = {
