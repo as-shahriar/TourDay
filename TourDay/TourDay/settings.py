@@ -24,7 +24,7 @@ SECRET_KEY = "w#d#t1y6r9q$+xfq)x#omv9m@nehjq7b5^j7n6#+7ljln(j0eb"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # DEBUG = False
-DEV_ENV = True
+
 
 if not DEBUG:
     PREPEND_WWW = True  # add www to non-www url
@@ -108,26 +108,25 @@ WSGI_APPLICATION = "TourDay.wsgi.application"
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tourdaydb',
-        'USER': 'tourdayuser',
-        'PASSWORD': get_key("db") ,
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'tourdaydb',
+#         'USER': 'tourdayuser',
+#         'PASSWORD': get_key("db") ,
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
-DATABASES_DEV = {
+DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
 
-if DEV_ENV:
-    DATABASES = DATABASES_DEV
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -166,7 +165,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'tourday.bd@gmail.com'
-EMAIL_HOST_PASSWORD = get_key("mail")  # Email Password
+EMAIL_HOST_PASSWORD = ""  # Email Password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'CodingWithMitch Team <noreply@codingwithmitch.com>'
