@@ -5,8 +5,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, "Templates")
 
 def get_key():
-    with open(os.path.join(BASE_DIR,'.mailkey'),'r') as f:
-        return f.readline().strip()
+    try:
+        with open(os.path.join(BASE_DIR,'.mailkey'),'r') as f:
+            return f.readline().strip()
+    except:
+        print("\n\n\nNeed .mailkey file to send email.\n\n\n")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
