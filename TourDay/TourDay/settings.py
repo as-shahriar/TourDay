@@ -4,6 +4,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, "Templates")
 
+def get_key():
+    with open(os.path.join(BASE_DIR,'.mailkey'),'r') as f:
+        return f.readline().strip()
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -152,7 +156,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'tourday.bd@gmail.com'
-EMAIL_HOST_PASSWORD = "ewofhlvvgzxjiydj"  # Email Password
+EMAIL_HOST_PASSWORD = get_key()  # Email Password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'CodingWithMitch Team <noreply@codingwithmitch.com>'
