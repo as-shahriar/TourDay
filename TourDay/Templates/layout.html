@@ -28,6 +28,12 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous"
   />
+
+   <!-- font -->
+   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+   <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
+
+
     <link rel="stylesheet" href="{% static 'css/base.css'%}" />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -41,6 +47,14 @@
     <link rel="stylesheet" href="{% static 'css/layout.css'%}" />
     {%block css%}{%endblock%}
     <title>{% block title %}{%endblock%}</title>
+
+    <style>
+      body {
+        /* overflow: hidden; */
+        font-family: "SolaimanLipi", "Poppins", Arial, sans-serif !important;
+      }
+    </style>
+
   </head>
   <body style="overflow: hidden;">
     <div class="loader">
