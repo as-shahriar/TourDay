@@ -6,7 +6,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, "Templates")
 
 def get_key(option):
     try:
-        if option == "mail"
+        if option == "mail":
             with open(os.path.join(BASE_DIR,'.mailkey'),'r') as f:
                 return f.readline().strip()
         elif option == "db":
