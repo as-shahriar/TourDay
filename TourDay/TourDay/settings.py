@@ -24,7 +24,7 @@ SECRET_KEY = "w#d#t1y6r9q$+xfq)x#omv9m@nehjq7b5^j7n6#+7ljln(j0eb"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # DEBUG = False
-DEV_ENV = False
+DEV_ENV = True
 
 if not DEBUG:
     PREPEND_WWW = True  # add www to non-www url
