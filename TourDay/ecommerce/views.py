@@ -112,7 +112,7 @@ def checkout(request):
             random_order_id = int(random_with_N_digits(8))
 
             if Order.objects.filter(order_id=random_order_id).exists():
-                random_order_id = int(random_with_N_digits(8))
+                random_order_id = random_order_id+1
 
 
             ord = Order.objects.create(customer=request.user, total_money=order['get_cart_total'], 
