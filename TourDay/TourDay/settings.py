@@ -4,16 +4,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, "Templates")
 
-def get_key(option):
-    try:
-        if option == "mail":
-            with open(os.path.join(BASE_DIR,'.mailkey'),'r') as f:
-                return f.readline().strip()
-        elif option == "db":
-            with open(os.path.join(BASE_DIR,'.dbkey'),'r') as f:
-                return f.readline().strip()
-    except:
-        print("\n\n\nNeed .mailkey file to send email.\n\n\n")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -107,7 +97,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "TourDay.wsgi.application"
 
 
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -125,7 +114,6 @@ DATABASES = {
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
-
 
 
 # Password validation
