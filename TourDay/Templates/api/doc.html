@@ -235,6 +235,54 @@
           </div>
           <div id="collapseTwo" class="collapse" aria-labelledby="profile" >
             <div class="card-body">
+
+              <div class="my-2 pt-4" >
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Search User</h5>
+                  <kbd>GET</kbd>
+                  </div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/search/user/search_keyword"</i>
+                  </p>
+                </div>
+                
+              
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                      <span class="ml-4">"count": number of user,</span><br />
+                      <span class="ml-4">"next": next page url,</span><br />
+                      <span class="ml-4">"previous": previous page url,</span><br />
+                      <span class="ml-4">"results": [</span><br />
+                      <span class="ml-4">{</span><br />
+                   
+                      <span class="ml-5">"name": "Asif Shahriar",</span><br>
+                      <span class="ml-5">"email": "asif.qubit@gmail.com",</span><br>
+                      <span class="ml-5">"fb": "asif.8617",</span><br>
+                      <span class="ml-5">"insta": "_asif_shahriar",</span><br>
+                      <span class="ml-5">"city": "Rangpur, Bangladesh",</span><br>
+                      <span class="ml-5">"bio": "Full Stack web developer",</span><br>
+                      <span class="ml-5">"picture": "/media/profile_pics/asif/asif.png"</span><br>
+                      <span class="ml-4">},</span><br>
+                      <span class="ml-4">{</span><br />
+                        <span class="ml-5">"name": "Rakib Hasan Anik",</span><br>
+                        <span class="ml-5">"email": "anikrakib3@gmail.com",</span><br>
+                        <span class="ml-5">"fb": "anik.rakib.hasan",</span><br>
+                        <span class="ml-5">"insta": "i_am__anik",</span><br>
+                        <span class="ml-5">"city": "Comilla, Bangladesh",</span><br>
+                        <span class="ml-5">"bio": "Android developer",</span><br>
+                        <span class="ml-5">"picture": "/media/profile_pics/anik/anik.png"</span><br>
+                        <span class="ml-4">}</span><br>
+                        
+                        <span class="ml-4">]</span><br>
+                    
+                    <span >}</span>
+                  </code>
+                </blockquote>
+              </div>
+
+
               <div class="my-2 pt-4" >
                 <div class="d-flex titles">
                   <div class="d-flex">
@@ -1011,6 +1059,58 @@
                     "Delete Successfully."
                   </code>
                 </blockquote>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card mb-2">
+          <div class="card-header" id="ecom" role="button" data-toggle="collapse" data-target="#ecomcollapse" aria-expanded="false" aria-controls="collapseTwo">
+            <h5 class="mb-0">
+              <div class="card-content collapsed" >
+                <span class="header-text">
+                <i class="fas fa-chevron-down mr-2"></i>
+                E-commerce</span>
+              </div>
+            </h5>
+          </div>
+          <div id="ecomcollapse" class="collapse" aria-labelledby="ecom" >
+            <div class="card-body">
+            
+              <div class="my-2 mt-4">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Search Product</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/search/product/product_keyword"</i>
+                  </p>
+                </div>
+                
+                <blockquote class="blockquote ml-5 mt-2">
+                <code>
+                  {<br />
+                    <span class="ml-4">"count": number of product,</span><br />
+                    <span class="ml-4">"next": next page url,</span><br />
+                    <span class="ml-4">"previous": previous page url,</span><br />
+                    <span class="ml-4">"results": [</span><br />
+                    <span class="ml-4">{</span><br />
+                 
+                    <span class="ml-5">"id": 1,</span><br>
+                    <span class="ml-5">"name": "Bag",</span><br>
+                    <span class="ml-5">"price": 568,</span><br>
+                    <span class="ml-5">"product_type": "type",</span><br>
+                    <span class="ml-5">"digital": true,</span><br>
+                    <span class="ml-5">"img": "/media/ecom_pics/12456.png"</span><br>
+                    <span class="ml-4">}</span><br>
+                   
+                      
+                      <span class="ml-4">]</span><br>
+                  
+                  <span >}</span>
+                </code>
+              </blockquote>
               </div>
         
             </div>
