@@ -323,7 +323,8 @@ def order_details(request, id):
         order.save()
         
          #email here
-        email = request.user.email
+        email = order.customer.email
+        
         if order.status == "Approved":
             subject = f"Your order has been approved. Please match again."
             message = f"Dear {profile.name}, \nYour order has been approved. Your order ID is {order.order_id}.\n\nWe have started working on your order. We will deliver your product very quickly.\nHowever, for some reason, despite our sincere desire and effort, we are not able to deliver the product faster. Because of the weekly closure of product collection locations, it may take some time for us to collect products out of stock. Even then we will try our best to deliver your order as soon as possible.\nWe hope that your ordered products will be delivered to you soon.\n\nGood luck always.\nTourDay Team."
