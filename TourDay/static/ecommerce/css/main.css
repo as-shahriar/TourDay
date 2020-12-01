@@ -215,7 +215,7 @@ img {
   }
   
   #status {
-	width: auto;
+	width: 99%;
 	height: auto;
 	position: absolute;
 	left: 52%;
