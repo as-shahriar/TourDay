@@ -288,6 +288,19 @@ input[type="date"]:focus {
   display: none;
 }
 
+.modal-dialog {
+  max-width: 100%;
+}
+.modal-content {
+  align-items: center;
+}
+
+.modal-post {
+  @extend .post;
+  max-width: 80%;
+  max-height: 80%;
+}
+
 @media (max-width: 800px) {
   .root {
     flex-direction: column;
