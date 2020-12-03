@@ -473,7 +473,7 @@ textarea.input {
   max-width: 220px;
   width: 100%;
   padding: 80px 20px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   z-index: 99;
   -webkit-transform: translateX(100%);
   -ms-transform: translateX(100%);
