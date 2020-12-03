@@ -6,6 +6,7 @@ from rest_framework.authtoken.models import Token
 from .serializer import UserSerializer
 from rest_framework.permissions import IsAuthenticated
 from user_profile.models import Profile
+from django.contrib.auth.models import User
 
 
 class Signup(APIView):
@@ -19,3 +20,12 @@ class Signup(APIView):
         return Response({
             'token': token.key,
         }, status=status.HTTP_201_CREATED)
+
+
+class DeleteAccount(APIView):
+    def post(self, request):
+        if request.user.is_authenticated:
+            user = User.objects.get(username=request.user.username)
+            user.delete()
+            return Response({"status": 200})
+        return Response({"status": 404})
