@@ -469,8 +469,8 @@ textarea.input {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: #fff;
-  max-width: 360px;
+  background-color: #00284eeb;
+  max-width: 220px;
   width: 100%;
   padding: 80px 20px;
   overflow-y: scroll;
@@ -486,11 +486,17 @@ textarea.input {
   -ms-transform: translateX(0%);
   transform: translateX(0%);
 }
+.nav-aside-menu li {
+  margin-top: 1rem;
+}
+
 .nav-aside-menu li a {
   font-family: "Nunito Sans", sans-serif;
   font-weight: 700;
-  font-size: 23px;
+  color: white !important;
+  font-size: 2rem;
 }
+
 .nav-aside-social li {
   display: inline-block;
 }
@@ -1079,12 +1085,20 @@ textarea.input {
   color: #fff;
   opacity: 0.9;
 }
+
+.aside-btn {
+  display: none;
+}
+
 /*=========================================================
 	RESPONSIVE
 ===========================================================*/
 @media only screen and (max-width: 991px) {
   #nav .nav-menu {
     display: none;
+  }
+  .aside-btn {
+    display: inline-block;
   }
 }
 @media only screen and (max-width: 767px) {
