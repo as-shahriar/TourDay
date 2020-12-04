@@ -38,5 +38,6 @@ urlpatterns = [
     path('search/user/<str:q>', views.SearchUser.as_view()),
     path('search/product/<str:q>', views.SearchProduct.as_view()),
     path('map/<str:username>', views.map),
+    path('map-dark/<str:username>', views.map_dark),
 
 ]

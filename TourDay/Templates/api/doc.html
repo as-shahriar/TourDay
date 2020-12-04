@@ -512,6 +512,43 @@
           </div>
           <div id="eventcollapse" class="collapse" aria-labelledby="event" >
             <div class="card-body">
+
+
+              <div class="my-2 pt-4" id="view_event">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">View Event</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/event/event_id"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  
+                  Response: <br />
+                  <code>
+                    {<br />
+                      <span class="ml-5">"title": event title,</span></span><br />
+                      <span class="ml-5">"location": event location,</span></span><br />
+                      <span class="ml-5">"date": "yyyy-mm-dd",</span><br />
+                      <span class="ml-5">"details": event details,</span><br />
+                      <span class="ml-5">"pay1": payment mobile number 1,</span><br />
+                      <span class="ml-5">"pay1_method": payment method for number 1,</span></span><br />
+                      <span class="ml-5">"pay2": payment mobile number 2,</span><br />
+                      <span class="ml-5">"pay2_method": payment method for number 2,</span><br />
+                      <span class="ml-5">"capacity": member capacity of this event,</span><br />
+                      <span class="ml-5">"cost": cost to pay,</span><br />
+                      <span class="ml-5">"img": event banner,</span><br />
+                      <span class="ml-5">"host": user id of host,</span><br />
+                      <span class="ml-5">"going": [],</span><br />
+                      <span class="ml-5">"pending": []</span><br />
+                    }<br />
+                    
+                  </code>
+                </blockquote>
+              </div>
+
               <div class="my-2 pt-4" id="create_event">
                 <div class="d-flex titles">
                   <div class="d-flex">

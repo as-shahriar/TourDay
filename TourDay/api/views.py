@@ -13,6 +13,10 @@ def map(request, username):
     return render(request, 'api/map.html', {'username': username})
 
 
+def map_dark(request, username):
+    return render(request, 'api/map-dark.html', {'username': username})
+
+
 class SearchUser(APIView, LimitOffsetPagination):
     serializer_class = ProfileSerializer
 
