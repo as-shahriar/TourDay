@@ -115,3 +115,12 @@ class EditEvent(APIView):
             event.save()
             return Response({'status': 200, "id": event.id})
         return Response({'status': 400})
+
+
+class EventView(APIView):
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get('id')
+        event = get_object_or_404(Event, id=id)
+        serializer = EventSerializer(event, many=False)
+        print(serializer.data)
+        return Response(serializer.data)

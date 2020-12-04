@@ -32,7 +32,8 @@ urlpatterns = [
     path("event-pay/<int:id>", event.Pay.as_view()),
     path('create_event/', event.CreateEvent.as_view()),
     path('edit_event/<int:id>', event.EditEvent.as_view()),
-    path('going_users/<str:id>', event.GoingUser.as_view()),
+    path('going_users/<int:id>', event.GoingUser.as_view()),
+    path('event/<int:id>', event.EventView.as_view()),
 
     path('search/user/<str:q>', views.SearchUser.as_view()),
     path('search/product/<str:q>', views.SearchProduct.as_view()),
