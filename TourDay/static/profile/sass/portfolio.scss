@@ -68,6 +68,7 @@ h3 {
   margin-right: 3rem;
   border-radius: 1rem;
   margin-bottom: 2rem;
+  max-width: 39rem;
 }
 
 .head {
@@ -178,6 +179,7 @@ input[type="date"]:focus {
   margin-right: 3rem;
   border-radius: 1rem;
   background-color: #ebebeb;
+  max-width: 39rem;
 }
 
 .post-head {
@@ -286,6 +288,22 @@ input[type="date"]:focus {
   display: none;
 }
 
+.modal-dialog {
+  max-width: 100%;
+}
+.modal-content {
+  align-items: center;
+}
+
+.modal-post {
+  @extend .post;
+  max-width: 80%;
+  max-height: 80%;
+}
+.close-con {
+  width: 45%;
+}
+
 @media (max-width: 800px) {
   .root {
     flex-direction: column;
@@ -306,11 +324,20 @@ input[type="date"]:focus {
   .profile-icon {
     max-width: 2rem;
   }
-
+  .add_post_container {
+    display: flex;
+    justify-content: center;
+  }
+  #post-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .add_post,
   .post {
     margin: 1rem;
     margin-bottom: 2rem;
+    width: 85%;
   }
   .info-box {
     flex-direction: column;

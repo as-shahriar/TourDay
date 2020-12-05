@@ -19,3 +19,10 @@ It is a platform where people can showcase their tours, share information & expe
 4. Install dependencies from requirements.txt `pip3 install -r requirements.txt`
 5. Run Server `python manage.py runserver`
 6. check `127.0.0.1:8000`
+
+## Devs & Credits
+
+- [Asif Shahriar](https://asifo1.github.io) - Full Stack Developer.
+- [Partha Kumar Bagchi](https://github.com/pkbagchi) - Full Stack Developer.
+- [Rakib Hasan Anik](https://github.com/anik-rakib) - Android Developer.
+- [Mohaiminul Karim](https://dribbble.com/MkAkash) - Logo Desginer.

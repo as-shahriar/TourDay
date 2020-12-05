@@ -37,7 +37,10 @@ def dashboard(request):
 
         return JsonResponse({'status': 200, "id": event.id})
     profile = Profile.objects.get(user=request.user)
-    events = Event.objects.filter(going__in=[request.user])
+    events = Event.objects.filter(
+        Q(going__in=[request.user]),
+        ~Q(host=request.user)
+    )
     context = {
         "ads": get_ads(),
         "going_events": events,
@@ -78,6 +81,7 @@ def all(request):
         nav_img = profile.picture.url
     return render(request, "event/eventlist.html", {
         "nav_img": nav_img,
+        "ads": get_ads(),
     })
 
 
