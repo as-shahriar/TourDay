@@ -94,77 +94,92 @@
 				&nbsp;</div>
 	  </div>
 
-
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="{% url 'search_page'%}">
+	  <header class="site-header">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		  
+		  <a class="navbar-brand" href="#">
 			<img src="{% static 'image/tourday-nav.png'%}" height="30" class="d-inline-block align-top"
-			  alt="mdb logo">
-		  </a>
-
-		  <form class="form-inline my-1" method="GET" action="{% url 'search_items' %}">
+			alt="mdb logo">
+			</a>
+			<form class="form-inline my-1" method="GET" action="{% url 'search_items' %}">
 			<div class="md-form form-sm my-0">
 			  <input class="form-control form-control-sm mr-sm-2 mb-0" type="text" placeholder="Search"  name="q" 
-				aria-label="Search" value="{{ request.GET.q }}">
+			  aria-label="Search" value="{{ request.GET.q }}">
 			</div>
 			<button class="btn btn-info btn-sm" type="submit">Search</button>
-		  </form> 
-
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
-			
-			<li class="nav-item dropdown" style="cursor: pointer;list-style: none;color: white;" >
+			</form> 
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarToggle">
+			<div class="navbar-nav mr-auto">
+			<ul class="navbar-nav mr-auto">
+		  
+			  <li class="nav-item dropdown" style="cursor: pointer;list-style: none;color: white;" >
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
 				  aria-haspopup="true" aria-expanded="false">List</a>
 				<div class="dropdown-menu dropdown-menu-right dropdown-info">
-					{% for product_type in product_type %}
+				  {% for product_type in product_type %}
 				  <a class="dropdown-item" href="{% url 'Category_items' product_type %}">{{product_type}}</a>
 				  {% endfor %}
 				</div>
-			  </li>
-	 
-		</ul>
+				</li>
+		   
+			</ul>
+			
+			
+		   
+			</div>
+			<!-- Navbar Right Side -->
+			<div class="navbar-nav">
+			
+			  
+			<div class="form-inline my-2 my-lg-0">
+	
+		  <li class="nav-item dropdown" style="cursor: pointer;list-style: none;color: rgb(241, 232, 232);" >
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+			  aria-haspopup="true" aria-expanded="false">
+			  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+				</a>
+			  
+			<div class="dropdown-menu dropdown-menu-right dropdown-info" >
+			  <a class="dropdown-item" href="{% url 'store' %}">Home</a>
+			  {% if request.user.is_staff %}
+			  <a class="dropdown-item" href="{% url 'user_order' %}">My Orders</a>
+			  <a class="dropdown-item" href="{% url 'staff_pages' %}">Saff Account</a>
+			  <hr>
+			  <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+			  {% else %}
+			  {% if request.user.is_authenticated %}
+			
+			  <a class="dropdown-item" href="{% url 'portfolio' request.user %}">My account</a>
+			  <a class="dropdown-item" href="{% url 'user_order' %}">My Orders</a>
+			  <hr>
+			  <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+				{% else %}
+				<a class="dropdown-item" href="{% url 'login_page' %}">Login</a>
+				<hr>
+				<a class="dropdown-item" href="{% url 'staff_pages' %}">Saff Login</a>
+				
+			  {% endif%}
+			  {% endif %}
+			</div>
+			
+			</li>
+	
+			<a href="{% url 'cart' %}">
+			  <img  id="cart-icon" src="{% static 'ecommerce/images/cart.png' %}">
+			</a>
+			<p id="cart-total">{{cartItems}}</p>
+	
+		  </div>
 		
-	    <div class="form-inline my-2 my-lg-0">
-
-			<li class="nav-item dropdown" style="cursor: pointer;list-style: none;color: rgb(241, 232, 232);" >
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-				  aria-haspopup="true" aria-expanded="false">
-				  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-				    </a>
-				  
-				<div class="dropdown-menu dropdown-menu-right dropdown-info" >
-					<a class="dropdown-item" href="{% url 'store' %}">Home</a>
-					{% if request.user.is_staff %}
-					<a class="dropdown-item" href="{% url 'user_order' %}">My Orders</a>
-					<a class="dropdown-item" href="{% url 'staff_pages' %}">Saff Account</a>
-					<hr>
-					<a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
-					{% else %}
-					{% if request.user.is_authenticated %}
-				
-					<a class="dropdown-item" href="{% url 'portfolio' request.user %}">My account</a>
-					<a class="dropdown-item" href="{% url 'user_order' %}">My Orders</a>
-					<hr>
-					<a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
-						{% else %}
-						<a class="dropdown-item" href="{% url 'login_page' %}">Login</a>
-						<hr>
-						<a class="dropdown-item" href="{% url 'staff_pages' %}">Saff Login</a>
-						
-					{% endif%}
-				  {% endif %}
-				</div>
-				
-			  </li>
-
-	     	<a href="{% url 'cart' %}">
-	    		<img  id="cart-icon" src="{% static 'ecommerce/images/cart.png' %}">
-	    	</a>
-	    	<p id="cart-total">{{cartItems}}</p>
-
-	    </div>
-	  </div>
-	</nav>
+			</div>
+		  </div>
+		  
+		</nav>
+		</header>
+	
 
      <div class="container">
            <br>
