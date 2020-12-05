@@ -104,9 +104,9 @@
 			<form class="form-inline my-1" method="GET" action="{% url 'search_items' %}">
 			<div class="md-form form-sm my-0">
 			  <input class="form-control form-control-sm mr-sm-2 mb-0" type="text" placeholder="Search"  name="q" 
-			  aria-label="Search" value="{{ request.GET.q }}">
+			  aria-label="Search" value="{{ request.GET.q }}" style="max-width: 220px;">
 			</div>
-			<button class="btn btn-info btn-sm" type="submit">Search</button>
+			<button class="btn btn-info btn-sm ml-1" type="submit">Search</button>
 			</form> 
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
