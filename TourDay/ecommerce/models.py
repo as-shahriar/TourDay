@@ -42,7 +42,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, blank=True)
+        User, on_delete=models.CASCADE, null=True, blank=True)
     date_ordered = models.DateField(default=datetime.date.today)
     complete = models.BooleanField(default=False)
 
@@ -78,8 +78,8 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateField(default=datetime.date.today)
 
@@ -90,8 +90,8 @@ class OrderItem(models.Model):
 
 
 class ShippingAddress(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     PhoneNo = models.CharField(max_length=50, null=False, blank=True)
     allPhoneNo = models.CharField(max_length=50, null=False, blank=True)
     address = models.CharField(max_length=200, null=False, blank=True)
@@ -105,8 +105,8 @@ class ShippingAddress(models.Model):
 
 
 class payment(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
 
     method = models.CharField(max_length=50, null=True, blank=True)
 
