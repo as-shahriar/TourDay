@@ -99,12 +99,12 @@
 		  
 		  <a class="navbar-brand" href="#">
 			<img src="{% static 'image/tourday-nav.png'%}" height="30" class="d-inline-block align-top"
-			alt="mdb logo">
+			alt="mdb logo" id="nav-brand">
 			</a>
 			<form class="form-inline my-1" method="GET" action="{% url 'search_items' %}">
 			<div class="md-form form-sm my-0">
 			  <input class="form-control form-control-sm mr-sm-2 mb-0" type="text" placeholder="Search"  name="q" 
-			  aria-label="Search" value="{{ request.GET.q }}" style="max-width: 200px;">
+			  aria-label="Search" value="{{ request.GET.q }}" id="ecom-search">
 			</div>
 			<button class="btn btn-info btn-sm ml-1" type="submit">Search</button>
 			</form> 
@@ -118,7 +118,7 @@
 			  <li class="nav-item dropdown" style="cursor: pointer;list-style: none;color: white;" >
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown"
 				  aria-haspopup="true" aria-expanded="false">List</a>
-				<div class="dropdown-menu dropdown-menu-right dropdown-info">
+				<div class="dropdown-menu dropdown-menu-right dropdown-info" id="list-item">
 				  {% for product_type in product_type %}
 				  <a class="dropdown-item" href="{% url 'Category_items' product_type %}">{{product_type}}</a>
 				  {% endfor %}
@@ -142,7 +142,7 @@
 			  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
 				</a>
 			  
-			<div class="dropdown-menu dropdown-menu-right dropdown-info" >
+			<div class="dropdown-menu dropdown-menu-right dropdown-info" id="ecom-dropdown">
 			  <a class="dropdown-item" href="{% url 'store' %}">Home</a>
 			  {% if request.user.is_staff %}
 			  <a class="dropdown-item" href="{% url 'user_order' %}">My Orders</a>

@@ -26,7 +26,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .bg-dark{
-	background-color: #4f868c!important;
+	background-color: #00284e !important;
 }
 
 #cart-icon{
@@ -62,11 +62,34 @@ h1,h2,h3,h4,h5,h6{
 	background-color: white;
 }
 
+
+.btn-info,
+.btn-info:hover,
+.btn-info:active,
+.btn-info:focus {
+	object-fit: contain;
+ 	background-color: #012241 !important;
+	background-color: white;
+  	border-color: #011c35 !important;
+}
+.btn-info:focus {
+	box-shadow: 0 0 0 0.2rem #0122416c !important;
+}
+
 .form-field{
 	width:250px;
 	display: inline-block;
 	padding: 5px;
+
 }
+#ecom-search {
+	background-color: #ffffffd6;
+	border: 1px solid #00284e;
+  }
+#ecom-search:focus {
+	box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.25);
+}
+ 
 .form-group {
 	width:500px;
 	display: inline-block;
@@ -228,4 +251,29 @@ img {
 	background-position: center;
 	margin: -100px 0 0 -100px;
 	/* is width and height divided by two */
+  }
+
+  @media(max-width:991px) {
+	  #ecom-search {
+		max-width: 170px;
+		
+	  } 
+	  #nav-brand {
+		  height: 22px;
+	  }
+	  #list-item {
+		  background-color: #00284e;
+		  
+		  
+	  }
+	  #list-item a {
+		  color: white;
+	  }
+	  #ecom-dropdown {
+		background-color: #00284e;
+	  }
+
+	  #ecom-dropdown a {
+		  color: white;
+	  }
   }
