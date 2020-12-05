@@ -469,8 +469,8 @@ textarea.input {
   right: 0;
   top: 0;
   bottom: 0;
-  background: #00284eeb;
-  background: linear-gradient(90deg, rgb(48, 119, 212) 0%, rgb(30, 73, 153) 43%, rgb(2, 13, 75) 100%);
+  background: #1DE9B6;
+  background: linear-gradient(to left, #1d2046, #3e968a);
   max-width: 220px;
   width: 100%;
   padding: 80px 20px;
