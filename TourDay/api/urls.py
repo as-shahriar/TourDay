@@ -44,6 +44,6 @@ urlpatterns = [
     path('search/event/<str:q>', views.SearchEvent.as_view()),
     path('map/<str:username>', views.map),
     path('map-dark/<str:username>', views.map_dark),
-    path('map/data/<str:username>', get_map_data)
+    path('map/json/<str:username>', get_map_data)
 
 ]
