@@ -186,3 +186,15 @@ class EventTransactionHandler(APIView):
             async_send_mail(subject, message,
                             EMAIL_HOST_USER, user.email)
             return Response({"message": "Transaction isn't accepted"}, status=status.HTTP_200_OK)
+
+
+class EventDelete(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        id = kwargs.get('id')
+        event = get_object_or_404(Event, id=id)
+        if request.user != event.host:
+            return Response({'message': 'No access'}, status=status.HTTP_403_FORBIDDEN)
+        event.delete()
+        return Response({"message": "Event deleted."}, status=status.HTTP_200_OK)

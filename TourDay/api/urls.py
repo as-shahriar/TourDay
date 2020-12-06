@@ -37,6 +37,7 @@ urlpatterns = [
     path('event/transactions/<int:id>', event.EventTransaction.as_view()),
     path('event/transactions/action/<int:id>',
          event.EventTransactionHandler.as_view()),
+    path('event/delete/<int:id>', event.EventDelete.as_view()),
 
     path('search/user/<str:q>', views.SearchUser.as_view()),
     path('search/product/<str:q>', views.SearchProduct.as_view()),
