@@ -24,10 +24,19 @@ def users(request):
     q = request.GET.get("q")
     if q == None:
         return redirect("blog_home")
-    users = Profile.objects.filter(
-
-        Q(name__icontains=q) | Q(email__icontains=q) | Q(city__icontains=q)
-    )
+    queries = q.split(" ")
+    users = None
+    for query in queries:
+        if users:
+            users |= Profile.objects.filter(
+                Q(name__icontains=query) | Q(
+                    email__icontains=query) | Q(city__icontains=query)
+            )
+        else:
+            users = Profile.objects.filter(
+                Q(name__icontains=query) | Q(
+                    email__icontains=query) | Q(city__icontains=query)
+            )
     nav_img = None
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)

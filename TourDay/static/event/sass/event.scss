@@ -167,6 +167,14 @@
 }
 
 @media (max-width: 800px) {
+  .event-info {
+    h1 {
+      font-size: 1.4rem;
+    }
+    h5 {
+      font-size: 1rem;
+    }
+  }
   .travelers {
     flex-direction: column;
 

@@ -27,7 +27,8 @@ Profile{%endblock%} {%block css%}
     <img id="pro_pic" src="{{profile.picture.url}}" alt="Profile picture" />
     <div class="info">
       <div style="display: flex; align-items: center;justify-content:center;">
-        <h3 id="name">  {%if profile.name%}{{profile.name}}{%else%}Edit Profile{%endif%}</h3>
+        <h3 id="name">  {%if profile.name%}{{profile.name}}{%else%}
+          {% if request.user == user_obj %}Edit Profile{%else%}Anonymous User{%endif%}{%endif%}</h3>
         {% if request.user == user_obj %}
         <a href="{% url 'edit_profile' %}" id="edit-link"
           ><i class="material-icons">edit</i></a

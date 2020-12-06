@@ -32,7 +32,8 @@ class UserSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['name', 'email', 'fb', 'insta', 'city', 'bio', 'picture']
+        fields = ['user', 'name', 'email', 'fb',
+                  'insta', 'city', 'bio', 'picture']
 
 
 class ProfileUpdateSerializer(serializers.Serializer):
@@ -58,3 +59,9 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         exclude = ['user']
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ('__all__')

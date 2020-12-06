@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .serializer import ProfileSerializer
+from .serializer import ProfileSerializer, EventSerializer
 from user_profile.models import Profile
 from rest_framework.response import Response
 from django.db.models import Q
 from rest_framework.pagination import LimitOffsetPagination
 from ecommerce.models import Product
 from ecommerce.serializers import ProductSerializer
+from event.models import Event
 
 
 def map(request, username):
@@ -22,11 +23,19 @@ class SearchUser(APIView, LimitOffsetPagination):
 
     def get(self, request, *args, **kwargs):
         q = kwargs.get('q')
-
-        instance = Profile.objects.filter(
-
-            Q(name__icontains=q) | Q(email__icontains=q) | Q(city__icontains=q)
-        )
+        queries = q.split(" ")
+        instance = None
+        for query in queries:
+            if instance:
+                instance |= Profile.objects.filter(
+                    Q(name__icontains=query) | Q(
+                        email__icontains=query) | Q(city__icontains=query)
+                )
+            else:
+                instance = Profile.objects.filter(
+                    Q(name__icontains=query) | Q(
+                        email__icontains=query) | Q(city__icontains=query)
+                )
         instance = self.paginate_queryset(instance, request, view=self)
 
         serializer = self.serializer_class(instance, many=True)
@@ -39,12 +48,44 @@ class SearchProduct(APIView, LimitOffsetPagination):
 
     def get(self, request, *args, **kwargs):
         q = kwargs.get('q')
+        queries = q.split(" ")
+        instance = None
+        for query in queries:
+            if instance:
+                instance |= Product.objects.filter(
+                    Q(name__icontains=query) | Q(description__icontains=query) | Q(
+                        product_type__icontains=query)
+                )
+            else:
+                instance = Product.objects.filter(
+                    Q(name__icontains=query) | Q(description__icontains=query) | Q(
+                        product_type__icontains=query)
+                )
+        instance = self.paginate_queryset(instance, request, view=self)
 
-        instance = Product.objects.filter(
+        serializer = self.serializer_class(instance, many=True)
 
-            Q(name__icontains=q) | Q(description__icontains=q) | Q(
-                product_type__icontains=q)
-        )
+        return self.get_paginated_response(serializer.data)
+
+
+class SearchEvent(APIView, LimitOffsetPagination):
+    serializer_class = EventSerializer
+
+    def get(self, request, *args, **kwargs):
+        q = kwargs.get('q')
+        queries = q.split(" ")
+        instance = None
+        for query in queries:
+            if instance:
+                instance |= Event.objects.filter(
+                    Q(title__icontains=query) | Q(location__icontains=query) | Q(
+                        details__icontains=query)
+                )
+            else:
+                instance = Event.objects.filter(
+                    Q(title__icontains=query) | Q(location__icontains=query) | Q(
+                        details__icontains=query)
+                )
         instance = self.paginate_queryset(instance, request, view=self)
 
         serializer = self.serializer_class(instance, many=True)
