@@ -81,7 +81,8 @@ class PostWrite(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save(user=request.user)
         return Response({
-            'post_id': serializer.data.get('id')
+            'post_id': serializer.data.get('id'),
+            'image': serializer.data.get('image')
         }, status=status.HTTP_200_OK)
 
 
