@@ -548,7 +548,7 @@
                   </code>
                 </blockquote>
               </div>
-
+<hr>
               <div class="my-2 pt-4" id="create_event">
                 <div class="d-flex titles">
                   <div class="d-flex">
@@ -615,6 +615,112 @@
                 </blockquote>
               </div>
       
+              <hr>
+              <div class="my-2 pt-4" id="search_event">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Search Event</h5>
+                  <kbd>GET</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/search/event/query"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  
+                  Response: <br />
+                  <code>
+                    {<br />
+                      <span class="ml-4">"count": number of events,</span><br />
+                      <span class="ml-4">"next": next page url,</span><br />
+                      <span class="ml-4">"previous": previous page url,</span><br />
+                      <span class="ml-4">"results": [</span><br />
+                      <span class="ml-5">{</span><br />
+                    
+                      <span class="ml-5">"id": event id,</span></span><br />
+                      <span class="ml-5">"title": event title,</span></span><br />
+                      <span class="ml-5">"location": event location,</span></span><br />
+                      <span class="ml-5">"date": "yyyy-mm-dd",</span><br />
+                      <span class="ml-5">"details": event details,</span><br />
+                      <span class="ml-5">"pay1": payment mobile number 1,</span><br />
+                      <span class="ml-5">"pay1_method": payment method for number 1,</span></span><br />
+                      <span class="ml-5">"pay2": payment mobile number 2,</span><br />
+                      <span class="ml-5">"pay2_method": payment method for number 2,</span><br />
+                      <span class="ml-5">"capacity": member capacity of this event,</span><br />
+                      <span class="ml-5">"cost": cost to pay,</span><br />
+                      <span class="ml-5">"img": event banner,</span><br />
+                      <span class="ml-5">"host": user id of host,</span><br />
+                      <span class="ml-5">"going": [],</span><br />
+                      <span class="ml-5">"pending": []</span><br />
+                      <span class="ml-5">},</span><br />
+                    <span class="ml-4">]</span><br />
+                    }<br />
+                    
+                  </code>
+                </blockquote>
+              </div>
+              <hr>
+              <div class="my-2 pt-4" id="view_event_tr">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Transcations</h5>
+                  <kbd>GET</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/event/transactions/event_id"</i>
+                  </p>
+                </div>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  
+                  Response: <br />
+                  <code>
+                    
+                      [<br />
+                      <span class="ml-4">{</span><br />
+                      <span class="ml-5">"id": 11,</span><br>
+                      <span class="ml-5">"tr": "asif23 payment",</span><br>
+                      <span class="ml-5">"method": "Bkash",</span><br>
+                      <span class="ml-5">"status": false,</span><br>
+                      <span class="ml-5">"event": 167,</span><br>
+                      <span class="ml-5">"user": 6</span><br>
+                      <span class="ml-4">},</span><br />
+                    ]<br />
+                    
+                    
+                  </code>
+                </blockquote>
+              </div>
+              <hr>
+              <div class="my-2 pt-4" id="handle_event_tr">
+                <div class="d-flex titles">
+                  <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Transcations Handler</h5>
+                  <kbd>POST</kbd></div>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/event/transactions/action/event_id"</i>
+                  </p>
+                </div>
+                <p>send { action : 1} to accept the transaction or send { action : 0} to reject.</p>
+      
+                <blockquote class="blockquote ml-5 mt-2">
+                  
+                  Request: <br />
+                  <code>
+                    
+                      {<br />
+          
+                        
+                      <span class="ml-5">"user_id": user id,</span><br>
+                      <span class="ml-5">"tr_id": transactions id,</span><br>
+                      <span class="ml-5">"action": 1,</span><br>
+                      
+                      
+                      }<br />
+                    
+                    
+                  </code>
+                </blockquote>
+              </div>
               <hr />
               <div class="my-2 pt-4" id="event_going_user">
                 <div class="d-flex titles">

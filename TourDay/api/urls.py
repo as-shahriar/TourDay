@@ -34,6 +34,9 @@ urlpatterns = [
     path('edit_event/<int:id>', event.EditEvent.as_view()),
     path('going_users/<int:id>', event.GoingUser.as_view()),
     path('event/<int:id>', event.EventView.as_view()),
+    path('event/transactions/<int:id>', event.EventTransaction.as_view()),
+    path('event/transactions/action/<int:id>',
+         event.EventTransactionHandler.as_view()),
 
     path('search/user/<str:q>', views.SearchUser.as_view()),
     path('search/product/<str:q>', views.SearchProduct.as_view()),
