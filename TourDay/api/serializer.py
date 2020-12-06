@@ -30,10 +30,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
     class Meta:
         model = Profile
-        fields = ['user', 'name', 'email', 'fb',
+        fields = ['user','username', 'name', 'email', 'fb',
                   'insta', 'city', 'bio', 'picture']
+    
+    def get_username(self,instance):
+        return instance.user.username        
 
 
 class ProfileUpdateSerializer(serializers.Serializer):
