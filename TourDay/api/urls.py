@@ -1,7 +1,7 @@
 from django.urls import path, include
 from api import auth, profile, views, event
 from _auth.views import forgetPasswordView, resetPasswordView
-from user_profile.views import PostList
+from user_profile.views import PostList,get_map_data
 from django.views.generic import TemplateView
 from event.views import AllEventList
 
@@ -44,5 +44,6 @@ urlpatterns = [
     path('search/event/<str:q>', views.SearchEvent.as_view()),
     path('map/<str:username>', views.map),
     path('map-dark/<str:username>', views.map_dark),
+    path('map/data/<str:username>', get_map_data)
 
 ]
