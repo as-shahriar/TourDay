@@ -13,9 +13,9 @@ urlpatterns = [
     path('', include('user_profile.urls')),
     # path('ckeditor/', include('ckeditor_uploader.urls')),
     path('event/', include('event.urls')),
-    path('ecommerce/', include('ecommerce.urls')),
+    path('shop/', include('ecommerce.urls')),
     path('api/', include('api.urls')),
-    path('api/ecommerce/', include('ecommerce.api.urls')),
+    path('api/shop/', include('ecommerce.api.urls')),
     path('api/blog/', include('blog.api.urls')),
 
 

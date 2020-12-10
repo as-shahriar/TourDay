@@ -91,4 +91,17 @@ class search_product(generics.ListAPIView):
     serializer_class = ProductSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'description', 'product_type'] 
+
+class SetPagination(PageNumberPagination):
+    page_size = 15
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
+class category_product(generics.ListAPIView):
+    
+    queryset = Product.objects.all().order_by('-id')
+    pagination_class = SetPagination
+    serializer_class = ProductSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['product_type'] 
     

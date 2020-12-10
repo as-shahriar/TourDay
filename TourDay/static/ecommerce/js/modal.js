@@ -8,7 +8,7 @@ document.querySelectorAll(".open-modal").forEach(e=>{
 
 
 function get_product_info(id){
-    fetch(`/api/ecommerce/product/details/${id}`).
+    fetch(`/api/shop/product/details/${id}`).
     then(res=>res.json()).
     then(data=>{
         const {description, image,name,price,product_type,digital} = data

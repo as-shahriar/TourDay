@@ -1149,8 +1149,307 @@
                 </code>
               </blockquote>
               </div>
-        
+
             </div>
+
+            <hr>
+            <div class="card-body">
+            
+              <div class="my-2 mt-1">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Total Product</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/shop/allproduct/"</i>
+                  </p>
+                </div>
+                <p>
+                  Here, <code>"digital": true </code> Means Product are not available
+                and, <code>"digital": false </code> Means Product are available.
+                  <br />
+                </p>
+                
+                <blockquote class="blockquote ml-5 mt-2">
+                <code>
+                  {<br />
+                    <span class="ml-4">"count": number of product,</span><br />
+                    <span class="ml-4">"next": next page url,</span><br />
+                    <span class="ml-4">"previous": previous page url,</span><br />
+                    <span class="ml-4">"results": [</span><br />
+                    <span class="ml-4">{</span><br />
+                 
+                    <span class="ml-5">"id": 1,</span><br>
+                    <span class="ml-5">"name": "Bag",</span><br>
+                    <span class="ml-5">"price": 568,</span><br>
+                    <span class="ml-5">"product_type": "type",</span><br>
+                    <span class="ml-5">"digital": true,</span><br>
+                    <span class="ml-5">"img": "/media/ecom_pics/12456.png"</span><br>
+                    <span class="ml-4">},</span><br>
+                    <span class="ml-4">{</span><br />
+                 
+                      <span class="ml-5">"id": 1,</span><br>
+                      <span class="ml-5">"name": "Bag",</span><br>
+                      <span class="ml-5">"price": 568,</span><br>
+                      <span class="ml-5">"product_type": "type",</span><br>
+                      <span class="ml-5">"digital": true,</span><br>
+                      <span class="ml-5">"img": "/media/ecom_pics/12456.png"</span><br>
+                      <span class="ml-4">}</span><br>
+                   
+                      
+                      <span class="ml-4">]</span><br>
+                  
+                  <span >}</span>
+                </code>
+              </blockquote>
+              </div>
+
+            </div> 
+            <!-- end -->
+
+            <hr>
+            <div class="card-body">
+            
+              <div class="my-2 mt-1">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Product Details</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/shop/product/details/product_id"</i>
+                  </p>
+                </div>
+                <p>
+                  Here, <code>"digital": true </code> Means Product are not available
+                and, <code>"digital": false </code> Means Product are available.
+                  <br />
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                <code>
+                  
+                    <span class="ml-4">{</span><br />
+                    <span class="ml-5">"id": 1,</span><br>
+                    <span class="ml-5">"name": "Bag",</span><br>
+                    <span class="ml-5">"price": 568,</span><br>
+                    <span class="ml-5">"product_type": "type",</span><br>
+                    <span class="ml-5">"digital": true,</span><br>
+                    <span class="ml-5">"img": "/media/ecom_pics/12456.png"</span><br>
+                    <span class="ml-4">}</span><br>
+
+                </code>
+              </blockquote>
+              </div>
+
+            </div> 
+            <!-- end -->
+            <hr>
+            <div class="card-body">
+            
+              <div class="my-2 mt-1">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">User Order</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/shop/order/user/"</i>
+                  </p>
+                </div>
+                <p>
+                  Authorization Token is Required.
+                  <br />
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    Request: <br />{<br />
+        
+                    <span class="ml-4"
+                      >"Authorization": "Token
+                      93bc86220b144548e5bb507851b6ef7c2a5e1a14",</span
+                    ><br />
+                    }
+                  </code>
+                </blockquote>
+                <blockquote class="blockquote ml-5 mt-2">
+                <code>
+                  Response: <br />{<br />
+                    <span class="ml-3">"count": number of product,</span><br />
+                    <span class="ml-3">"next": next page url,</span><br />
+                    <span class="ml-3">"previous": previous page url,</span><br />
+                    <span class="ml-3">"results": [</span><br />
+                    <span class="ml-3">{</span><br />
+                 
+                    <span class="ml-4">"id": 1,</span><br>
+                    <span class="ml-4">"quantity": 4,</span><br>
+                    <span class="ml-4">"product": {</span><br>
+                    <span class="ml-5">"id": 46,</span><br>
+                    <span class="ml-5">"name": product name,</span><br>
+                    <span class="ml-5">"price": product price,</span><br>
+                    <span class="ml-5">"img": "/media/ecom_pics/12456.png"</span><br>
+                    <span class="ml-3">},</span><br>
+
+                    <span class="ml-4">"Order": {</span><br>
+                    <span class="ml-5">"id": 56,</span><br>
+                    <span class="ml-5">"date_ordered": "2020-12-09",</span><br>
+                    <span class="ml-5">"total_money": 6570,</span><br>
+                    <span class="ml-5">"total_items": 4,</span><br>
+                    <span class="ml-5">"Status": "Pending",</span><br>
+                    <span class="ml-5">"order_id": "74048704",</span><br>
+                    <span class="ml-3">},</span><br>
+                    
+                   
+                      
+                      <span class="ml-4">]</span><br>
+                  
+                  <span >}</span>
+                </code>
+              </blockquote>
+              </div>
+
+            </div> 
+            <!-- end -->
+
+
+            <hr>
+            <div class="card-body">
+            
+              <div class="my-2 mt-1">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Product Type</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/shop/allcategory/"</i>
+                  </p>
+                </div>
+               
+                <blockquote class="blockquote ml-5 mt-2">
+                <code>
+
+                  <span class="ml-3">[</span><br />
+
+                    <span class="ml-4">{</span><br />
+                    <span class="ml-5">"id": 3,</span><br>
+                    <span class="ml-5">"product_type": "Watch",</span><br>
+                    <span class="ml-4">}</span><br>
+
+                    <span class="ml-4">{</span><br />
+                    <span class="ml-5">"id": 2,</span><br>
+                    <span class="ml-5">"product_type": "Shoes",</span><br>
+                    <span class="ml-4">}</span><br>
+                    <span class="ml-4">{</span><br />
+                    <span class="ml-5">"id": 1,</span><br>
+                    <span class="ml-5">"product_type": "Water Bottle",</span><br>
+                    <span class="ml-4">}</span><br>
+
+                    <span class="ml-3">]</span><br />
+
+                </code>
+              </blockquote>
+              </div>
+
+            </div> 
+            <!-- end -->
+            <hr>
+            <div class="card-body">
+            
+              <div class="my-2 mt-1">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Product Category</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/shop/category?search=product_type"</i>
+                  </p>
+                </div>
+                <p>
+                  Here, <code>"digital": true </code> Means Product are not available
+                and, <code>"digital": false </code> Means Product are available.
+                  <br />
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                      <span class="ml-4">"count": number of product,</span><br />
+                      <span class="ml-4">"next": next page url,</span><br />
+                      <span class="ml-4">"previous": previous page url,</span><br />
+                      <span class="ml-4">"results": [</span><br />
+                      <span class="ml-4">{</span><br />
+                   
+                      <span class="ml-5">"id": 1,</span><br>
+                      <span class="ml-5">"name": "Bag",</span><br>
+                      <span class="ml-5">"price": 568,</span><br>
+                      <span class="ml-5">"product_type": "type",</span><br>
+                      <span class="ml-5">"digital": true,</span><br>
+                      <span class="ml-5">"img": "https://www.tourday.team/media/ecom_pics/12456.png"</span><br>
+                      <span class="ml-4">},</span><br>
+                      <span class="ml-4">{</span><br />
+                   
+                        <span class="ml-5">"id": 1,</span><br>
+                        <span class="ml-5">"name": "Bag",</span><br>
+                        <span class="ml-5">"price": 568,</span><br>
+                        <span class="ml-5">"product_type": "type",</span><br>
+                        <span class="ml-5">"digital": true,</span><br>
+                        <span class="ml-5">"img": "https://www.tourday.team/media/ecom_pics/12456.png"</span><br>
+                        <span class="ml-4">}</span><br>
+                     
+                        
+                        <span class="ml-4">]</span><br>
+                    
+                    <span >}</span>
+                  </code>
+                </blockquote>
+              </div>
+
+            </div> 
+            <!-- end -->
+            <hr>
+            <div class="card-body">
+            
+              <div class="my-2 mt-1">
+                <div class="d-flex">
+                  <h5 class="mb-0 mr-2">Search Product</h5>
+                  <kbd>GET</kbd>
+                  <p class="mb-0 ml-2 text-success">
+                    <i>"https://www.tourday.team/api/shop/search/product?search=Product Name"</i>
+                  </p>
+                </div>
+                <p>
+                  Here, <code>"digital": true </code> Means Product are not available
+                and, <code>"digital": false </code> Means Product are available.
+                  <br />
+                </p>
+                <blockquote class="blockquote ml-5 mt-2">
+                  <code>
+                    {<br />
+                      <span class="ml-4">"count": number of product,</span><br />
+                      <span class="ml-4">"next": next page url,</span><br />
+                      <span class="ml-4">"previous": previous page url,</span><br />
+                      <span class="ml-4">"results": [</span><br />
+                      <span class="ml-4">{</span><br />
+                   
+                      <span class="ml-5">"id": 1,</span><br>
+                      <span class="ml-5">"name": "Bag",</span><br>
+                      <span class="ml-5">"price": 568,</span><br>
+                      <span class="ml-5">"product_type": "type",</span><br>
+                      <span class="ml-5">"digital": true,</span><br>
+                      <span class="ml-5">"img": "https://www.tourday.team/media/ecom_pics/12456.png"</span><br>
+                      <span class="ml-4">},</span><br>
+                      <span class="ml-4">{</span><br />
+                   
+                        <span class="ml-5">"id": 1,</span><br>
+                        <span class="ml-5">"name": "Bag",</span><br>
+                        <span class="ml-5">"price": 568,</span><br>
+                        <span class="ml-5">"product_type": "type",</span><br>
+                        <span class="ml-5">"digital": true,</span><br>
+                        <span class="ml-5">"img": "https://www.tourday.team/media/ecom_pics/12456.png"</span><br>
+                        <span class="ml-4">}</span><br>
+                     
+                        
+                        <span class="ml-4">]</span><br>
+                    
+                    <span >}</span>
+                  </code>
+                </blockquote>
+              </div>
+
+            </div> 
+            <!-- end -->
+
           </div>
         </div>
 
