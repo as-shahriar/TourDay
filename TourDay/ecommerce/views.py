@@ -101,7 +101,7 @@ def checkout(request):
     pending_check = bool(Order.objects.filter(criterion1 & criterion2))
     
     if pending_check:
-       url = '/ecommerce/'
+       url = '/shop/'
        resp_body = '<script>alert("Your already have a pending items!");\
                     window.location="%s"</script>' % url
        return HttpResponse(resp_body)
