@@ -157,3 +157,4 @@ class api_BlogSearch(generics.ListAPIView):
     search_fields = ['title', 'description', 'division'] 
     
     
+    

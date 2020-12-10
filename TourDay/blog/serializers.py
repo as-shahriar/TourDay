@@ -10,3 +10,4 @@ class blogCreateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = blogPost
 		fields = ['title', 'description', 'image', 'division']
+		
