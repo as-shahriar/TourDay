@@ -1,7 +1,7 @@
 from django.urls import path, include
 from api import auth, profile, views, event
 from _auth.views import forgetPasswordView, resetPasswordView
-from user_profile.views import PostList
+from user_profile.views import PostList,get_map_data
 from django.views.generic import TemplateView
 from event.views import AllEventList
 
@@ -34,10 +34,16 @@ urlpatterns = [
     path('edit_event/<int:id>', event.EditEvent.as_view()),
     path('going_users/<int:id>', event.GoingUser.as_view()),
     path('event/<int:id>', event.EventView.as_view()),
+    path('event/transactions/<int:id>', event.EventTransaction.as_view()),
+    path('event/transactions/action/<int:id>',
+         event.EventTransactionHandler.as_view()),
+    path('event/delete/<int:id>', event.EventDelete.as_view()),
 
     path('search/user/<str:q>', views.SearchUser.as_view()),
     path('search/product/<str:q>', views.SearchProduct.as_view()),
+    path('search/event/<str:q>', views.SearchEvent.as_view()),
     path('map/<str:username>', views.map),
     path('map-dark/<str:username>', views.map_dark),
+    path('map/json/<str:username>', get_map_data)
 
 ]

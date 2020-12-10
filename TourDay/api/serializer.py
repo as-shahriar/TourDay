@@ -1,4 +1,4 @@
-from event.models import Event
+from event.models import Event, Transactions
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from user_profile.models import Profile, Post
@@ -30,9 +30,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
     class Meta:
         model = Profile
-        fields = ['name', 'email', 'fb', 'insta', 'city', 'bio', 'picture']
+        fields = ['user','username', 'name', 'email', 'fb',
+                  'insta', 'city', 'bio', 'picture']
+    
+    def get_username(self,instance):
+        return instance.user.username        
 
 
 class ProfileUpdateSerializer(serializers.Serializer):
@@ -58,3 +63,15 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         exclude = ['user']
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ('__all__')
+
+
+class TransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transactions
+        fields = ('__all__')

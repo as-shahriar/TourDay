@@ -7,11 +7,12 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from _auth.models import User
 from user_profile.models import Profile
-from .serializer import ProfileSerializer
+from .serializer import ProfileSerializer, TransactionSerializer
 from rest_framework.response import Response
 from utils import async_send_mail
 from TourDay.settings import EMAIL_HOST_USER
 from django.db.models import Q
+from rest_framework import status
 
 
 class EventListApi(EventList):
@@ -54,7 +55,14 @@ class Pay(APIView):
             if Transactions.objects.filter(
                 Q(event=event), Q(user=request.user)
             ).count() != 0:
-                raise ValueError
+                return Response({'message': 'Pendinng payment exists'}, status=status.HTTP_403_FORBIDDEN)
+            transaction = Transactions.objects.filter(
+                Q(user__in=event.pending.all()), Q(
+                    status=False), Q(event=event)
+            )
+            if event.capacity <= event.going.count() + transaction.count():
+                return Response({'message': 'Sorry housefull'}, status=status.HTTP_403_FORBIDDEN)
+
             obj = Transactions()
             obj.event = event
             obj.method = method.strip()
@@ -122,5 +130,71 @@ class EventView(APIView):
         id = kwargs.get('id')
         event = get_object_or_404(Event, id=id)
         serializer = EventSerializer(event, many=False)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
+
+
+class EventTransaction(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        id = kwargs.get('id')
+        event = get_object_or_404(Event, id=id)
+        if request.user != event.host:
+            return Response({'message': 'No access'}, status=status.HTTP_403_FORBIDDEN)
+        transaction = Transactions.objects.filter(
+            Q(user__in=event.pending.all()), Q(status=False), Q(event=event)
+        )
+        serializer = TransactionSerializer(transaction, many=True)
+        # print(serializer.data)
+        return Response(serializer.data)
+
+
+class EventTransactionHandler(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        event_id = kwargs.get('id')
+        tr_id = request.POST.get('tr_id')
+        is_accepted = request.POST.get('action')
+        user_id = request.POST.get("user_id")
+
+        event = get_object_or_404(Event, id=event_id)
+        user = User.objects.get(id=user_id)
+        tr = Transactions.objects.filter(
+            Q(user=user), Q(event=event)
+        )
+        if request.user != event.host:
+            return Response({'message': 'No access'}, status=status.HTTP_403_FORBIDDEN)
+
+        if is_accepted == "1":
+            event.going.add(user)
+            event.pending.remove(user)
+            tr.status = True
+            tr.update()
+            profile = Profile.objects.get(user=user)
+            subject = f"Payment request accepted for {event.title}."
+            message = f"Dear {user.username},\nYour payment request for event '{event.title}' in TourDay got accepted. Pack your bags and get ready to explore!\nKeep eye on https://tourday.team/event/{event.id}\nBest Regards\nTourDay Team"
+            async_send_mail(subject, message,
+                            EMAIL_HOST_USER, user.email)
+            return Response({"message": "Transaction accepted"}, status=status.HTTP_202_ACCEPTED)
+        elif is_accepted == "0":
+            event.pending.remove(user)
+            tr.delete()
+            subject = f"Payment request denied for {event.title}."
+            message = f"Dear {user.username},\nYour payment request for event '{event.title}' in TourDay got denied. Kindly check your transaction number and try again.\nBest Regards\nTourDay Team"
+            async_send_mail(subject, message,
+                            EMAIL_HOST_USER, user.email)
+            return Response({"message": "Transaction isn't accepted"}, status=status.HTTP_200_OK)
+
+
+class EventDelete(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        id = kwargs.get('id')
+        event = get_object_or_404(Event, id=id)
+        if request.user != event.host:
+            return Response({'message': 'No access'}, status=status.HTTP_403_FORBIDDEN)
+        event.delete()
+        return Response({"message": "Event deleted."}, status=status.HTTP_200_OK)

@@ -75,13 +75,14 @@ class ProfileView(APIView):
 
 class PostWrite(APIView):
     permission_classes = [IsAuthenticated]
-
+    parser_classes = (FormParser, MultiPartParser)
     def post(self, request):
         serializer = PostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(user=request.user)
         return Response({
-            'post_id': serializer.data.get('id')
+            'post_id': serializer.data.get('id'),
+            'image': serializer.data.get('image')
         }, status=status.HTTP_200_OK)
 
 
