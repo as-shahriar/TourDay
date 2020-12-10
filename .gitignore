@@ -11,7 +11,8 @@ env/
 *.sqlite3
 *.pyc
 *.db
-
+*/.mailkey
+*/.dbkey
 
 #Media Files
 */media/blog_pics

@@ -1,3 +1,4 @@
+from event.models import Event
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from user_profile.models import Profile, Post
@@ -57,5 +58,3 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         exclude = ['user']
-
-

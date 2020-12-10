@@ -98,7 +98,7 @@ Profile{%endblock%} {%block css%}
 </div>
 
 {% if request.user == user_obj %}
-<div>
+<div class="add_post_container">
   <div class="add_post">
     <div class="head">Create post</div>
 
@@ -178,7 +178,7 @@ Profile{%endblock%} {%block css%}
       class="modal-content"
       style="border-radius: 1.1rem; background-color: transparent"
     >
-      <div class="post" style="margin: 0">
+      <div class="modal-post" style="margin: 0">
         <div class="post-head" style="padding-right: 0">
           <div class="user-info">
             <img src="{{profile.picture.url}}" class="user-img" />
@@ -198,7 +198,7 @@ Profile{%endblock%} {%block css%}
         </div>
         <div class="post-body" style="padding: 0 1.2rem">
           <div class="post-img">
-            <img src="" style="height: 100%" id="post-image-modal" />
+            <img src="" style="height:auto; max-height: 80vh;" id="post-image-modal" />
           </div>
         </div>
       </div>
