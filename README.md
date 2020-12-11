@@ -16,7 +16,7 @@ Live at [tourday.team](https://tourday.team)
 4. Ecommerce
 
 ## API Documentation 
-[tourday.team/api](https://tourday.team)
+[tourday.team/api](https://tourday.team/api)
 
 ## Installation
 
