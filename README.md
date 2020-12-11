@@ -6,6 +6,8 @@
 
 It is a platform where people can showcase their tours, share information & experiences. Travelers can learn from other's experiences & know more about tourist places in our country, [See More.](https://sites.google.com/view/touristcommunity/tourday)
 
+Live at [tourday.team](https://tourday.team)
+
 ## Features
 
 1. Blog
