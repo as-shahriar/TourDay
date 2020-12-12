@@ -7,7 +7,7 @@
 }
 
 svg {
-  max-width: auto;
+  // max-width: 50vw;
   max-height: 70vh;
 }
 
@@ -57,4 +57,15 @@ svg {
 #chit path,
 .sylhet path {
   fill: white;
+}
+@media (max-width: 800px) {
+  svg {
+    max-width: 70vw;
+    max-height: 100%;
+  }
+  .close {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
 }
