@@ -31,5 +31,5 @@ Live at [tourday.team](https://tourday.team)
 
 - [Asif Shahriar](https://asifo1.github.io) - Full Stack Developer.
 - [Partha Kumar Bagchi](https://github.com/pkbagchi) - Full Stack Developer.
-- [Rakib Hasan Anik](https://github.com/anik-rakib) - Android Developer.
+- [Rakib Hasan Anik](https://github.com/anikrakib) - Android Developer.
 - [Mohaiminul Karim](https://dribbble.com/MkAkash) - Logo Desginer.
