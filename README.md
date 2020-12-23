@@ -24,7 +24,7 @@ Live at [tourday.team](https://tourday.team)
 2. Install virtualenv
 3. Create and active virtualenv
 4. Install dependencies from requirements.txt `pip3 install -r requirements.txt`
-5. Run Server `python manage.py runserver`
+5. Run Server `python3 manage.py runserver`
 6. check `127.0.0.1:8000`
 
 ## Devs & Credits
