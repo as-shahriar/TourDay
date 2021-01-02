@@ -68,7 +68,8 @@ def details(request, id):
 
     # di_count = division_post_count()
 
-    details_obj = blogPost.objects.get(id=id)
+
+    details_obj = get_object_or_404(blogPost, id=id)
     random_post = blogPost.objects.order_by('?')
 
     context = {
