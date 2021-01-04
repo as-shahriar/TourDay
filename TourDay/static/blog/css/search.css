@@ -62,7 +62,25 @@ footer {
 .form-check-input {
   cursor: pointer;
 }
-
+.download-btn {
+  background-color: #475e69;
+  padding: 8px 14px;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  box-shadow: 2px 3px 7px #00000085;
+  text-shadow: 2px 2px 3px #00000085;
+  transition: all 0.2s ease-out;
+}
+.download-btn img {
+  width: 30px;
+  height: 30px;
+}
+.download-btn:hover {
+  box-shadow: 2px 3px 7px #000000db;
+  color: #fff;
+  text-decoration: none;
+}
 @media (max-width: 800px) {
   .main {
     height: 85vh;

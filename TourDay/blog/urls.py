@@ -6,7 +6,7 @@ from blog.views import (search,
 
 from ckeditor_uploader import views as uploader_views
 from django.views.decorators.cache import never_cache
-
+from apk.views import download
 
 urlpatterns = [
 
@@ -24,6 +24,7 @@ urlpatterns = [
     path('blog/delete/<int:id>', blog_delete, name='blog_delete'),
     path('blog/user/<slug>', user_post, name='user_post'),
     path('blog/division/<slug>', division_post, name='division_post'),
+    path('download-app',download,name="download_app")
 
 
     

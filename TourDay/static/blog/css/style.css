@@ -469,7 +469,7 @@ textarea.input {
   right: 0;
   top: 0;
   bottom: 0;
-  background: #1DE9B6;
+  background: #1de9b6;
   background: linear-gradient(to left, #1d2046, #3e968a);
   max-width: 220px;
   width: 100%;
@@ -481,7 +481,6 @@ textarea.input {
   transform: translateX(100%);
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
-  
 }
 #nav-aside.active {
   -webkit-transform: translateX(0%);
@@ -493,22 +492,21 @@ textarea.input {
 }
 
 .nav-aside-menu li a {
-  
   margin-left: 0px;
-	padding:15px 20px;
-	
-	display:block;
-	font-size:99%;
-	border-bottom:1px dotted #cdcdcd;
-	text-decoration: none;
+  padding: 15px 20px;
+
+  display: block;
+  font-size: 99%;
+  border-bottom: 1px dotted #cdcdcd;
+  text-decoration: none;
   text-decoration: none;
   text-transform: uppercase;
   color: #a7b3c6;
 }
 .nav-aside-menu li a:hover {
-	color: white;
-	background-color: #17a2b8;
- }
+  color: white;
+  background-color: #17a2b8;
+}
 
 .nav-aside-social li {
   display: inline-block;

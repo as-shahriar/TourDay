@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "event",
     "ecommerce",
     "api",
+    "apk",
     # Thirdparty Apps
 
     # for blog
