@@ -1,5 +1,15 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+
+{% block og %}
+<meta name="og:title" content="{{details_obj.title}}" />
+<meta name="og:url" content="https://tourday.team" />
+<meta name="og:image" content="{{ details_obj.image.url }}" />
+<meta
+  name="og:description"
+  content="{{details_obj.description|truncatechars:200}}"
+/>
+{%endblock%}
 {% block blog %}
 
 
