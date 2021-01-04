@@ -7,7 +7,7 @@
 <meta name="og:image" content="{{ details_obj.image.url }}" />
 <meta
   name="og:description"
-  content="{{details_obj.description|truncatechars:200}}"
+  content="{{details_obj.description|striptags|truncatechars:150}}"
 />
 {%endblock%}
 {% block blog %}

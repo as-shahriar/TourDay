@@ -32,6 +32,7 @@ class blogPost(models.Model):
                   default="Rajshahi")
     
     
+    
 
     # def save(self):
     #     super().save()  # saving image first
