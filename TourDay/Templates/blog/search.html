@@ -62,8 +62,9 @@
   </div>
   <button class="my-btn search-btn" type="submit" id="search">Search</button>
 </div>
+{%if is_andoird %}
 <footer><a href="{% url 'download_app'%}" class="download-btn" ><img src="{%static 'icon/android.png'%}"> Download Now</a></footer>
-
+{%endif%}
 {%endblock%} {%block scripts%}
 <script src="{% static 'blog/js/main.min.js' %}"></script>
 {%endblock%}

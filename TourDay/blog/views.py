@@ -18,6 +18,7 @@ from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
 
 from .serializers import blogPostSerializer, blogCreateSerializer
+import re
 
 class division_post_count:
     def __init__(self):
@@ -35,7 +36,11 @@ class division_post_count:
 
 # Create your views here.
 def search(request):
-    return render(request, 'blog/search.html')
+    if re.compile(r".*(mobile|androidtouch)",re.IGNORECASE).match(request.META['HTTP_USER_AGENT']):
+        is_android = True
+    else:
+        is_android = False
+    return render(request, 'blog/search.html',{'is_andoird':is_android})
 
 
 def home(request):
