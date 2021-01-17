@@ -119,7 +119,7 @@ if (search != null) {
           location.href = `/blog/search/?q=${q.value}`;
         } 
         else if (radios[i].value == "product") {
-          location.href = `ecommerce/search/?q=${q.value}`;
+          location.href = `shop/search/?q=${q.value}`;
         } 
       }
     }
