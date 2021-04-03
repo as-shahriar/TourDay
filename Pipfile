@@ -40,7 +40,6 @@ urllib3 = "==1.25.8"
 webencodings = "==0.5.1"
 xhtml2pdf = "==0.2.5"
 CacheControl = "==0.12.6"
-django-pwa = "*"
 
 [requires]
 python_version = "3.8"

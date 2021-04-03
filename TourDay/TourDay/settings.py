@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
-    'pwa',
 
     'django_cleanup.apps.CleanupConfig',  # must be in last
 ]
@@ -173,38 +172,3 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATIC_ROOT = "/static/"
-
-
-# PWA Settings
-
-
-PWA_APP_NAME = 'TourDay'
-PWA_APP_DESCRIPTION = "A platform where people can showcase their tours, share information, experiences & know more about tourist places in Bangladesh."
-PWA_APP_THEME_COLOR = '#00284e'
-PWA_APP_BACKGROUND_COLOR = '#fbfbfb'
-PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'any'
-PWA_APP_START_URL = '/'
-PWA_APP_STATUS_BAR_COLOR = 'default'
-PWA_APP_DEBUG_MODE = False
-PWA_APP_ICONS = [
-    {
-        'src': '/static/image/tourday-fav.png',
-        'sizes': '200x200'
-    }
-]
-PWA_APP_ICONS_APPLE = [
-    {
-        'src': '/static/image/tourday-fav.png',
-        'sizes': '200x200'
-    }
-]
-# PWA_APP_SPLASH_SCREEN = [
-#     {
-#         'src': '/static/images/icons/splash-640x1136.png',
-#         'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
-#     }
-# ]
-PWA_APP_DIR = 'ltr'
-PWA_APP_LANG = 'en-US'
