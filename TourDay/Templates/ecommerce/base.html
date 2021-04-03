@@ -1,7 +1,9 @@
-<!DOCTYPE html>
 {% load static %}
-<html>
-<head>
+{% load pwa %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% progressive_web_app_meta %}
 	<meta name="og:image" content="{% static 'image/tourday-og.png'%}" />
 	<meta
 	  name="og:description"
