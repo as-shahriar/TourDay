@@ -20,9 +20,7 @@ lockfile==0.12.2
 msgpack==0.6.2
 packaging==20.3
 pep517==0.8.2
-Pillow==7.2.0
 progress==1.5
-psycopg2-binary==2.8.6
 pyparsing==2.4.6
 pytoml==0.1.21
 pytz==2020.1
@@ -33,3 +31,5 @@ sqlparse==0.3.1
 urllib3==1.25.8
 webencodings==0.5.1
 xhtml2pdf==0.2.5
+reportlab==3.6.6
+Pillow==7.2.0

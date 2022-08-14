@@ -19,7 +19,7 @@ DEBUG = True
 if not DEBUG:
     PREPEND_WWW = True  # add www to non-www url
 
-ALLOWED_HOSTS = ["*", "52.140.64.35", "tourday.team", "www.tourday.team"]
+ALLOWED_HOSTS = ["*"]
 
 # handel large file to upload
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2000000  # 20M

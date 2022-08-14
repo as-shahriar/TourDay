@@ -1,0 +1,36 @@
+#chache
+__pycache__/
+*.py[cod]
+*$py.class
+
+#virtualenv
+env/
+
+#DataBase
+.DS_Store
+*.sqlite3
+*.pyc
+*.db
+*/.mailkey
+*/.dbkey
+
+#Media Files
+*/media/blog_pics
+*/media/event
+*/media/profile_pics
+*/media/uploads
+*/media/ecom_pics
+*/media/apk_file
+
+# django migrations 
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+
+
+#vscode
+.vscode/
+
+
+# node_modules
+node_modules/
