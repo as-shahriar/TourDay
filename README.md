@@ -17,7 +17,8 @@ Live at [tourday.team](https://tourday.team)
 3. Tourist Portfolio
 4. Ecommerce
 
-## API Documentation 
+## API Documentation
+
 [tourday.team/api](https://tourday.team/api)
 
 ## Installation
@@ -28,6 +29,12 @@ Live at [tourday.team](https://tourday.team)
 4. Install dependencies from requirements.txt `pip3 install -r requirements.txt`
 5. Run Server `python3 manage.py runserver`
 6. check `127.0.0.1:8000`
+
+## Installation with Docker
+
+1. docker-compose build
+2. docker-compose run web python3 manage.py migrate
+3. docker-compose up
 
 ## Devs & Credits
 
