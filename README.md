@@ -33,8 +33,9 @@ Live at [tourday.team](https://tourday.team)
 ## Installation with Docker
 
 1. docker-compose build
-2. docker-compose run web python3 manage.py migrate
-3. docker-compose up
+2. docker-compose run web python3 manage.py makemigrations
+3. docker-compose run web python3 manage.py migrate
+4. docker-compose up
 
 ## Devs & Credits
 
