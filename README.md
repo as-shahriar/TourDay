@@ -31,11 +31,8 @@ Live at [tourday.team](https://tourday.team)
 6. check `127.0.0.1:8000`
 
 ## Installation with Docker
-
-1. docker-compose build
-2. docker-compose run web python3 manage.py makemigrations
-3. docker-compose run web python3 manage.py migrate
-4. docker-compose up
+1. Run `docker-compose up -d`
+2. Check `127.0.0.1:8000` or `localhost:8000`
 
 ## Devs & Credits
 
