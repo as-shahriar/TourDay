@@ -31,7 +31,7 @@ Live at [tourday.team](https://tourday.team)
 6. check `127.0.0.1:8000`
 
 ## Installation with Docker
-1. Run `docker-compose up -d`
+1. Run `docker compose up -d`
 2. Check `127.0.0.1:8000` or `localhost:8000`
 
 ## Devs & Credits
